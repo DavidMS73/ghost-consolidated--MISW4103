@@ -1,0 +1,17 @@
+{
+  "name": "kraken",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tests": "kraken-node run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.10",
+    "kraken-node": "^1.0.24"
+  },
+  "type": "commonjs"
+}

@@ -11,6 +11,8 @@ class PagesListPageObject extends BasePageObject {
         const titleElement = await this.driver.$('div[class="modal-body"] > h2');
         const titleElementText = await titleElement.getText();
         assert.equal(titleElementText, title);
+        
+        if (!content) return;
         const contentElement = await this.driver.$('div[class="modal-body"] > p[class="post-excerpt"]');
         const contentElementText = await contentElement.getText();
         assert.equal(contentElementText, content);

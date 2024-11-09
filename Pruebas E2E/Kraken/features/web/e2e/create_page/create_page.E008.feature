@@ -1,7 +1,7 @@
 Feature: Crear página
 
 @user1 @web
-Scenario: Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
+Scenario: E008 - Crear una página con un audio adjunto
   Given I navigate to page "<BASE_URL>"
   And I wait for 2 seconds
   And I login with email "<EMAIL>" and password "<PASSWORD>"
@@ -12,12 +12,18 @@ Scenario: Crear una página con sólo título y texto en el cuerpo satisfactoria
   And I wait for 1 seconds
   And I fill the page title with text "$name_1"
   And I wait for 1 seconds
-  And I fill the page content with text "$string_1"
+  And I click the page content
+  And I wait for 1 seconds
+  And I click the add button
+  And I wait for 1 seconds
+  And I click the audio button
+  And I wait for 1 seconds
+  And I fill the audio box with a file
   And I wait for 1 seconds
   And I click the publish button
   And I wait for 1 seconds
   And I click the continue final review button
   And I wait for 2 seconds
   And I click the publish page button
-  Then I should see title "$$name_1" and content "$$string_1" inside a modal
+  Then I should see title "$$name_1" inside a modal
   And I should see the first page with title "$$name_1"

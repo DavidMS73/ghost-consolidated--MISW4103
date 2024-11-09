@@ -46,6 +46,14 @@ When('I click the publish page button', async function() {
     await this.pageCreationPO.clickPublishPageButton();
 });
 
+When('I click the pages type filter', async function() {
+    await this.pageListPO.clickPagesTypeFilter();
+});
+
+When('I click the published pages filter', async function() {
+    await this.pageListPO.clickPublishedPagesFilter();
+});
+
 // Then
 
 Then('I should see title {kraken-string} and content {kraken-string} inside a modal', async function(title, content) {

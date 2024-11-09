@@ -26,4 +26,9 @@ Scenario: E008 - Crear una página con un audio adjunto
   And I wait for 2 seconds
   And I click the publish page button
   Then I should see title "$$name_1" inside a modal
-  And I should see the first page with title "$$name_1"
+  When I wait for 1 seconds
+  And I click the pages type filter
+  And I wait for 1 seconds
+  And I click the published pages filter
+  And I wait for 1 seconds
+  Then I should see the first page with title "$$name_1"

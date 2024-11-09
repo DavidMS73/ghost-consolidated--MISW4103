@@ -29,6 +29,16 @@ class PagesListPageObject extends BasePageObject {
         const text = await element.getText();
         assert.equal(text, title);
     }
+
+    async clickPagesTypeFilter() {
+        const element = await this.driver.$('div[class~="view-actions-bottom-row"] > div[class~="gh-contentfilter-type"]');
+        await element.click();
+    }
+
+    async clickPublishedPagesFilter() {
+        const element = await this.driver.$('ul[role="listbox"] > li:nth-child(3)');
+        await element.click();
+    }
 }
 
 module.exports = { PagesListPageObject };

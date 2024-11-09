@@ -11,6 +11,19 @@ class LoginPage {
     await this.page.click('button.login[type="submit"]');
     await this.page.waitForNavigation({ waitUntil: "networkidle0" });
   }
+
+  async isInLoginPage() {
+    const selector = 'button.login[type="submit"]';
+    const btnExists = await this.page.evaluate((selector) => {
+      return document.querySelector(selector) !== null;
+    }, selector);
+
+    return btnExists;
+  }
+
+  async signOut() {
+    await this.page.goto(`${constants.baseUrl}/ghost/#/signout`);
+  }
 }
 
 module.exports = LoginPage;

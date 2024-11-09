@@ -35,3 +35,12 @@ Then("the post {string} should be in the list", async (title) => {
   const result = await scope.pages.posts.checkPostInList(title);
   console.assert(result, `The post ${title} is not in the list`);
 });
+
+When('I program a post to be published right now', async () => {
+  await scope.pages.posts.publishPostNow();
+})
+
+Then("I go to published posts", async () => {
+  // Write code here that turns the phrase above into concrete actions
+  await scope.pages.posts.goToPublishedPosts();
+});

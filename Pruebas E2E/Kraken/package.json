@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "kraken-node run"
+    "tests": "node index.js",
+    "kraken": "kraken-node run"
   },
   "keywords": [],
   "author": "",

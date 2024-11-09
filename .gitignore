@@ -3,3 +3,5 @@ package-lock.json
 **/RiPuppet/output
 .kraken
 reports
+execution_log.txt
+test_report.txt

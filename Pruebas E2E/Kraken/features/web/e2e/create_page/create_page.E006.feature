@@ -1,7 +1,7 @@
 Feature: Crear página
 
 @user1 @web
-Scenario: Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
+Scenario: E006 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
   Given I navigate to page "<BASE_URL>"
   And I wait for 2 seconds
   And I login with email "<EMAIL>" and password "<PASSWORD>"

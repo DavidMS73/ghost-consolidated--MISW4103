@@ -108,7 +108,7 @@ Before(async () => {
   scope.page = await scope.browser.newPage();
   scope.pages.login = new LoginPage(scope.page);
   scope.pages.posts = new PostPage(scope.page);
-  await scope.page.setViewport({ width: 1280, height: 800 });
+  await scope.page.setViewport({ width: 1280, height: 1000 });
   // add in accept language header - this is required when running in headless mode
   await scope.page.setExtraHTTPHeaders({
     "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.6",

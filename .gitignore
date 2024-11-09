@@ -1,5 +1,5 @@
 node_modules
 package-lock.json
-**/RiPuppet/output
+**/Puppeteer-Cucumber/output
 .kraken
 reports

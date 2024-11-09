@@ -1,4 +1,4 @@
-const { BasePageObject } = require('../../../../base_page_object')
+const { BasePageObject } = require('./base_page_object');
 
 class SideBarPageObject extends BasePageObject {
     async clickSideBarPagesSection() {

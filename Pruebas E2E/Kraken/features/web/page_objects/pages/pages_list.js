@@ -1,4 +1,4 @@
-const { BasePageObject } = require('../../../../base_page_object');
+const { BasePageObject } = require('../base_page_object');
 const { assert } = require('chai');
 
 class PagesListPageObject extends BasePageObject {

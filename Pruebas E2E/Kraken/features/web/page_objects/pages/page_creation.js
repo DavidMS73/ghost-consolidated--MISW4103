@@ -1,4 +1,4 @@
-const { BasePageObject } = require('../../../../base_page_object');
+const { BasePageObject } = require('../base_page_object');
 
 class PageCreationPageObject extends BasePageObject {
     async fillPageTitle(title) {
@@ -7,7 +7,9 @@ class PageCreationPageObject extends BasePageObject {
     }
 
     async fillPageBodyWithText(text) {
-        const element = await this.driver.$('div[data-kg="editor"]');
+        const selector = 'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
+        const element = await this.driver.$(selector);
+        await element.click();
         await element.setValue(text);
     }
 

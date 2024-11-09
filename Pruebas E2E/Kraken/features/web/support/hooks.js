@@ -1,8 +1,11 @@
 const { After, Before, } = require("@cucumber/cucumber");
 const { WebClient } = require('kraken-node');
-const { PageCreationPageObject } = require('../page_objects/page_creation');
-const { PagesListPageObject } = require('../page_objects/pages_list');
-const { SideBarPageObject } = require('../page_objects/side_bar');
+const {
+  PageCreationPageObject,
+  PagesListPageObject,
+  SideBarPageObject,
+  LoginPageObject,
+} = require('../page_objects/page_objects');
 
 Before(async function() {
   this.deviceClient = new WebClient('edge', {}, this.userId);
@@ -10,6 +13,7 @@ Before(async function() {
   this.pageCreationPO = new PageCreationPageObject(this.driver);
   this.pageListPO = new PagesListPageObject(this.driver);
   this.sideBarPO = new SideBarPageObject(this.driver);
+  this.loginPO = new LoginPageObject(this.driver);
 })
 
 After(async function() {

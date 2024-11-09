@@ -1,4 +1,4 @@
-const { When, Then } = require("cucumber");
+const { When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
 When("I click on {string}", async (post) => {

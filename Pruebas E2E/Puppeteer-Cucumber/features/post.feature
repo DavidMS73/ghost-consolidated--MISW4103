@@ -19,8 +19,8 @@ Feature: Create post
     And I visit "posts" section
     And I click on "New post"
     And I fill title with "Test post right now"
-    And I fill description with "Description test post  right now"
+    And I fill description with "Description test post right now"
     And I click on publish post button
     And I program a post to be published right now
     Then I go to published posts
-    And the post "Test post scheduled" should be in the list
+    And the post "Test post right now" should be in the list

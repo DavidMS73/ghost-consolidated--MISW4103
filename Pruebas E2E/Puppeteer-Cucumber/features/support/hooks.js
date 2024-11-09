@@ -1,23 +1,27 @@
-const {
-  BeforeAll,
-  AfterAll,
-  Before,
-  After,
-  setDefaultTimeout,
-  Status,
-} = require("cucumber");
 const scope = require("./scope");
 const fse = require("fs-extra");
 const fs = require("fs");
 const moment = require("moment");
 const _ = require("lodash");
 const constants = require("./constants");
-const PostPage = require("../pages/post");
-const LoginPage = require("../pages/common");
+const PostPage = require("../pages/postPage");
+const LoginPage = require("../pages/loginPage");
+const {
+  BeforeAll,
+  Before,
+  AfterStep,
+  After,
+  AfterAll,
+  setDefaultTimeout,
+  Status,
+} = require("@cucumber/cucumber");
+const path = require("path");
 
 BeforeAll(async () => {
   // reset counter
   counter = 0;
+  scenarioCounter = 1;
+  oldFeatureName = "";
 
   const puppeteer = require("puppeteer");
   scope.driver = puppeteer;
@@ -37,6 +41,7 @@ BeforeAll(async () => {
     //  just need to add 'await scope.page.evaluate(() => {debugger})' to the step
     //  you want to stop at
     devtools: false,
+    setDefaultTimeout: constants.pageTimeout,
   };
 
   scope.browser = await scope.driver.launch(launchProperties);
@@ -79,7 +84,6 @@ BeforeAll(async () => {
   //  and to write details to json file
   // *************************************** \\
   const env = process.env.NODE_ENV;
-  const platform = process.platform === "darwin" ? "MAC OSX" : process.platform;
   const browserVersion = await scope.browser.version();
 
   // look for arg that specifies output file location - starts with 'json:'
@@ -104,15 +108,49 @@ BeforeAll(async () => {
 });
 
 Before(async () => {
+  stepCounter = 1;
+
   // create new page between scenarios
   scope.page = await scope.browser.newPage();
-  scope.pages.login = new LoginPage(scope.page);
-  scope.pages.posts = new PostPage(scope.page);
+  createPageObjects(scope.page);
   await scope.page.setViewport({ width: 1280, height: 1000 });
   // add in accept language header - this is required when running in headless mode
   await scope.page.setExtraHTTPHeaders({
     "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.6",
   });
+});
+
+AfterStep(async function ({
+  pickle,
+  pickleStep,
+  gherkinDocument,
+  result,
+  testCaseStartedId,
+  testStepId,
+}) {
+  //Scneario counter
+  const featureName = gherkinDocument.feature.name
+    .replace(/ /g, "-")
+    .toLowerCase();
+  if (oldFeatureName !== featureName) {
+    scenarioCounter = 1;
+    oldFeatureName = featureName;
+  }
+
+  const stepNumber = stepCounter++;
+  //Paths
+  const scenarioName = pickle.name.split(" - ")[0];
+  const screenshotPath = `./output/screenshots/${featureName}/${scenarioName}/`;
+  const screenshotName = `step_${stepNumber}.png`;
+  const fullPath = `${screenshotPath}${screenshotName}`;
+
+  //Validate if the folder exists
+  if (!fse.pathExistsSync(screenshotPath)) {
+    fse.ensureDirSync(screenshotPath);
+  }
+
+  //Screenshot
+  await scope.page.screenshot({ path: fullPath, fullPage: true });
 });
 
 After(async function (scenario) {
@@ -135,7 +173,7 @@ After(async function (scenario) {
   } else {
     let timestamp = moment();
     // take screenshot of the last page
-    const stream = await scope.page.screenshot({
+    await scope.page.screenshot({
       path: `./output/screenshots/${counter}-${result}-[${name}]-${timestamp.valueOf()}.png`,
       fullPage: true,
     });
@@ -145,6 +183,13 @@ After(async function (scenario) {
     counter++;
   }
 });
+
+function createPageObjects(page) {
+  scope.pages = {
+    login: new LoginPage(page),
+    posts: new PostPage(page),
+  };
+}
 
 AfterAll(async () => {
   if (scope.browser) {

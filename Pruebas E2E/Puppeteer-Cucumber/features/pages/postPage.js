@@ -75,7 +75,7 @@ class PostPage {
     // Cierra el modal haciendo clic en el botón "Close"
     await this.page.click("button.dismiss");
 
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   async deployCollapsePostsMenu() {
@@ -95,7 +95,7 @@ class PostPage {
     // Navega a la página de posts programados dando clic en el botón "Scheduled"
     await this.page.click('a[href="#/posts/?type=scheduled"]');
     // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   async checkPostInList(titleParam) {

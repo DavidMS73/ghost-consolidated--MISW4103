@@ -40,6 +40,22 @@ class PageCreationPageObject extends BasePageObject {
         const element = await this.driver.$('button[data-test-button="confirm-publish"]');
         await element.click();
     }
+
+    async clickAddButton() {
+        const element = await this.driver.$('button[aria-label="Add a card"]');
+        await element.click();
+    }
+
+    async clickAudioButton() {
+        const element = await this.driver.$('button[data-kg-card-menu-item="Audio"]');
+        await element.click();
+    }
+
+    async fillAudio() {
+        const element = await this.driver.$('input[name="audio-input"]');
+        const audioPath = './assets/Panama.mp3';
+        await element.setValue(audioPath);
+    }
 }
 
 module.exports = { PageCreationPageObject };

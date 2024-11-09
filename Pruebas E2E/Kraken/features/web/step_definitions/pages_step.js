@@ -22,6 +22,18 @@ When('I fill the image with an asset', async function() {
     await this.pageCreationPO.fillImageWithAsset();
 });
 
+When('I click the add button', async function() {
+    await this.pageCreationPO.clickAddButton();
+});
+
+When('I click the audio button', async function() {
+    await this.pageCreationPO.clickAudioButton();
+});
+
+When('I fill the audio box with a file', async function() {
+    this.pageCreationPO.fillAudio();
+});
+
 When('I click the publish button', async function() {
     await this.pageCreationPO.clickPublishButton();
 });
@@ -38,6 +50,11 @@ When('I click the publish page button', async function() {
 
 Then('I should see title {kraken-string} and content {kraken-string} inside a modal', async function(title, content) {
     await this.pageListPO.checkNewPageModal(title, content);
+    await this.pageListPO.clickCloseNewPageModal();
+});
+
+Then('I should see title {kraken-string} inside a modal', async function(title) {
+    await this.pageListPO.checkNewPageModal(title);
     await this.pageListPO.clickCloseNewPageModal();
 });
 

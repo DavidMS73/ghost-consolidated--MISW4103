@@ -36,11 +36,19 @@ Then("the post {string} should be in the list", async (title) => {
   console.assert(result, `The post ${title} is not in the list`);
 });
 
-When('I program a post to be published right now', async () => {
+When("I program a post to be published right now", async () => {
   await scope.pages.posts.publishPostNow();
-})
+});
 
 Then("I go to published posts", async () => {
   // Write code here that turns the phrase above into concrete actions
   await scope.pages.posts.goToPublishedPosts();
+});
+
+When("I upload a feature image", async () => {
+  await scope.pages.posts.uploadFeatureImage("./assets/forest.jpg");
+});
+
+Then("I dont see the publish button because the post is empty", async () => {
+  // Write code here that turns the phrase above into concrete actions
 });

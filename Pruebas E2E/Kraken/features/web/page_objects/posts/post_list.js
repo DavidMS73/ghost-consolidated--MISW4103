@@ -4,7 +4,7 @@ class PostListPageObject extends BasePageObject {
   async clickNewPostButton() {
     const element = await this.driver.$('a[data-test-new-post-button=""]');
     await element.click();
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   async deployCollapsePostsMenu() {

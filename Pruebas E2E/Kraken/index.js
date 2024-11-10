@@ -132,8 +132,8 @@ async function main() {
           const filteredResult = filterOutput(result);
           console.log(`Feature successfully executed: ${file}`);
           console.log(`Info execution: ${filteredResult}`);
-          log.push(`Feature successfully: ${file}`);
-          report.push(`Feature successfully: ${file}\n${filteredResult}`);
+          log.push(`Feature successfully executed: ${file}`);
+          report.push(`Feature successfully executed: ${file}\n${filteredResult}`);
         } catch (err) {
           const filteredError = filterOutput(err.message);
           console.error(`Feature failed: ${file}`);

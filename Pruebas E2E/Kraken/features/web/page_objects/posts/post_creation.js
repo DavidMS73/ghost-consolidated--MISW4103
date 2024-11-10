@@ -102,6 +102,14 @@ class PostCreationPageObject extends BasePageObject {
     await new Promise((r) => setTimeout(r, 1000));
   }
 
+  async uploadFeatureImage(route) {
+    // Espera a que el botón "Add feature image" esté disponible en la página
+    const element1 = await this.driver.$("button.gh-editor-feature-image-add-button");
+    await element1.click();
+
+    const element2 = await this.driver.$('input[type="file"]');
+    await element2.setValue(route);
+  }
 }
 
 module.exports = { PostCreationPageObject };

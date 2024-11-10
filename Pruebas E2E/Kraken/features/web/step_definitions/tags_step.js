@@ -20,6 +20,10 @@ When('I click the save tag button', async function() {
 
 // Then
 
+Then('I should see title {kraken-string}', async function(title) {
+    await this.tagCreationPO.checkNewTagTitle(title);
+});
+
 Then(
     'I validate the new tag name {kraken-string} is in the tag list',
     async function(tagName) {

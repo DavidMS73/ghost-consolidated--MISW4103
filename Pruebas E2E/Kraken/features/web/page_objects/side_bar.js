@@ -15,6 +15,11 @@ class SideBarPageObject extends BasePageObject {
         const element = await this.driver.$('a[href="#/posts/"]');
         await element.click();
     }
+
+    async clickSideBarMembersSection() {
+        const element = await this.driver.$('a[href="#/members/"]');
+        await element.click();
+    }
 }
 
 module.exports = { SideBarPageObject };

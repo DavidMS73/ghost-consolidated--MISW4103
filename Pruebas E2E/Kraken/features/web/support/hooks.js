@@ -9,6 +9,8 @@ const {
   TagCreationPageObject,
   PostListPageObject,
   PostCreationPageObject,
+  MembersCreationPageObject,
+  MembersListPageObject
 } = require("../page_objects/page_objects");
 
 Before(async function () {
@@ -26,6 +28,9 @@ Before(async function () {
   // Posts
   this.postCreationPO = new PostCreationPageObject(this.driver);
   this.postListPO = new PostListPageObject(this.driver);
+  // Members
+  this.membersCreationPO = new MembersCreationPageObject(this.driver);
+  this.membersListPO = new MembersListPageObject(this.driver);
 });
 
 After(async function () {

@@ -34,7 +34,7 @@ When("I click the audio button", async function () {
 });
 
 When("I fill the audio box with a file", async function () {
-  this.pageCreationPO.fillAudio();
+  await this.pageCreationPO.fillAudio();
 });
 
 When("I click preview button", async function () {

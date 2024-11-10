@@ -11,3 +11,7 @@ When("I click the tags button", async function () {
 When("I visit posts section", async function () {
   await this.sideBarPO.clickSideBarPostsSection();
 });
+
+When('I click the members button', async function() {
+  await this.sideBarPO.clickSideBarMembersSection();
+});

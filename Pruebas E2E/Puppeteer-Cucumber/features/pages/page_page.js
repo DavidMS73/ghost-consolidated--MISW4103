@@ -1,30 +1,39 @@
+const { wait, getText } = require("../utils/utils");
+const assert = require("assert");
+
 class PagePageObject {
+  pageBodySelector =
+    'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
+
   constructor(page) {
     this.page = page;
   }
 
-  async createPage() {
-    // Espera a que el botón "New page" esté disponible en la página
-    await this.page.waitForSelector("a[data-test-new-page-button]");
-    // Navega a la página de creación de una page dando clic en el botón "New page"
-    await this.page.click("a[data-test-new-page-button]");
+  async clickNewPageButton() {
+    const selector = 'a[href="#/editor/page/"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
   }
 
-  async fillTitle(title) {
-    // Espera a que el campo de título esté disponible en la página
-    await this.page.waitForSelector('textarea[placeholder="Page title"]');
-    // Ingresa el título en el campo de título
-    await this.page.type('textarea[placeholder="Page title"]', title);
+  async fillPageTitle(title) {
+    const selector = 'textarea[placeholder="Page title"]';
+    await this.page.waitForSelector(selector);
+    await this.page.type(selector, title);
+    await wait(500);
   }
 
   async clickPageBody() {
-    const pageBodySelector =
-      'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
+    const selector = this.pageBodySelector;
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
 
-    // Espera a que el botón "Publish" esté disponible en la página
-    await this.page.waitForSelector(pageBodySelector);
-    // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
-    await this.page.click(pageBodySelector);
+  async fillPageBodyWithText(text) {
+    const selector = this.pageBodySelector;
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await this.page.type(selector, text);
+    await wait(500);
   }
 
   async clickPreviewButton() {
@@ -35,12 +44,20 @@ class PagePageObject {
     await this.page.click(selector);
   }
 
+  async clickPublishButton() {
+    const selector = 'button[data-test-button="publish-flow"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await wait(500);
+  }
+
   async clickContinueFinalReviewButton() {
     const selector = 'button[data-test-button="continue"]';
     // Espera a que el botón "Publish" esté disponible en la página
     await this.page.waitForSelector(selector);
     // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
     await this.page.click(selector);
+    await wait(1500);
   }
 
   async clickPublishPage() {
@@ -49,8 +66,6 @@ class PagePageObject {
     await this.page.waitForSelector(selector);
     // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
     await this.page.click(selector);
-    // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
   }
 
   async clickConfirmPublishButton() {
@@ -60,26 +75,49 @@ class PagePageObject {
   }
 
   async checkNewPageModal(title, content) {
-    const selector = 'div[class="modal-body"] > h2';
-    // Espera a que el botón "Publish" esté disponible en la página
-    await this.page.waitForSelector(selector);
-    const titleElement = await this.page.$(selector);
-    const titleElementText = await this.page.evaluate((el) => el.textContent, titleElement);
-    console.assert(titleElementText === title, `Error title does not match ${titleElementText}`);
+    const titleSelector = 'div[class="modal-body"] > h2';
+    await this.page.waitForSelector(titleSelector);
+    const titleElementText = await getText(this.page, titleSelector);
+    assert(
+      titleElementText === title,
+      `Error title does not match ${titleElementText}`
+    );
 
     if (!content) return;
-    const selector2 = 'div[class="modal-body"] > p[class="page-excerpt"]';
-    await this.page.waitForSelector(selector2);
-    const contentElement = await this.page.$(selector2);
-    const contentElementText = await this.page.evaluate((el) => el.textContent, contentElement);
-    assert.equal(contentElementText === content, `Error content does not match ${contentElementText}`);
+    const contentSelector = 'div[class="modal-body"] > p[class="post-excerpt"]';
+    await this.page.waitForSelector(contentSelector);
+    const contentElementText = await getText(this.page, contentSelector);
+    assert(
+      contentElementText === content,
+      `Error content does not match ${contentElementText}`
+    );
   }
 
   async clickCloseNewPageModal() {
     const selector = 'button[data-test-button="close-publish-flow"]';
     await this.page.waitForSelector(selector);
-    const element = await this.page.$(selector);
-    await element.click();
+    await this.page.click(selector);
+  }
+
+  async clickPagesTypeFilter() {
+    const selector =
+      'div[class~="view-actions-bottom-row"] > div[class~="gh-contentfilter-type"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
+
+  async clickPublishedPagesFilter() {
+    const selector = 'ul[role="listbox"] > li:nth-child(3)';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
+
+  async validateFirstPageTitle(title) {
+    const selector =
+      'div[class^="posts-list"] > div:nth-child(1) > li > a:nth-child(1) > h3';
+    await this.page.waitForSelector(selector);
+    const text = (await getText(this.page, selector)).trim();
+    assert(text === title);
   }
 }
 

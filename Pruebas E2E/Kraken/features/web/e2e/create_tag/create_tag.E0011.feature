@@ -12,7 +12,7 @@ Scenario: E0011 - Crear un tag con un nombre satisfactorio
   And I wait for 1 seconds
   And I fill the tag name with text "$name_1"
   And I wait for 1 seconds
-  And I click the save button
+  And I click the save tag button
   And I wait for 2 seconds
   Then I should see title "$$name_1" 
 

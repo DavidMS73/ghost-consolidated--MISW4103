@@ -12,7 +12,7 @@ When('I fill the metadata title with text {kraken-string} and the metadata descr
     await this.tagsPO.fillMetadataTitleAndDescription(title, description);
 });
 
-When('I click the save button', async function() {
+When('I click the save tag button', async function() {
     await this.tagsPO.clickSaveButton();
 });
 

@@ -5,7 +5,9 @@ const {
   PagesListPageObject,
   SideBarPageObject,
   LoginPageObject,
-  TagsCreationPageObject
+  TagsCreationPageObject,
+  MembersCreationPageObject,
+  MembersListPageObject
 } = require('../page_objects/page_objects');
 
 Before(async function() {
@@ -16,6 +18,8 @@ Before(async function() {
   this.sideBarPO = new SideBarPageObject(this.driver);
   this.loginPO = new LoginPageObject(this.driver);
   this.tagsPO = new TagsCreationPageObject(this.driver);
+  this.membersCreationPO = new MembersCreationPageObject(this.driver);
+  this.membersListPO = new MembersListPageObject(this.driver);
 })
 
 After(async function() {

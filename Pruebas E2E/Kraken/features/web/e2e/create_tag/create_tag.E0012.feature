@@ -16,7 +16,7 @@ Scenario: E0012 - Crear un tag con un nombre satisfactorio y metadata
   And I wait for 1 seconds
   And I fill the metadata title with text "$$name_1" and the metadata description with text "$string_1"
   And I wait for 1 seconds 
-  And I click the save button
+  And I click the save tag button
   And I wait for 2 seconds
   Then I should see title "$$name_1" 
 

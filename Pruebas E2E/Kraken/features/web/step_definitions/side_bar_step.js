@@ -7,3 +7,7 @@ When('I click the pages button', async function() {
 When('I click the tags button', async function() {
     await this.sideBarPO.clickSideBarTagsSection();
 });
+
+When('I click the members button', async function() {
+    await this.sideBarPO.clickSideBarMembersSection();
+});

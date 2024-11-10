@@ -18,6 +18,7 @@ const LoginPageObject = require("../pages/login_page");
 const PostPageObject = require("../pages/post_page");
 const PagePageObject = require("../pages/page_page");
 const SidebarPageObject = require("../pages/sidebar_page");
+const CommonPageObject = require("../pages/common_page");
 
 BeforeAll(async () => {
   // reset counter
@@ -192,6 +193,7 @@ function createPageObjects(page) {
     posts: new PostPageObject(page),
     pages: new PagePageObject(page),
     sidebar: new SidebarPageObject(page),
+    common: new CommonPageObject(page),
   };
 }
 

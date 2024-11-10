@@ -7,5 +7,6 @@ module.exports = {
     posts: undefined,
     pages: undefined,
     sidebar: undefined,
+    common: undefined,
   },
 };

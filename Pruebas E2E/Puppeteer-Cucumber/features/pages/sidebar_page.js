@@ -1,5 +1,4 @@
 const properties = require("../../properties");
-const constants = require("../support/constants");
 const scope = require("../support/scope");
 
 class SidebarPageObject {
@@ -15,7 +14,7 @@ class SidebarPageObject {
       await scope.page.goto(properties.BASE_URL + "/pages", {
         waitUntil: "networkidle0",
       });
-    } else if (section === "dashboard") {
+    } else if (section === "dashboard" || section === "home") {
       await scope.page.goto(properties.BASE_URL + "/dashboard", {
         waitUntil: "networkidle0",
       });

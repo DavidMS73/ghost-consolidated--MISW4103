@@ -147,7 +147,7 @@ class PostPage {
     // Cierra el modal haciendo clic en el botón "Close"
     await this.page.click("button.close");
 
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 1000));
   }
 
   async goToPublishedPosts() {

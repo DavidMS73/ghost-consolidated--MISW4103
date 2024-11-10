@@ -27,6 +27,15 @@ class PostListPageObject extends BasePageObject {
     await new Promise((r) => setTimeout(r, 1000));
   }
 
+  async goToPublishedPosts() {
+    // Espera a que el botón "Scheduled" esté disponible en la página
+    const element = await this.driver.$('a[href="#/posts/?type=published"]');
+    // Navega a la página de posts programados dando clic en el botón "Scheduled"
+    await element.click();
+    // Espera para que la navegación se complete
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async checkPostInList(titleParam) {
     // Espera a que se carguen todos los elementos h3 con la clase especificada
     const allH3 = await this.driver.$$("h3.gh-content-entry-title");

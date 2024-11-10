@@ -18,6 +18,12 @@ class MembersCreationPageObject extends BasePageObject {
         const titleElementText = await titleElement.getText();
         assert.equal(titleElementText, title);
     }
+
+    async checkErrorMessageWhenEmailIsEmpty() {
+        const errorElement = await this.driver.$('div.gh-cp-member-email-name > div.form-group.max-width.error > p');
+        const errorElementText = await errorElement.getText();
+        assert.equal(errorElementText, 'Please enter an email.');
+    }
 }
 
 module.exports = { MembersCreationPageObject };

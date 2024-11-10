@@ -15,3 +15,7 @@ When('I click the save member button', async function() {
 Then('I should see members page title {kraken-string}', async function(email) {
     await this.membersCreationPO.checkNewTagTitle(email);
 });
+
+Then('I should see an error message due to empty email', async function() {
+    await this.membersCreationPO.checkErrorMessageWhenEmailIsEmpty();
+});

@@ -12,7 +12,7 @@ class SidebarPageObject {
         waitUntil: "networkidle0",
       });
     } else if (section === "pages") {
-      await scope.page.goto(properties.BASE_URL + "/posts", {
+      await scope.page.goto(properties.BASE_URL + "/pages", {
         waitUntil: "networkidle0",
       });
     } else if (section === "dashboard") {
@@ -24,7 +24,7 @@ class SidebarPageObject {
         waitUntil: "networkidle0",
       });
     // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 1000));
   }
 }
 

@@ -12,8 +12,16 @@ When('I fill the member name with text {kraken-string} {kraken-string}', async f
     await this.membersCreationPO.fillName(name, lastname);
 });
 
+When('I fill the member name with text {kraken-string}', async function (name) {
+  await this.membersCreationPO.fillName(name, '');
+});
+
 When('I click the save member button', async function() {
     await this.membersCreationPO.clickSaveButton();
+});
+
+When('I unfocus the form field', async function () {
+  await this.membersCreationPO.unfocusFormField();
 });
 
 Then('I should see members page title {kraken-string}', async function(email) {
@@ -26,4 +34,8 @@ Then('I should see an error message due to empty email', async function() {
 
 Then('I should see the member initials according their first and lastname {kraken-string} {kraken-string}', async function(name, lastname) {
     await this.membersCreationPO.checkUsernameAvatarInitials(name, lastname);
+});
+
+Then('I should see the member initials according their firstname {kraken-string}', async function (name) {
+  await this.membersCreationPO.checkUsernameAvatarInitials(name, '');
 });

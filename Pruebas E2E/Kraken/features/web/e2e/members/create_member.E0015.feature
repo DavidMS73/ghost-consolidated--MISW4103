@@ -13,6 +13,6 @@ Scenario: E0015 - La imagen del miembro debería tener las iniciales del primer 
   And I fill the member email with text "$email"
   And I wait for 1 seconds
   And I fill the member name with text "$name_1" "$name_2"
-  And I click the save member button
-  And I wait for 2 seconds
+  And I unfocus the form field
+  And I wait for 1 seconds
   Then I should see the member initials according their first and lastname "$$name_1" "$$name_2"

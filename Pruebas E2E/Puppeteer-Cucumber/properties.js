@@ -1,0 +1,5 @@
+module.exports = {
+  BASE_URL: "http://localhost:2368/ghost",
+  EMAIL: "your-email",
+  PASSWORD: "your-password",
+};

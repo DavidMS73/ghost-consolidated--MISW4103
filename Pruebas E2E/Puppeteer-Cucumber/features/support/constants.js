@@ -1,5 +1,4 @@
 module.exports = {
-  baseUrl: "http://localhost:2368/ghost/#",
   pageTimeout: "20000",
   headlessMode: false,
   reportConfig: {

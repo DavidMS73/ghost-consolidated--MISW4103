@@ -30,7 +30,9 @@ When("I program a post to be published right now", async function () {
 });
 
 When("I upload a feature image", async function () {
-  await this.postCreationPO.uploadFeatureImage("./assets/forest.jpg");
+  await this.postCreationPO.uploadFeatureImage(
+    "./assets/Nissan-Skyline-GT-R-R32.jpg"
+  );
 });
 
 // Then
@@ -44,7 +46,7 @@ Then("I go to scheduled posts", async function () {
   await this.postListPO.goToScheduledPosts();
 });
 
-Then("the post {kraken-string} should be in the list",async function (title) {
+Then("the post {kraken-string} should be in the list", async function (title) {
   // Write code here that turns the phrase above into concrete actions
   const result = await this.postListPO.checkPostInList(title);
   console.assert(result, `The post ${title} is not in the list`);

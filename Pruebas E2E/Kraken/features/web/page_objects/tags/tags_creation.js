@@ -13,8 +13,21 @@ class TagsCreationPageObject extends BasePageObject {
         await element.setValue(title);
     }
 
+    async fillMetadataTitleAndDescription(title, metadataDescription) {
+        const element = await this.driver.$('#meta-title');
+        await element.setValue(title);
+
+        const descriptionTextArea = await this.driver.$('#meta-description');
+        await descriptionTextArea.setValue(metadataDescription);
+    }
+
     async clickSaveButton() {
         const element = await this.driver.$('button[data-test-button="save"]');
+        await element.click();
+    }
+
+    async clickExpandMetadataButton() {
+        const element = await this.driver.$('section > div:nth-child(1) > div.gh-expandable-header > button');
         await element.click();
     }
 

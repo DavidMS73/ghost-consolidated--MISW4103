@@ -18,6 +18,8 @@ const LoginPageObject = require("../pages/login_page");
 const PostPageObject = require("../pages/post_page");
 const PagePageObject = require("../pages/page_page");
 const SidebarPageObject = require("../pages/sidebar_page");
+const TagsPageObject = require("../pages/tags_page");
+const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 
 BeforeAll(async () => {
@@ -193,6 +195,8 @@ function createPageObjects(page) {
     posts: new PostPageObject(page),
     pages: new PagePageObject(page),
     sidebar: new SidebarPageObject(page),
+    tags: new TagsPageObject(page),
+    members: new MembersPageObject(page),
     common: new CommonPageObject(page),
   };
 }

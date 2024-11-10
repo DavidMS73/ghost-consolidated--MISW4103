@@ -5,9 +5,9 @@ Feature: Create post
     Given I navigate to ghost local page
     When I login to the application if necessary
     And I visit "posts" section
-    And I click on "New post"
-    And I fill title with "Test post scheduled"
-    And I fill description with "Description test post scheduled"
+    And I click on new post button
+    And I fill post title with "Test post scheduled"
+    And I fill post description with "Description test post scheduled"
     And I click on publish post button
     And I program a post to be published later
     Then I go to scheduled posts
@@ -17,9 +17,9 @@ Feature: Create post
     Given I navigate to ghost local page
     When I login to the application if necessary
     And I visit "posts" section
-    And I click on "New post"
-    And I fill title with "Test post right now"
-    And I fill description with "Description test post right now"
+    And I click on new post button
+    And I fill post title with "Test post right now"
+    And I fill post description with "Description test post right now"
     And I click on publish post button
     And I program a post to be published right now
     Then I go to published posts
@@ -29,8 +29,8 @@ Feature: Create post
     Given I navigate to ghost local page
     When I login to the application if necessary
     And I visit "posts" section
-    And I click on "New post"
-    And I fill title with "Post with feature image"
+    And I click on new post button
+    And I fill post title with "Post with feature image"
     And I upload a feature image
     And I click on publish post button
     And I program a post to be published right now
@@ -41,8 +41,8 @@ Feature: Create post
     Given I navigate to ghost local page
     When I login to the application if necessary
     And I visit "posts" section
-    And I click on "New post"
-    And I fill description with "Description test post without title"
+    And I click on new post button
+    And I fill post description with "Description test post without title"
     And I click on publish post button
     And I program a post to be published right now
     Then I go to published posts

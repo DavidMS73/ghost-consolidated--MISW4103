@@ -1,15 +1,17 @@
 const { When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
-When("I click on {string}", async (post) => {
+// When
+
+When("I click on new post button", async () => {
   await scope.pages.posts.createPost();
 });
 
-When("I fill title with {string}", async (title) => {
+When("I fill post title with {string}", async (title) => {
   await scope.pages.posts.fillTitle(title);
 });
 
-When("I fill description with {string}", async (description) => {
+When("I fill post description with {string}", async (description) => {
   await scope.pages.posts.fillDescription(description);
 });
 
@@ -20,6 +22,16 @@ When("I click on publish post button", async () => {
 When("I program a post to be published later", async () => {
   await scope.pages.posts.publishPostLater();
 });
+
+When("I program a post to be published right now", async () => {
+  await scope.pages.posts.publishPostNow();
+});
+
+When("I upload a feature image", async () => {
+  await scope.pages.posts.uploadFeatureImage("./assets/forest.jpg");
+});
+
+// Then
 
 Then("I deploy the collapse menu of posts", async () => {
   await scope.pages.posts.deployCollapsePostsMenu();
@@ -36,19 +48,7 @@ Then("the post {string} should be in the list", async (title) => {
   console.assert(result, `The post ${title} is not in the list`);
 });
 
-When("I program a post to be published right now", async () => {
-  await scope.pages.posts.publishPostNow();
-});
-
 Then("I go to published posts", async () => {
   // Write code here that turns the phrase above into concrete actions
   await scope.pages.posts.goToPublishedPosts();
-});
-
-When("I upload a feature image", async () => {
-  await scope.pages.posts.uploadFeatureImage("./assets/forest.jpg");
-});
-
-Then("I dont see the publish button because the post is empty", async () => {
-  // Write code here that turns the phrase above into concrete actions
 });

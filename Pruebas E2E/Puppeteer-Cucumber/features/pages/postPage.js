@@ -61,7 +61,7 @@ class PostPage {
     // Continúa con la publicación haciendo clic en el botón "Continue"
     await this.page.click('button[data-test-button="continue"]');
 
-    // Espera aa que el botón "Publish post, right now" esté disponible en la página
+    // Espera a que el botón "Publish post, right now" esté disponible en la página
     await this.page.waitForSelector(
       'button[data-test-button="confirm-publish"]'
     );

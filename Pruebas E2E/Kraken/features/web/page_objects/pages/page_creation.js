@@ -26,6 +26,11 @@ class PageCreationPageObject extends BasePageObject {
         await element.setValue(path);
     }
 
+    async clickPreviewButton() {
+        const element = await this.driver.$('button[data-test-button="publish-preview"]');
+        await element.click();
+    }
+
     async clickPublishButton() {
         const element = await this.driver.$('button[data-test-button="publish-flow"]');
         await element.click();

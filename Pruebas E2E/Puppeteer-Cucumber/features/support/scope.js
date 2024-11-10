@@ -6,6 +6,8 @@ module.exports = {
     login: undefined,
     posts: undefined,
     pages: undefined,
-    sidebar: undefined,
+    tags: undefined,
+    members: undefined,
+    sidebar: undefined
   },
 };

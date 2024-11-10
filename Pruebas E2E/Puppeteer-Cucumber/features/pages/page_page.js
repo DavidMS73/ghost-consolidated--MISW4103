@@ -1,4 +1,4 @@
-const { getText } = require("../utils/utils");
+const { getText, waitUtil } = require("../utils/utils");
 const assert = require("assert");
 
 class PagePageObject {
@@ -32,6 +32,15 @@ class PagePageObject {
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
     await this.page.type(selector, text);
+  }
+
+  async fillImageWithAsset() {
+    const imageBtnSelector = 'input[type="file"]';
+    await this.page.waitForSelector(imageBtnSelector);
+    const element = await this.page.$(imageBtnSelector);
+    const filePath = './assets/Nissan-Skyline-GT-R-R32.jpg';
+    await element.uploadFile(filePath);
+    await waitUtil(500);
   }
 
   async clickPagesTypeFilter() {

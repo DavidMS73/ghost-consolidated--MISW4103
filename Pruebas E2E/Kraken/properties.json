@@ -1,5 +1,5 @@
 {
     "BASE_URL": "http://localhost:2368/ghost",
-    "EMAIL": "your-email",
-    "PASSWORD": "your-password"
+    "EMAIL": "gd.martinez@uniandes.edu.co",
+    "PASSWORD": "pruebasautomatizadas"
 }

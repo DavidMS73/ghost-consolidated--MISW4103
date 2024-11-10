@@ -5,6 +5,7 @@ const {
   PagesListPageObject,
   SideBarPageObject,
   LoginPageObject,
+  TagsCreationPageObject
 } = require('../page_objects/page_objects');
 
 Before(async function() {
@@ -14,6 +15,7 @@ Before(async function() {
   this.pageListPO = new PagesListPageObject(this.driver);
   this.sideBarPO = new SideBarPageObject(this.driver);
   this.loginPO = new LoginPageObject(this.driver);
+  this.tagsPO = new TagsCreationPageObject(this.driver);
 })
 
 After(async function() {

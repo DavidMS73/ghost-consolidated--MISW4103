@@ -8,7 +8,8 @@
 ## RiPuppet - Rippers - Semana 4
 Para revisar los resultados de RiPuppet dirigirse a [RiPuppet](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/RiPuppet).
 
-## Pruebas E2E Kraken
-Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/Pruebas%20E2E/RiPuppet) 
+## Pruebas E2E Puppeteer - Cucumber
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/Pruebas%20E2E/Puppeteer-Cucumber)
 
-## Pruebas E2E
+## Pruebas E2E Kraken
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/Pruebas%20E2E/Kraken) 

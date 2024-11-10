@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "test": "npx cucumber-js --tags=@run",
     "puppeteer": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json -f progress",
     "puppeteer:done": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js --tags='@done' -r step_definitions -f json:output/results.json -f progress",
     "puppeteer:pretty": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json -f ./node_modules/cucumber-pretty",

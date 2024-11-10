@@ -4,8 +4,6 @@ const fs = require("fs");
 const moment = require("moment");
 const _ = require("lodash");
 const constants = require("./constants");
-const PostPage = require("../pages/postPage");
-const LoginPage = require("../pages/loginPage");
 const {
   BeforeAll,
   Before,
@@ -16,6 +14,10 @@ const {
   Status,
 } = require("@cucumber/cucumber");
 const path = require("path");
+const LoginPageObject = require("../pages/login_page");
+const PostPageObject = require("../pages/post_page");
+const PagePageObject = require("../pages/page_page");
+const SidebarPageObject = require("../pages/sidebar_page");
 
 BeforeAll(async () => {
   // reset counter
@@ -156,7 +158,7 @@ AfterStep(async function ({
 After(async function (scenario) {
   // *************************************** \\
   // take screenshot at end of scenario,
-  //  if failure attach screenshot to test steps
+  // if failure attach screenshot to test steps
   // *************************************** \\
 
   let name = scenario.pickle.name.replace(/ /g, "-");
@@ -186,8 +188,10 @@ After(async function (scenario) {
 
 function createPageObjects(page) {
   scope.pages = {
-    login: new LoginPage(page),
-    posts: new PostPage(page),
+    login: new LoginPageObject(page),
+    posts: new PostPageObject(page),
+    pages: new PagePageObject(page),
+    sidebar: new SidebarPageObject(page),
   };
 }
 

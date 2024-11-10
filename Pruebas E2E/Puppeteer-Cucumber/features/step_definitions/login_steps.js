@@ -16,11 +16,3 @@ When("I login to the application if necessary", async () => {
   // Espera para que la navegación se complete
   await new Promise((r) => setTimeout(r, 500));
 });
-
-When("I visit {string} section", async (section) => {
-  await scope.page.goto(constants.baseUrl + "/" + section, {
-    waitUntil: "networkidle0",
-  });
-  // Espera para que la navegación se complete
-  await new Promise((r) => setTimeout(r, 500));
-});

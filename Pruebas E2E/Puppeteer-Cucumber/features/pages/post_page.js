@@ -1,4 +1,4 @@
-class PostPage {
+class PostPageObject {
   constructor(page) {
     this.page = page;
   }
@@ -174,4 +174,4 @@ class PostPage {
   
 }
 
-module.exports = PostPage;
+module.exports = PostPageObject;

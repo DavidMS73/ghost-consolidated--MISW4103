@@ -8,6 +8,7 @@ module.exports = {
     pages: undefined,
     tags: undefined,
     members: undefined,
-    sidebar: undefined
+    sidebar: undefined,
+    common: undefined,
   },
 };

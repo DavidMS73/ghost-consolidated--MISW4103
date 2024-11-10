@@ -15,7 +15,7 @@ When("I fill post description with {string}", async (description) => {
   await scope.pages.posts.fillDescription(description);
 });
 
-When("I click on publish post button", async () => {
+When("I click publish post button", async () => {
   await scope.pages.posts.clickPublishPost();
 });
 

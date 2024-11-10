@@ -20,6 +20,7 @@ const PagePageObject = require("../pages/page_page");
 const SidebarPageObject = require("../pages/sidebar_page");
 const TagsPageObject = require("../pages/tags_page");
 const MembersPageObject = require("../pages/members_page");
+const CommonPageObject = require("../pages/common_page");
 
 BeforeAll(async () => {
   // reset counter
@@ -195,7 +196,8 @@ function createPageObjects(page) {
     pages: new PagePageObject(page),
     sidebar: new SidebarPageObject(page),
     tags: new TagsPageObject(page),
-    members: new MembersPageObject(page)
+    members: new MembersPageObject(page),
+    common: new CommonPageObject(page),
   };
 }
 

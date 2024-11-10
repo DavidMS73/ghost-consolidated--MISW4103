@@ -83,6 +83,21 @@ class PagePageObject {
     await this.page.click(selector);
   }
 
+  async clickAddButton() {
+    const selector = 'button[aria-label="Add a card"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
+
+  async clickAudioButton() {
+    const selector = 'button[data-kg-card-menu-item="Audio"]';
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(selector)
+    ]);
+    await fileChooser.accept(['./assets/Panama.mp3']);
+  }
+
   async clickConfirmPublishButton() {
     const selector = 'button[data-test-button="confirm-publish"]';
     await this.page.waitForSelector(selector);

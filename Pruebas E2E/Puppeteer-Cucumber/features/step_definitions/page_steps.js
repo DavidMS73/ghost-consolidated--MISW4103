@@ -19,6 +19,14 @@ When('I fill the image with an asset', async function() {
   await scope.pages.pages.fillImageWithAsset();
 });
 
+When('I click the add button', async function() {
+  await scope.pages.pages.clickAddButton();
+});
+
+When('I click the audio button', async function() {
+  await scope.pages.pages.clickAudioButton();
+});
+
 When("I fill the page content with text {string}", async function (content) {
   await scope.pages.pages.fillPageBodyWithText(content);
 });

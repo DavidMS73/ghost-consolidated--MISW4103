@@ -29,3 +29,8 @@ Then(
     await scope.pages.common.clickCloseNewPublishModal();
   }
 );
+
+Then("I should see title {string} and a image inside the modal", async (title) => {
+  await scope.pages.common.checkNewPublishModal(title, null, true);
+  await scope.pages.common.clickCloseNewPublishModal();
+});

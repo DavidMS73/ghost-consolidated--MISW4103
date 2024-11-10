@@ -8,4 +8,9 @@ const getText = async (page, selector) => {
   return await page.evaluate((e) => e.textContent.trim(), element);
 };
 
-module.exports = { waitUtil, getText };
+const getImageExists = async (page, selector) => {
+  const element = await page.$(selector);
+  return element !== null;
+};
+
+module.exports = { waitUtil, getText, getImageExists };

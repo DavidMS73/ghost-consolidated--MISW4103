@@ -12,7 +12,7 @@ class SidebarPageObject {
         waitUntil: "networkidle0",
       });
     } else if (section === "pages") {
-      await scope.page.goto(properties.BASE_URL + "/posts", {
+      await scope.page.goto(properties.BASE_URL + "/pages", {
         waitUntil: "networkidle0",
       });
     } else if (section === "dashboard") {

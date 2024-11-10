@@ -3,7 +3,10 @@ const { spawn } = require("child_process");
 const path = require("path");
 
 // Lista de directorios base
-const sourceDirs = [path.join(__dirname, "./features/web/e2e/create_page")];
+const sourceDirs = [
+  path.join(__dirname, "./features/web/e2e/pages"),
+  path.join(__dirname, "./features/web/e2e/posts"),
+];
 const destDir = path.join(__dirname, "./features/");
 const reportFilePath = path.join(__dirname, "test_report.txt");
 const logFilePath = path.join(__dirname, "execution_log.txt");
@@ -23,7 +26,9 @@ async function moveFile(file, fromDir, toDir) {
 // Función para ejecutar el script
 function runScript(filePath) {
   return new Promise((resolve, reject) => {
-    const process = spawn("npx", ["kraken-node", "run"], { shell: true });
+    const process = spawn("npx", ["kraken-node", "run"], {
+      shell: true,
+    });
 
     let output = "";
 
@@ -44,9 +49,7 @@ function runScript(filePath) {
     });
 
     process.on("error", (err) => {
-      console.error(
-        `Error executing script for ${filePath}: ${err.message}`
-      );
+      console.error(`Error executing script for ${filePath}: ${err.message}`);
       reject(err);
     });
   });
@@ -127,7 +130,8 @@ async function main() {
           const result = await runScript(destFilePath); // Ejecuta el script por cada archivo movido
           log.push(`Execution result for ${file}:\n${result}`);
           const filteredResult = filterOutput(result);
-          console.log(`Feature successfully: ${file}`);
+          console.log(`Feature successfully executed: ${file}`);
+          console.log(`Info execution: ${filteredResult}`);
           log.push(`Feature successfully: ${file}`);
           report.push(`Feature successfully: ${file}\n${filteredResult}`);
         } catch (err) {

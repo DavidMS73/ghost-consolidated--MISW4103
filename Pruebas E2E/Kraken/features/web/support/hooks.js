@@ -1,16 +1,18 @@
-const { After, Before, } = require("@cucumber/cucumber");
-const { WebClient } = require('kraken-node');
+const { After, Before } = require("@cucumber/cucumber");
+const { WebClient } = require("kraken-node");
 const {
   PageCreationPageObject,
   PagesListPageObject,
   SideBarPageObject,
   LoginPageObject,
   TagsListPageObject,
-  TagCreationPageObject
-} = require('../page_objects/page_objects');
+  TagCreationPageObject,
+  PostListPageObject,
+  PostCreationPageObject,
+} = require("../page_objects/page_objects");
 
-Before(async function() {
-  this.deviceClient = new WebClient('chrome', {}, this.userId);
+Before(async function () {
+  this.deviceClient = new WebClient("chrome", {}, this.userId);
   this.driver = await this.deviceClient.startKrakenForUserId(this.userId);
   // Common
   this.loginPO = new LoginPageObject(this.driver);
@@ -21,8 +23,11 @@ Before(async function() {
   // Tags
   this.tagListPO = new TagsListPageObject(this.driver);
   this.tagCreationPO = new TagCreationPageObject(this.driver);
-})
+  // Posts
+  this.postCreationPO = new PostCreationPageObject(this.driver);
+  this.postListPO = new PostListPageObject(this.driver);
+});
 
-After(async function() {
+After(async function () {
   await this.deviceClient.stopKrakenForUserId(this.userId);
 });

@@ -38,9 +38,24 @@ class PagePageObject {
     const imageBtnSelector = 'input[type="file"]';
     await this.page.waitForSelector(imageBtnSelector);
     const element = await this.page.$(imageBtnSelector);
-    const filePath = './assets/Nissan-Skyline-GT-R-R32.jpg';
+    const filePath = "./assets/Nissan-Skyline-GT-R-R32.jpg";
     await element.uploadFile(filePath);
     await waitUtil(500);
+  }
+
+  async clickAddButton() {
+    const selector = 'button[aria-label="Add a card"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
+
+  async clickAudioButton() {
+    const selector = 'button[data-kg-card-menu-item="Audio"]';
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(selector),
+    ]);
+    await fileChooser.accept(["./assets/Panama.mp3"]);
   }
 
   async clickPagesTypeFilter() {

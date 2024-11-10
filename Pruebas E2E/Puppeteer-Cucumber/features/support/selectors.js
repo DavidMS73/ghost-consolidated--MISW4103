@@ -4,6 +4,8 @@ const selectors = {
     Email: 'input[name="identification"]',
     Password: 'input[name="password"]',
     Posts: 'a[href="/posts"]',
+    Tags: 'a[href="/tags"]',
+    Members: 'a[href="/members"]'
   },
 };
 

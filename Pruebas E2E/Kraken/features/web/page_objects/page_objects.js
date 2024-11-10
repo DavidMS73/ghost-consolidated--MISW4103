@@ -6,6 +6,8 @@ const { TagsListPageObject } = require("./tags/tags_list");
 const { TagCreationPageObject } = require("./tags/tag_creation");
 const { PostListPageObject } = require("./posts/post_list");
 const { PostCreationPageObject } = require("./posts/post_creation");
+const { MembersCreationPageObject } = require("./members/members_creation");
+const { MembersListPageObject } = require("./members/members_list");
 
 module.exports = {
   PageCreationPageObject,
@@ -16,4 +18,6 @@ module.exports = {
   TagCreationPageObject,
   PostListPageObject,
   PostCreationPageObject,
+  MembersCreationPageObject,
+  MembersListPageObject
 };

@@ -1,4 +1,4 @@
-const { waitUtil, getText } = require("../utils/utils");
+const { waitUtil, getText, getImageExists } = require("../utils/utils");
 const assert = require("assert");
 
 class CommonPageObject {
@@ -37,23 +37,34 @@ class CommonPageObject {
     await this.page.click(selector);
   }
 
-  async checkNewPublishModal(title, content) {
-    const titleSelector = 'div[class="modal-body"] > h2';
-    await this.page.waitForSelector(titleSelector);
-    const titleElementText = await getText(this.page, titleSelector);
-    assert(
-      titleElementText === title,
-      `Error title does not match ${titleElementText}`
-    );
+  async checkNewPublishModal(title, content, image) {
+    if (title) {
+      const titleSelector = 'div[class="modal-body"] > h2';
+      await this.page.waitForSelector(titleSelector);
+      const titleElementText = await getText(this.page, titleSelector);
+      assert(
+        titleElementText === title,
+        `Error title does not match ${titleElementText}`
+      );
+    }
 
-    if (!content) return;
-    const contentSelector = 'div[class="modal-body"] > p[class="post-excerpt"]';
-    await this.page.waitForSelector(contentSelector);
-    const contentElementText = await getText(this.page, contentSelector);
-    assert(
-      contentElementText === content,
-      `Error content does not match ${contentElementText}`
-    );
+    if (content) {
+      const contentSelector =
+        'div[class="modal-body"] > p[class="post-excerpt"]';
+      await this.page.waitForSelector(contentSelector);
+      const contentElementText = await getText(this.page, contentSelector);
+      assert(
+        contentElementText === content,
+        `Error content does not match ${contentElementText}`
+      );
+    }
+
+    if (image) {
+      const imageSelector = 'figure[class="modal-image"] > img';
+      await this.page.waitForSelector(imageSelector);
+      const imageElementText = await getImageExists(this.page, imageSelector);
+      assert(imageElementText, `Error image does not exists`);
+    }
   }
 
   async clickCloseNewPublishModal() {

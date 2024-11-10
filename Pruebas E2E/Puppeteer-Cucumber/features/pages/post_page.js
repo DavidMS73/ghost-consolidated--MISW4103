@@ -1,52 +1,46 @@
+const { waitUtil } = require("../utils/utils");
+
 class PostPageObject {
   constructor(page) {
     this.page = page;
   }
 
-  async createPost() {
+  async clickNewPostButton() {
+    const selector = 'a[href="#/editor/post/"]';
     // Espera a que el botón "New post" esté disponible en la página
-    await this.page.waitForSelector('a[data-test-new-post-button=""]');
+    await this.page.waitForSelector(selector);
     // Navega a la página de creación de un post dando clic en el botón "New post"
-    await this.page.click('a[data-test-new-post-button=""]');
-    // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.click(selector);
   }
 
-  async fillTitle(title) {
+  async fillPostTitle(title) {
+    const selector = 'textarea[placeholder="Post title"]';
     // Espera a que el campo de título esté disponible en la página
-    await this.page.waitForSelector('textarea[placeholder="Post title"]');
+    await this.page.waitForSelector(selector);
     // Ingresa el título en el campo de título
-    await this.page.type('textarea[placeholder="Post title"]', title);
-    // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.type(selector, title);
   }
 
-  async fillDescription(description) {
+  async fillPostDescription(description) {
+    const selector = 'div[data-kg="editor"] > div';
     // Espera a que el campo de descripción esté disponible en la página
-    await this.page.waitForSelector('div[data-kg="editor"] > div');
+    await this.page.waitForSelector(selector);
     // Ingresa la descripción en el campo de descripción
-    await this.page.type('div[data-kg="editor"] > div', description);
-    // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
+    await this.page.type(selector, description);
   }
 
-  async clickPublishPost() {
+  async clickPostTimeOptions() {
     // Espera a que el botón "Publish" esté disponible en la página
-    await this.page.waitForSelector('button[data-test-button="publish-flow"]');
-    // Navega a la página de programación de publicación de un post dando clic en el botón "Publish"
-    await this.page.click('button[data-test-button="publish-flow"]');
-    // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 500));
-  }
-
-  async publishPostLater() {
-    // Espera a que el botón "Right now" esté disponible en la página
     await this.page.waitForSelector(
       'div[data-test-setting="publish-at"] > button'
     );
-    // Da click en la lista desplegable de programación de publicación
+    // Navega a la página de programación de publicación de un post dando clic en el botón "Publish"
     await this.page.click('div[data-test-setting="publish-at"] > button');
 
+    waitUtil(1000);
+  }
+
+  async clickPostScheduleForLater() {
     //Seleccionar la opción de programar la publicación
     await this.page.evaluate(() => {
       const labels = Array.from(document.querySelectorAll("label"));
@@ -55,27 +49,17 @@ class PostPageObject {
       );
       label.click();
     });
+  }
 
-    // Esperar a que el botón "Continue, final review" esté disponible en la página
-    await this.page.waitForSelector('button[data-test-button="continue"]');
-    // Continúa con la publicación haciendo clic en el botón "Continue"
-    await this.page.click('button[data-test-button="continue"]');
-
-    // Espera a que el botón "Publish post, right now" esté disponible en la página
-    await this.page.waitForSelector(
-      'button[data-test-button="confirm-publish"]'
-    );
-    // Publica el post haciendo clic en el botón "Publish post, right now"
-    await this.page.click('button[data-test-button="confirm-publish"]');
-
-    await new Promise((r) => setTimeout(r, 1000));
-
-    // Espera a que el botón "Close" del modal esté disponible en la página
-    await this.page.waitForSelector("button.dismiss");
-    // Cierra el modal haciendo clic en el botón "Close"
-    await this.page.click("button.dismiss");
-
-    await new Promise((r) => setTimeout(r, 1000));
+  async clickPostSetItLiveNow() {
+    //Seleccionar la opción de programar la publicación
+    await this.page.evaluate(() => {
+      const labels = Array.from(document.querySelectorAll("label"));
+      const label = labels.find(
+        (label) => label.textContent.trim() === "Set it live now"
+      );
+      label.click();
+    });
   }
 
   async deployCollapsePostsMenu() {
@@ -111,45 +95,6 @@ class PostPageObject {
     return false; // False si no encuentra el título
   }
 
-  async publishPostNow() {
-    // Espera a que el botón "Right now" esté disponible en la página
-    await this.page.waitForSelector(
-      'div[data-test-setting="publish-at"] > button'
-    );
-    // Da click en la lista desplegable de programación de publicación
-    await this.page.click('div[data-test-setting="publish-at"] > button');
-
-    //Seleccionar la opción de programar la publicación
-    await this.page.evaluate(() => {
-      const labels = Array.from(document.querySelectorAll("label"));
-      const label = labels.find(
-        (label) => label.textContent.trim() === "Set it live now"
-      );
-      label.click();
-    });
-
-    // Esperar a que el botón "Continue, final review" esté disponible en la página
-    await this.page.waitForSelector('button[data-test-button="continue"]');
-    // Continúa con la publicación haciendo clic en el botón "Continue"
-    await this.page.click('button[data-test-button="continue"]');
-
-    // Espera aa que el botón "Publish post, right now" esté disponible en la página
-    await this.page.waitForSelector(
-      'button[data-test-button="confirm-publish"]'
-    );
-    // Publica el post haciendo clic en el botón "Publish post, right now"
-    await this.page.click('button[data-test-button="confirm-publish"]');
-
-    await new Promise((r) => setTimeout(r, 1000));
-
-    // Espera a que el botón "Close" del modal esté disponible en la página
-    await this.page.waitForSelector("button.close");
-    // Cierra el modal haciendo clic en el botón "Close"
-    await this.page.click("button.close");
-
-    await new Promise((r) => setTimeout(r, 1000));
-  }
-
   async goToPublishedPosts() {
     // Espera a que el botón "Scheduled" esté disponible en la página
     await this.page.waitForSelector('a[href="#/posts/?type=published"]');
@@ -161,17 +106,17 @@ class PostPageObject {
 
   async uploadFeatureImage(route) {
     // Espera a que el botón "Add feature image" esté disponible en la página
-    await this.page.waitForSelector('button.gh-editor-feature-image-add-button');
+    await this.page.waitForSelector(
+      "button.gh-editor-feature-image-add-button"
+    );
 
-    const [fileChooser] =  await Promise.all([
+    const [fileChooser] = await Promise.all([
       this.page.waitForFileChooser(),
-      this.page.click('button.gh-editor-feature-image-add-button')
-  ]);
+      this.page.click("button.gh-editor-feature-image-add-button"),
+    ]);
 
     await fileChooser.accept([route]);
   }
-
-  
 }
 
 module.exports = PostPageObject;

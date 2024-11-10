@@ -45,6 +45,18 @@ class TagsListPageObject extends BasePageObject {
         }
         assert.equal(containsName, true);
     }
+
+    async validateTagNameIsInTagListNTimes(tagName, times) {
+        const selector = 'ol[class^="tags-list"] > li > a:nth-child(1) > h3';
+        let counter = 0;
+        for await (const element of this.driver.$$(selector)) {
+            const text = await element.getText();
+            if (text === tagName) {
+                counter++;
+            }
+        }
+        assert.equal(counter <= times, true);
+    }
 }
 
 module.exports = { TagsListPageObject };

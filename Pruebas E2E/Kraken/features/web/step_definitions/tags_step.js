@@ -35,3 +35,10 @@ Then(
         });
     }
 );
+
+Then(
+    'I validate that there are {int} or more tags with name {kraken-string} in the tag list',
+    async function(num, tagName) {
+        this.tagListPO.validateTagNameIsInTagListNTimes(tagName, num);
+    },
+)

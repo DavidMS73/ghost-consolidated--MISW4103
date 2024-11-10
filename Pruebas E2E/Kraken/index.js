@@ -4,8 +4,8 @@ const path = require("path");
 
 // Lista de directorios base
 const sourceDirs = [
-  path.join(__dirname, "./features/web/e2e/pages"),
   path.join(__dirname, "./features/web/e2e/posts"),
+  path.join(__dirname, "./features/web/e2e/pages"),
 ];
 const destDir = path.join(__dirname, "./features/");
 const reportFilePath = path.join(__dirname, "test_report.txt");
@@ -58,7 +58,7 @@ function runScript(filePath) {
 // Función para filtrar la salida relevante
 function filterOutput(output) {
   const successPattern =
-    /(\d+ scenario[s]? \(\d+ passed\)[\s\S]*?executing steps: \d+m\d+\.\d+s)/g;
+    /(\d+ scenario[s]? \(\d+ passed\)[\s\S]*?executing steps: \d+m\d+\.\d+s\))/g;
   const failurePattern =
     /(\d+ scenario[s]? \(\d+ failed\)[\s\S]*?executing steps: \d+m\d+\.\d+s\))/g;
   const detailedFailurePattern = /(Failures:\s*1\).*?√ After)/gs;

@@ -30,11 +30,19 @@ class MembersCreationPageObject extends BasePageObject {
         assert.equal(errorElementText, 'Please enter an email.');
     }
 
+    async unfocusFormField() {
+        const element = await this.driver.$('h2');
+        await element.click();
+    }
+
     async checkUsernameAvatarInitials(name, lastname) {
-        const avatarElement = await this.driver.$('div.gh-member-details-identity > figure > img');
-        const avatarElementAlt = await avatarElement.getAttribute('alt');
-        assert.equal(avatarElementAlt, name + ' ' + lastname);
-    }    
+        const avatarElement = await this.driver.$('span.gh-member-avatar-label');
+        const nameInitial = name.charAt(0).toUpperCase();
+        const lastnameInitial = lastname.charAt(0).toUpperCase();
+
+        const currentInitials = await avatarElement.getText();
+        assert.equal(currentInitials, nameInitial + lastnameInitial);
+    }
 }
 
 module.exports = { MembersCreationPageObject };

@@ -8,6 +8,7 @@ const { PostListPageObject } = require("./posts/post_list");
 const { PostCreationPageObject } = require("./posts/post_creation");
 const { MembersCreationPageObject } = require("./members/members_creation");
 const { MembersListPageObject } = require("./members/members_list");
+const { PostViewCreationPageObject } = require("./posts/post_view_creation");
 
 module.exports = {
   PageCreationPageObject,
@@ -18,6 +19,7 @@ module.exports = {
   TagCreationPageObject,
   PostListPageObject,
   PostCreationPageObject,
+  PostViewCreationPageObject,
   MembersCreationPageObject,
-  MembersListPageObject
+  MembersListPageObject,
 };

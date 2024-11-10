@@ -8,6 +8,11 @@ class MembersCreationPageObject extends BasePageObject {
         await element.setValue(email);
     }
 
+    async fillName(name, lastname) {
+        const element = await this.driver.$('#member-name');
+        await element.setValue(name + ' ' + lastname);
+    }
+
     async clickSaveButton() {
         const element = await this.driver.$('button[data-test-button="save"]');
         await element.click();
@@ -24,6 +29,12 @@ class MembersCreationPageObject extends BasePageObject {
         const errorElementText = await errorElement.getText();
         assert.equal(errorElementText, 'Please enter an email.');
     }
+
+    async checkUsernameAvatarInitials(name, lastname) {
+        const avatarElement = await this.driver.$('div.gh-member-details-identity > figure > img');
+        const avatarElementAlt = await avatarElement.getAttribute('alt');
+        assert.equal(avatarElementAlt, name + ' ' + lastname);
+    }    
 }
 
 module.exports = { MembersCreationPageObject };

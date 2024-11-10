@@ -15,6 +15,10 @@ When("I click the page content", async () => {
   await scope.pages.pages.clickPageBody();
 });
 
+When('I fill the image with an asset', async function() {
+  await scope.pages.pages.fillImageWithAsset();
+});
+
 When("I fill the page content with text {string}", async function (content) {
   await scope.pages.pages.fillPageBodyWithText(content);
 });

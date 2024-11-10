@@ -36,12 +36,27 @@ class PagePageObject {
     await wait(500);
   }
 
+  async fillImageWithAsset() {
+    const imageBtnSelector = 'input[type="file"]';
+    await this.page.waitForSelector(imageBtnSelector);
+    const element = await this.page.$(imageBtnSelector);
+    const filePath = './assets/Nissan-Skyline-GT-R-R32.jpg';
+    await element.uploadFile(filePath);
+    await wait(500);
+  }
+
   async clickPreviewButton() {
     const selector = 'button[data-test-button="publish-preview"]';
     // Espera a que el botón "Publish" esté disponible en la página
     await this.page.waitForSelector(selector);
     // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
     await this.page.click(selector);
+  }
+  
+  async clickPageBody() {
+    await this.page.waitForSelector(this.pageBodySelector);
+    await this.page.click(this.pageBodySelector);
+    await wait(500);
   }
 
   async clickPublishButton() {

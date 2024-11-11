@@ -19,7 +19,7 @@ Feature: Create members
     And I click on save member button
     Then I should see an error message due to a missing email field
 
-  Scenario: E0015 - La imagen del miembro debería tener las iniciales del primer y último nombre
+  Scenario: E0015 - La imagen del miembro deberIa tener las iniciales del primer y ultimo nombre
     Given I navigate to "members" section
     When I login to the application if necessary
     And I navigate to "members" section
@@ -29,7 +29,7 @@ Feature: Create members
     And I click on save member button
     Then I should see the initials "T" and "U" in the user avatar
 
-  Scenario: E016 - Si el miembro tiene un sólo nombre la imagen debería tener una sola inicial
+  Scenario: E016 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial
     Given I navigate to "members" section
     When I login to the application if necessary
     And I navigate to "members" section

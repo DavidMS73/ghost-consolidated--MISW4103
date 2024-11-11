@@ -23,7 +23,7 @@ Feature: Create posts view
     And I click on save view button
     Then an error should appear indicating that the view name is required
 
-  Scenario: E019 - Al presionar el botón "cancel" se cierra el modal de creación de vista
+  Scenario: E019 - Al presionar el botón "cancel" se cierra el modal de creacion de vista
     Given I navigate to "home" section
     When I login to the application if necessary
     And I navigate to "posts" section
@@ -33,7 +33,7 @@ Feature: Create posts view
     And I click on cancel view creation button
     Then view creation modal should hide
 
-  Scenario: E020 - El botón de crear vista se muestra al seleccionar el filtro "public" dentro del desplegable "all access"
+  Scenario: E020 - El boton de crear vista se muestra al seleccionar el filtro "public" dentro del desplegable "all access"
     Given I navigate to "home" section
     When I login to the application if necessary
     And I navigate to "posts" section

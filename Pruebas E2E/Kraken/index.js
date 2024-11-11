@@ -5,9 +5,9 @@ const path = require("path");
 // Lista de directorios base
 const sourceDirs = [
   path.join(__dirname, "./features/web/e2e/posts"),
-  // path.join(__dirname, "./features/web/e2e/pages"),
-  // path.join(__dirname, "./features/web/e2e/members"),
-  // path.join(__dirname, "./features/web/e2e/tags")
+  path.join(__dirname, "./features/web/e2e/pages"),
+  path.join(__dirname, "./features/web/e2e/members"),
+  path.join(__dirname, "./features/web/e2e/tags"),
 ];
 const destDir = path.join(__dirname, "./features/");
 const reportFilePath = path.join(__dirname, "test_report.txt");
@@ -135,7 +135,9 @@ async function main() {
           console.log(`Feature successfully executed: ${file}`);
           console.log(`Info execution: ${filteredResult}`);
           log.push(`Feature successfully executed: ${file}`);
-          report.push(`Feature successfully executed: ${file}\n${filteredResult}`);
+          report.push(
+            `Feature successfully executed: ${file}\n${filteredResult}`
+          );
         } catch (err) {
           const filteredError = filterOutput(err.message);
           console.error(`Feature failed: ${file}`);

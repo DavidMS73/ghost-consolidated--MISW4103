@@ -1,5 +1,6 @@
 const { When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
+const assert = require("assert");
 
 // When
 
@@ -45,7 +46,7 @@ Then("I go to scheduled posts", async () => {
 Then("the post {string} should be in the list", async (title) => {
   // Write code here that turns the phrase above into concrete actions
   const result = await scope.pages.posts.checkPostInList(title);
-  console.assert(result, `The post ${title} is not in the list`);
+  assert(result, `The post ${title} is not in the list`);
 });
 
 Then("I go to published posts", async () => {

@@ -17,6 +17,7 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 1. Crear un usuario admin en Ghost
 2. En el archivo [properties.js](./properties.js) cambiar los valores de `EMAIL` y `PASSWORD` por los de tu usario.
 3. Borra todo el contenido previo entrando a Ajustes > Danger Zone > Delete All Content
+4. Borra todos los usuarios que tengas creados para evitar problemas en ejecución entrando a Members > seleccionar el miembro > dar en la rueda de configuración al lado del botón Save > Delete member
 
 ## Ejecución
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [PruebasE2E/Puppeteer-Cucumber](../../Pruebas%20E2E/Puppeteer-Cucumber/)):

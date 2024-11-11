@@ -28,3 +28,12 @@ Feature: Create members
     And I fill member email with "test@domain.com"
     And I click on save member button
     Then I should see the initials "T" and "U" in the user avatar
+
+  Scenario: E016 - Si el miembro tiene un sólo nombre la imagen debería tener una sola inicial
+    Given I navigate to "members" section
+    When I login to the application if necessary
+    And I navigate to "members" section
+    And I click on new member button
+    And I fill member name with "Testing"
+    And I unfocus the member form field
+    Then I should see the initials "T" in the user avatar

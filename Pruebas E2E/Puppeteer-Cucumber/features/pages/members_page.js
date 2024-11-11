@@ -57,6 +57,12 @@ class MembersPageObject {
     const avatarText = await this.page.evaluate((htmlTag) => htmlTag.innerText, avatar);
     return avatarText === first + last;
   }
+
+  async unfocusFormField() {
+    await this.page.waitForSelector("h2");
+    await this.page.click("h2");
+    await new Promise((r) => setTimeout(r, 500));
+  }
 }
 
 module.exports = MembersPageObject;

@@ -1,3 +1,6 @@
+const { waitUtil } = require('../utils/utils');
+const assert = require('assert');
+
 class TagsPageObject {
   constructor(page) {
     this.page = page;
@@ -13,6 +16,14 @@ class TagsPageObject {
     await this.page.waitForSelector('#tag-name');
     await this.page.type('#tag-name', title);
     await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async fillSlug(slug) {
+    const selector = 'input[data-test-input="tag-slug"]';
+    await this.page.waitForSelector(selector);
+    await this.page.$eval(selector, el => el.value = '');
+    await this.page.type(selector, slug);
+    await waitUtil(500);
   }
 
   async clickSaveTagButton() {
@@ -51,7 +62,28 @@ class TagsPageObject {
     }
 
     return false;
-  } 
+  }
+  
+  async validateTagSlug({
+    tagName, tagSlug
+  }) {
+    const selector = 'ol[class^="tags-list"] > li > a:nth-child(1) > h3';
+    await this.page.waitForSelector(selector);
+    const h3Titles = await this.page.$$(selector);
+    let containsName = false;
+    for (const h3Title of h3Titles) {
+      const title = await this.page.evaluate(h3 => h3.innerText, h3Title);
+      if (title === tagName) {
+        containsName = true;
+        const parentLink = await h3Title.getProperty('parentNode');
+        const parentList = await parentLink.getProperty('parentNode');
+        const slugSpan = await parentList.$('a:nth-child(2) > span');
+        const slugText = await this.page.evaluate(sp => sp.getAttribute('title'), slugSpan);
+        assert(slugText.startsWith(tagSlug));
+      }
+    }
+    assert(containsName);
+  }
 }
 
 module.exports = TagsPageObject;

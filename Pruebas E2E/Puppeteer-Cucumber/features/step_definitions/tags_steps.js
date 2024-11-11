@@ -11,6 +11,10 @@ When("I fill tag name with {string}", async (title) => {
   await scope.pages.tags.fillName(title);
 });
 
+When('I fill the slug with an emoji', async function() {
+  await scope.pages.tags.fillSlug('😅');
+});
+
 When("I click on save tag button", async () => {
   await scope.pages.tags.clickSaveTagButton();
 });
@@ -33,3 +37,12 @@ Then("the tag {string} should be in the list", async (title) => {
   const result = await scope.pages.tags.checkTagInList(title);
   console.assert(result, `The tag ${title} is not in the list`);
 });
+
+Then(
+  'The tag {string} has slug starting with {string}',
+  async function(tagName, tagSlug) {
+    await scope.pages.tags.validateTagSlug({
+      tagName, tagSlug
+    });
+  },
+);

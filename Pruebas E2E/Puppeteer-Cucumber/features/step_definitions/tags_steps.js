@@ -46,3 +46,13 @@ Then(
     });
   },
 );
+
+Then(
+  'There are {int} or more tags with tag {string} in the tag list',
+  async function(num, tagName) {
+    await scope.pages.tags.validateTagNameIsInTagListNTimes(
+      tagName,
+      num
+    );
+  },
+);

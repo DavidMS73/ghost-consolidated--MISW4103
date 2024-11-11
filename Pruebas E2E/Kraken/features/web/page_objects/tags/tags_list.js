@@ -55,7 +55,7 @@ class TagsListPageObject extends BasePageObject {
                 counter++;
             }
         }
-        assert.equal(counter <= times, true);
+        assert.equal(counter >= times, true);
     }
 }
 

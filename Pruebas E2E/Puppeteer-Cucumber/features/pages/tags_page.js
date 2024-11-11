@@ -84,6 +84,18 @@ class TagsPageObject {
     }
     assert(containsName);
   }
+
+  async validateTagNameIsInTagListNTimes(tagName, times) {
+    const selector = 'ol[class^="tags-list"] > li > a:nth-child(1) > h3';
+    await this.page.waitForSelector(selector);
+    const h3Titles = await this.page.$$(selector);
+    let counter = 0;
+    for (const h3Title of h3Titles) {
+      const title = await this.page.evaluate(e => e.innerText, h3Title);
+      if (title === tagName) counter++;
+    }
+    assert(counter >= times);
+  }
 }
 
 module.exports = TagsPageObject;

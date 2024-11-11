@@ -9,7 +9,9 @@ Scenario: E019 - Al presionar el botón "cancel" se cierra el modal de creación
   And I click the posts button
   And I wait for 1 seconds
   And I filter by featured posts
+  And I wait for 1 seconds
   And view of featured posts should not exist
+  And I wait for 1 seconds
   When I click on create view button
   And I wait for 1 seconds
   And I click on cancel view creation button

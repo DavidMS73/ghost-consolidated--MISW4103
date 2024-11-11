@@ -15,5 +15,7 @@ Scenario: E017 - Vista creada se despliega cuando se le asigna un nombre y se ha
   And I fill the view name field with "$name_1"
   And I wait for 1 seconds
   And I click on save view button
+  And I wait for 1 seconds
   Then view should appear in sidebar under posts section with name "$$name_1"
+  And I wait for 1 seconds
   And current view should be "$$name_1"

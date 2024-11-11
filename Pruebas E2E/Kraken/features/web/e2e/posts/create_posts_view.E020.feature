@@ -9,4 +9,5 @@ Scenario: E020 - El botón de crear vista se muestra al seleccionar el filtro "p
   And I click the posts button
   And I wait for 1 seconds
   And I filter by public posts
+  And I wait for 1 seconds
   Then create view button should exist

@@ -1,4 +1,5 @@
 const { When, Then } = require("@cucumber/cucumber");
+const { assert } = require("chai");
 
 // When
 
@@ -17,16 +18,16 @@ When(
   }
 );
 
-When("I click on publish post button", async function () {
-  await this.postCreationPO.clickPublishPost();
+When("I click on post time options", async function () {
+  await this.postCreationPO.clickPostTimeOptions();
 });
 
-When("I program a post to be published later", async function () {
-  await this.postCreationPO.publishPostLater();
+When("I click on schedule for later post option", async function () {
+  await this.postCreationPO.clickPostScheduleForLater();
 });
 
-When("I program a post to be published right now", async function () {
-  await this.postCreationPO.publishPostNow();
+When("I click on set it live now option", async function () {
+  await this.postCreationPO.clickPostSetItLiveNow();
 });
 
 When("I upload a feature image", async function () {
@@ -49,7 +50,7 @@ Then("I go to scheduled posts", async function () {
 Then("the post {kraken-string} should be in the list", async function (title) {
   // Write code here that turns the phrase above into concrete actions
   const result = await this.postListPO.checkPostInList(title);
-  console.assert(result, `The post ${title} is not in the list`);
+  assert(result, `The post ${title} is not in the list`);
 });
 
 Then("I go to published posts", async function () {

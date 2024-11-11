@@ -7,7 +7,7 @@ Feature: Create post
     And I wait for 2 seconds
     When I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 2 seconds
-    And I visit posts section
+    And I click the posts button
     And I wait for 1 seconds
     And I click on new post button
     And I wait for 1 seconds
@@ -15,10 +15,14 @@ Feature: Create post
     And I wait for 1 seconds
     And I upload a feature image
     And I wait for 1 seconds
-    And I click on publish post button
+    And I click publish button
     And I wait for 1 seconds
-    And I program a post to be published right now
+    And I click continue final review button
     And I wait for 1 seconds
-    Then I go to published posts
+    And I click confirm publish button
+    And I wait for 1 seconds
+    Then I should see title "$$name_1" and a image inside the modal
+    And I wait for 1 seconds
+    When I go to published posts
     And I wait for 1 seconds
     And the post "$$name_1" should be in the list

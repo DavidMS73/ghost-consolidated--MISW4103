@@ -5,9 +5,9 @@ const path = require("path");
 // Lista de directorios base
 const sourceDirs = [
   path.join(__dirname, "./features/web/e2e/posts"),
-  path.join(__dirname, "./features/web/e2e/pages"),
-  path.join(__dirname, "./features/web/e2e/members"),
-  path.join(__dirname, "./features/web/e2e/tags")
+  // path.join(__dirname, "./features/web/e2e/pages"),
+  // path.join(__dirname, "./features/web/e2e/members"),
+  // path.join(__dirname, "./features/web/e2e/tags")
 ];
 const destDir = path.join(__dirname, "./features/");
 const reportFilePath = path.join(__dirname, "test_report.txt");

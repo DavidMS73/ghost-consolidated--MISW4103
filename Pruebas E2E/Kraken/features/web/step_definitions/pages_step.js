@@ -37,22 +37,6 @@ When("I fill the audio box with a file", async function () {
   await this.pageCreationPO.fillAudio();
 });
 
-When("I click preview button", async function () {
-  await this.pageCreationPO.clickPreviewButton();
-});
-
-When("I click the publish button", async function () {
-  await this.pageCreationPO.clickPublishButton();
-});
-
-When("I click the continue final review button", async function () {
-  await this.pageCreationPO.clickContinueFinalReviewButton();
-});
-
-When("I click the publish page button", async function () {
-  await this.pageCreationPO.clickPublishPageButton();
-});
-
 When("I click the pages type filter", async function () {
   await this.pageListPO.clickPagesTypeFilter();
 });
@@ -62,22 +46,6 @@ When("I click the published pages filter", async function () {
 });
 
 // Then
-
-Then(
-  "I should see title {kraken-string} and content {kraken-string} inside a modal",
-  async function (title, content) {
-    await this.pageListPO.checkNewPageModal(title, content);
-    await this.pageListPO.clickCloseNewPageModal();
-  }
-);
-
-Then(
-  "I should see title {kraken-string} inside a modal",
-  async function (title) {
-    await this.pageListPO.checkNewPageModal(title);
-    await this.pageListPO.clickCloseNewPageModal();
-  }
-);
 
 Then(
   "I should see the first page with title {kraken-string}",

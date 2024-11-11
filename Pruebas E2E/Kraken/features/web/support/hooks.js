@@ -11,7 +11,8 @@ const {
   PostCreationPageObject,
   MembersCreationPageObject,
   MembersListPageObject,
-  PostViewCreationPageObject
+  PostViewCreationPageObject,
+  CommonPageObject,
 } = require("../page_objects/page_objects");
 
 Before(async function () {
@@ -19,6 +20,7 @@ Before(async function () {
   this.driver = await this.deviceClient.startKrakenForUserId(this.userId);
   // Common
   this.loginPO = new LoginPageObject(this.driver);
+  this.commonPO = new CommonPageObject(this.driver);
   this.sideBarPO = new SideBarPageObject(this.driver);
   // Page
   this.pageCreationPO = new PageCreationPageObject(this.driver);

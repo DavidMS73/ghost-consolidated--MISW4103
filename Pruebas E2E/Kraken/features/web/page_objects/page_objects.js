@@ -9,6 +9,7 @@ const { PostCreationPageObject } = require("./posts/post_creation");
 const { MembersCreationPageObject } = require("./members/members_creation");
 const { MembersListPageObject } = require("./members/members_list");
 const { PostViewCreationPageObject } = require("./posts/post_view_creation");
+const { CommonPageObject } = require("./common");
 
 module.exports = {
   PageCreationPageObject,
@@ -22,4 +23,5 @@ module.exports = {
   PostViewCreationPageObject,
   MembersCreationPageObject,
   MembersListPageObject,
+  CommonPageObject,
 };

@@ -9,7 +9,9 @@ Scenario: E017 - Vista creada se despliega cuando se le asigna un nombre y se ha
   And I click the posts button
   And I wait for 1 seconds
   And I filter by featured posts
+  And I wait for 1 seconds
   And view of featured posts should not exist
+  And I wait for 1 seconds
   When I click on create view button
   And I wait for 1 seconds
   And I fill the view name field with "$name_1"

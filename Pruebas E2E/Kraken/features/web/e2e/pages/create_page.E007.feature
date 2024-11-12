@@ -23,7 +23,7 @@ Feature: Crear página
     And I click continue final review button
     And I wait for 2 seconds
     And I click confirm publish button
-    And I wait for 1 seconds
+    And I wait for 2 seconds
     Then I should see title "$$name_1" and content "$$string_1" inside a modal
     When I wait for 1 seconds
     And I click the pages type filter

@@ -1,6 +1,6 @@
 Feature: Create tags
   Create a new tag
- 
+
   Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
     When I login to the application if necessary
@@ -33,10 +33,10 @@ Feature: Create tags
     When I login to the application if necessary
     And I navigate to "tags" section
     And I click on new tag button
-    And I fill tag name with "test tag name"
+    And I fill tag name with "test tag name 2"
     And I click on save tag button
     Then I go to tags list
-    And the tag "test tag name" should be in the list
+    And the tag "test tag name 2" should be in the list
 
   Scenario: E0012 - Crear un tag con metadata
     Given I navigate to "tags" section

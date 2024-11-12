@@ -29,7 +29,7 @@ Feature: Create members
     And I click on save member button
     Then I should see the initials "T" and "U" in the user avatar
 
-  Scenario: E016 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial
+  Scenario: E0016 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial
     Given I navigate to "members" section
     When I login to the application if necessary
     And I navigate to "members" section

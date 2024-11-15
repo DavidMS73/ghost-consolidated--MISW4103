@@ -8,8 +8,7 @@ class PagesListPageObject extends BasePageObject {
   }
 
   async validateFirstPageTitle(title) {
-    const selector =
-      'div[class^="posts-list"] > div:nth-child(1) > li > a:nth-child(1) > h3';
+    const selector = 'ol[class^="gh-list"] > li:nth-child(2) > a:nth-child(1) > h3';
     const element = await this.driver.$(selector);
     const text = await element.getText();
     assert.equal(text, title);
@@ -24,6 +23,12 @@ class PagesListPageObject extends BasePageObject {
 
   async clickPublishedPagesFilter() {
     const element = await this.driver.$('ul[role="listbox"] > li:nth-child(3)');
+    await element.click();
+  }
+
+  async clickFirstPage() {
+    const selector = 'ol[class^="gh-list"] > li:nth-child(2) > a:nth-child(1)';
+    const element = await this.driver.$(selector);
     await element.click();
   }
 }

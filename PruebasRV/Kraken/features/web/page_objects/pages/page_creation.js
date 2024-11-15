@@ -1,12 +1,10 @@
 const { BasePageObject } = require("../base_page_object");
-const { existsSync } = require("fs");
 
 class PageCreationPageObject extends BasePageObject {
-  pageBodySelector =
-    'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
+  pageBodySelector = 'div[class^="koenig-editor"] > div:nth-child(1)';
 
   async fillPageTitle(title) {
-    const element = await this.driver.$('textarea[placeholder="Page title"]');
+    const element = await this.driver.$('textarea[placeholder="Page Title"]');
     await element.setValue(title);
   }
 
@@ -19,6 +17,16 @@ class PageCreationPageObject extends BasePageObject {
     const element = await this.driver.$(this.pageBodySelector);
     await element.click();
     await element.setValue(text);
+  }
+
+  async clickPublishMenu() {
+    const element = await this.driver.$('div[class^=gh-publishmenu]');
+    await element.click();
+  }
+
+  async clickPublishButton() {
+    const element = await this.driver.$('button[class~="gh-publishmenu-button"]');
+    await element.click();
   }
 
   async fillImageWithAsset() {
@@ -43,6 +51,24 @@ class PageCreationPageObject extends BasePageObject {
     const element = await this.driver.$('input[name="audio-input"]');
     const audioPath = "./assets/Panama.mp3";
     await element.setValue(audioPath);
+  }
+
+  async clickGearButton() {
+    const element =
+      await this.driver.$('button[title="Settings"]');
+    await element.click();
+  }
+
+  async clickDeletePage() {
+    const element =
+      await this.driver.$('button[class~="settings-menu-delete-button"]');
+    await element.click();
+  }
+
+  async clickDeleteButton() {
+    const element =
+      await this.driver.$('div[class="modal-footer"] > button:nth-child(2)');
+    await element.click();
   }
 }
 

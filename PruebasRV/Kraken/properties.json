@@ -1,5 +1,5 @@
 {
-    "BASE_URL": "http://localhost:2368/ghost",
-    "EMAIL": "johndoe@gmail.com",
-    "PASSWORD": "johndoehelloworld"
+    "BASE_URL": "http://localhost:port/ghost",
+    "EMAIL": "your-email",
+    "PASSWORD": "your-pass"
 }

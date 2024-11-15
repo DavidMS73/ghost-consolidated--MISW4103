@@ -17,6 +17,17 @@ When(
   }
 );
 
+When(
+  "I click publish menu",
+  async function () {
+    await this.pageCreationPO.clickPublishMenu();
+  }
+);
+
+When('I click publish page button', async function () {
+  await this.pageCreationPO.clickPublishButton();
+});
+
 When("I click the page content", async function () {
   await this.pageCreationPO.clickPageBody();
 });
@@ -53,3 +64,31 @@ Then(
     await this.pageListPO.validateFirstPageTitle(title);
   }
 );
+
+Then(
+  "I click first page",
+  async function () {
+    await this.pageListPO.clickFirstPage();
+  }
+);
+
+Then(
+  "I click gear button",
+  async function () {
+    await this.pageCreationPO.clickGearButton();
+  }
+)
+
+Then(
+  "I click delete page",
+  async function () {
+    await this.pageCreationPO.clickDeletePage();
+  }
+)
+
+Then(
+  "I click delete button",
+  async function () {
+    await this.pageCreationPO.clickDeleteButton();
+  }
+)

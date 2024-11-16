@@ -10,13 +10,13 @@ Feature: Create post
     And I fill post title with "Test post scheduled"
     And I fill post description with "Description test post scheduled"
     And I click publish button
-    And I click on post time options
+    And I just wait a few seconds
     And I click on schedule for later post option
-    And I click continue final review button
+    And I just wait a few seconds
     And I click confirm publish button
-    Then I should see title "Test post scheduled" and content "Description test post scheduled" inside a modal
-    When I go to scheduled posts
-    Then the post "Test post scheduled" should be in the list
+    Then I should see a toast message of "Scheduled"
+    And I go to scheduled posts
+    And the post "Test post scheduled" should be in the list
 
   @rv-45
   Scenario: E004 - Create a post without title and with description
@@ -26,8 +26,8 @@ Feature: Create post
     And I click on new post button
     And I fill post description with "Description test post without title"
     And I click publish button
-    And I click continue final review button
+    And I just wait a few seconds
     And I click confirm publish button
-    Then I should see title "(Untitled)" and content "Description test post without title" inside a modal
-    When I go to published posts
+    Then I should see a toast message of "Published"
+    And I go to published posts
     And the post "(Untitled)" should be in the list

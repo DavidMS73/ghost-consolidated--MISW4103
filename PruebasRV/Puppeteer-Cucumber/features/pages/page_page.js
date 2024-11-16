@@ -1,13 +1,10 @@
 const { getText, waitUtil } = require("../utils/utils");
 const assert = require("assert");
+const { BasePageObject } = require("./base_page");
 
-class PagePageObject {
+class PagePageObject extends BasePageObject {
   pageBodySelector =
-    'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
-
-  constructor(page) {
-    this.page = page;
-  }
+    'div[class^="koenig-editor"] > div:nth-child(1)';
 
   async clickNewPageButton() {
     const selector = 'a[href="#/editor/page/"]';
@@ -16,7 +13,7 @@ class PagePageObject {
   }
 
   async fillPageTitle(title) {
-    const selector = 'textarea[placeholder="Page title"]';
+    const selector = 'textarea[placeholder="Page Title"]';
     await this.page.waitForSelector(selector);
     await this.page.type(selector, title);
   }
@@ -73,10 +70,34 @@ class PagePageObject {
 
   async validateFirstPageTitle(title) {
     const selector =
-      'div[class^="posts-list"] > div:nth-child(1) > li > a:nth-child(1) > h3';
+      'ol[class^="gh-list"] > li:nth-child(2) > a:nth-child(1) > h3';
     await this.page.waitForSelector(selector);
     const text = (await getText(this.page, selector)).trim();
     assert(text === title);
+  }
+
+  async clickPublishMenu() {
+    await this.clickElement('div[class^=gh-publishmenu]');
+  }
+
+  async clickPublishButton() {
+    await this.clickElement('button[class~="gh-publishmenu-button"]');
+  }
+
+  async clickFirstPage() {
+    await this.clickElement('ol[class^="gh-list"] > li:nth-child(2) > a:nth-child(1)');
+  }
+
+  async clickGearButton() {
+    await this.clickElement('button[title="Settings"]');
+  }
+
+  async clickDeletePage() {
+    await this.clickElement('button[class~="settings-menu-delete-button"]');
+  }
+
+  async clickDeleteButton() {
+    await this.clickElement('div[class="modal-footer"] > button:nth-child(2)');
   }
 }
 

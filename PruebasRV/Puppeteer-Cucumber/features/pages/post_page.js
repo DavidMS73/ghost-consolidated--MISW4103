@@ -14,7 +14,7 @@ class PostPageObject {
   }
 
   async fillPostTitle(title) {
-    const selector = 'textarea[placeholder="Post title"]';
+    const selector = 'textarea[placeholder="Post Title"]';
     // Espera a que el campo de título esté disponible en la página
     await this.page.waitForSelector(selector);
     // Ingresa el título en el campo de título
@@ -22,7 +22,7 @@ class PostPageObject {
   }
 
   async fillPostDescription(description) {
-    const selector = 'div[data-kg="editor"] > div';
+    const selector = 'div[data-kg="editor"] > p';
     // Espera a que el campo de descripción esté disponible en la página
     await this.page.waitForSelector(selector);
     // Ingresa la descripción en el campo de descripción

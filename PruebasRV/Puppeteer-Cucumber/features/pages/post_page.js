@@ -29,10 +29,6 @@ class PostPageObject {
     await this.page.type(selector, description);
   }
 
-  async clickPostTimeOptions() {
-    waitUtil(1500);
-  }
-
   async clickPostScheduleForLater() {
     //Seleccionar la opción de programar la publicación
     await this.page.evaluate(() => {

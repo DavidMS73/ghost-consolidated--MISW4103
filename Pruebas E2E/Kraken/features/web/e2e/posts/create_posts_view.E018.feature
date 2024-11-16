@@ -6,7 +6,7 @@ Scenario: E018 - Al intentar crear una vista sin un nombre se muestra un mensaje
   And I wait for 2 seconds
   And I login with email "<EMAIL>" and password "<PASSWORD>"
   And I wait for 3 seconds
-  And I click the posts button
+  When I click the posts button
   And I wait for 1 seconds
   And I filter by featured posts
   And I wait for 1 seconds

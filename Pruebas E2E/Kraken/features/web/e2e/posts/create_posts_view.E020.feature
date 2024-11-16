@@ -6,7 +6,7 @@ Scenario: E020 - El botón de crear vista se muestra al seleccionar el filtro "p
   And I wait for 2 seconds
   And I login with email "<EMAIL>" and password "<PASSWORD>"
   And I wait for 3 seconds
-  And I click the posts button
+  When I click the posts button
   And I wait for 1 seconds
   And I filter by public posts
   And I wait for 1 seconds

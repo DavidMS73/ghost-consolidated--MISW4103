@@ -1,8 +1,8 @@
-const { When } = require("@cucumber/cucumber");
+const { Given } = require("@cucumber/cucumber");
 
-// When
+// Given
 
-When(
+Given(
   "I login with email {kraken-string} and password {kraken-string}",
   async function (email, pass) {
     await this.loginPO.login(email, pass);

@@ -6,7 +6,7 @@ Scenario: E019 - Al presionar el botón "cancel" se cierra el modal de creación
   And I wait for 2 seconds
   And I login with email "<EMAIL>" and password "<PASSWORD>"
   And I wait for 3 seconds
-  And I click the posts button
+  When I click the posts button
   And I wait for 1 seconds
   And I filter by featured posts
   And I wait for 1 seconds

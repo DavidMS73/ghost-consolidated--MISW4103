@@ -5,9 +5,9 @@ Feature: Create post
   Scenario: E002 - Create a post to be published right now (check default option)
     Given I navigate to page "<BASE_URL>"
     And I wait for 2 seconds
-    When I login with email "<EMAIL>" and password "<PASSWORD>"
+    And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 2 seconds
-    And I click the posts button
+    When I click the posts button
     And I wait for 1 seconds
     And I click on new post button
     And I wait for 1 seconds

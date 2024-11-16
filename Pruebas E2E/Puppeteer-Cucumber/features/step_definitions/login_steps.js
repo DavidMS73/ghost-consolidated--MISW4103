@@ -7,7 +7,7 @@ Given("I navigate to ghost local page", async () => {
   await scope.page.goto(properties.BASE_URL, { waitUntil: "networkidle0" });
 });
 
-When("I login to the application if necessary", async () => {
+Given("I login to the application if necessary", async () => {
   const isInLoginPage = await scope.pages.login.isInLoginPage();
   if (isInLoginPage)
     await scope.pages.login.login(properties.EMAIL, properties.PASSWORD);

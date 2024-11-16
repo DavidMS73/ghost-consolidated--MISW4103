@@ -121,7 +121,6 @@ Before(async () => {
 
   // create new page between scenarios
   scope.page = await scope.browser.newPage();
-  scope.page.setDefaultTimeout(constants.pageTimeout * 1000);
   createPageObjects(scope.page);
   await scope.page.setViewport({ width: 1280, height: 1000 });
   // add in accept language header - this is required when running in headless mode

@@ -116,6 +116,9 @@ class PostPageObject {
     ]);
 
     await fileChooser.accept([route]);
+
+    // Espera para que la carga de la imagen se complete
+    await waitUtil(1000);
   }
 }
 

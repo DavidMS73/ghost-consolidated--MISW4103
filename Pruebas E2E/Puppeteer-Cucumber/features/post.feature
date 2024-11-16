@@ -1,6 +1,7 @@
 Feature: Create post
   Create a new blog post, whether it is an article, guide, review, story, tip, recipe, etc., and can use a variety of elements, such as images, videos, links, and other media to keep readers interested.
 
+  @rv-596
   Scenario: E001 - Create a post to be published later
     Given I navigate to "home" section
     When I login to the application if necessary
@@ -47,6 +48,7 @@ Feature: Create post
     When I go to published posts
     And the post "Post with feature image" should be in the list
 
+  @rv-596
   Scenario: E004 - Create a post without title and with description
     Given I navigate to "home" section
     When I login to the application if necessary

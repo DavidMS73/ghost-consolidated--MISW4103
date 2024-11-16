@@ -11,6 +11,7 @@ module.exports = {
     metadata: {
       "Test Environment": "Test Environment",
       Browser: "Chrome",
+      Version: "v5.96",
     },
   },
 };

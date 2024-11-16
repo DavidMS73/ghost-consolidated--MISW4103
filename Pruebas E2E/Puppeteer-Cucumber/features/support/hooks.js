@@ -85,6 +85,9 @@ BeforeAll(async () => {
     fse.ensureDirSync("output/screenshots");
   }
 
+  const version = constants.reportConfig.metadata["Version"];
+  fse.ensureDirSync(`output/screenshots/puppeteer/${version}`);
+
   // *************************************** \\
   // collect information about the run
   //  and to write details to json file
@@ -108,8 +111,10 @@ BeforeAll(async () => {
   reportConfig.jsonFile = outputPath;
   reportConfig.metadata["Test Environment"] = env;
   reportConfig.metadata["Browser"] = browserVersion;
+  reportConfig.metadata["Version"] = version;
 
   fse.writeJsonSync("output/report-config.json", reportConfig);
+
   // *************************************** \\
 });
 
@@ -146,8 +151,9 @@ AfterStep(async function ({
 
   const stepNumber = stepCounter++;
   //Paths
+  const version = constants.reportConfig.metadata["Version"];
   const scenarioName = pickle.name.split(" - ")[0];
-  const screenshotPath = `./output/screenshots/${featureName}/${scenarioName}/`;
+  const screenshotPath = `./output/screenshots/puppeteer/${version}/${featureName}/${scenarioName}/`;
   const screenshotName = `step_${stepNumber}.png`;
   const fullPath = `${screenshotPath}${screenshotName}`;
 
@@ -168,7 +174,7 @@ After(async function (scenario) {
 
   let name = scenario.pickle.name.replace(/ /g, "-");
   let result = scenario.result.status;
-  if (Status.FAILED) {
+  if (result === Status.FAILED) {
     await scope.page.screenshot({
       path: `./output/screenshots/${counter}-${result}-[${name}].png`,
       fullPage: true,
@@ -178,12 +184,6 @@ After(async function (scenario) {
     // increment counter
     counter++;
   } else {
-    let timestamp = moment();
-    // take screenshot of the last page
-    await scope.page.screenshot({
-      path: `./output/screenshots/${counter}-${result}-[${name}]-${timestamp.valueOf()}.png`,
-      fullPage: true,
-    });
     // close the current page at end of scenario - to ensure fresh page is loaded each time
     await scope.page.close();
     // increment counter

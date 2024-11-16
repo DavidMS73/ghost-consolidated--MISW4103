@@ -1,5 +1,6 @@
 const { PageCreationPageObject } = require("./pages/page_creation");
 const { PagesListPageObject } = require("./pages/pages_list");
+const { PageViewPageObject } = require('./pages/page_view');
 const { LoginPageObject } = require("./login");
 const { SideBarPageObject } = require("./side_bar");
 const { TagsListPageObject } = require("./tags/tags_list");
@@ -14,6 +15,7 @@ const { CommonPageObject } = require("./common");
 module.exports = {
   PageCreationPageObject,
   PagesListPageObject,
+  PageViewPageObject,
   LoginPageObject,
   SideBarPageObject,
   TagsListPageObject,

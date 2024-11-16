@@ -59,6 +59,20 @@ class PageCreationPageObject extends BasePageObject {
     await element.click();
   }
 
+  async fillPageUrl(url) {
+    const element =
+      await this.driver.$('input[name="post-setting-slug"]');
+    await element.click();
+    await element.setValue(url);
+  }
+
+  async closeSettingsDrawer() {
+    const element = await this.driver.$(
+      'button[aria-label="Close"]'
+    );
+    await element.click();
+  }
+
   async clickDeletePage() {
     const element =
       await this.driver.$('button[class~="settings-menu-delete-button"]');

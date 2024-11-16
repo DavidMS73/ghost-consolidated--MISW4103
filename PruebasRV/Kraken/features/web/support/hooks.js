@@ -13,6 +13,7 @@ const {
   MembersListPageObject,
   PostViewCreationPageObject,
   CommonPageObject,
+  PageViewPageObject,
 } = require("../page_objects/page_objects");
 
 Before(async function () {
@@ -25,6 +26,7 @@ Before(async function () {
   // Page
   this.pageCreationPO = new PageCreationPageObject(this.driver);
   this.pageListPO = new PagesListPageObject(this.driver);
+  this.pageViewPO = new PageViewPageObject(this.driver);
   // Tags
   this.tagListPO = new TagsListPageObject(this.driver);
   this.tagCreationPO = new TagCreationPageObject(this.driver);

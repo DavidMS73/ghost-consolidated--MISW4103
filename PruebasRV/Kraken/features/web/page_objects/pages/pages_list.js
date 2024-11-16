@@ -31,6 +31,13 @@ class PagesListPageObject extends BasePageObject {
     const element = await this.driver.$(selector);
     await element.click();
   }
+
+  async navToPageSite({
+    pageUrl,
+    baseUrl
+  }) {
+    await this.driver.url(`${baseUrl}/${pageUrl}`);
+  }
 }
 
 module.exports = { PagesListPageObject };

@@ -56,6 +56,14 @@ When("I click the published pages filter", async function () {
   await this.pageListPO.clickPublishedPagesFilter();
 });
 
+When("I fill page URL with value {kraken-string}", async function (url) {
+  await this.pageCreationPO.fillPageUrl(url.toLowerCase());
+});
+
+When('I close page settings drawer', async function () {
+  await this.pageCreationPO.closeSettingsDrawer();
+});
+
 // Then
 
 Then(
@@ -77,18 +85,37 @@ Then(
   async function () {
     await this.pageCreationPO.clickGearButton();
   }
-)
+);
 
 Then(
   "I click delete page",
   async function () {
     await this.pageCreationPO.clickDeletePage();
   }
-)
+);
 
 Then(
   "I click delete button",
   async function () {
     await this.pageCreationPO.clickDeleteButton();
   }
-)
+);
+
+Then(
+  "I navigate to created page {kraken-string} with base url {kraken-string}",
+  async function (pageUrlStr, baseUrlStr) {
+    const baseUrl = new URL(baseUrlStr);
+    await this.pageListPO.navToPageSite({
+      pageUrl: pageUrlStr,
+      baseUrl: baseUrl.origin,
+    });
+  }
+);
+
+Then("I validate title {kraken-string} in page view", async function (title) {
+  await this.pageViewPO.validatePageTitle(title);
+});
+
+Then("I validate content {kraken-string} in page view", async function (content) {
+  await this.pageViewPO.validatePageContent(content);
+});

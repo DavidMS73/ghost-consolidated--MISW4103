@@ -4,8 +4,8 @@ Feature: Create post
   @rv-45
   Scenario: E001 - Create a post to be published later
     Given I navigate to "home" section
-    When I login to the application if necessary
-    And I navigate to "posts" section
+    And I login to the application if necessary
+    When I navigate to "posts" section
     And I click on new post button
     And I fill post title with "Test post scheduled"
     And I fill post description with "Description test post scheduled"
@@ -21,8 +21,8 @@ Feature: Create post
   @rv-45
   Scenario: E004 - Create a post without title and with description
     Given I navigate to "home" section
-    When I login to the application if necessary
-    And I navigate to "posts" section
+    And I login to the application if necessary
+    When I navigate to "posts" section
     And I click on new post button
     And I fill post description with "Description test post without title"
     And I click publish button

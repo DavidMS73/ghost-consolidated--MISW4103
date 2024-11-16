@@ -15,7 +15,7 @@ class CommonPageObject extends BasePageObject {
   }
 
   async waitAFewSeconds() {
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 700));
   }
 
   async clickConfirmPublishButton() {

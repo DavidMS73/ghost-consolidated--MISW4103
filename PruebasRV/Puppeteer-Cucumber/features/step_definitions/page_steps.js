@@ -39,8 +39,32 @@ When("I click the published pages filter", async function () {
   await scope.pages.pages.clickPublishedPagesFilter();
 });
 
+When("I click publish menu", async function () {
+  await scope.pages.pages.clickPublishMenu();
+});
+
+When("I click publish page button", async function () {
+  await scope.pages.pages.clickPublishButton();
+})
+
 // Then
 
 Then("I should see the first page with title {string}", async function (title) {
   await scope.pages.pages.validateFirstPageTitle(title);
+});
+
+Then("I click first page", async function () {
+  await scope.pages.pages.clickFirstPage();
+});
+
+Then("I click gear button", async function () {
+  await scope.pages.pages.clickGearButton();
+});
+
+Then("I click delete page", async function () {
+  await scope.pages.pages.clickDeletePage();
+});
+
+Then("I click delete button", async function () {
+  await scope.pages.pages.clickDeleteButton();
 });

@@ -1,5 +1,3 @@
-const { waitUtil } = require("../utils/utils");
-
 class PostPageObject {
   constructor(page) {
     this.page = page;

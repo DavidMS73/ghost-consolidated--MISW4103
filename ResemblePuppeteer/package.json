@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "fs-extra": "^11.2.0",
     "resemblejs": "^5.0.0"
   }
 }

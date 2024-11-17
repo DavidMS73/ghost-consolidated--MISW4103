@@ -5,9 +5,9 @@ Feature: Create post
   Scenario: E001 - Create a post to be published later
     Given I navigate to page "<BASE_URL>"
     And I wait for 2 seconds
-    When I login with email "<EMAIL>" and password "<PASSWORD>"
+    And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 2 seconds
-    And I click the posts button
+    When I click the posts button
     And I wait for 1 seconds
     And I click on new post button
     And I wait for 1 seconds
@@ -27,6 +27,6 @@ Feature: Create post
     And I wait for 1 seconds
     Then I should see title "$$name_1" and content "$$string_1" inside a modal
     And I wait for 1 seconds
-    When I go to scheduled posts
+    And I go to scheduled posts
     And I wait for 2 seconds
     Then the post "$$name_1" should be in the list

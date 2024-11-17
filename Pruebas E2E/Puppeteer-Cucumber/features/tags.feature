@@ -3,8 +3,8 @@ Feature: Create tags
 
   Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
-    When I login to the application if necessary
-    And I navigate to "tags" section
+    And I login to the application if necessary
+    When I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "test tag name"
     And I fill the slug with an emoji
@@ -15,8 +15,8 @@ Feature: Create tags
 
   Scenario: E010 - Crear un tag con nombre existente
     Given I navigate to "tags" section
-    When I login to the application if necessary
-    And I navigate to "tags" section
+    And I login to the application if necessary
+    When I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "test tag name"
     And I click on save tag button
@@ -30,8 +30,8 @@ Feature: Create tags
 
   Scenario: E0011 - Crear un tag con un nombre satisfactoriamente
     Given I navigate to "tags" section
-    When I login to the application if necessary
-    And I navigate to "tags" section
+    And I login to the application if necessary
+    When I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "test tag name 2"
     And I click on save tag button
@@ -40,8 +40,8 @@ Feature: Create tags
 
   Scenario: E0012 - Crear un tag con metadata
     Given I navigate to "tags" section
-    When I login to the application if necessary
-    And I navigate to "tags" section
+    And I login to the application if necessary
+    When I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "tag with metadata"
     And I expand the metadata section

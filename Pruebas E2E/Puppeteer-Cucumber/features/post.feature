@@ -4,8 +4,8 @@ Feature: Create post
   @rv-596
   Scenario: E001 - Create a post to be published later
     Given I navigate to "home" section
-    When I login to the application if necessary
-    And I navigate to "posts" section
+    And I login to the application if necessary
+    When I navigate to "posts" section
     And I click on new post button
     And I fill post title with "Test post scheduled"
     And I fill post description with "Description test post scheduled"
@@ -15,13 +15,13 @@ Feature: Create post
     And I click continue final review button
     And I click confirm publish button
     Then I should see title "Test post scheduled" and content "Description test post scheduled" inside a modal
-    When I go to scheduled posts
-    Then the post "Test post scheduled" should be in the list
+    And I go to scheduled posts
+    And the post "Test post scheduled" should be in the list
 
   Scenario: E002 - Create a post to be published right now (check default option)
     Given I navigate to "home" section
-    When I login to the application if necessary
-    And I navigate to "posts" section
+    And I login to the application if necessary
+    When I navigate to "posts" section
     And I click on new post button
     And I fill post title with "Test post right now"
     And I fill post description with "Description test post right now"
@@ -31,7 +31,7 @@ Feature: Create post
     And I click continue final review button
     And I click confirm publish button
     Then I should see title "Test post right now" and content "Description test post right now" inside a modal
-    When I go to published posts
+    And I go to published posts
     And the post "Test post right now" should be in the list
 
   Scenario: E003 - Create a post with feature image
@@ -45,7 +45,7 @@ Feature: Create post
     And I click continue final review button
     And I click confirm publish button
     Then I should see title "Post with feature image" and a image inside the modal
-    When I go to published posts
+    And I go to published posts
     And the post "Post with feature image" should be in the list
 
   @rv-596
@@ -59,5 +59,5 @@ Feature: Create post
     And I click continue final review button
     And I click confirm publish button
     Then I should see title "(Untitled)" and content "Description test post without title" inside a modal
-    When I go to published posts
+    And I go to published posts
     And the post "(Untitled)" should be in the list

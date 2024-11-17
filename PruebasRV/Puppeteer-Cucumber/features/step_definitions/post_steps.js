@@ -16,10 +16,6 @@ When("I fill post description with {string}", async (description) => {
   await scope.pages.posts.fillPostDescription(description);
 });
 
-When("I click on post time options", async () => {
-  await scope.pages.posts.clickPostTimeOptions();
-});
-
 When("I click on schedule for later post option", async () => {
   await scope.pages.posts.clickPostScheduleForLater();
 });

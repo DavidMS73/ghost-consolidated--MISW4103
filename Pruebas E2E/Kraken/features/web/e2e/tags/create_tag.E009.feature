@@ -4,7 +4,7 @@ Feature: Crear tag
 Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to page "<BASE_URL>"
     And I wait for 2 seconds
-    When I login with email "<EMAIL>" and password "<PASSWORD>"
+    And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 3 seconds
     And I click the tags button
     And I wait for 1 seconds

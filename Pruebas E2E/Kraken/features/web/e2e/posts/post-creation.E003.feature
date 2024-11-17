@@ -5,16 +5,16 @@ Feature: Create post
   Scenario: E003 - Create a post with feature image
     Given I navigate to page "<BASE_URL>"
     And I wait for 2 seconds
-    When I login with email "<EMAIL>" and password "<PASSWORD>"
+    And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 2 seconds
-    And I click the posts button
+    When I click the posts button
     And I wait for 1 seconds
     And I click on new post button
     And I wait for 1 seconds
     And I fill post title with "$name_1"
     And I wait for 1 seconds
     And I upload a feature image
-    And I wait for 1 seconds
+    And I wait for 3 seconds
     And I click publish button
     And I wait for 1 seconds
     And I click continue final review button
@@ -23,6 +23,6 @@ Feature: Create post
     And I wait for 1 seconds
     Then I should see title "$$name_1" and a image inside the modal
     And I wait for 1 seconds
-    When I go to published posts
+    And I go to published posts
     And I wait for 1 seconds
     And the post "$$name_1" should be in the list

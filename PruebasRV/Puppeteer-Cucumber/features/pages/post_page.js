@@ -22,43 +22,30 @@ class PostPageObject {
   }
 
   async fillPostDescription(description) {
-    const selector = 'div[data-kg="editor"] > p';
+    const selector = 'div[class^="koenig-editor"] > div:nth-child(1)';
     // Espera a que el campo de descripción esté disponible en la página
     await this.page.waitForSelector(selector);
     // Ingresa la descripción en el campo de descripción
     await this.page.type(selector, description);
   }
 
-  async clickPostTimeOptions() {
-    // Espera a que el botón "Publish" esté disponible en la página
-    await this.page.waitForSelector(
-      'div[data-test-setting="publish-at"] > button'
-    );
-    // Navega a la página de programación de publicación de un post dando clic en el botón "Publish"
-    await this.page.click('div[data-test-setting="publish-at"] > button');
-
-    waitUtil(1000);
-  }
-
   async clickPostScheduleForLater() {
     //Seleccionar la opción de programar la publicación
     await this.page.evaluate(() => {
-      const labels = Array.from(document.querySelectorAll("label"));
-      const label = labels.find(
-        (label) => label.textContent.trim() === "Schedule for later"
+      const options = Array.from(
+        document.querySelectorAll("div.gh-publishmenu-radio")
       );
-      label.click();
+      options[1].click();
     });
   }
 
   async clickPostSetItLiveNow() {
     //Seleccionar la opción de programar la publicación
     await this.page.evaluate(() => {
-      const labels = Array.from(document.querySelectorAll("label"));
-      const label = labels.find(
-        (label) => label.textContent.trim() === "Set it live now"
+      const options = Array.from(
+        document.querySelectorAll("div.gh-publishmenu-radio")
       );
-      label.click();
+      options[0].click();
     });
   }
 
@@ -74,12 +61,15 @@ class PostPageObject {
   }
 
   async goToScheduledPosts() {
+    const selector = 'a[href="#/posts/"]';
     // Espera a que el botón "Scheduled" esté disponible en la página
-    await this.page.waitForSelector('a[href="#/posts/?type=scheduled"]');
+    await this.page.waitForSelector(selector);
     // Navega a la página de posts programados dando clic en el botón "Scheduled"
-    await this.page.click('a[href="#/posts/?type=scheduled"]');
+    await this.page.click(selector);
     // Espera para que la navegación se complete
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => setTimeout(r, 500));
+    const selector2 = 'a[href="#/posts/?type=scheduled"]';
+    await this.page.click(selector2);
   }
 
   async checkPostInList(titleParam) {
@@ -96,12 +86,12 @@ class PostPageObject {
   }
 
   async goToPublishedPosts() {
-    // Espera a que el botón "Scheduled" esté disponible en la página
-    await this.page.waitForSelector('a[href="#/posts/?type=published"]');
-    // Navega a la página de posts programados dando clic en el botón "Scheduled"
-    await this.page.click('a[href="#/posts/?type=published"]');
-    // Espera para que la navegación se complete
+    const selector = 'a[href="#/posts/"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
     await new Promise((r) => setTimeout(r, 500));
+    const selector2 = 'a[href="#/posts/?type=published"]';
+    await this.page.click(selector2);
   }
 
   async uploadFeatureImage(route) {

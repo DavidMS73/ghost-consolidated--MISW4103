@@ -2,24 +2,16 @@ const { BasePageObject } = require("../base_page_object");
 
 class PostListPageObject extends BasePageObject {
   async clickNewPostButton() {
-    const element = await this.driver.$('a[data-test-new-post-button=""]');
-    await element.click();
-  }
-
-  async deployCollapsePostsMenu() {
-    // Espera a que el botón "Publish" esté disponible en la página
-    const element = await this.driver.$(
-      'button[aria-label="Expand custom post types"]'
-    );
-    // Navega a la página de programación de publicación de un post dando clic en el botón "Publish"
+    const element = await this.driver.$('a[href="#/editor/post/"]');
     await element.click();
   }
 
   async goToScheduledPosts() {
-    // Espera a que el botón "Scheduled" esté disponible en la página
-    const element = await this.driver.$('a[href="#/posts/?type=scheduled"]');
-    // Navega a la página de posts programados dando clic en el botón "Scheduled"
-    await element.click();
+    const element1 = await this.driver.$('a[href="#/posts/"]');
+    await element1.click();
+    await new Promise((r) => setTimeout(r, 500));
+    const element2 = await this.driver.$('a[href="#/posts/?type=scheduled"]');
+    await element2.click();
   }
 
   async checkPostInList(titleParam) {
@@ -35,10 +27,10 @@ class PostListPageObject extends BasePageObject {
   }
 
   async goToPublishedPosts() {
-    // Espera a que el botón "Scheduled" esté disponible en la página
-    const element = await this.driver.$('a[href="#/posts/?type=published"]');
-    // Navega a la página de posts programados dando clic en el botón "Scheduled"
-    await element.click();
+    const element1 = await this.driver.$('a[href="#/posts/"]');
+    await element1.click();
+    const element2 = await this.driver.$('a[href="#/posts/?type=published"]');
+    await element2.click();
   }
 }
 

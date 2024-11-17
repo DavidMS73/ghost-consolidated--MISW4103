@@ -1,7 +1,6 @@
 const scope = require("./scope");
 const fse = require("fs-extra");
 const fs = require("fs");
-const moment = require("moment");
 const _ = require("lodash");
 const constants = require("./constants");
 const {
@@ -13,7 +12,6 @@ const {
   setDefaultTimeout,
   Status,
 } = require("@cucumber/cucumber");
-const path = require("path");
 const LoginPageObject = require("../pages/login_page");
 const PostPageObject = require("../pages/post_page");
 const PagePageObject = require("../pages/page_page");
@@ -22,6 +20,9 @@ const TagsPageObject = require("../pages/tags_page");
 const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 const PostsViewPageObject = require("../pages/posts_view_page");
+
+// set default timeout to config value
+setDefaultTimeout(constants.pageTimeout);
 
 BeforeAll(async () => {
   // reset counter
@@ -51,9 +52,6 @@ BeforeAll(async () => {
   };
 
   scope.browser = await scope.driver.launch(launchProperties);
-
-  // set default timeout to config value
-  setDefaultTimeout(constants.pageTimeout * 1000);
 
   // *************************************** \\
   // clear output folders
@@ -123,7 +121,6 @@ Before(async () => {
 
   // create new page between scenarios
   scope.page = await scope.browser.newPage();
-  scope.page.setDefaultTimeout(constants.pageTimeout * 1000);
   createPageObjects(scope.page);
   await scope.page.setViewport({ width: 1280, height: 1000 });
   // add in accept language header - this is required when running in headless mode

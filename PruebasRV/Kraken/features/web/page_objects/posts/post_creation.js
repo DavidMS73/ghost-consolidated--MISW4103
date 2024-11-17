@@ -2,42 +2,25 @@ const { BasePageObject } = require("../base_page_object");
 
 class PostCreationPageObject extends BasePageObject {
   async fillPostTitle(title) {
-    const element = await this.driver.$('textarea[placeholder="Post title"]');
+    const element = await this.driver.$('textarea[placeholder="Post Title"]');
     await element.setValue(title);
   }
 
   async fillPostDescription(description) {
-    const element = await this.driver.$('div[data-kg="editor"] > div');
+    const element = await this.driver.$(
+      'div[class^="koenig-editor"] > div:nth-child(1)'
+    );
     await element.setValue(description);
   }
 
-  async clickPostTimeOptions() {
-    const element = await this.driver.$(
-      'div[data-test-setting="publish-at"] > button'
-    );
-    await element.click();
-  }
-
   async clickPostScheduleForLater() {
-    const allLabels = await this.driver.$$("label");
-    for (let label of allLabels) {
-      const labelText = await label.getText();
-      if (labelText.trim() === "Schedule for later") {
-        label.click();
-        break;
-      }
-    }
+    const options = await this.driver.$$("div.gh-publishmenu-radio");
+    options[1].click();
   }
 
   async clickPostSetItLiveNow() {
-    const allLabels = await this.driver.$$("label");
-    for (let label of allLabels) {
-      const labelText = await label.getText();
-      if (labelText.trim() === "Set it live now") {
-        label.click();
-        break;
-      }
-    }
+    const options = await this.driver.$$("div.gh-publishmenu-radio");
+    options[0].click();
   }
 
   async uploadFeatureImage(route) {

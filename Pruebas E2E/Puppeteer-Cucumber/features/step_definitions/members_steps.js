@@ -1,19 +1,21 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { Given, When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
-// When
+// Given
 
-When("I click on new member button", async () => {
+Given("I click on new member button", async () => {
   await scope.pages.members.clickCreateMemberButton();
 });
 
-When("I fill member email with {string}", async (email) => {
+Given("I fill member email with {string}", async (email) => {
   await scope.pages.members.fillEmail(email);
 });
 
-When("I fill member name with {string}", async (name) => {
+Given("I fill member name with {string}", async (name) => {
   await scope.pages.members.fillName(name);
 });
+
+// When
 
 When("I click on save member button", async () => {
   await scope.pages.members.clickSaveMemberButton();

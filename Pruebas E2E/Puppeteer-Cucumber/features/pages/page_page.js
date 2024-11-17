@@ -1,13 +1,11 @@
 const { getText, waitUtil } = require("../utils/utils");
 const assert = require("assert");
+const { BasePageObject } = require("./base_page");
+const scope = require('../support/scope');
 
-class PagePageObject {
+class PagePageObject extends BasePageObject {
   pageBodySelector =
     'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
-
-  constructor(page) {
-    this.page = page;
-  }
 
   async clickNewPageButton() {
     const selector = 'a[href="#/editor/page/"]';
@@ -77,6 +75,50 @@ class PagePageObject {
     await this.page.waitForSelector(selector);
     const text = (await getText(this.page, selector)).trim();
     assert(text === title);
+  }
+
+  async clickGearButton() {
+    await this.clickElement('button[title="Settings"]');
+  }
+
+  async fillPageUrl(url) {
+    await this.typeValue('input[name="post-setting-slug"]', url, {
+      clearInput: true,
+    });
+  }
+
+  async navToPageSite({
+    pageUrl, baseUrl
+  }) {
+    await scope.page.goto(`${baseUrl}/${pageUrl}`);
+  }
+
+  async validatePageTitle(title) {
+    const selector = 'h1[class^="gh-article-title"]';
+    await this.page.waitForSelector(selector);
+    let text = await getText(this.page, selector);
+    text = text.trim();
+    assert(text === title);
+  }
+
+  async validatePageContent(content) {
+    const selector = 'section[class^="gh-content"] > p';
+    await this.page.waitForSelector(selector);
+    let text = await getText(this.page, selector);
+    text = text.trim();
+    assert(text === content);
+  }
+
+  async clickFirstPage() {
+    await this.clickElement('div[class^="posts-list"] > div:nth-child(1)');
+  }
+
+  async clickDeletePage() {
+    await this.clickElement('button[data-test-button="delete-post"]');
+  }
+
+  async clickDeleteButton() {
+    await this.clickElement('button[data-test-button="delete-post-confirm"]');
   }
 }
 

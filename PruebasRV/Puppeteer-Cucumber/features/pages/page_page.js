@@ -1,6 +1,7 @@
 const { getText, waitUtil } = require("../utils/utils");
 const assert = require("assert");
 const { BasePageObject } = require("./base_page");
+const scope = require("../support/scope");
 
 class PagePageObject extends BasePageObject {
   pageBodySelector =
@@ -98,6 +99,38 @@ class PagePageObject extends BasePageObject {
 
   async clickDeleteButton() {
     await this.clickElement('div[class="modal-footer"] > button:nth-child(2)');
+  }
+
+  async fillPageUrl(url) {
+    await this.typeValue('input[name="post-setting-slug"]', url, {
+      clearInput: true,
+    });
+  }
+
+  async closeSettingsDrawer() {
+    await this.clickElement('button[aria-label="Close"]');
+  }
+
+  async navToPageSite({
+    pageUrl, baseUrl
+  }) {
+    await scope.page.goto(`${baseUrl}/${pageUrl}`);
+  }
+
+  async validatePageTitle(title) {
+    const selector = 'h1[class="article-title"]';
+    await this.page.waitForSelector(selector);
+    let text = await getText(this.page, selector);
+    text = text.trim();
+    assert(text === title);
+  }
+
+  async validatePageContent(content) {
+    const selector = 'section[class^="gh-content"] > p';
+    await this.page.waitForSelector(selector);
+    let text = await getText(this.page, selector);
+    text = text.trim();
+    assert(text === content);
   }
 }
 

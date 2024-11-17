@@ -25,8 +25,7 @@ Feature: Create members
     And I navigate to "members" section
     And I click on new member button
     And I fill member name with "Testing User"
-    And I fill member email with "test321@domain.com"
-    When I click on save member button
+    When I unfocus the member form field
     Then I should see the initials "T" and "U" in the user avatar
 
   Scenario: E0016 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial

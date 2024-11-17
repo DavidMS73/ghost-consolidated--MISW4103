@@ -8,7 +8,7 @@ Feature: Crear página
     And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 3 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "2"
-    When I click the pages button
+    And I click the pages button
     And I wait for 1 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "3"
     And I click the new page button
@@ -35,10 +35,10 @@ Feature: Crear página
     And I click continue final review button
     And I wait for 2 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "11"
-    And I click confirm publish button
+    When I click confirm publish button
     And I wait for 1 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "12"
-    And I should see title "$$name_1" and content "$$string_1" inside a modal
+    Then I should see title "$$name_1" and content "$$string_1" inside a modal
     And I wait for 1 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "13"
     And I click the pages type filter
@@ -47,7 +47,7 @@ Feature: Crear página
     And I click the published pages filter
     And I wait for 1 seconds
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "15"
-    Then I should see the first page with title "$$name_1"
+    And I should see the first page with title "$$name_1"
     And I save a ss of version "5.96" and feature "create-page" and scenario "E021" and step "16"
     And I navigate to created page "$$name_2" with base url "<BASE_URL>"
     And I wait for 1 seconds

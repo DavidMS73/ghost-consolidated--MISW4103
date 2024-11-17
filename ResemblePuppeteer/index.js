@@ -190,7 +190,7 @@ function baseReport(consolitatedInfo, htmlComplete) {
     <body>
       <div class="container-fluid">
         <h1>Reporte de comparación de imágenes</h1>
-        <div class="alert alert-secondary" role="alert">
+        <div class="alert alert-info" role="alert">
           <h2>Datos generales</h2>
         </div>
         <ul class="list-group list-group-horizontal mt-2">
@@ -199,7 +199,7 @@ function baseReport(consolitatedInfo, htmlComplete) {
         </ul>
         <ul class="list-group list-group-horizontal-sm mt-2">
           <li class="list-group-item">Promedio de diferencia entre versiones</li>
-          <li class="list-group-item">${consolitatedInfo.totalAvgDiff}</li>
+          <li class="list-group-item">${consolitatedInfo.totalAvgDiff}%</li>
         </ul>
         <ul class="list-group list-group-horizontal-sm mt-2">
           <li class="list-group-item">Tiempo total de ejecución</li>

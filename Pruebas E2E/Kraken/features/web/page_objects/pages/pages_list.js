@@ -26,6 +26,20 @@ class PagesListPageObject extends BasePageObject {
     const element = await this.driver.$('ul[role="listbox"] > li:nth-child(3)');
     await element.click();
   }
+
+  async navToPageSite({
+    pageUrl,
+    baseUrl
+  }) {
+    await this.driver.url(`${baseUrl}/${pageUrl}`);
+  }
+
+  async clickFirstPage() {
+    const selector = 
+      'div[class^="posts-list"] > div:nth-child(1)';
+    const element = await this.driver.$(selector);
+    await element.click();
+  }
 }
 
 module.exports = { PagesListPageObject };

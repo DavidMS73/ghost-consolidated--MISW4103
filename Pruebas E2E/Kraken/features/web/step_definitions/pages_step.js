@@ -45,11 +45,61 @@ When("I click the published pages filter", async function () {
   await this.pageListPO.clickPublishedPagesFilter();
 });
 
+When("I click gear button", async function () {
+  await this.pageCreationPO.clickGearButton();
+});
+
+When("I fill page URL with value {kraken-string}", async function (url) {
+  await this.pageCreationPO.fillPageUrl(url.toLowerCase());
+});
+
+
+
 // Then
 
 Then(
   "I should see the first page with title {kraken-string}",
   async function (title) {
     await this.pageListPO.validateFirstPageTitle(title);
+  }
+);
+
+Then(
+  "I navigate to created page {kraken-string} with base url {kraken-string}",
+  async function (pageUrlStr, baseUrlStr) {
+    const baseUrl = new URL(baseUrlStr);
+    await this.pageListPO.navToPageSite({
+      pageUrl: pageUrlStr,
+      baseUrl: baseUrl.origin,
+    });
+  }
+);
+
+Then("I validate title {kraken-string} in page view", async function (title) {
+  await this.pageViewPO.validatePageTitle(title);
+});
+
+Then("I validate content {kraken-string} in page view", async function (content) {
+  await this.pageViewPO.validatePageContent(content);
+});
+
+Then(
+  "I click first page",
+  async function () {
+    await this.pageListPO.clickFirstPage();
+  }
+);
+
+Then(
+  "I click delete page",
+  async function () {
+    await this.pageCreationPO.clickDeletePage();
+  }
+);
+
+Then(
+  "I click delete button",
+  async function () {
+    await this.pageCreationPO.clickDeleteButton();
   }
 );

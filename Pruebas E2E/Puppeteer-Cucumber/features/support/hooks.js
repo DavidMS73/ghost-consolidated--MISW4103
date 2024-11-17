@@ -85,7 +85,7 @@ BeforeAll(async () => {
   }
 
   const version = constants.reportConfig.metadata["Version"];
-  fse.ensureDirSync(`output/screenshots/puppeteer/${version}`);
+  fse.ensureDirSync(`output/screenshots/${version}`);
 
   // *************************************** \\
   // collect information about the run
@@ -151,7 +151,7 @@ AfterStep(async function ({
   //Paths
   const version = constants.reportConfig.metadata["Version"];
   const scenarioName = pickle.name.split(" - ")[0];
-  const screenshotPath = `./output/screenshots/puppeteer/${version}/${featureName}/${scenarioName}/`;
+  const screenshotPath = `./output/screenshots/${version}/${featureName}/${scenarioName}/`;
   const screenshotName = `step_${stepNumber}.png`;
   const fullPath = `${screenshotPath}${screenshotName}`;
 

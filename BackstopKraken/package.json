@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "bs-run": "backstop reference && backstop test",
-    "bs-init": "backstop init",
-    "test": "node index.js"
+    "build-json": "node index.js"
   },
   "keywords": [],
   "author": "",

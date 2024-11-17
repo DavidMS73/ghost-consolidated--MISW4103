@@ -1,0 +1,17 @@
+{
+  "name": "backstopkraken",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bs-run": "backstop reference && backstop test",
+    "bs-init": "backstop init",
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "backstopjs": "^6.3.25"
+  }
+}

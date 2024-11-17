@@ -1,4 +1,4 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { Then, Given } = require("@cucumber/cucumber");
 const { assert } = require("chai");
 
 // Given

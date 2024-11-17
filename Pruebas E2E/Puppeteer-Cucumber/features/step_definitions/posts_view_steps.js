@@ -1,4 +1,4 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
 // Given

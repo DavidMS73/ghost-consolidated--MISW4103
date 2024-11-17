@@ -31,7 +31,9 @@ Given("I click continue final review button", async function () {
   await this.commonPO.clickContinueFinalReviewButton();
 });
 
-Given("I click confirm publish button", async function () {
+// When 
+
+When("I click confirm publish button", async function () {
   await this.commonPO.clickConfirmPublishButton();
 });
 

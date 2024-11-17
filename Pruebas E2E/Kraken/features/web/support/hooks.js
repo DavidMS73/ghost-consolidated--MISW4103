@@ -3,6 +3,7 @@ const { WebClient } = require("kraken-node");
 const {
   PageCreationPageObject,
   PagesListPageObject,
+  PageViewPageObject,
   SideBarPageObject,
   LoginPageObject,
   TagsListPageObject,
@@ -16,7 +17,7 @@ const {
 } = require("../page_objects/page_objects");
 
 Before(async function () {
-  this.deviceClient = new WebClient("chrome", {}, this.userId);
+  this.deviceClient = new WebClient("edge", {}, this.userId);
   this.driver = await this.deviceClient.startKrakenForUserId(this.userId);
   // Common
   this.loginPO = new LoginPageObject(this.driver);
@@ -25,6 +26,7 @@ Before(async function () {
   // Page
   this.pageCreationPO = new PageCreationPageObject(this.driver);
   this.pageListPO = new PagesListPageObject(this.driver);
+  this.pageViewPO = new PageViewPageObject(this.driver);
   // Tags
   this.tagListPO = new TagsListPageObject(this.driver);
   this.tagCreationPO = new TagCreationPageObject(this.driver);

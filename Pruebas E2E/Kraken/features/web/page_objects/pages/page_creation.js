@@ -44,6 +44,31 @@ class PageCreationPageObject extends BasePageObject {
     const audioPath = "./assets/Panama.mp3";
     await element.setValue(audioPath);
   }
+
+  async clickGearButton() {
+    const element =
+      await this.driver.$('button[title="Settings"]');
+    await element.click();
+  }
+
+  async fillPageUrl(url) {
+    const element =
+      await this.driver.$('input[name="post-setting-slug"]');
+    await element.click();
+    await element.setValue(url);
+  }
+
+  async clickDeletePage() {
+    const element =
+      await this.driver.$('button[data-test-button="delete-post"]');
+    await element.click();
+  }
+
+  async clickDeleteButton() {
+    const element =
+      await this.driver.$('button[data-test-button="delete-post-confirm"]');
+    await element.click();
+  }
 }
 
 module.exports = { PageCreationPageObject };

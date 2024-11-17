@@ -27,3 +27,11 @@ Feature: Crear página
     And I click the published pages filter
     And I wait for 1 seconds
     Then I should see the first page with title "$$name_1"
+    And I click first page
+    And I wait for 1 seconds
+    And I click gear button
+    And I wait for 1 seconds
+    And I click delete page
+    And I wait for 1 seconds
+    And I click delete button
+    And I wait for 1 seconds

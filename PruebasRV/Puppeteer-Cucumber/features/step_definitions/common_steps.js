@@ -1,15 +1,15 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
-When("I click preview button", async () => {
+Given("I click preview button", async () => {
   await scope.pages.common.clickPreviewButton();
 });
 
-When("I click publish button", async () => {
+Given("I click publish button", async () => {
   await scope.pages.common.clickPublishButton();
 });
 
-When("I just wait a few seconds", async () => {
+Given("I just wait a few seconds", async () => {
   await scope.pages.common.waitAFewSeconds();
 });
 

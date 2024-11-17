@@ -15,7 +15,6 @@ async function executeTest() {
   let lessThan90 = 0;
   let highThan90 = 0;
 
-  let datetime = new Date().toISOString().replace(/:/g, ".");
   if (!fs.existsSync(`./results`)) {
     fs.mkdirSync(`./results`, { recursive: true });
   }

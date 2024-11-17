@@ -9,12 +9,15 @@ const getStepNumber = (fileName) => {
     return parseInt(fileName.replace('step_', '').replace('.png', ''));
 };
 
-const addScreens = (baseDir, screenKey) => {
+const addScreens = (baseDir, screenKey, skipScenario = false) => {
     fs.readdirSync(baseDir).forEach(featureName => {
         const featurePath = path.join(baseDir, featureName);
         fs.readdirSync(featurePath).forEach(scenarioName => {
             const scenarioPath = path.join(featurePath, scenarioName);
-            if (!(scenarioName in obj)) obj[scenarioName] = {};
+            if (!(scenarioName in obj)) {
+                if (skipScenario) return;
+                obj[scenarioName] = {};
+            }
             const orderedSteps = fs.readdirSync(scenarioPath).sort((a, b) => getStepNumber(path.basename(a)) - getStepNumber(path.basename(b)))
             obj[scenarioName][screenKey] = orderedSteps.map(ss => {
                 return path.join(scenarioPath, ss);
@@ -24,7 +27,7 @@ const addScreens = (baseDir, screenKey) => {
 };
 
 addScreens(referenceBaseDir, 'referenceScreens');
-addScreens(testBaseDir, 'testScreens');
+addScreens(testBaseDir, 'testScreens', true);
 
 const scenarios = [];
 const misMatchThreshold = 10;

@@ -8,7 +8,7 @@ When("I click the tags button", async function () {
   await this.sideBarPO.clickSideBarTagsSection();
 });
 
-When("I click the posts button", async function () {
+Given("I click the posts button", async function () {
   await this.sideBarPO.clickSideBarPostsSection();
 });
 

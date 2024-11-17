@@ -1,7 +1,7 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const fse = require("fs-extra");
 
-// When
+// Given
 
 Given(
   "I save a ss of version {kraken-string} and feature {kraken-string} and scenario {kraken-string} and step {kraken-string}",
@@ -20,17 +20,19 @@ Given(
   }
 );
 
-When("I click preview button", async function () {
+Given("I click preview button", async function () {
   await this.commonPO.clickPreviewButton();
 });
 
-When("I click publish button", async function () {
+Given("I click publish button", async function () {
   await this.commonPO.clickPublishButton();
 });
 
-When("I just wait a few seconds", async function () {
+Given("I just wait a few seconds", async function () {
   await this.commonPO.waitAFewSeconds();
 });
+
+// When
 
 When("I click confirm publish button", async function () {
   await this.commonPO.clickConfirmPublishButton();

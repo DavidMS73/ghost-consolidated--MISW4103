@@ -1,36 +1,36 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { Then, Given } = require("@cucumber/cucumber");
 const { assert } = require("chai");
 
-// When
+// Given
 
-When("I click on new post button", async function () {
+Given("I click on new post button", async function () {
   await this.postListPO.clickNewPostButton();
 });
 
-When("I fill post title with {kraken-string}", async function (title) {
+Given("I fill post title with {kraken-string}", async function (title) {
   await this.postCreationPO.fillPostTitle(title);
 });
 
-When(
+Given(
   "I fill post description with {kraken-string}",
   async function (description) {
     await this.postCreationPO.fillPostDescription(description);
   }
 );
 
-When("I click on post time options", async function () {
+Given("I click on post time options", async function () {
   await this.postCreationPO.clickPostTimeOptions();
 });
 
-When("I click on schedule for later post option", async function () {
+Given("I click on schedule for later post option", async function () {
   await this.postCreationPO.clickPostScheduleForLater();
 });
 
-When("I click on set it live now option", async function () {
+Given("I click on set it live now option", async function () {
   await this.postCreationPO.clickPostSetItLiveNow();
 });
 
-When("I upload a feature image", async function () {
+Given("I upload a feature image", async function () {
   await this.postCreationPO.uploadFeatureImage(
     "./assets/Nissan-Skyline-GT-R-R32.jpg"
   );

@@ -27,6 +27,6 @@ Feature: Create post
     And I wait for 1 seconds
     Then I should see title "$$name_1" and content "$$string_1" inside a modal
     And I wait for 1 seconds
-    When I go to published posts
+    And I go to published posts
     And I wait for 1 seconds
     And the post "$$name_1" should be in the list

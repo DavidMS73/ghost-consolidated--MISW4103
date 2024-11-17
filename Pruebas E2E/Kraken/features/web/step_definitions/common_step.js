@@ -19,21 +19,19 @@ Given(
   }
 );
 
-// When
-
-When("I click preview button", async function () {
+Given("I click preview button", async function () {
   await this.commonPO.clickPreviewButton();
 });
 
-When("I click publish button", async function () {
+Given("I click publish button", async function () {
   await this.commonPO.clickPublishButton();
 });
 
-When("I click continue final review button", async function () {
+Given("I click continue final review button", async function () {
   await this.commonPO.clickContinueFinalReviewButton();
 });
 
-When("I click confirm publish button", async function () {
+Given("I click confirm publish button", async function () {
   await this.commonPO.clickConfirmPublishButton();
 });
 

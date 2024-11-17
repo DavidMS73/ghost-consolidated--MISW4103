@@ -1,6 +1,6 @@
 Feature: Create page
 
-  Scenario: E006.1 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
+  Scenario: E0061 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
     Given I navigate to "home" section
     When I login to the application if necessary
     And I navigate to "pages" section
@@ -18,7 +18,7 @@ Feature: Create page
     And I click delete page
     And I click delete button
 
-  Scenario: E006.2 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
+  Scenario: E0062 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
     Given I navigate to "home" section
     When I login to the application if necessary
     And I navigate to "pages" section

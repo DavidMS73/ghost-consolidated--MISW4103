@@ -7,7 +7,7 @@ Feature: Create post
     And I wait for 2 seconds
     And I login with email "<EMAIL>" and password "<PASSWORD>"
     And I wait for 2 seconds
-    When I click the posts button
+    And I click the posts button
     And I wait for 1 seconds
     And I click on new post button
     And I wait for 1 seconds
@@ -23,7 +23,7 @@ Feature: Create post
     And I wait for 1 seconds
     And I click continue final review button
     And I wait for 1 seconds
-    And I click confirm publish button
+    When I click confirm publish button
     And I wait for 1 seconds
     Then I should see title "$$name_1" and content "$$string_1" inside a modal
     And I wait for 1 seconds

@@ -6,3 +6,4 @@ reports
 execution_log.txt
 test_report.txt
 backstop_data
+**/ResemblePuppeteer/results

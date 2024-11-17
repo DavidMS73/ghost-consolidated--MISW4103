@@ -1,34 +1,34 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { Given, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const assert = require("assert");
 
-// When
+// Given
 
-When("I click on new post button", async () => {
+Given("I click on new post button", async () => {
   await scope.pages.posts.clickNewPostButton();
 });
 
-When("I fill post title with {string}", async (title) => {
+Given("I fill post title with {string}", async (title) => {
   await scope.pages.posts.fillPostTitle(title);
 });
 
-When("I fill post description with {string}", async (description) => {
+Given("I fill post description with {string}", async (description) => {
   await scope.pages.posts.fillPostDescription(description);
 });
 
-When("I click on post time options", async () => {
+Given("I click on post time options", async () => {
   await scope.pages.posts.clickPostTimeOptions();
 });
 
-When("I click on schedule for later post option", async () => {
+Given("I click on schedule for later post option", async () => {
   await scope.pages.posts.clickPostScheduleForLater();
 });
 
-When("I click on set it live now option", async () => {
+Given("I click on set it live now option", async () => {
   await scope.pages.posts.clickPostSetItLiveNow();
 });
 
-When("I upload a feature image", async () => {
+Given("I upload a feature image", async () => {
   await scope.pages.posts.uploadFeatureImage("./assets/forest.jpg");
 });
 

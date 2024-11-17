@@ -1,8 +1,8 @@
 const scope = require("../support/scope");
-const constants = require("../support/constants");
-const { Given, When } = require("@cucumber/cucumber");
+const { Given } = require("@cucumber/cucumber");
 const properties = require("../../properties");
 
+// Given
 Given("I navigate to ghost local page", async () => {
   await scope.page.goto(properties.BASE_URL, { waitUntil: "networkidle0" });
 });

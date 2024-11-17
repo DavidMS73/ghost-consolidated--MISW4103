@@ -1,30 +1,38 @@
 const { When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 
-// When
+// Given
 
-When("I click on new tag button", async () => {
+Given("I click on new tag button", async () => {
   await scope.pages.tags.clickCreateTagButton();
 });
 
-When("I fill tag name with {string}", async (title) => {
+Given("I fill tag name with {string}", async (title) => {
   await scope.pages.tags.fillName(title);
 });
 
-When('I fill the slug with an emoji', async function() {
-  await scope.pages.tags.fillSlug('😅');
+Given("I fill the slug with an emoji", async function () {
+  await scope.pages.tags.fillSlug("😅");
 });
 
-When("I click on save tag button", async () => {
-  await scope.pages.tags.clickSaveTagButton();
-});
-
-When("I expand the metadata section", async () => {
+Given("I expand the metadata section", async () => {
   await scope.pages.tags.expandMetadataSection();
 });
 
-When("I fill the metadata title with {string} and description {string}", async (metadatdaTitle, metadataDescription) => {
-  await scope.pages.tags.fillMetadataTitleAndDescription(metadatdaTitle, metadataDescription);
+Given(
+  "I fill the metadata title with {string} and description {string}",
+  async (metadatdaTitle, metadataDescription) => {
+    await scope.pages.tags.fillMetadataTitleAndDescription(
+      metadatdaTitle,
+      metadataDescription
+    );
+  }
+);
+
+// When
+
+When("I click on save tag button", async () => {
+  await scope.pages.tags.clickSaveTagButton();
 });
 
 // Then
@@ -39,20 +47,18 @@ Then("the tag {string} should be in the list", async (title) => {
 });
 
 Then(
-  'The tag {string} has slug starting with {string}',
-  async function(tagName, tagSlug) {
+  "The tag {string} has slug starting with {string}",
+  async function (tagName, tagSlug) {
     await scope.pages.tags.validateTagSlug({
-      tagName, tagSlug
+      tagName,
+      tagSlug,
     });
-  },
+  }
 );
 
 Then(
-  'There are {int} or more tags with tag {string} in the tag list',
-  async function(num, tagName) {
-    await scope.pages.tags.validateTagNameIsInTagListNTimes(
-      tagName,
-      num
-    );
-  },
+  "There are {int} or more tags with tag {string} in the tag list",
+  async function (num, tagName) {
+    await scope.pages.tags.validateTagNameIsInTagListNTimes(tagName, num);
+  }
 );

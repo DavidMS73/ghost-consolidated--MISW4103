@@ -42,6 +42,6 @@ Feature: Create post
     And I go to scheduled posts
     And I wait for 2 seconds
     And I save a ss of version "4.5" and feature "create-post" and scenario "E001" and step "13"
-    Then the post "$$name_1" should be in the list
+    And the post "$$name_1" should be in the list
     And I wait for 1 seconds
     And I save a ss of version "4.5" and feature "create-post" and scenario "E001" and step "14"  

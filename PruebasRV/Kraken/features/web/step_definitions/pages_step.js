@@ -24,6 +24,8 @@ When(
   }
 );
 
+// When 
+
 When('I click publish page button', async function () {
   await this.pageCreationPO.clickPublishButton();
 });

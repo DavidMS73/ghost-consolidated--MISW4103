@@ -1,4 +1,4 @@
-const { waitUtil } = require("../utils/utils");
+const { waitUtil, getText } = require("../utils/utils");
 const assert = require("assert");
 
 class PostsViewPageObject {
@@ -8,7 +8,7 @@ class PostsViewPageObject {
 
   async filterByFeaturedPosts() {
     const postTypeSelector = 'div.gh-contentfilter-menu.gh-contentfilter-type > div';
-    const featuredPostTypeSelector = 'ul[role="listbox"] > li[data-option-index="5"]';
+    const featuredPostTypeSelector = 'ul[role="listbox"] > li[data-option-index="4"]';
 
     await this.page.waitForSelector(postTypeSelector);
     await this.page.click(postTypeSelector);
@@ -37,14 +37,14 @@ class PostsViewPageObject {
 
     await this.page.waitForSelector(createViewButtonSelector);
     await this.page.click(createViewButtonSelector);
-    await waitUtil(500);
+    await waitUtil(1000);
   }
 
   async validateFeaturedPostsViewDoesNotExist() {
     await this.filterByFeaturedPosts();
     await this.clickCreateViewButton();
 
-    const deleteButton = await this.page.$('button[data-test-button="delete-custom-view"]');
+    const deleteButton = await this.page.$('button.gh-btn.gh-btn-red.gh-btn-icon');
 
     if (!deleteButton) {
       const closeButton = await this.page.$('button.close');
@@ -68,7 +68,7 @@ class PostsViewPageObject {
   }
 
   async clickSaveViewButton() {
-    const saveViewButtonSelector = 'button[data-test-button="save-custom-view"]';
+    const saveViewButtonSelector = 'button.gh-btn.gh-btn-black.gh-btn-icon.ember-view';
 
     await this.page.waitForSelector(saveViewButtonSelector);
     await this.page.click(saveViewButtonSelector);
@@ -82,7 +82,7 @@ class PostsViewPageObject {
   }
 
   async assertCurrentView(viewName) {
-    const titleSelector = 'h2';
+    const titleSelector = 'h2 > span';
     const h2titles = await this.page.$$(titleSelector);
 
     for (const h2title of h2titles) {
@@ -94,7 +94,7 @@ class PostsViewPageObject {
   }
 
   async assertViewNameRequiredError() {
-    const errorSelector = 'p[data-test-error="custom-view-name"]';
+    const errorSelector = 'p.response';
     await this.page.waitForSelector(errorSelector);
     const errorElements = await this.page.$$(errorSelector);
 
@@ -107,11 +107,18 @@ class PostsViewPageObject {
   }
 
   async clickCancelViewCreationButton() {
-    const cancelButtonSelector = 'button[data-test-button="cancel-custom-view-form"]';
+    await this.page.waitForSelector('button > span');
 
-    await this.page.waitForSelector(cancelButtonSelector);
-    await this.page.click(cancelButtonSelector);
-    await waitUtil(500);
+    const buttons = await this.page.$$('button > span');
+
+    for (const button of buttons) {
+      const buttonText = await this.page.evaluate((button) => button.textContent.trim(), button);
+
+      if (buttonText === "Cancel") {
+        await button.click();
+        return;
+      }
+    }
   }
 
   async assertViewCreationModalIsHidden() {

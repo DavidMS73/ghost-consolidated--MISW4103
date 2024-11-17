@@ -14,9 +14,9 @@ Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
     And I wait for 1 seconds
     And I fill the slug with an emoji
     And I wait for 1 seconds
-    And I click the save tag button
+    When I click the save tag button
     And I wait for 1 seconds
-    And I click the tags button
+    Then I click the tags button
     And I wait for 1 seconds
-    Then I validate the new tag name "$$name_1" is in the tag list
+    And I validate the new tag name "$$name_1" is in the tag list
     And I validate that tag with name "$$name_1" has slug starting with "tag"

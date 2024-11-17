@@ -8,3 +8,4 @@ execution_log.txt
 test_report.txt
 backstop_data
 **/ResemblePuppeteer/results
+**/ResemblePuppeteer/results_full_flow

@@ -1,38 +1,38 @@
-const { When, Then } = require("@cucumber/cucumber");
+const { Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
-const properties = require('../../properties');
+const properties = require("../../properties");
 
-// When
+// Given
 
-When("I click on new page button", async function () {
+Given("I click on new page button", async function () {
   await scope.pages.pages.clickNewPageButton();
 });
 
-When("I fill the page title with text {string}", async (title) => {
+Given("I fill the page title with text {string}", async (title) => {
   await scope.pages.pages.fillPageTitle(title);
 });
 
-When("I click the page content", async () => {
+Given("I click the page content", async () => {
   await scope.pages.pages.clickPageBody();
 });
 
-When("I fill the image with an asset", async function () {
+Given("I fill the image with an asset", async function () {
   await scope.pages.pages.fillImageWithAsset();
 });
 
-When("I click the add button", async function () {
+Given("I click the add button", async function () {
   await scope.pages.pages.clickAddButton();
 });
 
-When("I click the audio button", async function () {
+Given("I click the audio button", async function () {
   await scope.pages.pages.clickAudioButton();
 });
 
-When("I fill the page content with text {string}", async function (content) {
+Given("I fill the page content with text {string}", async function (content) {
   await scope.pages.pages.fillPageBodyWithText(content);
 });
 
-When("I fill page URL with value {string}", async function (url) {
+Given("I fill page URL with value {string}", async function (url) {
   await scope.pages.pages.fillPageUrl(url);
 });
 
@@ -54,16 +54,13 @@ Then("I click gear button", async function () {
   await scope.pages.pages.clickGearButton();
 });
 
-Then(
-  "I navigate to created page {string} site",
-  async function (page) {
-    const url = new URL(properties.BASE_URL);
-    await scope.pages.pages.navToPageSite({
-      pageUrl: page,
-      baseUrl: url.origin,
-    });
-  }
-);
+Then("I navigate to created page {string} site", async function (page) {
+  const url = new URL(properties.BASE_URL);
+  await scope.pages.pages.navToPageSite({
+    pageUrl: page,
+    baseUrl: url.origin,
+  });
+});
 
 Then("I validate title {string} in page view", async function (title) {
   await scope.pages.pages.validatePageTitle(title);

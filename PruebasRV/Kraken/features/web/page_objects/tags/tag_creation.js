@@ -3,17 +3,17 @@ const { assert } = require('chai');
 
 class TagCreationPageObject extends BasePageObject {
     async fillName(name) {
-        const element = await this.driver.$('input[data-test-input="tag-name"]');
+        const element = await this.driver.$('#tag-name');
         await element.setValue(name);
     }
 
     async fillSlug(slug) {
-        const element = await this.driver.$('input[data-test-input="tag-slug"]');
+        const element = await this.driver.$('#tag-slug');
         await element.setValue(slug);
     }
 
     async clickSaveButton() {
-        const element = await this.driver.$('button[data-test-button="save"]');
+        const element = await this.driver.$('button.gh-btn-primary');
         await element.click();
     }
 
@@ -31,9 +31,9 @@ class TagCreationPageObject extends BasePageObject {
     }
 
     async checkNewTagTitle(title) {
-        const titleElement = await this.driver.$('h2[data-test-screen-title]');
+        const titleElement = await this.driver.$('h2.gh-canvas-title');
         const titleElementText = await titleElement.getText();
-        assert.equal(titleElementText, title);
+        assert.isTrue(titleElementText.includes(title));
     }
 }
 

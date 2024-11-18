@@ -13,7 +13,7 @@ class PostViewCreationPageObject extends BasePageObject {
   }
 
   async clickSaveViewButton() {
-    const element = await this.driver.$('button[data-test-button="save-custom-view"]');
+    const element = await this.driver.$('button.gh-btn.gh-btn-black.gh-btn-icon.ember-view');
     await element.click();
   }
 
@@ -23,10 +23,15 @@ class PostViewCreationPageObject extends BasePageObject {
   }
 
   async assertCurrentView(viewName) {
-    const element = await this.driver.$('h2');
-    const title = await element.getText();
+    const titleSelector = 'h2 > span';
+    const h2titles = await this.driver.$$(titleSelector);
 
-    assert.equal(title, viewName);
+    for (const h2title of h2titles) {
+      const title = await h2title.getText();
+      if (title === viewName) return true;
+    }
+
+    assert.fail("Title not found");
   }
 
   async filterByFeaturedPosts() {
@@ -35,7 +40,7 @@ class PostViewCreationPageObject extends BasePageObject {
 
     await new Promise((r) => setTimeout(r, 1000));
 
-    const featuredPostTypeElement = await this.driver.$('ul[role="listbox"] > li[data-option-index="5"]');
+    const featuredPostTypeElement = await this.driver.$('ul[role="listbox"] > li[data-option-index="4"]');
     await featuredPostTypeElement.click();
   }
 
@@ -55,7 +60,7 @@ class PostViewCreationPageObject extends BasePageObject {
     await this.clickCreateViewButton();
     await new Promise((r) => setTimeout(r, 1000));
 
-    const deleteButton = await this.driver.$('button[data-test-button="delete-custom-view"]');
+    const deleteButton = await this.driver.$('button.gh-btn.gh-btn-red.gh-btn-icon');
 
     if (deleteButton.error) {
       const closeButton = await this.driver.$('button.close');
@@ -70,15 +75,23 @@ class PostViewCreationPageObject extends BasePageObject {
   }
 
   async assertViewNameRequiredError() {
-    const element = await this.driver.$('p[data-test-error="custom-view-name"]');
+    const element = await this.driver.$('p.response');
     const error = await element.getText();
 
     assert.equal(error, 'Please enter a name');
   }
 
   async clickCancelViewCreationButton() {
-    const element = await this.driver.$('button[data-test-button="cancel-custom-view-form"]');
-    await element.click();
+    const buttons = await this.driver.$$('button > span');
+
+    for (const button of buttons) {
+      const buttonText = await button.getText();
+
+      if (buttonText === "Cancel") {
+        await button.click();
+        return;
+      }
+    }
   }
 
   async assertViewCreationModalIsHidden() {

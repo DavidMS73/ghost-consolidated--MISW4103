@@ -22,7 +22,7 @@ Feature: Create tags
     And I fill tag name with "test tag name"
     And I click on save tag button
     And I go to tags list
-    Then the tag "test tag name" should be in the list
+    And the tag "test tag name" should be in the list
     When I click on new tag button
     And I fill tag name with "test tag name"
     And I click on save tag button

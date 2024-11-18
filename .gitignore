@@ -7,5 +7,6 @@ reports
 execution_log.txt
 test_report.txt
 backstop_data
+backstop.json
 **/ResemblePuppeteer/results
 **/ResemblePuppeteer/results_full_flow

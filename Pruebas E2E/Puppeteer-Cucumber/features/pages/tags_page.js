@@ -38,6 +38,12 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async checkTagInTitle(title) {
+    await this.page.waitForSelector('h2[data-test-screen-title]');
+    const titleText = await this.page.$eval('h2[data-test-screen-title]', e => e.innerText);
+    return titleText === title;
+  }
+
   async expandMetadataSection() {
     const selector = 'section > div:nth-child(1) > div.gh-expandable-header > button';
     await this.page.waitForSelector(selector);

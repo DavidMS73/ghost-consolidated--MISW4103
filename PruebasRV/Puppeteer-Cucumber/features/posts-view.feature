@@ -2,9 +2,10 @@ Feature: Create posts view
   Creates a new view for the posts, which saves the current selected filters.
 
   @rv-45
+  @run
   Scenario: E017 - Vista creada se despliega cuando se le asigna un nombre y se hace click en guardar
     Given I navigate to "home" section
-    When I login to the application if necessary
+    And I login to the application if necessary
     And I navigate to "posts" section
     And I filter by featured posts
     And view of featured posts should not exist
@@ -15,9 +16,10 @@ Feature: Create posts view
     And current view should be "Prueba"
 
   @rv-45
+  @run
   Scenario: E018 - Al intentar crear una vista sin un nombre se muestra un mensaje de error
     Given I navigate to "home" section
-    When I login to the application if necessary
+    And I login to the application if necessary
     And I navigate to "posts" section
     And I filter by featured posts
     And view of featured posts should not exist
@@ -26,9 +28,10 @@ Feature: Create posts view
     Then an error should appear indicating that the view name is required
 
   @rv-45
+  @run
   Scenario: E019 - Al presionar el botón cancel se cierra el modal de creacion de vista
     Given I navigate to "home" section
-    When I login to the application if necessary
+    And I login to the application if necessary
     And I navigate to "posts" section
     And I filter by featured posts
     And view of featured posts should not exist

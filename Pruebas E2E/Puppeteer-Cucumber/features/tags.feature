@@ -26,7 +26,7 @@ Feature: Create tags
     And I click on new tag button
     And I fill tag name with "test tag name"
     When I click on save tag button
-    And I go to tags list
+    Then I go to tags list
     And There are 2 or more tags with tag "test tag name" in the tag list
 
   @rv-596

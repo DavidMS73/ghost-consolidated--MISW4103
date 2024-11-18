@@ -3,7 +3,7 @@ Feature: Create tags
 
   Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
-    When I login to the application if necessary
+    And I login to the application if necessary
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "test tag name"

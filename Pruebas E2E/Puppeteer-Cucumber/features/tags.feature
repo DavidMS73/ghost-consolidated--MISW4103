@@ -36,7 +36,7 @@ Feature: Create tags
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "test tag name 2"
-    And I click on save tag button
+    When I click on save tag button
     Then I should see tag title "test tag name 2"
 
   @rv-596

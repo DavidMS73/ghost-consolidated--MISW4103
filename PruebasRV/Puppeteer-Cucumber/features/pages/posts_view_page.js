@@ -44,7 +44,7 @@ class PostsViewPageObject {
     await this.filterByFeaturedPosts();
     await this.clickCreateViewButton();
 
-    await waitUtil(1500);
+    await this.page.waitForSelector('section.modal-content');
     const deleteButton = await this.page.$('button.gh-btn.gh-btn-red.gh-btn-icon');
 
     if (!deleteButton) {

@@ -22,6 +22,7 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 
 ## Ejecución
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [ResemblePuppeteer](../ResemblePuppeteer)):
+
 **Mac:**
 ```bash
 node ./fullFlow.js
@@ -33,3 +34,15 @@ node .\fullFlow.js
 
 ## Resultados
 Al finalizar las pruebas, se genará una carpeta `results`. En esta carpeta encontrará las imágenes de todas las comparaciones y un html en el que podrá ver un reporte de los resultados.
+
+### Forma de ejecución back-up
+Una vez corridas las pruebas en nuestro ambiente local, procedimos a mover los archivos de las screenshots a la carpeta de ResemblePuppeteer/screenshots del repositorio, de esta forma ya tenemos todas las screenshots cargadas, restaría la comparación para lo cual se ejecutaría el comando
+
+**Mac:**
+```bash
+node ./index.js
+```
+**Windows:**
+```bash
+node .\index.js
+```

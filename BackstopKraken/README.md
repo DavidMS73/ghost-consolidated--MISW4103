@@ -5,3 +5,5 @@
 3. Instalar dependencias `npm i`.
 4. Correr `npm run build-json`.
 5. Correr `npm run bs-run`.
+
+Se dejan de todas formas algunas imágenes de la ejecución de los scripts en la carpeta `screenshots`.

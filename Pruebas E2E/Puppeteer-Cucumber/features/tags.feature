@@ -27,7 +27,7 @@ Feature: Create tags
     And I fill tag name with "test tag name"
     When I click on save tag button
     And I go to tags list
-    Then There are 2 or more tags with tag "test tag name" in the tag list
+    And There are 2 or more tags with tag "test tag name" in the tag list
 
   @rv-596
   Scenario: E0011 - Crear un tag con un nombre satisfactoriamente

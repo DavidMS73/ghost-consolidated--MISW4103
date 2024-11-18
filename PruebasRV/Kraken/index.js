@@ -6,7 +6,6 @@ const path = require("path");
 const sourceDirs = [
   path.join(__dirname, "./features/web/e2e/posts"),
   path.join(__dirname, "./features/web/e2e/pages"),
-  path.join(__dirname, "./features/web/e2e/members"),
   path.join(__dirname, "./features/web/e2e/tags"),
 ];
 const destDir = path.join(__dirname, "./features/");

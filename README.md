@@ -14,6 +14,12 @@ Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main
 ## Pruebas E2E Kraken
 Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/Pruebas%20E2E/Kraken) 
 
+## Pruebas RV Puppeteer - Cucumber
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/PruebasRV/Puppeteer-Cucumber#readme)
+
+## Pruebas RV Kraken
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/PruebasRV/Kraken#readme)
+
 ## BackstopJS Kraken
 Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/BackstopKraken#readme)
 

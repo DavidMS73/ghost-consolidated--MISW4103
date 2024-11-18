@@ -16,3 +16,6 @@ Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main
 
 ## BackstopJS Kraken
 Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/BackstopKraken#readme)
+
+## ResembleJS Puppeteer
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/ResemblePuppeteer#readme)

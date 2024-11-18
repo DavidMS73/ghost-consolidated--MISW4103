@@ -1,4 +1,4 @@
-Feature: Crear tags
+Feature: Create tags
 
   @user1 @web
   Scenario: E010 - Crear un tag con nombre existente

@@ -17,7 +17,8 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 3. Configurar `BASE_URL` para apuntar a la versión de Ghost esperada.
    1. [properties.js en /Pruebas E2E](../Pruebas%20E2E/Puppeteer-Cucumber/properties.js) debe apuntar a Ghost v5.96
    2. [properties.js en /PruebasRV](../PruebasRV/Puppeteer-Cucumber/properties.js) debe apuntar a Ghost v4.5
-4. Borra todo el contenido previo entrando a Ajustes > Danger Zone > Delete All Content
+4. Correr ambas versiones de Ghost
+5. Borra todo el contenido previo entrando a Ajustes > Danger Zone > Delete All Content
 
 ## Ejecución
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [ResemblePuppeteer](../ResemblePuppeteer)):

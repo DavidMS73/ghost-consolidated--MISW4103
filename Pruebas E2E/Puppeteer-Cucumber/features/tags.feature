@@ -49,4 +49,4 @@ Feature: Create tags
     And I expand the metadata section
     And I fill the metadata title with "tag with metadata" and description "tag with metadata desc"
     When I click on save tag button
-    Then I should see tag title "test tag name 2"
+    Then I should see tag title "tag with metadata"

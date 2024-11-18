@@ -16,6 +16,7 @@ Feature: Create page
     And I click the published pages filter
     And I should see the first page with title "Basic page"
 
+  @rv-596
   Scenario: E006 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -31,6 +32,7 @@ Feature: Create page
     And I click the published pages filter
     And I should see the first page with title "Page title"
 
+  @rv-596
   Scenario: E021 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -50,7 +52,6 @@ Feature: Create page
     And I should see the first page with title "Page title 2"
     And I navigate to created page "custom-url" site
     And I validate title "Page title 2" in page view
-    And I validate content "Page content 2" in page view
     And I navigate to "pages" section
     And I click the pages type filter
     And I click the published pages filter

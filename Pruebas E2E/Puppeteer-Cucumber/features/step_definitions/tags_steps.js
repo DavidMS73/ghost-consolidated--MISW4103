@@ -46,7 +46,7 @@ Then("the tag {string} should be in the list", async (title) => {
   console.assert(result, `The tag ${title} is not in the list`);
 });
 
-Then("I should see tag title {title}", async (title) => {
+Then("I should see tag title {string}", async (title) => {
   const result = await scope.pages.tags.checkTagInTitle(title);
   console.assert(result, `The tag ${title} is not in the title`);
 });

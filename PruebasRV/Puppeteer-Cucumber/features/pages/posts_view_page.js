@@ -44,11 +44,13 @@ class PostsViewPageObject {
     await this.filterByFeaturedPosts();
     await this.clickCreateViewButton();
 
+    await waitUtil(1500);
     const deleteButton = await this.page.$('button.gh-btn.gh-btn-red.gh-btn-icon');
 
     if (!deleteButton) {
       const closeButton = await this.page.$('button.close');
       await closeButton.click();
+      await waitUtil(500);
       return;
     }
 

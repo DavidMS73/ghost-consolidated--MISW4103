@@ -7,8 +7,10 @@ class PostsViewPageObject {
   }
 
   async filterByFeaturedPosts() {
-    const postTypeSelector = 'div.gh-contentfilter-menu.gh-contentfilter-type > div';
-    const featuredPostTypeSelector = 'ul[role="listbox"] > li[data-option-index="5"]';
+    const postTypeSelector =
+      "div.gh-contentfilter-menu.gh-contentfilter-type > div";
+    const featuredPostTypeSelector =
+      'ul[role="listbox"] > li[data-option-index="5"]';
 
     await this.page.waitForSelector(postTypeSelector);
     await this.page.click(postTypeSelector);
@@ -20,8 +22,10 @@ class PostsViewPageObject {
   }
 
   async filterByPublicPosts() {
-    const postVisibilitySelector = 'div.gh-contentfilter-menu.gh-contentfilter-visibility > div';
-    const publicPostVisibilitySelector = 'ul[role="listbox"] > li[data-option-index="1"]';
+    const postVisibilitySelector =
+      "div.gh-contentfilter-menu.gh-contentfilter-visibility > div";
+    const publicPostVisibilitySelector =
+      'ul[role="listbox"] > li[data-option-index="1"]';
 
     await this.page.waitForSelector(postVisibilitySelector);
     await this.page.click(postVisibilitySelector);
@@ -33,7 +37,7 @@ class PostsViewPageObject {
   }
 
   async clickCreateViewButton() {
-    const createViewButtonSelector = 'button.gh-btn-save-view';
+    const createViewButtonSelector = "button.gh-btn-save-view";
 
     await this.page.waitForSelector(createViewButtonSelector);
     await this.page.click(createViewButtonSelector);
@@ -44,11 +48,15 @@ class PostsViewPageObject {
     await this.filterByFeaturedPosts();
     await this.clickCreateViewButton();
 
-    const deleteButton = await this.page.$('button[data-test-button="delete-custom-view"]');
+    await waitUtil(1500);
+    const deleteButton = await this.page.$(
+      'button[data-test-button="delete-custom-view"]'
+    );
 
     if (!deleteButton) {
-      const closeButton = await this.page.$('button.close');
+      const closeButton = await this.page.$("button.close");
       await closeButton.click();
+      await waitUtil(500);
       return;
     }
 
@@ -59,7 +67,7 @@ class PostsViewPageObject {
   }
 
   async fillViewName(viewName) {
-    const viewNameSelector = 'input#view-name';
+    const viewNameSelector = "input#view-name";
 
     await this.page.waitForSelector(viewNameSelector);
     await this.page.type(viewNameSelector, viewName);
@@ -68,7 +76,8 @@ class PostsViewPageObject {
   }
 
   async clickSaveViewButton() {
-    const saveViewButtonSelector = 'button[data-test-button="save-custom-view"]';
+    const saveViewButtonSelector =
+      'button[data-test-button="save-custom-view"]';
 
     await this.page.waitForSelector(saveViewButtonSelector);
     await this.page.click(saveViewButtonSelector);
@@ -82,7 +91,7 @@ class PostsViewPageObject {
   }
 
   async assertCurrentView(viewName) {
-    const titleSelector = 'h2';
+    const titleSelector = "h2";
     const h2titles = await this.page.$$(titleSelector);
 
     for (const h2title of h2titles) {
@@ -100,14 +109,15 @@ class PostsViewPageObject {
 
     for (const element of errorElements) {
       const error = await this.page.evaluate((el) => el.innerText, element);
-      if (error === 'Please enter a name') return true;
+      if (error === "Please enter a name") return true;
     }
 
     assert.fail("Error message not found");
   }
 
   async clickCancelViewCreationButton() {
-    const cancelButtonSelector = 'button[data-test-button="cancel-custom-view-form"]';
+    const cancelButtonSelector =
+      'button[data-test-button="cancel-custom-view-form"]';
 
     await this.page.waitForSelector(cancelButtonSelector);
     await this.page.click(cancelButtonSelector);
@@ -115,7 +125,7 @@ class PostsViewPageObject {
   }
 
   async assertViewCreationModalIsHidden() {
-    const createViewModalSelector = 'div.modal-content';
+    const createViewModalSelector = "div.modal-content";
 
     const createViewModal = await this.page.$(createViewModalSelector);
 
@@ -123,7 +133,7 @@ class PostsViewPageObject {
   }
 
   async assertCreateViewButtonExists() {
-    const createViewButtonSelector = 'button.gh-btn-save-view';
+    const createViewButtonSelector = "button.gh-btn-save-view";
 
     await this.page.waitForSelector(createViewButtonSelector);
   }

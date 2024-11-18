@@ -19,7 +19,7 @@ class TagsPageObject {
   }
 
   async fillSlug(slug) {
-    const selector = 'input[data-test-input="tag-slug"]';
+    const selector = '#tag-slug';
     await this.page.waitForSelector(selector);
     await this.page.$eval(selector, el => el.value = '');
     await this.page.type(selector, slug);
@@ -27,8 +27,8 @@ class TagsPageObject {
   }
 
   async clickSaveTagButton() {
-    await this.page.waitForSelector('button[data-test-button="save"]');
-    await this.page.click('button[data-test-button="save"]');
+    await this.page.waitForSelector('button.gh-btn-primary');
+    await this.page.click('button.gh-btn-primary');
     await new Promise((r) => setTimeout(r, 500));
   }
 
@@ -62,6 +62,13 @@ class TagsPageObject {
     }
 
     return false;
+  }
+
+  async checkTitleInCreationForm(title) {
+    await this.page.waitForSelector('h2.gh-canvas-title');
+    const titleElement = await this.page.$('h2.gh-canvas-title');
+    const titleElementText = await this.page.evaluate((e) => e.innerText, titleElement);
+    return titleElementText.includes(title);
   }
   
   async validateTagSlug({

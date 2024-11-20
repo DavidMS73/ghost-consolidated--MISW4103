@@ -1,0 +1,16 @@
+{
+  "post": {
+    "title_1": "New test post",
+    "description_1": "New description post",
+    "title_2": "Post about dogs",
+    "description_2": "Dogs are the best pets in the world :)",
+    "title_3": "Post about cats",
+    "description_3": "Cats are the best pets in the world :)",
+    "image_forest": "./assets/forest.jpg",
+    "image_nissan": "./assets/Nissan-Skyline-GT-R-R32"
+  },
+  "page": {},
+  "member": {},
+  "tag": {},
+  "post_view": {}
+}

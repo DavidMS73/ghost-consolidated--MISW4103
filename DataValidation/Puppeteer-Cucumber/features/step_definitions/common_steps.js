@@ -32,7 +32,8 @@ When("I click confirm publish button", async () => {
 
 // Then
 
-Then("I should see title {string} inside a modal", async (title) => {
+Then("I should see title inside a modal", async () => {
+  const { title } = scope.variables;
   await scope.pages.common.checkNewPublishModal(title);
   await scope.pages.common.clickCloseNewPublishModal(title);
 });

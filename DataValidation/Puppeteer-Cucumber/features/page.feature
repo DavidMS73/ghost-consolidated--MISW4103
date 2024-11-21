@@ -1,20 +1,25 @@
 Feature: Create page
 
-  Scenario: E005 - Crear una página básica, darle al botón de preview y luego al botón de publicar
+  Scenario Outline: EPA01 - Crear una página básica, darle al botón de preview y luego al botón de publicar
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "pages" section
     And I click on new page button
-    And I fill the page title with text "Basic page"
+    And I fill the page title with text "<title>"
     And I click the page content
     And I click preview button
     And I click publish button
     And I click continue final review button
     When I click confirm publish button
-    Then I should see title "Basic page" inside a modal
+    Then I should see title inside a modal
     And I click the pages type filter
     And I click the published pages filter
-    And I should see the first page with title "Basic page"
+    And I should see the first page with title
+
+    Examples:
+      | title |
+      | {data_pool(page-tuple1_title)} |
+      | {faker(alphanumeric)} |
 
   @rv-596
   Scenario: E006 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla

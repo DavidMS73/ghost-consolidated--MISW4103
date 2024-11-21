@@ -164,6 +164,9 @@ Before(async function ({ gherkinDocument }) {
   await scope.page.setExtraHTTPHeaders({
     "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.6",
   });
+
+  // Clear variables
+  scope.variables = {};
 });
 
 AfterStep(async function ({ pickle, gherkinDocument }) {

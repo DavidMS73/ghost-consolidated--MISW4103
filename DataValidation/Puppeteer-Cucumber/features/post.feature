@@ -1,7 +1,6 @@
 Feature: Create post
   Create a new blog post, whether it is an article, guide, review, story, tip, recipe, etc., and can use a variety of elements, such as images, videos, links, and other media to keep readers interested.
 
-  @run
   Scenario Outline: EPO01 - Create a post with title and description to be published later
     Given I navigate to "home" section
     And I login to the application if necessary

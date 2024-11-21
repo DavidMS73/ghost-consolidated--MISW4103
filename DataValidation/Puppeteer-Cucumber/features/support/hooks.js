@@ -227,9 +227,9 @@ function createPageObjects(page) {
 const changeInJson = (obj) => {
   for (const [key, value] of Object.entries(obj)) {
     if (key === "title") {
-      obj[key] = value + faker.lorem.sentence(10);
+      obj[key] = value + faker.lorem.sentence(1);
     } else if (key === "description") {
-      obj[key] = value + faker.lorem.paragraphs(3);
+      obj[key] = value + faker.lorem.paragraphs(2);
     } else if (key === "name") {
       obj[key] = value + faker.person.middleName();
     } else if (value && typeof value === "object") {
@@ -243,10 +243,21 @@ function dynamicDataPool(pathPool) {
     try {
       // Parsear el JSON
       const jsonData = JSON.parse(data);
-      changeInJson(jsonData);
+      const newJson = {};
 
+      Object.entries(jsonData).forEach(([key, value]) => {
+        const data = value;
+        const numberTuples = Math.random() * 10;
+
+        for (let i = 0; i < numberTuples; i++) {
+          changeInJson(data);
+          newJson[key] = [data];
+        }
+      });
       // Guardar los datos en scope.dynamicDataPool
-      scope.dynamicDataPool = jsonData;
+      scope.dynamicDataPool = newJson;
+
+      fse.writeJsonSync("output/dynamic_data_generated.json", newJson);
     } catch (error) {
       console.error("Error al parsear el JSON:", error);
       throw error;

@@ -88,9 +88,10 @@ const dataProcessor = (data) => {
     } else if (data_pool === "data_pool") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
-      const attribute_info = groupInfo[1];
+      const attribute_info_split = groupInfo[1].split("_");
 
-      content = scope.dataPool[group][attribute_info];
+      content =
+        scope.dataPool[group][attribute_info_split[0]][attribute_info_split[1]];
     } else if (data_pool === "dynamic_data_pool") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];

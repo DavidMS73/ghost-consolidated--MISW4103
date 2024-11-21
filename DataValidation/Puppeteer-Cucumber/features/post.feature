@@ -19,10 +19,9 @@ Feature: Create post
     And the post created should be in the list
 
     Examples:
-      | title                                  | description                                  |
-      | {data_pool(post-title_1)}              | {data_pool(post-description_1)}              |
-      | {dynamic_data_pool(post-tuple1_title)} | {dynamic_data_pool(post-tuple1_description)} |
-      | {faker(alphanumeric)}                  | {faker(paragraph)}                           |
+      | title                          | description                          |
+      | {data_pool(post-tuple1_title)} | {data_pool(post-tuple1_description)} |
+      | {faker(alphanumeric)}          | {faker(paragraph)}                   |
 
   Scenario: E002 - Create a post to be published right now (check default option)
     Given I navigate to "home" section

@@ -1,13 +1,20 @@
 {
   "post": {
-    "title_1": "New test post",
-    "description_1": "New description post",
-    "title_2": "Post about dogs",
-    "description_2": "Dogs are the best pets in the world :)",
-    "title_3": "Post about cats",
-    "description_3": "Cats are the best pets in the world :)",
-    "image_forest": "./assets/forest.jpg",
-    "image_nissan": "./assets/Nissan-Skyline-GT-R-R32"
+    "tuple1": {
+      "title": "New test post",
+      "description": "New description post",
+      "image_forest": "./assets/forest.jpg"
+    },
+    "tuple2": {
+      "title": "Post about dogs",
+      "description": "Dogs are the best pets in the world :)",
+      "image_nissan": "./assets/Nissan-Skyline-GT-R-R32"
+    },
+    "tuple3": {
+      "title": "Post about cats",
+      "description": "Cats are the best pets in the world :)",
+      "image_forest": "./assets/forest.jpg"
+    }
   },
   "page": {},
   "member": {},

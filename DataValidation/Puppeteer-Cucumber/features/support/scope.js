@@ -13,5 +13,6 @@ module.exports = {
   },
   dataPool: {},
   dynamicDataPool: {},
+  dynamicDataPoolTuple: undefined,
   variables: {},
 };

@@ -16,7 +16,17 @@
       "image_forest": "./assets/forest.jpg"
     }
   },
-  "page": {},
+  "page": {
+    "tuple1": {
+      "title": "My awesome page"
+    },
+    "tuple2": {
+      "title": "My beautiful page"
+    },
+    "tuple3": {
+      "title": "My great page"
+    }
+  },
   "member": {},
   "tag": {},
   "post_view": {}

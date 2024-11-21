@@ -1,6 +1,7 @@
 const { Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const properties = require("../../properties");
+const { dataProcessor } = require("../utils/utils");
 
 // Given
 
@@ -9,7 +10,9 @@ Given("I click on new page button", async function () {
 });
 
 Given("I fill the page title with text {string}", async (title) => {
-  await scope.pages.pages.fillPageTitle(title);
+  const processed = dataProcessor(title);
+  scope.variables.title = processed;
+  await scope.pages.pages.fillPageTitle(processed);
 });
 
 Given("I click the page content", async () => {
@@ -46,7 +49,8 @@ Then("I click the published pages filter", async function () {
   await scope.pages.pages.clickPublishedPagesFilter();
 });
 
-Then("I should see the first page with title {string}", async function (title) {
+Then("I should see the first page with title", async function () {
+  const { title } = scope.variables;
   await scope.pages.pages.validateFirstPageTitle(title);
 });
 

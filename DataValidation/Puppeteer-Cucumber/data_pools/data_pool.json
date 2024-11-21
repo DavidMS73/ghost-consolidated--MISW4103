@@ -18,13 +18,16 @@
   },
   "page": {
     "tuple1": {
-      "title": "My awesome page"
+      "title": "My awesome page",
+      "content": "My page nice description"
     },
     "tuple2": {
-      "title": "My beautiful page"
+      "title": "My beautiful page",
+      "content": "My page cool description"
     },
     "tuple3": {
-      "title": "My great page"
+      "title": "My great page",
+      "content": "My page awesome description"
     }
   },
   "member": {},

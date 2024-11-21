@@ -1,7 +1,7 @@
 const { Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const properties = require("../../properties");
-const { dataProcessor } = require("../utils/utils");
+const { dataProcessor, formatString } = require("../utils/utils");
 
 // Given
 
@@ -32,7 +32,18 @@ Given("I click the audio button", async function () {
 });
 
 Given("I fill the page content with text {string}", async function (content) {
-  await scope.pages.pages.fillPageBodyWithText(content);
+  const processed = dataProcessor(content);
+  scope.variables.content = processed;
+  await scope.pages.pages.fillPageBodyWithText(processed);
+});
+
+Then("I should see page title and content inside a modal", async () => {
+  const { title, content } = scope.variables;
+  await scope.pages.common.checkNewPublishModal(
+    title,
+    formatString(content)
+  );
+  await scope.pages.common.clickCloseNewPublishModal();
 });
 
 Given("I fill page URL with value {string}", async function (url) {

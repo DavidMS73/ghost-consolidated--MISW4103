@@ -1,7 +1,17 @@
 const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
+const { changeInJson } = require("../utils/utils");
+const { faker } = require("@faker-js/faker");
 
 // Given
+
+Given("I create pseudo random data with seed {string}", async (seed) => {
+  faker.seed(Number(seed));
+  const jsonData = scope.dynamicDataPool;
+  changeInJson(jsonData, faker);
+  // Guardar los datos en scope.dynamicDataPool
+  scope.dynamicDataPool = jsonData;
+});
 
 Given("I click preview button", async () => {
   await scope.pages.common.clickPreviewButton();

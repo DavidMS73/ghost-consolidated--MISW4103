@@ -28,13 +28,14 @@ class CommonPageObject {
     await this.page.waitForSelector(selector);
     // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
     await this.page.click(selector);
-    await waitUtil(1500);
+    await waitUtil(500);
   }
 
   async clickConfirmPublishButton() {
     const selector = 'button[data-test-button="confirm-publish"]';
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
+    await waitUtil(500);
   }
 
   async checkNewPublishModal(title, content, image) {

@@ -5,6 +5,7 @@ Feature: Create post
   Scenario Outline: EPO01 - Create a post with title and description to be published later
     Given I navigate to "home" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "60"
     And I navigate to "posts" section
     And I click on new post button
     And I fill post title with "<title>"
@@ -19,9 +20,10 @@ Feature: Create post
     And the post created should be in the list
 
     Examples:
-      | title                          | description                          |
-      | {data_pool(post-tuple1_title)} | {data_pool(post-tuple1_description)} |
-      | {faker(alphanumeric)}          | {faker(paragraph)}                   |
+      | title                           | description                           |
+      | {data_pool(post-tuple1_title)}  | {data_pool(post-tuple1_description)}  |
+      | {dynamic_data_pool(post-title)} | {dynamic_data_pool(post-description)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                    |
 
   Scenario: E002 - Create a post to be published right now (check default option)
     Given I navigate to "home" section

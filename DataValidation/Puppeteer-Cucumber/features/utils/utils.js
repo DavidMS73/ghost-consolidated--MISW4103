@@ -38,6 +38,8 @@ const subgroup = (attribute) => {
 };
 
 const fakerData = (attribute) => {
+  // Faker random seed
+  faker.seed();
   if (attribute === "sentence") {
     return faker.lorem.sentence();
   } else if (attribute === "sentence_5") {
@@ -86,6 +88,7 @@ const dataProcessor = (data) => {
     if (data_pool === "faker") {
       content = fakerData(attribute);
     } else if (data_pool === "data_pool") {
+      console.log(attribute);
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
       const attribute_info_split = groupInfo[1].split("_");
@@ -95,17 +98,28 @@ const dataProcessor = (data) => {
     } else if (data_pool === "dynamic_data_pool") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
-      const attribute_info_split = groupInfo[1].split("_");
+      const attributeInfo = groupInfo[1];
 
-      content =
-        scope.dynamicDataPool[group][attribute_info_split[0]][
-          attribute_info_split[1]
-        ];
+      content = scope.dynamicDataPool[group][attributeInfo];
     } else if (data_pool === "default") {
       content = data;
     }
   }
   return content;
+};
+
+const changeInJson = (obj, fakerWithSeed) => {
+  for (const [key, value] of Object.entries(obj)) {
+    if (key === "title") {
+      obj[key] = value + fakerWithSeed.lorem.sentence(1);
+    } else if (key === "description") {
+      obj[key] = value + fakerWithSeed.lorem.paragraphs(2);
+    } else if (key === "name") {
+      obj[key] = value + fakerWithSeed.person.middleName();
+    } else if (value && typeof value === "object") {
+      changeInJson(value, fakerWithSeed);
+    }
+  }
 };
 
 module.exports = {
@@ -114,4 +128,5 @@ module.exports = {
   getImageExists,
   dataProcessor,
   formatString,
+  changeInJson,
 };

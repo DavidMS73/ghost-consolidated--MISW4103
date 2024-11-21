@@ -1,7 +1,6 @@
 const scope = require("./scope");
 const fse = require("fs-extra");
 const fs = require("fs");
-const moment = require("moment");
 const _ = require("lodash");
 const constants = require("./constants");
 const {
@@ -119,7 +118,6 @@ BeforeAll(async () => {
 
   // Data pool
   const pathPool = "./data_pools/data_pool.json";
-  const pathDynamicPool = "./data_pools/dynamic_data_pool.json";
 
   fs.readFile(pathPool, "utf8", (err, data) => {
     try {
@@ -132,12 +130,23 @@ BeforeAll(async () => {
       throw error;
     }
   });
-
-  // Dynamic Data Pool
-  dynamicDataPool(pathDynamicPool);
 });
 
 Before(async function ({ gherkinDocument }) {
+  const pathDynamicPool = "./data_pools/dynamic_data_pool.json";
+
+  fs.readFile(pathDynamicPool, "utf8", (err, data) => {
+    try {
+      // Parsear el JSON
+      const jsonData = JSON.parse(data);
+      // Guardar la base en scope.dynamicDataPool
+      scope.dynamicDataPool = jsonData;
+    } catch (error) {
+      console.error("Error al parsear el JSON:", error);
+      throw error;
+    }
+  });
+
   stepCounter = 1;
   const featureName = gherkinDocument.feature.name
     .replace(/ /g, "-")
@@ -222,45 +231,4 @@ function createPageObjects(page) {
     common: new CommonPageObject(page),
     postsView: new PostsViewPageObject(page),
   };
-}
-
-const changeInJson = (obj) => {
-  for (const [key, value] of Object.entries(obj)) {
-    if (key === "title") {
-      obj[key] = value + faker.lorem.sentence(1);
-    } else if (key === "description") {
-      obj[key] = value + faker.lorem.paragraphs(2);
-    } else if (key === "name") {
-      obj[key] = value + faker.person.middleName();
-    } else if (value && typeof value === "object") {
-      changeInJson(value);
-    }
-  }
-};
-
-function dynamicDataPool(pathPool) {
-  fs.readFile(pathPool, "utf8", (err, data) => {
-    try {
-      // Parsear el JSON
-      const jsonData = JSON.parse(data);
-      const newJson = {};
-
-      Object.entries(jsonData).forEach(([key, value]) => {
-        const data = value;
-        const numberTuples = Math.random() * 10;
-
-        for (let i = 0; i < numberTuples; i++) {
-          changeInJson(data);
-          newJson[key] = [data];
-        }
-      });
-      // Guardar los datos en scope.dynamicDataPool
-      scope.dynamicDataPool = newJson;
-
-      fse.writeJsonSync("output/dynamic_data_generated.json", newJson);
-    } catch (error) {
-      console.error("Error al parsear el JSON:", error);
-      throw error;
-    }
-  });
 }

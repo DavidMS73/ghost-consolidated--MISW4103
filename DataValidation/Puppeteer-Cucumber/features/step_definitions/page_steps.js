@@ -47,7 +47,9 @@ Then("I should see page title and content inside a modal", async () => {
 });
 
 Given("I fill page URL with value {string}", async function (url) {
-  await scope.pages.pages.fillPageUrl(url);
+  const processed = dataProcessor(url);
+  scope.variables.url = processed;
+  await scope.pages.pages.fillPageUrl(processed);
 });
 
 // Then
@@ -69,7 +71,8 @@ Then("I click gear button", async function () {
   await scope.pages.pages.clickGearButton();
 });
 
-Then("I navigate to created page {string} site", async function (page) {
+Then("I navigate to created page site", async function () {
+  const page = scope.variables.url;
   const url = new URL(properties.BASE_URL);
   await scope.pages.pages.navToPageSite({
     pageUrl: page,
@@ -77,7 +80,8 @@ Then("I navigate to created page {string} site", async function (page) {
   });
 });
 
-Then("I validate title {string} in page view", async function (title) {
+Then("I validate title in page view", async function () {
+  const title = scope.variables.title;
   await scope.pages.pages.validatePageTitle(title);
 });
 

@@ -19,15 +19,18 @@
   "page": {
     "tuple1": {
       "title": "My awesome page",
-      "content": "My page nice description"
+      "content": "My page nice description",
+      "customUrl": "awesome-page"
     },
     "tuple2": {
       "title": "My beautiful page",
-      "content": "My page cool description"
+      "content": "My page cool description",
+      "customUrl": "beautiful-page"
     },
     "tuple3": {
       "title": "My great page",
-      "content": "My page awesome description"
+      "content": "My page awesome description",
+      "customUrl": "great-page"
     }
   },
   "member": {},

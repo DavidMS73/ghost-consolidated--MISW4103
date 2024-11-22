@@ -3,6 +3,7 @@ Feature: Create page
   Scenario Outline: EPA01 - Crear una página básica, darle al botón de preview y luego al botón de publicar
     Given I navigate to "home" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "10"
     And I navigate to "pages" section
     And I click on new page button
     And I fill the page title with text "<title>"
@@ -26,6 +27,7 @@ Feature: Create page
   Scenario: EPA02 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "20"
     And I navigate to "pages" section
     And I click on new page button
     And I fill the page title with text "<title>"
@@ -47,6 +49,7 @@ Feature: Create page
   Scenario: EPA03 - Crear una página con una imagen adjunta
     Given I navigate to "dashboard" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "30"
     And I navigate to "pages" section
     And I click on new page button
     And I fill the page title with text "<title>"
@@ -70,6 +73,7 @@ Feature: Create page
   Scenario: EPA04 - Crear una página con un audio adjunto
     Given I navigate to "dashboard" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "40"
     And I navigate to "pages" section
     And I click on new page button
     And I fill the page title with text "<title>"
@@ -94,6 +98,7 @@ Feature: Create page
   Scenario: EPA05 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "50"
     And I navigate to "pages" section
     And I click on new page button
     And I fill the page title with text "<title>"

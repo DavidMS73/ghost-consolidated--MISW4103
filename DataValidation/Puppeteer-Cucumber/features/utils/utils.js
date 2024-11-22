@@ -23,11 +23,11 @@ const getImageExists = async (page, selector) => {
 
 const dataSource = (data) => {
   const regex =
-    /\{(?<data_source>data_pool|faker|dynamic_data_pool)\((?<attribute>\w*[-]?\w*)\)\}/;
+    /\{(?<data_source>a_priori|faker|pseudo_aleatorio)\((?<attribute>\w*[-]?\w*)\)\}/;
   const match = regex.exec(data);
-  const data_pool = match ? match.groups.data_source : "default";
+  const origin = match ? match.groups.data_source : "default";
   const attribute = match ? match.groups.attribute : "";
-  return [data_pool, attribute];
+  return [origin, attribute];
 };
 
 const subgroup = (attribute) => {
@@ -40,97 +40,81 @@ const subgroup = (attribute) => {
 const fakerData = (attribute) => {
   // Faker random seed
   faker.seed();
-  if (attribute === "sentence") {
-    return faker.lorem.sentence();
-  } else if (attribute === "sentence_5") {
-    return faker.lorem.sentence(5);
-  } else if (attribute === "sentence_100") {
-    return faker.lorem.sentence(100);
-  } else if (attribute === "paragraph") {
-    return faker.lorem.paragraph(2);
-  } else if (attribute === "paragraph_5") {
-    return faker.lorem.paragraph(5);
-  } else if (attribute === "paragraph_10") {
-    return faker.lorem.paragraph(10);
-  } else if (attribute === "alphanumeric") {
-    return faker.string.alphanumeric(15);
-  } else if (attribute === "alphanumeric_100") {
+  if (attribute === "sentence") return faker.lorem.sentence();
+  else if (attribute === "sentence_5") return faker.lorem.sentence(5);
+  else if (attribute === "sentence_100") return faker.lorem.sentence(100);
+  else if (attribute === "paragraph") return faker.lorem.paragraph(2);
+  else if (attribute === "paragraph_5") return faker.lorem.paragraph(5);
+  else if (attribute === "paragraph_10") return faker.lorem.paragraph(10);
+  else if (attribute === "alphanumeric") return faker.string.alphanumeric(15);
+  else if (attribute === "alphanumeric_100")
     return faker.string.alphanumeric(100);
-  } else if (attribute === "alphanumeric_150") {
+  else if (attribute === "alphanumeric_150")
     return faker.string.alphanumeric(150);
-  } else if (attribute === "alphanumeric_256") {
+  else if (attribute === "alphanumeric_256")
     return faker.string.alphanumeric(256);
-  } else if (attribute === "url") {
-    return faker.internet.url();
-  } else if (attribute === "email") {
-    return faker.internet.email();
-  } else if (attribute === "username") {
-    return faker.internet.username();
-  } else if (attribute === "firstName") {
-    return faker.person.firstName();
-  } else if (attribute === "lastName") {
-    return faker.person.lastName();
-  } else if (attribute === "fullName") {
-    return faker.person.fullName();
-  } else if (attribute === "special_characters") {
+  else if (attribute === "url") return faker.internet.url();
+  else if (attribute === "email") return faker.internet.email();
+  else if (attribute === "username") return faker.internet.username();
+  else if (attribute === "firstName") return faker.person.firstName();
+  else if (attribute === "lastName") return faker.person.lastName();
+  else if (attribute === "fullName") return faker.person.fullName();
+  else if (attribute === "special_characters")
     return faker.string.fromCharacters('!"#$%&', 10);
-  }
 };
 
 const dataProcessor = (data) => {
   let content = data;
   if (data.startsWith("{")) {
-    // Get the data pool and the attribute
+    // Get the source and the attribute
     let data_source = dataSource(data);
-    let data_pool = data_source[0];
+    let origin = data_source[0];
     let attribute = data_source[1];
-    //Get the data
-    if (data_pool === "faker") {
-      content = fakerData(attribute);
-    } else if (data_pool === "data_pool") {
-      console.log(attribute);
+    // Get the data dfrom the respective source
+    if (origin === "a_priori") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
       const attribute_info_split = groupInfo[1].split("_");
 
       content =
-        scope.dataPool[group][attribute_info_split[0]][attribute_info_split[1]];
-    } else if (data_pool === "dynamic_data_pool") {
+        scope.aProriDataPool[group][attribute_info_split[0]][
+          attribute_info_split[1]
+        ];
+    } else if (origin === "pseudo_aleatorio") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
       const attributeInfo = groupInfo[1];
 
-      content = scope.dynamicDataPool[group][attributeInfo];
-    } else if (data_pool === "default") {
+      content = scope.pseudoAleatorioDataPool[group][attributeInfo];
+    } else if (origin === "faker") {
+      content = fakerData(attribute);
+    } else if (origin === "default") {
       content = data;
     }
   }
   return content;
 };
 
-const changeInJson = (obj, fakerWithSeed) => {
-  const sentenceKeys = new Set(['title']);
-  const shortParagraphKeys = new Set(['excerpt']);
-  const paragraphKeys = new Set([
-    'description', 
-    'content', 
-  ]);
-  const middleNameKeys = new Set(['name']);
-  const alphanumericKeys = new Set(['customUrl']);
+const changeInJsonPseudoAleatorio = (obj, fakerWithSeed) => {
+  const sentenceKeys = new Set(["title"]);
+  const shortParagraphKeys = new Set(["excerpt"]);
+  const paragraphKeys = new Set(["description", "content"]);
+  const middleNameKeys = new Set(["name"]);
+  const alphanumericKeys = new Set(["customUrl"]);
 
   for (const [key, value] of Object.entries(obj)) {
     if (sentenceKeys.has(key)) {
-      obj[key] = value + fakerWithSeed.lorem.sentence(1);
+      obj[key] = fakerWithSeed.lorem.sentence(1);
     } else if (shortParagraphKeys.has(key)) {
-      obj[key] = value + fakerWithSeed.lorem.paragraphs(1);
+      obj[key] = fakerWithSeed.lorem.paragraphs(1);
     } else if (paragraphKeys.has(key)) {
-      obj[key] = value + fakerWithSeed.lorem.paragraphs(2);
+      obj[key] = fakerWithSeed.lorem.paragraphs(2);
     } else if (middleNameKeys.has(key)) {
-      obj[key] = value + fakerWithSeed.person.middleName();
+      obj[key] = fakerWithSeed.person.middleName();
     } else if (alphanumericKeys.has(key)) {
-      obj[key] = value + fakerWithSeed.string.alphanumeric(15)
+      obj[key] = fakerWithSeed.string.alphanumeric(15);
     } else if (value && typeof value === "object") {
-      changeInJson(value, fakerWithSeed);
+      changeInJsonPseudoAleatorio(value, fakerWithSeed);
     }
   }
 };
@@ -141,5 +125,5 @@ module.exports = {
   getImageExists,
   dataProcessor,
   formatString,
-  changeInJson,
+  changeInJson: changeInJsonPseudoAleatorio,
 };

@@ -7,10 +7,10 @@ const { faker } = require("@faker-js/faker");
 
 Given("I create pseudo random data with seed {string}", async (seed) => {
   faker.seed(Number(seed));
-  const jsonData = scope.dynamicDataPool;
+  const jsonData = scope.pseudoAleatorioDataPool;
   changeInJson(jsonData, faker);
-  // Guardar los datos en scope.dynamicDataPool
-  scope.dynamicDataPool = jsonData;
+  // Guardar los datos en scope.pseudoAleatorioDataPool
+  scope.pseudoAleatorioDataPool = jsonData;
 });
 
 Given("I click preview button", async () => {

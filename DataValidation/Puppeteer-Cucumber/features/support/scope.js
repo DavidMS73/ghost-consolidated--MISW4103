@@ -11,7 +11,7 @@ module.exports = {
     sidebar: undefined,
     common: undefined,
   },
-  dataPool: {},
-  dynamicDataPool: {},
+  aProriDataPool: {},
+  pseudoAleatorioDataPool: {},
   variables: {},
 };

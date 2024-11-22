@@ -1,6 +1,7 @@
 Feature: Create post
   Create a new blog post, whether it is an article, guide, review, story, tip, recipe, etc., and can use a variety of elements, such as images, videos, links, and other media to keep readers interested.
 
+  @run
   Scenario Outline: EPO01 - Create a post with title and description to be published later
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -19,10 +20,13 @@ Feature: Create post
     And the post created should be in the list
 
     Examples:
-      | title                           | description                           |
-      | {data_pool(post-tuple1_title)}  | {data_pool(post-tuple1_description)}  |
-      | {dynamic_data_pool(post-title)} | {dynamic_data_pool(post-description)} |
-      | {faker(alphanumeric)}           | {faker(paragraph)}                    |
+      | title                          | description                          |
+      | {a_priori(post-tuple1_title)}  | {a_priori(post-tuple1_description)}  |
+      | {pseudo_aleatorio(post-title)} | {pseudo_aleatorio(post-description)} |
+      | {faker(alphanumeric)}          | {faker(paragraph)}                   |
+      # El primer example ejecuta la función de pool de datos a-priori
+      # El segundo example ejecuta la función pool de datos pseudo-aleatorio
+      # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
   Scenario: E002 - Create a post to be published right now (check default option)
     Given I navigate to "home" section

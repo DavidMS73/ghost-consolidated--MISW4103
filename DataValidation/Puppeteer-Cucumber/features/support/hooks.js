@@ -117,14 +117,14 @@ BeforeAll(async () => {
   // *************************************** \\
 
   // Data pool
-  const pathPool = "./data_pools/data_pool.json";
+  const pathAPrioriDataPool = "./data_pools/a_priori.json";
 
-  fs.readFile(pathPool, "utf8", (err, data) => {
+  fs.readFile(pathAPrioriDataPool, "utf8", (err, data) => {
     try {
       // Parsear el JSON
       const jsonData = JSON.parse(data);
-      // Guardar los datos en scope.data_pool
-      scope.dataPool = jsonData;
+      // Guardar los datos en scope.aProriDataPool
+      scope.aProriDataPool = jsonData;
     } catch (error) {
       console.error("Error al parsear el JSON:", error);
       throw error;
@@ -133,14 +133,14 @@ BeforeAll(async () => {
 });
 
 Before(async function ({ gherkinDocument }) {
-  const pathDynamicPool = "./data_pools/dynamic_data_pool.json";
+  const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
 
-  fs.readFile(pathDynamicPool, "utf8", (err, data) => {
+  fs.readFile(pathPseudoAleatorioDataPool, "utf8", (err, data) => {
     try {
       // Parsear el JSON
       const jsonData = JSON.parse(data);
-      // Guardar la base en scope.dynamicDataPool
-      scope.dynamicDataPool = jsonData;
+      // Guardar la base en scope.pseudoAleatorioDataPool
+      scope.pseudoAleatorioDataPool = jsonData;
     } catch (error) {
       console.error("Error al parsear el JSON:", error);
       throw error;

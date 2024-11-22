@@ -18,10 +18,10 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title |
-      | {data_pool(page-tuple1_title)} |
-      | {dynamic_data_pool(page-title)} |
-      | {faker(alphanumeric)} |
+      | title                           |
+      | {a_priori(page-tuple1_title)}   |
+      | {pseudo_aleatorio(page-title)} |
+      | {faker(alphanumeric)}           |
 
   @rv-596
   Scenario: EPA02 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
@@ -41,10 +41,10 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title | content |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} |
+      | title                           | content                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                |
 
   Scenario: EPA03 - Crear una página con una imagen adjunta
     Given I navigate to "dashboard" section
@@ -65,10 +65,10 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title | content |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} |
+      | title                           | content                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                |
 
   Scenario: EPA04 - Crear una página con un audio adjunto
     Given I navigate to "dashboard" section
@@ -89,10 +89,10 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title |
-      | {data_pool(page-tuple1_title)} |
-      | {dynamic_data_pool(page-title)} |
-      | {faker(alphanumeric)} |
+      | title                           |
+      | {a_priori(page-tuple1_title)}   |
+      | {pseudo_aleatorio(page-title)} |
+      | {faker(alphanumeric)}           |
 
   @rv-596
   Scenario: EPA05 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
@@ -124,10 +124,10 @@ Feature: Create page
     And I click delete button
 
     Examples:
-      | title | content | customUrl |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} | {data_pool(page-tuple1_customUrl)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} | {dynamic_data_pool(page-customUrl)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} | {faker(alphanumeric)} |
+      | title                           | content                           | customUrl                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   | {a_priori(page-tuple1_customUrl)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} | {pseudo_aleatorio(page-customUrl)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                | {faker(alphanumeric)}               |
 
   Scenario: EPA06 - Crear una página con título y texto en el cuerpo para sólo miembros
     Given I navigate to "home" section
@@ -152,11 +152,11 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title | content |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} |
-  
+      | title                           | content                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                |
+
   Scenario: EPA07 - Crear una página con título y texto en el cuerpo para sólo miembros pagos
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -180,10 +180,10 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title | content |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} |
+      | title                           | content                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                |
 
   Scenario: EPA08 - Crear una página con título, texto en el cuerpo y excerpt
     Given I navigate to "home" section
@@ -205,7 +205,7 @@ Feature: Create page
     And I should see the first page with title
 
     Examples:
-      | title | content | excerpt |
-      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} | {data_pool(page-tuple1_excerpt)} |
-      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} | {dynamic_data_pool(page-excerpt)} |
-      | {faker(alphanumeric)} | {faker(paragraph)} | faker(paragraph) |
+      | title                           | content                           | excerpt                           |
+      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   | {a_priori(page-tuple1_excerpt)}   |
+      | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} | {pseudo_aleatorio(page-excerpt)} |
+      | {faker(alphanumeric)}           | {faker(paragraph)}                | faker(paragraph)                  |

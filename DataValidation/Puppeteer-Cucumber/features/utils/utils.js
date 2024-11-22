@@ -110,14 +110,19 @@ const dataProcessor = (data) => {
 
 const changeInJson = (obj, fakerWithSeed) => {
   const sentenceKeys = new Set(['title']);
-  const paragraphKeys = new Set(['description', 'content']);
+  const shortParagraphKeys = new Set(['excerpt']);
+  const paragraphKeys = new Set([
+    'description', 
+    'content', 
+  ]);
   const middleNameKeys = new Set(['name']);
   const alphanumericKeys = new Set(['customUrl']);
 
   for (const [key, value] of Object.entries(obj)) {
     if (sentenceKeys.has(key)) {
       obj[key] = value + fakerWithSeed.lorem.sentence(1);
-    // } else if (key === "description") {
+    } else if (shortParagraphKeys.has(key)) {
+      obj[key] = value + fakerWithSeed.lorem.paragraphs(1);
     } else if (paragraphKeys.has(key)) {
       obj[key] = value + fakerWithSeed.lorem.paragraphs(2);
     } else if (middleNameKeys.has(key)) {

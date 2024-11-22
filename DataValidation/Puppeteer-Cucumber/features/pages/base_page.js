@@ -10,7 +10,7 @@ class BasePageObject {
 
     async typeValue(selector, value, {
         clearInput = false,
-    }) {
+    } = {}) {
         await this.page.waitForSelector(selector);
         if (clearInput) {
             await this.page.$eval(selector, el => el.value = '');

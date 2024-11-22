@@ -147,6 +147,10 @@ class PagePageObject extends BasePageObject {
   async clickPaidMembersOnlyFilter() {
     await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(4)')
   }
+
+  async fillExcerpt(excerpt) {
+    await this.typeValue('textarea[data-test-field="custom-excerpt"]', excerpt);
+  }
 }
 
 module.exports = PagePageObject;

@@ -55,6 +55,12 @@ Given('I click paid members only button', async function () {
   await scope.pages.pages.clickPaidMembersOnlyButton();
 });
 
+Given('I fill excerpt with {string}', async function (excerpt) {
+  const processed = dataProcessor(excerpt);
+  scope.variables.excerpt = processed;
+  await scope.pages.pages.fillExcerpt(processed);
+});
+
 // Then
 
 Then("I should see page title and content inside a modal", async () => {
@@ -62,6 +68,15 @@ Then("I should see page title and content inside a modal", async () => {
   await scope.pages.common.checkNewPublishModal(
     title,
     formatString(content)
+  );
+  await scope.pages.common.clickCloseNewPublishModal();
+});
+
+Then("I should see page title and excerpt inside a modal", async () => {
+  const { title, excerpt } = scope.variables;
+  await scope.pages.common.checkNewPublishModal(
+    title,
+    formatString(excerpt)
   );
   await scope.pages.common.clickCloseNewPublishModal();
 });

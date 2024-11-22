@@ -6,7 +6,8 @@
   "page": {
     "title": "",
     "content": "",
-    "customUrl": ""
+    "customUrl": "",
+    "excerpt": ""
   },
   "member": {},
   "tag": {},

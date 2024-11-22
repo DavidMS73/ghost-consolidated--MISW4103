@@ -184,3 +184,28 @@ Feature: Create page
       | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
       | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
       | {faker(alphanumeric)} | {faker(paragraph)} |
+
+  Scenario: EPA08 - Crear una página con título, texto en el cuerpo y excerpt
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I create pseudo random data with seed "80"
+    And I navigate to "pages" section
+    And I click on new page button
+    And I fill the page title with text "<title>"
+    And I fill the page content with text "<content>"
+    And I click gear button
+    And I fill excerpt with "<excerpt>"
+    And I click gear button
+    And I click publish button
+    And I click continue final review button
+    When I click confirm publish button
+    Then I should see page title and excerpt inside a modal
+    And I click the pages type filter
+    And I click the published pages filter
+    And I should see the first page with title
+
+    Examples:
+      | title | content | excerpt |
+      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} | {data_pool(page-tuple1_excerpt)} |
+      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} | {dynamic_data_pool(page-excerpt)} |
+      | {faker(alphanumeric)} | {faker(paragraph)} | faker(paragraph) |

@@ -7,6 +7,9 @@ class PagePageObject extends BasePageObject {
   pageBodySelector =
     'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
 
+  pageVisibilitySelector =
+    'select[data-test-select="post-visibility"]';
+
   async clickNewPageButton() {
     const selector = 'a[href="#/editor/page/"]';
     await this.page.waitForSelector(selector);
@@ -119,6 +122,22 @@ class PagePageObject extends BasePageObject {
 
   async clickDeleteButton() {
     await this.clickElement('button[data-test-button="delete-post-confirm"]');
+  }
+
+  async clickPageAccessDropdown() {
+    await this.clickElement(this.pageVisibilitySelector);
+  }
+
+  async clickMembersOnlyButton() {
+    await this.page.select(this.pageVisibilitySelector, 'members');
+  }
+
+  async clickAccessFilter() {
+    await this.clickElement('div[class~="gh-contentfilter-visibility"]');
+  }
+
+  async clickMembersOnlyFilter() {
+    await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(3)');
   }
 }
 

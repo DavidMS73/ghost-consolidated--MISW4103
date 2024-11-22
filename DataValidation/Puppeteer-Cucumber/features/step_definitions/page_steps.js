@@ -1,4 +1,4 @@
-const { Then, Given } = require("@cucumber/cucumber");
+const { Then, Given, When } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const properties = require("../../properties");
 const { dataProcessor, formatString } = require("../utils/utils");
@@ -37,6 +37,24 @@ Given("I fill the page content with text {string}", async function (content) {
   await scope.pages.pages.fillPageBodyWithText(processed);
 });
 
+Given("I fill page URL with value {string}", async function (url) {
+  const processed = dataProcessor(url);
+  scope.variables.url = processed;
+  await scope.pages.pages.fillPageUrl(processed);
+});
+
+// When
+
+When('I click page access dropdown', async function () {
+  await scope.pages.pages.clickPageAccessDropdown();
+});
+
+When('I click members only button', async function () {
+  await scope.pages.pages.clickMembersOnlyButton();
+});
+
+// Then
+
 Then("I should see page title and content inside a modal", async () => {
   const { title, content } = scope.variables;
   await scope.pages.common.checkNewPublishModal(
@@ -45,14 +63,6 @@ Then("I should see page title and content inside a modal", async () => {
   );
   await scope.pages.common.clickCloseNewPublishModal();
 });
-
-Given("I fill page URL with value {string}", async function (url) {
-  const processed = dataProcessor(url);
-  scope.variables.url = processed;
-  await scope.pages.pages.fillPageUrl(processed);
-});
-
-// Then
 
 Then("I click the pages type filter", async function () {
   await scope.pages.pages.clickPagesTypeFilter();
@@ -99,4 +109,12 @@ Then("I click delete page", async function () {
 
 Then("I click delete button", async function () {
   await scope.pages.pages.clickDeleteButton();
+});
+
+Then('I click access filter', async function () {
+  await scope.pages.pages.clickAccessFilter();
+});
+
+Then('I click members only filter', async function () {
+  await scope.pages.pages.clickMembersOnlyFilter();
 });

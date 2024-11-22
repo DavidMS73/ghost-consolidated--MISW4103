@@ -43,14 +43,16 @@ Given("I fill page URL with value {string}", async function (url) {
   await scope.pages.pages.fillPageUrl(processed);
 });
 
-// When
-
-When('I click page access dropdown', async function () {
+Given('I click page access dropdown', async function () {
   await scope.pages.pages.clickPageAccessDropdown();
 });
 
-When('I click members only button', async function () {
+Given('I click members only button', async function () {
   await scope.pages.pages.clickMembersOnlyButton();
+});
+
+Given('I click paid members only button', async function () {
+  await scope.pages.pages.clickPaidMembersOnlyButton();
 });
 
 // Then
@@ -117,4 +119,8 @@ Then('I click access filter', async function () {
 
 Then('I click members only filter', async function () {
   await scope.pages.pages.clickMembersOnlyFilter();
+});
+
+Then('I click paid members only filter', async function () {
+  await scope.pages.pages.clickPaidMembersOnlyFilter();
 });

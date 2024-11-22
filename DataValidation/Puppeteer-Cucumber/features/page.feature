@@ -156,3 +156,31 @@ Feature: Create page
       | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
       | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
       | {faker(alphanumeric)} | {faker(paragraph)} |
+  
+  Scenario: EPA07 - Crear una página con título y texto en el cuerpo para sólo miembros pagos
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I create pseudo random data with seed "70"
+    And I navigate to "pages" section
+    And I click on new page button
+    And I fill the page title with text "<title>"
+    And I fill the page content with text "<content>"
+    And I click gear button
+    And I click page access dropdown
+    And I click paid members only button
+    And I click gear button
+    And I click publish button
+    And I click continue final review button
+    When I click confirm publish button
+    Then I should see title and content inside a modal
+    And I click the pages type filter
+    And I click the published pages filter
+    And I click access filter
+    And I click paid members only filter
+    And I should see the first page with title
+
+    Examples:
+      | title | content |
+      | {data_pool(page-tuple1_title)} | {data_pool(page-tuple1_content)} |
+      | {dynamic_data_pool(page-title)} | {dynamic_data_pool(page-content)} |
+      | {faker(alphanumeric)} | {faker(paragraph)} |

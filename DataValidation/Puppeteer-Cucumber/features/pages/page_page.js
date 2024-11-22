@@ -132,12 +132,20 @@ class PagePageObject extends BasePageObject {
     await this.page.select(this.pageVisibilitySelector, 'members');
   }
 
+  async clickPaidMembersOnlyButton() {
+    await this.page.select(this.pageVisibilitySelector, 'paid');
+  }
+
   async clickAccessFilter() {
     await this.clickElement('div[class~="gh-contentfilter-visibility"]');
   }
 
   async clickMembersOnlyFilter() {
     await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(3)');
+  }
+
+  async clickPaidMembersOnlyFilter() {
+    await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(4)')
   }
 }
 

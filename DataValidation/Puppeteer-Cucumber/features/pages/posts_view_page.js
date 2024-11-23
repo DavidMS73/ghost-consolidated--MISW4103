@@ -85,7 +85,7 @@ class PostsViewPageObject {
   }
 
   async assertViewIsCreated(viewName) {
-    const viewSelector = `li > a[title=${viewName}] > span`;
+    const viewSelector = `li > a[title="${viewName}"] > span`;
 
     await this.page.waitForSelector(viewSelector);
   }

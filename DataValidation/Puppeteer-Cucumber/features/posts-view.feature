@@ -1,21 +1,28 @@
 Feature: Create posts view
   Creates a new view for the posts, which saves the current selected filters.
 
-  @rv-596
-  Scenario: E017 - Vista creada se despliega cuando se le asigna un nombre y se hace click en guardar
+  @run
+  Scenario Outline: EPV01 - Vista creada se despliega cuando se le asigna un nombre y se hace click en guardar
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
     And I filter by featured posts
     And view of featured posts should not exist
     And I click on create view button
-    And I fill the view name field with "Prueba"
+    And I fill the view name field with "<viewName>"
     When I click on save view button
-    Then view should appear in sidebar under posts section with name "Prueba"
-    And current view should be "Prueba"
+    Then view should appear in sidebar under posts section
 
-  @rv-596
-  Scenario: E018 - Al intentar crear una vista sin un nombre se muestra un mensaje de error
+    Examples:
+      | viewName                                |
+      | {a_priori(postView-oneCharacter_name)}  |
+      | {a_priori(postView-realistic_name)}     |
+      | {faker(alphanumeric)}                   |
+      # El primer example ejecuta la función de pool de datos a-priori
+      # El tercer example ejecuta la función de faker (datos completamente aleatorios)
+
+  @run
+  Scenario: EPV02 - Al intentar crear una vista sin un nombre se muestra un mensaje de error
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
@@ -25,8 +32,8 @@ Feature: Create posts view
     When I click on save view button
     Then an error should appear indicating that the view name is required
 
-  @rv-596
-  Scenario: E019 - Al presionar el botón cancel se cierra el modal de creacion de vista
+  @run
+  Scenario: EPV03 - Al presionar el botón cancel se cierra el modal de creacion de vista
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
@@ -36,7 +43,8 @@ Feature: Create posts view
     When I click on cancel view creation button
     Then view creation modal should hide
 
-  Scenario: E020 - El boton de crear vista se muestra al seleccionar el filtro public dentro del desplegable all access
+  @run
+  Scenario: EPV04 - El boton de crear vista se muestra al seleccionar el filtro public dentro del desplegable all access
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section

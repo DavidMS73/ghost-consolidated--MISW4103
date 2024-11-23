@@ -1,5 +1,6 @@
 const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
+const { dataProcessor, formatString } = require("../utils/utils");
 
 // Given
 Given("I filter by featured posts", async () => {
@@ -15,7 +16,9 @@ Given("I click on create view button", async () => {
 });
 
 Given("I fill the view name field with {string}", async (viewName) => {
-  await scope.pages.postsView.fillViewName(viewName);
+  const processed = dataProcessor(viewName);
+  scope.variables.viewName = formatString(processed);
+  await scope.pages.postsView.fillViewName(processed);
 });
 
 // When
@@ -35,13 +38,16 @@ When("I filter by public posts", async () => {
 // Then
 
 Then(
-  "view should appear in sidebar under posts section with name {string}",
-  async (viewName) => {
+  "view should appear in sidebar under posts section",
+  async () => {
+    const { viewName } = scope.variables;
     await scope.pages.postsView.assertViewIsCreated(viewName);
   }
 );
 
-Then("current view should be {string}", async (viewName) => {
+// TODO: Delete this if not used
+Then("current view should be the one created", async () => {
+  const { viewName } = scope.variables;
   await scope.pages.postsView.assertCurrentView(viewName);
 });
 

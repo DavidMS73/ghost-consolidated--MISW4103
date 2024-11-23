@@ -28,11 +28,18 @@ Feature: Create members
     When I unfocus the member form field
     Then I should see the initials "T" and "U" in the user avatar
 
-  Scenario: E0016 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial
+  Scenario Outline: EM04 - Si el miembro tiene un solo nombre la imagen deberia tener una sola inicial
     Given I navigate to "members" section
     And I login to the application if necessary
     And I navigate to "members" section
     And I click on new member button
-    And I fill member name with "Testing"
+    And I fill member name with "<firstName>"
     When I unfocus the member form field
-    Then I should see the initials "T" in the user avatar
+    Then I should see the initial in the user avatar
+
+    Examples:
+      | firstName                                   |
+      | {a_priori(member-firstNameOnly_firstName)}  |
+      | {faker(firstName)}                          |
+      # El primer example ejecuta la función de pool de datos a-priori
+      # El tercer example ejecuta la función de faker (datos completamente aleatorios)

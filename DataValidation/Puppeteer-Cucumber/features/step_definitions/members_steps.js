@@ -1,5 +1,6 @@
 const { Given, When, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
+const { dataProcessor, formatString } = require("../utils/utils");
 
 // Given
 
@@ -12,7 +13,9 @@ Given("I fill member email with {string}", async (email) => {
 });
 
 Given("I fill member name with {string}", async (name) => {
-  await scope.pages.members.fillName(name);
+  const processed = dataProcessor(name);
+  scope.variables.memberName = formatString(processed);
+  await scope.pages.members.fillName(processed);
 });
 
 // When
@@ -46,7 +49,8 @@ Then("I should see the initials {string} and {string} in the user avatar", async
   console.assert(result, `The initials ${first} and ${last} are not in the user avatar`);
 });
 
-Then("I should see the initials {string} in the user avatar", async (initials) => {
-  const result = await scope.pages.members.checkAvatarInitials(initials, '');
-  console.assert(result, `The initials ${initials} are not in the user avatar`);
+Then("I should see the initial in the user avatar", async () => {
+  const { memberName } = scope.variables;
+  const result = await scope.pages.members.checkAvatarInitials(memberName[0], '');
+  console.assert(result, `The initial ${memberName[0]} are not in the user avatar`);
 });

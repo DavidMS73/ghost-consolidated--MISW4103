@@ -128,5 +128,12 @@
       "name": ""
     }
   },
-  "post_view": {}
+  "postView": {
+    "oneCharacter": {
+      "name": "A"
+    },
+    "realistic": {
+      "name": "Featured Posts"
+    }
+  }
 }

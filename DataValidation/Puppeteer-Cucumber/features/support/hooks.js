@@ -20,7 +20,6 @@ const TagsPageObject = require("../pages/tags_page");
 const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 const PostsViewPageObject = require("../pages/posts_view_page");
-const { faker } = require("@faker-js/faker");
 const { default: axios } = require("axios");
 
 // set default timeout to config value
@@ -134,7 +133,6 @@ BeforeAll(async () => {
 });
 
 Before(async function ({ gherkinDocument }) {
-
   stepCounter = 1;
   const featureName = gherkinDocument.feature.name
     .replace(/ /g, "-")
@@ -155,6 +153,16 @@ Before(async function ({ gherkinDocument }) {
 
   // Clear variables
   scope.variables = {};
+
+  // Clear pseudo aleatorio position to select another
+  scope.actualPseudoAleatorioPosition = {
+    post: undefined,
+    page: undefined,
+    tag: undefined,
+    member: undefined,
+  };
+
+  await pseudoAleatorioLoadInfoFromMockaroo();
 });
 
 AfterStep(async function ({ pickle, gherkinDocument }) {
@@ -225,23 +233,41 @@ function createPageObjects(page) {
 }
 
 async function pseudoAleatorioLoadInfoFromMockaroo() {
-   // For test purposes only
-   const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
+  // For test purposes only
+  const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
 
-   fs.readFile(pathPseudoAleatorioDataPool, "utf8", (err, data) => {
-     try {
-       // Parsear el JSON
-       const jsonData = JSON.parse(data);
-       // Guardar la base en scope.pseudoAleatorioDataPool
-       scope.pseudoAleatorioDataPool = jsonData;
-     } catch (error) {
-       console.error("Error al parsear el JSON:", error);
-       throw error;
-     }
-   });
+  const data = await fs.readFileSync(pathPseudoAleatorioDataPool, "utf8");
+  try {
+    // Parsear el JSON
+    const jsonData = JSON.parse(data);
+    // Guardar la base en scope.pseudoAleatorioDataPool
+    scope.pseudoAleatorioDataPool = jsonData;
+  } catch (error) {
+    console.error("Error al parsear el JSON:", error);
+    throw error;
+  }
 
-  const postMockaroo = await axios.get("https://my.api.mockaroo.com/posts.json?key=e3fde9a0");
-  const jsonData = postMockaroo.data;
+  /**
+  const postMockaroo = await axios.get(
+    "https://my.api.mockaroo.com/posts.json?key=e3fde9a0"
+  );
+  console.log(postMockaroo.data);
   // Guardar los datos en scope.pseudoAleatorioDataPool
-  scope.pseudoAleatorioDataPool = jsonData;
+  scope.pseudoAleatorioDataPool.post = postMockaroo.data;
+  */
+
+  // Select a random position from pseudo aleatorio data pool
+
+  scope.actualPseudoAleatorioPosition.post = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.post.length
+  );
+  scope.actualPseudoAleatorioPosition.page = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.page.length
+  );
+  scope.actualPseudoAleatorioPosition.tag = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.tag.length
+  );
+  scope.actualPseudoAleatorioPosition.member = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.member.length
+  );
 }

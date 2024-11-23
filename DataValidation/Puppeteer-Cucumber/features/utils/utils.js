@@ -84,8 +84,9 @@ const dataProcessor = (data) => {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
       const attributeInfo = groupInfo[1];
+      const position = scope.actualPseudoAleatorioPosition[group];
 
-      content = scope.pseudoAleatorioDataPool[group][attributeInfo];
+      content = scope.pseudoAleatorioDataPool[group][position][attributeInfo];
     } else if (origin === "faker") {
       content = fakerData(attribute);
     } else if (origin === "default") {

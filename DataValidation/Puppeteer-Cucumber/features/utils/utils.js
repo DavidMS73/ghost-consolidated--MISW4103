@@ -77,7 +77,7 @@ const dataProcessor = (data) => {
       const attribute_info_split = groupInfo[1].split("_");
 
       content =
-        scope.aProriDataPool[group][attribute_info_split[0]][
+        scope.aPrioriDataPool[group][attribute_info_split[0]][
           attribute_info_split[1]
         ];
     } else if (origin === "pseudo_aleatorio") {

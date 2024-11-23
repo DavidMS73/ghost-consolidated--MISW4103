@@ -1,8 +1,46 @@
 {
-  "post": {
-    "title": "",
-    "description": ""
-  },
+  "post": [
+    {
+      "title": "Disp fx of lateral condyle of unsp femr, 7thH",
+      "description": "Displaced fracture of lateral condyle of unspecified femur, subsequent encounter for open fracture type I or II with delayed healing"
+    },
+    {
+      "title": "Oth serum reaction due to admin blood/products, subs",
+      "description": "Other serum reaction due to administration of blood and blood products, subsequent encounter"
+    },
+    {
+      "title": "Displ suprcndl fx w intrcndl extn low end l femr, 7thP",
+      "description": "Displaced supracondylar fracture with intracondylar extension of lower end of left femur, subsequent encounter for closed fracture with malunion"
+    },
+    {
+      "title": "Epidural hemorrhage w LOC of 1-5 hrs 59 min, init",
+      "description": "Epidural hemorrhage with loss of consciousness of 1 hour to 5 hours 59 minutes, initial encounter"
+    },
+    {
+      "title": "Insect bite (nonvenomous) of oral cavity, initial encounter",
+      "description": "Insect bite (nonvenomous) of oral cavity, initial encounter"
+    },
+    {
+      "title": "Blister (nonthermal) of right shoulder, sequela",
+      "description": "Blister (nonthermal) of right shoulder, sequela"
+    },
+    {
+      "title": "Idiopathic chronic gout, left ankle and foot",
+      "description": "Idiopathic chronic gout, left ankle and foot"
+    },
+    {
+      "title": "Congenital malformation of orbit",
+      "description": "Congenital malformation of orbit"
+    },
+    {
+      "title": "Chronic dacryocystitis of unspecified lacrimal passage",
+      "description": "Chronic dacryocystitis of unspecified lacrimal passage"
+    },
+    {
+      "title": "Nondisp avuls fracture (chip fracture) of unsp talus, init",
+      "description": "Nondisplaced avulsion fracture (chip fracture) of unspecified talus, initial encounter for closed fracture"
+    }
+  ],
   "page": {
     "title": "",
     "content": "",

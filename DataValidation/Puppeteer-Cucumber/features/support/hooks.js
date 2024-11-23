@@ -21,6 +21,7 @@ const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 const PostsViewPageObject = require("../pages/posts_view_page");
 const { faker } = require("@faker-js/faker");
+const { default: axios } = require("axios");
 
 // set default timeout to config value
 setDefaultTimeout(constants.pageTimeout * 1000);
@@ -123,8 +124,8 @@ BeforeAll(async () => {
     try {
       // Parsear el JSON
       const jsonData = JSON.parse(data);
-      // Guardar los datos en scope.aProriDataPool
-      scope.aProriDataPool = jsonData;
+      // Guardar los datos en scope.aPrioriDataPool
+      scope.aPrioriDataPool = jsonData;
     } catch (error) {
       console.error("Error al parsear el JSON:", error);
       throw error;
@@ -133,19 +134,6 @@ BeforeAll(async () => {
 });
 
 Before(async function ({ gherkinDocument }) {
-  const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
-
-  fs.readFile(pathPseudoAleatorioDataPool, "utf8", (err, data) => {
-    try {
-      // Parsear el JSON
-      const jsonData = JSON.parse(data);
-      // Guardar la base en scope.pseudoAleatorioDataPool
-      scope.pseudoAleatorioDataPool = jsonData;
-    } catch (error) {
-      console.error("Error al parsear el JSON:", error);
-      throw error;
-    }
-  });
 
   stepCounter = 1;
   const featureName = gherkinDocument.feature.name
@@ -234,4 +222,26 @@ function createPageObjects(page) {
     common: new CommonPageObject(page),
     postsView: new PostsViewPageObject(page),
   };
+}
+
+async function pseudoAleatorioLoadInfoFromMockaroo() {
+   // For test purposes only
+   const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
+
+   fs.readFile(pathPseudoAleatorioDataPool, "utf8", (err, data) => {
+     try {
+       // Parsear el JSON
+       const jsonData = JSON.parse(data);
+       // Guardar la base en scope.pseudoAleatorioDataPool
+       scope.pseudoAleatorioDataPool = jsonData;
+     } catch (error) {
+       console.error("Error al parsear el JSON:", error);
+       throw error;
+     }
+   });
+
+  const postMockaroo = await axios.get("https://my.api.mockaroo.com/posts.json?key=e3fde9a0");
+  const jsonData = postMockaroo.data;
+  // Guardar los datos en scope.pseudoAleatorioDataPool
+  scope.pseudoAleatorioDataPool = jsonData;
 }

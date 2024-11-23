@@ -22,7 +22,6 @@ Feature: Create post
     Examples:
       | title                          | description                          |
       | {a_priori(post-tuple1_title)}  | {a_priori(post-tuple1_description)}  |
-      | {pseudo_aleatorio(post-title)} | {pseudo_aleatorio(post-description)} |
       | {faker(alphanumeric)}          | {faker(paragraph)}                   |
       # El primer example ejecuta la función de pool de datos a-priori
       # El segundo example ejecuta la función pool de datos pseudo-aleatorio

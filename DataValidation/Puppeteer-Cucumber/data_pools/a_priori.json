@@ -76,7 +76,12 @@
       "excerpt": "My great excerpt"
     }
   },
-  "member": {},
+  "member": {
+    "firstNameOnly": {
+      "firstName": "John",
+      "lastName": ""
+    }
+  },
   "tag": {
     "tuple1": {
       "name": "tag name 1",

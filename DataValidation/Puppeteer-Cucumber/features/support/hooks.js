@@ -254,6 +254,10 @@ async function pseudoAleatorioLoadInfoFromMockaroo() {
   console.log(postMockaroo.data);
   // Guardar los datos en scope.pseudoAleatorioDataPool
   scope.pseudoAleatorioDataPool.post = postMockaroo.data;
+
+  const tagMockaroo = await axios.get("https://my.api.mockaroo.com/tags.json?key=e3fde9a0");
+  console.log(tagMockaroo.data);
+  scope.pseudoAleatorioDataPool.tag = postMockaroo.data;
   */
 
   // Select a random position from pseudo aleatorio data pool

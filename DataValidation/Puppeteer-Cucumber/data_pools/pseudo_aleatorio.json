@@ -55,81 +55,103 @@
   "member": [],
   "tag": [
     {
-      "name": "nulla facilisi",
-      "internalName": "#nulla facilisi",
+      "name": "valid-facilisi",
+      "internalName": "#valid-facilisi",
       "desc": "xylophone playing through the amber waves",
       "color": "ff5733",
-      "image": "disease-1"
+      "image": "disease-1",
+      "codeInjectionHeader": "<h1>Lorem ipsum</h1>",
+      "codeInjectionFooter": "<footer>dolor sit amet</footer>"
     },
     {
-      "name": "integer nec odio praesent libero",
-      "internalName": "#integer nec odio praesent libero",
+      "name": "libero-odio-praesent",
+      "internalName": "#libero-odio-praesent",
       "desc": "a walk in the park on a sunny day with birds singing",
       "color": "33ff57",
-      "image": "disease-2"
+      "image": "disease-2",
+      "codeInjectionHeader": "<h2>consectetur adipiscing elit</h2>",
+      "codeInjectionFooter": "<footer>sed do eiusmod tempor</footer>"
     },
     {
-      "name": "phasellus viverra nulla ut metus varius",
-      "internalName": "#phasellus viverra nulla ut metus varius",
+      "name": "viverra-varius",
+      "internalName": "#viverra-varius",
       "desc": "the quick brown fox jumps over the lazy dog",
       "color": "3357ff",
-      "image": "disease-3"
+      "image": "disease-3",
+      "codeInjectionHeader": "<h3>ut labore et dolore magna</h3>",
+      "codeInjectionFooter": "<footer>aliqua. Ut enim</footer>"
     },
     {
-      "name": "ut varius tincidunt libero nam",
-      "internalName": "#ut varius tincidunt libero nam",
+      "name": "varius-tincidunt",
+      "internalName": "#varius-tincidunt",
       "desc": "the serene landscape painting hung on the wall of the gallery",
       "color": "ff33a5",
-      "image": "disease-4"
+      "image": "disease-4",
+      "codeInjectionHeader": "<h4>ad minim veniam</h4>",
+      "codeInjectionFooter": "<footer>quis nostrud exercitation</footer>"
     },
     {
-      "name": "proin quam",
-      "internalName": "#proin quam",
+      "name": "quam-proin",
+      "internalName": "#quam-proin",
       "desc": "mystery novel with unexpected twists and turns",
       "color": "a533ff",
-      "image": "disease-5"
+      "image": "disease-5",
+      "codeInjectionHeader": "<h5>ullamco laboris nisi</h5>",
+      "codeInjectionFooter": "<footer>ut aliquip ex</footer>"
     },
     {
-      "name": "curabitur at lacus ac velit",
-      "internalName": "#curabitur at lacus ac velit",
+      "name": "curabitur-lacus",
+      "internalName": "#curabitur-lacus",
       "desc": "the night sky filled with stars",
       "color": "33ffa5",
-      "image": "disease-6"
+      "image": "disease-6",
+      "codeInjectionHeader": "<h6>ea commodo consequat</h6>",
+      "codeInjectionFooter": "<footer>duis aute irure</footer>"
     },
     {
-      "name": "fusce nec tellus",
-      "internalName": "#fusce nec tellus",
+      "name": "nec-tellus",
+      "internalName": "#nec-tellus",
       "desc": "delicious homemade chocolate chip cookies freshly baked",
       "color": "ffa533",
-      "image": "disease-1"
+      "image": "disease-1",
+      "codeInjectionHeader": "<header>in reprehenderit</header>",
+      "codeInjectionFooter": "<footer>in voluptate</footer>"
     },
     {
-      "name": "sed cursus ante dapibus",
-      "internalName": "#sed cursus ante dapibus",
+      "name": "cursus-ante",
+      "internalName": "#cursus-ante",
       "desc": "exploring the depths of the ocean on a sunny day",
       "color": "a5ff33",
-      "image": "disease-2"
+      "image": "disease-2",
+      "codeInjectionHeader": "<header>velit esse cillum</header>",
+      "codeInjectionFooter": "<footer>dolore eu fugiat</footer>"
     },
     {
-      "name": "pellentesque dapibus hendrerit",
-      "internalName": "#pellentesque dapibus hendrerit",
+      "name": "dapibus-hendrerit",
+      "internalName": "#dapibus-hendrerit",
       "desc": "a long and winding road through the mountains",
       "color": "33a5ff",
-      "image": "disease-3"
+      "image": "disease-3",
+      "codeInjectionHeader": "<header>nulla pariatur</header>",
+      "codeInjectionFooter": "<footer>excepteur sint occaecat</footer>"
     },
     {
-      "name": "morbi in dui",
-      "internalName": "#morbi in dui",
+      "name": "dui-morbi",
+      "internalName": "#dui-morbi",
       "desc": "the bustling city streets at night with bright lights",
       "color": "ff5733",
-      "image": "disease-4"
+      "image": "disease-4",
+      "codeInjectionHeader": "<header>cupidatat non proident</header>",
+      "codeInjectionFooter": "<footer>sunt in culpa</footer>"
     },
     {
-      "name": "in hac habitasse",
-      "internalName": "#in hac habitasse",
+      "name": "hac-habitasse",
+      "internalName": "#hac-habitasse",
       "desc": "the sound of rain tapping on the window during a storm",
       "color": "a533ff",
-      "image": "disease-5"
+      "image": "disease-5",
+      "codeInjectionHeader": "<header>qui officia deserunt</header>",
+      "codeInjectionFooter": "<footer>mollit anim id</footer>"
     }
   ]
 }

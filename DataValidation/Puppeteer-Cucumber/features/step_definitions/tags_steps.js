@@ -26,6 +26,16 @@ Given("I fill tag name with the previous tag name", async () => {
   await scope.pages.tags.fillName(tagName);
 });
 
+Given("I fill the tag header with {string} and footer with {string}", async (codeInjectionHeader, codeInjectionFooter) => {
+  const codeInjectionHeaderParsed = dataProcessor(codeInjectionHeader);
+  const codeInjectionFooterParsed = dataProcessor(codeInjectionFooter);
+  scope.variables.tagCodeInjectionHeader = codeInjectionHeaderParsed;
+  scope.variables.tagCodeInjectionFooter = codeInjectionFooterParsed;
+  console.log("Header: ", codeInjectionHeaderParsed);
+  
+  await scope.pages.tags.fillCodeInjection(codeInjectionHeaderParsed, codeInjectionFooterParsed);
+});
+
 Given("I fill the slug with an emoji", async function () {
   await scope.pages.tags.fillSlug("😅");
 });

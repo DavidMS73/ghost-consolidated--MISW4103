@@ -138,7 +138,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
       | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |      
 
-  Scenario Outline: ET08 - Crear un tag con card en Facebook
+  Scenario Outline: ET09 - Crear un tag con card en Facebook
     Given I navigate to "tags" section
     And I login to the application if necessary
     And I navigate to "tags" section
@@ -153,4 +153,22 @@ Feature: Create tags
       | tagName                     | tagMetadataDesc             |
       | {a_priori(tag-tuple9_name)} | {a_priori(tag-tuple9_desc)} |
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
-      | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |            
+      | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   | 
+
+  @run
+  Scenario Outline: ET10 - Crear tag con code injection
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "code injection" metadata section
+    And I fill the tag header with "<tagCodeInjectionHeader>" and footer with "<tagCodeInjectionFooter>"
+    When I click on save tag button
+    Then I should see tag title
+
+    Examples:
+      | tagName                     | tagCodeInjectionHeader                      | tagCodeInjectionFooter                      |
+      | {a_priori(tag-tuple10_name)}| {a_priori(tag-tuple10_header)}              | {a_priori(tag-tuple10_footer)}              |
+      | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-codeInjectionHeader)} | {pseudo_aleatorio(tag-codeInjectionFooter)} |
+      | {faker(alphanumeric)}       | {faker(html_tag)}                           | {faker(html_tag)}                           |

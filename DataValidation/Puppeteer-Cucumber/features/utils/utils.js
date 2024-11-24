@@ -62,6 +62,10 @@ const fakerData = (attribute) => {
   else if (attribute === "fullName") return faker.person.fullName();
   else if (attribute === "special_characters") return faker.string.fromCharacters('!"#$%&', 10);
   else if (attribute === "hex_color") return faker.color.rgb().replace("#", "");
+  else if (attribute === "html_tag") {
+    var tagName = faker.lorem.word();
+    return `<${tagName}>${faker.lorem.sentence()}</${tagName}>`;
+  }
 };
 
 const dataProcessor = (data) => {
@@ -79,7 +83,7 @@ const dataProcessor = (data) => {
 
       content =
         scope.aPrioriDataPool[group][attribute_info_split[0]][
-          attribute_info_split[1]
+        attribute_info_split[1]
         ];
     } else if (origin === "pseudo_aleatorio") {
       const groupInfo = subgroup(attribute);

@@ -18,6 +18,19 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async fillCodeInjection(header, footer) {
+    await this.page.waitForSelector('#tag-setting-codeinjection-head .CodeMirror');
+    await this.page.evaluate((headerContent) => {
+      const editor = document.querySelector('#tag-setting-codeinjection-head .CodeMirror').CodeMirror;
+      editor.setValue(headerContent);
+    }, header);
+
+    await this.page.waitForSelector('#tag-setting-codeinjection-foot .CodeMirror');
+    await this.page.evaluate((footContent) => {
+      const editor = document.querySelector('#tag-setting-codeinjection-foot .CodeMirror').CodeMirror;
+      editor.setValue(footContent);
+    }, footer);  }
+
   async fillColor(color) {
     await this.page.waitForSelector('input[data-test-input="accentColor"]');
     await this.page.type('input[data-test-input="accentColor"]', color);
@@ -113,7 +126,7 @@ class TagsPageObject {
         descriptionSelector = '#og-description';
         break;
     };
-    
+
     await this.page.waitForSelector(titleSelector);
     await this.page.type(titleSelector, metadatdaTitle);
     await this.page.waitForSelector(descriptionSelector);

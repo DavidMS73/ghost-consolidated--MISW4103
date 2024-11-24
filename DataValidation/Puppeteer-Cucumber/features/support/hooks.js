@@ -21,6 +21,7 @@ const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 const PostsViewPageObject = require("../pages/posts_view_page");
 const { default: axios } = require("axios");
+const properties = require("../../properties");
 
 // set default timeout to config value
 setDefaultTimeout(constants.pageTimeout);
@@ -233,45 +234,48 @@ function createPageObjects(page) {
 }
 
 async function pseudoAleatorioLoadInfoFromMockaroo() {
-  // For test purposes only
-  const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
-
-  const data = await fs.readFileSync(pathPseudoAleatorioDataPool, "utf8");
-  try {
-    // Parsear el JSON
-    const jsonData = JSON.parse(data);
-    // Guardar la base en scope.pseudoAleatorioDataPool
-    scope.pseudoAleatorioDataPool = jsonData;
-  } catch (error) {
-    console.error("Error al parsear el JSON:", error);
-    throw error;
+  if (properties.USE_API === true) {
+    const postMockaroo = await axios.get(
+      "https://my.api.mockaroo.com/posts.json?key=e3fde9a0"
+    );
+    const tagMockaroo = await axios.get(
+      "https://my.api.mockaroo.com/tags.json?key=e3fde9a0"
+    );
+    const pageMockaroo = await axios.get(
+      "https://my.api.mockaroo.com/pages.json?key=e3fde9a0"
+    );
+    console.log('Mockaroo Data:');
+    console.log(postMockaroo.data);
+    console.log(tagMockaroo.data);
+    console.log(pageMockaroo.data);
+    // Guardar los datos en scope.pseudoAleatorioDataPool
+    scope.pseudoAleatorioDataPool.post = postMockaroo.data;
+    scope.pseudoAleatorioDataPool.tag = postMockaroo.data;
+    scope.pseudoAleatorioDataPool.page = pageMockaroo.data;
+    // Select a random position from pseudo aleatorio data pool
+    scope.actualPseudoAleatorioPosition.post = Math.floor(
+      Math.random() * scope.pseudoAleatorioDataPool.post.length
+    );
+    scope.actualPseudoAleatorioPosition.page = Math.floor(
+      Math.random() * scope.pseudoAleatorioDataPool.page.length
+    );
+    scope.actualPseudoAleatorioPosition.tag = Math.floor(
+      Math.random() * scope.pseudoAleatorioDataPool.tag.length
+    );
+    scope.actualPseudoAleatorioPosition.member = Math.floor(
+      Math.random() * scope.pseudoAleatorioDataPool.member.length
+    );
+  } else {
+    const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
+    const data = await fs.readFileSync(pathPseudoAleatorioDataPool, "utf8");
+    try {
+      // Parsear el JSON
+      const jsonData = JSON.parse(data);
+      // Guardar la base en scope.pseudoAleatorioDataPool
+      scope.pseudoAleatorioDataPool = jsonData;
+    } catch (error) {
+      console.error("Error al parsear el JSON:", error);
+      throw error;
+    }
   }
-
-  /**
-  const postMockaroo = await axios.get(
-    "https://my.api.mockaroo.com/posts.json?key=e3fde9a0"
-  );
-  console.log(postMockaroo.data);
-  // Guardar los datos en scope.pseudoAleatorioDataPool
-  scope.pseudoAleatorioDataPool.post = postMockaroo.data;
-
-  const tagMockaroo = await axios.get("https://my.api.mockaroo.com/tags.json?key=e3fde9a0");
-  console.log(tagMockaroo.data);
-  scope.pseudoAleatorioDataPool.tag = postMockaroo.data;
-  */
-
-  // Select a random position from pseudo aleatorio data pool
-
-  scope.actualPseudoAleatorioPosition.post = Math.floor(
-    Math.random() * scope.pseudoAleatorioDataPool.post.length
-  );
-  scope.actualPseudoAleatorioPosition.page = Math.floor(
-    Math.random() * scope.pseudoAleatorioDataPool.page.length
-  );
-  scope.actualPseudoAleatorioPosition.tag = Math.floor(
-    Math.random() * scope.pseudoAleatorioDataPool.tag.length
-  );
-  scope.actualPseudoAleatorioPosition.member = Math.floor(
-    Math.random() * scope.pseudoAleatorioDataPool.member.length
-  );
 }

@@ -3,22 +3,57 @@
     "tuple1": {
       "title": "Post published later",
       "description": "Post to be published later",
-      "featureImage": "forest"
+      "featureImage": "forest.jpg"
     },
     "tuple2": {
       "title": "Post published right now",
       "description": "Post to be published right now",
-      "featureImage": "Nissan-Skyline-GT-R-R32"
+      "featureImage": "Nissan-Skyline-GT-R-R32.jpg"
     },
     "tuple3": {
       "title": "Post with feature image",
       "description": "Post with a feature image to be published",
-      "featureImage": "forest"
+      "featureImage": "forest.jpg"
     },
     "tuple4": {
       "title": "Post without title",
       "description": "Description of post without title",
-      "featureImage": "forest"
+      "featureImage": "forest.jpg"
+    },
+    "tuple5": {
+      "title": "Post with MP3 audio",
+      "description": "Post with a MP3 audio to be published",
+      "audio": "Panama.mp3"
+    },
+    "tuple6": {
+      "title": "Post with OGG audio",
+      "description": "Post with an OGG audio to be published",
+      "audio": "AudioOGG.ogg"
+    },
+    "tuple7": {
+      "title": "Post with M4A audio",
+      "description": "Post with a M4A audio to be published",
+      "audio": "AudioSanteMA.m4a"
+    },
+    "tuple8": {
+      "title": "Post with WAV audio",
+      "description": "Post with a WAV audio to be published",
+      "audio": "AudioSambaB.wav"
+    },
+    "tuple9": {
+      "title": "Post with video in MP4",
+      "description": "Post with a video in mp4 to be published",
+      "video": "videoGhostM.mp4"
+    },
+    "tuple10": {
+      "title": "Post with video in WEBM",
+      "description": "Post with a video in webm to be published",
+      "video": "videoGhostW.webm"
+    },
+    "tuple11": {
+      "title": "Post with video option using an image",
+      "description": "Post using video option but loading an image",
+      "video": "forest.jpg"
     }
   },
   "page": {

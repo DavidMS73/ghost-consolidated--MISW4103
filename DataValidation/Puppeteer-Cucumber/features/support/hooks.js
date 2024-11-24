@@ -23,7 +23,7 @@ const PostsViewPageObject = require("../pages/posts_view_page");
 const { default: axios } = require("axios");
 
 // set default timeout to config value
-setDefaultTimeout(constants.pageTimeout * 1000);
+setDefaultTimeout(constants.pageTimeout);
 
 BeforeAll(async () => {
   // reset counter

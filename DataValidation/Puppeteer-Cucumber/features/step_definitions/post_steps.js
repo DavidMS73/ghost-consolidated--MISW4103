@@ -33,13 +33,6 @@ Given("I click on set it live now option", async () => {
   await scope.pages.posts.clickPostSetItLiveNow();
 });
 
-Given("I upload a feature image {string}", async (image) => {
-  const processed = dataProcessor(image);
-  scope.variables.postFeatureImage = true;
-  await scope.pages.posts.uploadFeatureImage("./assets/" + processed + ".jpg");
-  await waitUtil(500);
-});
-
 // Then
 
 Then("I deploy the collapse menu of posts", async () => {

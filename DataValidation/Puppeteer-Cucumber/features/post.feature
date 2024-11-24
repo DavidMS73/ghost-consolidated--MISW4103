@@ -118,7 +118,6 @@ Feature: Create post
       | {faker(alphanumeric_255)} |
     # El primer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @run
   Scenario Outline: EPO06 - Create a post with 256 chars in title (max frontier + 1)
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -132,3 +131,67 @@ Feature: Create post
       | title                     |
       | {faker(alphanumeric_256)} |
     # El primer example ejecuta la función de faker (datos completamente aleatorios)
+
+  Scenario Outline: EPO07 - Create a post with title and an audio file
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I click on editor page
+    And I upload an audio "<audio>"
+    And I click publish button
+    And I click continue final review button
+    When I click confirm publish button
+    Then I should see title and some content related inside a modal
+    And I go to published posts
+    And the post created should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                         | audio                         |
+      | {a_priori(post-tuple5_title)} | {a_priori(post-tuple5_audio)} |
+      | {a_priori(post-tuple6_title)} | {a_priori(post-tuple6_audio)} |
+      | {a_priori(post-tuple7_title)} | {a_priori(post-tuple7_audio)} |
+      | {a_priori(post-tuple8_title)} | {a_priori(post-tuple8_audio)} |
+    # El primer example ejecuta la función de pool de datos a-priori con MP3
+    # El segundo example ejecuta la función de pool de datos a-priori con OGG
+    # El tercer example ejecuta la función de pool de datos a-priori con M4A
+    # El cuarto example ejecuta la función de pool de datos a-priori con WAV
+
+  Scenario Outline: EPO08 - Create a post with title and a video file
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I click on editor page
+    And I upload a video "<video>"
+    And I click publish button
+    And I click continue final review button
+    When I click confirm publish button
+    Then I should see title and some content related inside a modal
+    And I go to published posts
+    And the post created should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                         | video                         |
+      | {a_priori(post-tuple7_title)} | {a_priori(post-tuple7_video)} |
+      | {a_priori(post-tuple8_title)} | {a_priori(post-tuple8_video)} |
+    # El primer example ejecuta la función de pool de datos a-priori con MP4
+    # El segundo example ejecuta la función de pool de datos a-priori con WEBM
+
+  Scenario Outline: EPO09 - Create a post with title and an using video option but loading an image file
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I click on editor page
+    When I upload a video "<video>"
+    Then I should see an error in video preview editor
+
+    Examples:
+      | title                          | video                          |
+      | {a_priori(post-tuple11_title)} | {a_priori(post-tuple11_video)} |

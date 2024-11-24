@@ -56,7 +56,7 @@ class CommonPageObject {
     await waitUtil(500);
   }
 
-  async checkNewPublishModal(title, content, image) {
+  async checkNewPublishModal(title, content, image, partialContent) {
     if (title) {
       const titleSelector = 'div[class="modal-body"] > h2';
       await this.page.waitForSelector(titleSelector);
@@ -83,6 +83,17 @@ class CommonPageObject {
       await this.page.waitForSelector(imageSelector);
       const imageElementText = await getImageExists(this.page, imageSelector);
       assert(imageElementText, `Error image does not exists`);
+    }
+
+    if (partialContent) {
+      const contentSelector =
+        'div[class="modal-body"] > p[class="post-excerpt"]';
+      await this.page.waitForSelector(contentSelector);
+      const contentElementText = await getText(this.page, contentSelector);
+      assert(
+        contentElementText.includes(partialContent),
+        `Error partial content does not includes the info, the obtained is -> ${contentElementText} and the saved is ${partialContent}`
+      );
     }
   }
 
@@ -124,6 +135,73 @@ class CommonPageObject {
         element.click();
       }
     }
+  }
+
+  async uploadFeatureImage(route) {
+    // Espera a que el botón "Add feature image" esté disponible en la página
+    await this.page.waitForSelector(
+      "button.gh-editor-feature-image-add-button"
+    );
+
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click("button.gh-editor-feature-image-add-button"),
+    ]);
+
+    await fileChooser.accept([route]);
+
+    // Espera para que la carga de la imagen se complete
+    await waitUtil(1000);
+  }
+
+  async uploadAudio(route) {
+    const selector1 = 'button[aria-label="Add a card"]';
+    await this.page.waitForSelector(selector1);
+    await this.page.click(selector1);
+
+    const selector2 = 'button[data-kg-card-menu-item="Audio"]';
+    await this.page.waitForSelector(selector2);
+
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(selector2),
+    ]);
+
+    await fileChooser.accept([route]);
+
+    // Espera para que la carga del audio se complete
+    await waitUtil(1000);
+  }
+
+  async uploadVideo(route) {
+    const selector1 = 'button[aria-label="Add a card"]';
+    await this.page.waitForSelector(selector1);
+    await this.page.click(selector1);
+
+    const selector2 = 'button[data-kg-card-menu-item="Video"]';
+    await this.page.waitForSelector(selector2);
+
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(selector2),
+    ]);
+
+    await fileChooser.accept([route]);
+
+    // Espera para que la carga del audio se complete
+    await waitUtil(1000);
+  }
+
+  async checkVideoPreviewError() {
+    const contentSelector = 'span[data-testid="media-placeholder-errors"]';
+    await this.page.waitForSelector(contentSelector);
+    const contentElementText = await getText(this.page, contentSelector);
+    assert(
+      contentElementText.includes(
+        "The file type you uploaded is not supported. Please use .VIDEO/MP4, .VIDEO/WEBM, .VIDEO/OGG"
+      ),
+      `Error not shown when it should tell the video files allowed`
+    );
   }
 }
 

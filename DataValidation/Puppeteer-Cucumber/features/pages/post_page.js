@@ -104,23 +104,6 @@ class PostPageObject {
     // Espera para que la navegación se complete
     await new Promise((r) => setTimeout(r, 500));
   }
-
-  async uploadFeatureImage(route) {
-    // Espera a que el botón "Add feature image" esté disponible en la página
-    await this.page.waitForSelector(
-      "button.gh-editor-feature-image-add-button"
-    );
-
-    const [fileChooser] = await Promise.all([
-      this.page.waitForFileChooser(),
-      this.page.click("button.gh-editor-feature-image-add-button"),
-    ]);
-
-    await fileChooser.accept([route]);
-
-    // Espera para que la carga de la imagen se complete
-    await waitUtil(1000);
-  }
 }
 
 module.exports = PostPageObject;

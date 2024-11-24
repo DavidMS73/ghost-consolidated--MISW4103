@@ -72,7 +72,6 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
 
-  @run
   Scenario Outline: E004 - Create a post without title and with description
     Given I navigate to "home" section
     And I login to the application if necessary

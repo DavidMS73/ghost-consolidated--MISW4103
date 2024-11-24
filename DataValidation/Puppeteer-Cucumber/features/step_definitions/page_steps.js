@@ -70,6 +70,10 @@ Given('I toggle show title and feature image', async function () {
   await scope.pages.pages.toggleShowTitleAndFeatureImage();
 });
 
+Given('I toggle feature page', async function () {
+  await scope.pages.pages.toggleFeaturePage();
+});
+
 // Then
 
 Then("I should see page title and content inside a modal", async () => {
@@ -152,4 +156,8 @@ Then('I click paid members only filter', async function () {
 
 Then('I check page title is absent', async function () {
   await scope.pages.pages.checkPageTitleIsAbsent();
+});
+
+Then('I validate first page is featured', async function () {
+  await scope.pages.pages.validateFirstPageIsFeatured();
 });

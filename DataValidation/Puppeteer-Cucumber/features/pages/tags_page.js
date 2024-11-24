@@ -109,8 +109,8 @@ class TagsPageObject {
         descriptionSelector = '#twitter-description';
         break;
       case 'facebook':
-        titleSelector = '#og-facebook';
-        descriptionSelector = '#og-facebook';
+        titleSelector = '#og-title';
+        descriptionSelector = '#og-description';
         break;
     };
     

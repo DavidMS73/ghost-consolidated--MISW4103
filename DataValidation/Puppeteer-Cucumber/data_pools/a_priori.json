@@ -74,6 +74,10 @@
     "tuple8": {
       "name": "x tag with metadata",
       "desc": "x tag with some metadata"
+    },
+    "tuple9": {
+      "name": "facebook tag with metadata",
+      "desc": "facebook tag with some metadata"
     }
   },
   "post_view": {}

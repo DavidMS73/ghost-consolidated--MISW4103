@@ -71,7 +71,7 @@ Feature: Create tags
       | {a_priori(tag-tuple4_name)} | {a_priori(tag-tuple4_desc)} |
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
       | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |
-
+  
   Scenario Outline: ET05 - Crear un tag interno
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -88,7 +88,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-internalName)} |
       | {faker(internal_alphanumeric)}       |       
 
- Scenario Outline: ET06 - Crear tag interno con codigo hexa de color
+  Scenario Outline: ET06 - Crear tag interno con codigo hexa de color
     Given I navigate to "tags" section
     And I login to the application if necessary
     And I navigate to "tags" section
@@ -105,7 +105,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-internalName)} | {pseudo_aleatorio(tag-color)} |
       | {faker(internal_alphanumeric)}       | {faker(hex_color)}| 
 
- Scenario Outline: ET07 - Crear tag interno con imagen
+  Scenario Outline: ET07 - Crear tag interno con imagen
     Given I navigate to "tags" section
     And I login to the application if necessary
     And I navigate to "tags" section
@@ -155,7 +155,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
       | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   | 
 
-  @run
   Scenario Outline: ET10 - Crear tag con code injection
     Given I navigate to "tags" section
     And I login to the application if necessary

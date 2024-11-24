@@ -15,6 +15,7 @@ Feature: Create page
     And I click the pages type filter
     And I click the published pages filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          |
@@ -37,6 +38,7 @@ Feature: Create page
     And I click the pages type filter
     And I click the published pages filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          | content                          |
@@ -60,6 +62,7 @@ Feature: Create page
     And I click the pages type filter
     And I click the published pages filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          | content                          |
@@ -83,6 +86,7 @@ Feature: Create page
     And I click the pages type filter
     And I click the published pages filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          |
@@ -117,6 +121,7 @@ Feature: Create page
     And I click gear button
     And I click delete page
     And I click delete button
+    And I delete all the info
 
     Examples:
       | title                          | content                          | customUrl                          |
@@ -144,6 +149,7 @@ Feature: Create page
     And I click access filter
     And I click members only filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          | content                          |
@@ -171,6 +177,7 @@ Feature: Create page
     And I click access filter
     And I click paid members only filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          | content                          |
@@ -195,6 +202,7 @@ Feature: Create page
     And I click the pages type filter
     And I click the published pages filter
     And I should see the first page with title
+    And I delete all the info
 
     Examples:
       | title                          | content                          | excerpt                          |
@@ -223,6 +231,7 @@ Feature: Create page
     And I navigate to created page site
     And I check page title is absent
     And I validate content in page view
+    And I delete all the info
 
     Examples:
       | title                           | content                           |
@@ -248,6 +257,7 @@ Feature: Create page
     And I click the published pages filter
     And I should see the first page with title
     And I validate first page is featured
+    And I delete all the info
 
     Examples:
       | title                           | content                           |

@@ -58,6 +58,10 @@
     "tuple4": {
       "name": "this is a new tag",
       "desc": "lets include more details on this one"
+    },
+    "tuple5": {
+      "name": "#this is a new internal tag",
+      "desc": "lets include more details on this one"
     }
   },
   "post_view": {}

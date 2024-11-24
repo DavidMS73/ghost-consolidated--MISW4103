@@ -50,9 +50,10 @@ When("I click on save tag button", async () => {
 
 // Then
 
-Then("I go to tags list", async () => {
-  await scope.pages.tags.goToTagsList();
+Then("I go to {string} tags list", async (kind) => {
+  await scope.pages.tags.goToTagsList(kind);
 });
+
 
 Then("the tag should be in the list", async () => {
   const { tagName } = scope.variables;

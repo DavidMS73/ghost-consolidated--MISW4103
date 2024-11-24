@@ -47,6 +47,7 @@ const fakerData = (attribute) => {
   else if (attribute === "paragraph_5") return faker.lorem.paragraph(5);
   else if (attribute === "paragraph_10") return faker.lorem.paragraph(10);
   else if (attribute === "alphanumeric") return faker.string.alphanumeric(15);
+  else if (attribute === "internal_alphanumeric") return "#" + faker.string.alphanumeric(15);
   else if (attribute === "alphanumeric_100")
     return faker.string.alphanumeric(100);
   else if (attribute === "alphanumeric_150")

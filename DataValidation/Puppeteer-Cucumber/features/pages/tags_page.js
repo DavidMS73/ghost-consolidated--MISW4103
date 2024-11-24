@@ -32,10 +32,16 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
-  async goToTagsList() {
+  async goToTagsList(kind) {
     await this.page.waitForSelector('a[href="#/tags/"]');
     await this.page.click('a[href="#/tags/"]');
     await new Promise((r) => setTimeout(r, 500));
+
+    if (kind === 'internal') {
+      await this.page.waitForSelector('button[data-test-tags-nav="internal"]');
+      await this.page.click('button[data-test-tags-nav="internal"]');
+      await new Promise((r) => setTimeout(r, 500));
+    }
   }
 
   async checkTagInTitle(title) {
@@ -69,7 +75,7 @@ class TagsPageObject {
 
     return false;
   }
-  
+
   async validateTagSlug({
     tagName, tagSlug
   }) {

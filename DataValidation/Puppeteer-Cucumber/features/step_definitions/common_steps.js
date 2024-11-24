@@ -1,17 +1,5 @@
 const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
-const { changeInJson } = require("../utils/utils");
-const { faker } = require("@faker-js/faker");
-
-// Given
-
-Given("I create pseudo random data with seed {string}", async (seed) => {
-  faker.seed(Number(seed));
-  const jsonData = scope.pseudoAleatorioDataPool;
-  changeInJson(jsonData, faker);
-  // Guardar los datos en scope.pseudoAleatorioDataPool
-  scope.pseudoAleatorioDataPool = jsonData;
-});
 
 Given("I click preview button", async () => {
   await scope.pages.common.clickPreviewButton();
@@ -38,16 +26,26 @@ Then("I should see title inside a modal", async () => {
   await scope.pages.common.clickCloseNewPublishModal(title);
 });
 
+Then(
+  "I should see title \\(Untitled) and correct description inside a modal",
+  async () => {
+    const { postDescription } = scope.variables;
+    await scope.pages.common.checkNewPublishModal(
+      "(Untitled)",
+      postDescription
+    );
+    await scope.pages.common.clickCloseNewPublishModal();
+  }
+);
+
 Then("I should see title and content inside a modal", async () => {
   const { postTitle, postDescription } = scope.variables;
   await scope.pages.common.checkNewPublishModal(postTitle, postDescription);
   await scope.pages.common.clickCloseNewPublishModal();
 });
 
-Then(
-  "I should see title {string} and a image inside the modal",
-  async (title) => {
-    await scope.pages.common.checkNewPublishModal(title, null, true);
-    await scope.pages.common.clickCloseNewPublishModal();
-  }
-);
+Then("I should see title and a image inside a modal", async () => {
+  const { postTitle } = scope.variables;
+  await scope.pages.common.checkNewPublishModal(postTitle, null, true);
+  await scope.pages.common.clickCloseNewPublishModal();
+});

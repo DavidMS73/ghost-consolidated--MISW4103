@@ -1,19 +1,24 @@
 {
   "post": {
     "tuple1": {
-      "title": "New test post",
-      "description": "New description post",
-      "image_forest": "./assets/forest.jpg"
+      "title": "Post published later",
+      "description": "Post to be published later",
+      "featureImage": "forest"
     },
     "tuple2": {
-      "title": "Post about dogs",
-      "description": "Dogs are the best pets in the world :)",
-      "image_nissan": "./assets/Nissan-Skyline-GT-R-R32"
+      "title": "Post published right now",
+      "description": "Post to be published right now",
+      "featureImage": "Nissan-Skyline-GT-R-R32"
     },
     "tuple3": {
-      "title": "Post about cats",
-      "description": "Cats are the best pets in the world :)",
-      "image_forest": "./assets/forest.jpg"
+      "title": "Post with feature image",
+      "description": "Post with a feature image to be published",
+      "featureImage": "forest"
+    },
+    "tuple4": {
+      "title": "Post without title",
+      "description": "Description of post without title",
+      "featureImage": "forest"
     }
   },
   "page": {

@@ -77,15 +77,16 @@ const dataProcessor = (data) => {
       const attribute_info_split = groupInfo[1].split("_");
 
       content =
-        scope.aProriDataPool[group][attribute_info_split[0]][
+        scope.aPrioriDataPool[group][attribute_info_split[0]][
           attribute_info_split[1]
         ];
     } else if (origin === "pseudo_aleatorio") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
       const attributeInfo = groupInfo[1];
+      const position = scope.actualPseudoAleatorioPosition[group];
 
-      content = scope.pseudoAleatorioDataPool[group][attributeInfo];
+      content = scope.pseudoAleatorioDataPool[group][position][attributeInfo];
     } else if (origin === "faker") {
       content = fakerData(attribute);
     } else if (origin === "default") {

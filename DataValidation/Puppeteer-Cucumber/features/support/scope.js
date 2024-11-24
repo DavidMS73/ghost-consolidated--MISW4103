@@ -11,7 +11,18 @@ module.exports = {
     sidebar: undefined,
     common: undefined,
   },
-  aProriDataPool: {},
-  pseudoAleatorioDataPool: {},
+  aPrioriDataPool: {},
+  pseudoAleatorioDataPool: {
+    post: [],
+    page: [],
+    tag: [],
+    member: [],
+  },
+  actualPseudoAleatorioPosition: {
+    post: undefined,
+    page: undefined,
+    tag: undefined,
+    member: undefined,
+  },
   variables: {},
 };

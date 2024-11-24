@@ -1,7 +1,7 @@
 const { Given, Then } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const assert = require("assert");
-const { dataProcessor, formatString } = require("../utils/utils");
+const { dataProcessor, formatString, waitUtil } = require("../utils/utils");
 
 // Given
 
@@ -33,8 +33,11 @@ Given("I click on set it live now option", async () => {
   await scope.pages.posts.clickPostSetItLiveNow();
 });
 
-Given("I upload a feature image", async () => {
-  await scope.pages.posts.uploadFeatureImage("./assets/forest.jpg");
+Given("I upload a feature image {string}", async (image) => {
+  const processed = dataProcessor(image);
+  scope.variables.postFeatureImage = true;
+  await scope.pages.posts.uploadFeatureImage("./assets/" + processed + ".jpg");
+  await waitUtil(500);
 });
 
 // Then
@@ -53,6 +56,12 @@ Then("the post created should be in the list", async () => {
   // Write code here that turns the phrase above into concrete actions
   const result = await scope.pages.posts.checkPostInList(postTitle);
   assert(result, `The post ${postTitle} is not in the list`);
+});
+
+Then("the post \\(Untitled) should be in the list", async () => {
+  // Write code here that turns the phrase above into concrete actions
+  const result = await scope.pages.posts.checkPostInList("(Untitled)");
+  assert(result, `The post (Untitled) is not in the list`);
 });
 
 Then("I go to published posts", async () => {

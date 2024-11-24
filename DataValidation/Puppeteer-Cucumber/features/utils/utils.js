@@ -16,6 +16,12 @@ const getText = async (page, selector) => {
   );
 };
 
+const getInputText = async (page, selector) => {
+  return await page.$eval(selector, ipt => {
+    return ipt.value;
+  });
+};
+
 const getImageExists = async (page, selector) => {
   const element = await page.$(selector);
   return element !== null;
@@ -78,7 +84,7 @@ const dataProcessor = (data) => {
 
       content =
         scope.aPrioriDataPool[group][attribute_info_split[0]][
-          attribute_info_split[1]
+        attribute_info_split[1]
         ];
     } else if (origin === "pseudo_aleatorio") {
       const groupInfo = subgroup(attribute);
@@ -120,11 +126,22 @@ const changeInJsonPseudoAleatorio = (obj, fakerWithSeed) => {
   }
 };
 
+const isElementVisible = async (page, cssSelector) => {
+  let visible = true;
+  await page.waitForSelector(cssSelector, { visible: true, timeout: 2000 })
+    .catch(() => {
+      visible = false;
+    });
+  return visible;
+};
+
 module.exports = {
   waitUtil,
   getText,
+  getInputText,
   getImageExists,
   dataProcessor,
   formatString,
   changeInJson: changeInJsonPseudoAleatorio,
+  isElementVisible,
 };

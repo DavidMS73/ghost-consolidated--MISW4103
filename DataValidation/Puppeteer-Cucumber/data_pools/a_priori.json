@@ -113,12 +113,14 @@
     "tuple9": {
       "name": "facebook tag with metadata",
       "desc": "facebook tag with some metadata"
-    }
-    ,
+    },
     "tuple10": {
       "name": "tag with code injection",
       "header": "<h1>header</h1>",
       "footer": "<h1>footer</h1>"
+    },
+    "tuple11": {
+      "name": ""
     }
   },
   "post_view": {}

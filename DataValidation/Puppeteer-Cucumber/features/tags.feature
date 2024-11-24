@@ -181,3 +181,17 @@ Feature: Create tags
       | {a_priori(tag-tuple10_name)}| {a_priori(tag-tuple10_header)}              | {a_priori(tag-tuple10_footer)}              |
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-codeInjectionHeader)} | {pseudo_aleatorio(tag-codeInjectionFooter)} |
       | {faker(alphanumeric)}       | {faker(html_tag)}                           | {faker(html_tag)}                           |
+
+  Scenario Outline: ET11 - Crear un tag sin nombre genera error de validacion
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    When I click on save tag button
+    Then I should see an error in the tag name field
+
+    Examples:
+      | tagName                     |
+      | {a_priori(tag-tuple11_name)}|
+      

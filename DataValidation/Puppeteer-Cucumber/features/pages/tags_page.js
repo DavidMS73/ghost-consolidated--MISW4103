@@ -29,7 +29,8 @@ class TagsPageObject {
     await this.page.evaluate((footContent) => {
       const editor = document.querySelector('#tag-setting-codeinjection-foot .CodeMirror').CodeMirror;
       editor.setValue(footContent);
-    }, footer);  }
+    }, footer);
+  }
 
   async fillColor(color) {
     await this.page.waitForSelector('input[data-test-input="accentColor"]');
@@ -143,6 +144,13 @@ class TagsPageObject {
     }
 
     return false;
+  }
+
+  async checkErrorInTagNameIfEmpty(name) {
+    await this.page.waitForSelector("span.error p.response");
+    // verificar si el texto del selector anterior es igual a XXX
+    const errorText = await this.page.$eval("span.error p.response", e => e.innerText);
+    return name === '' && errorText === "You must specify a name for the tag.";
   }
 
   async validateTagSlug({

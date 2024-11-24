@@ -37,18 +37,19 @@ Given("I upload a tag image {string}", async (image) => {
   await waitUtil(500);
 });
 
-Given("I expand the metadata section", async () => {
-  await scope.pages.tags.expandMetadataSection();
+Given("I expand the {string} metadata section", async (metadataSection) => {
+  await scope.pages.tags.expandMetadataSection(metadataSection);
 });
 
 Given(
-  "I fill the metadata title with the tag name and description {string}",
-  async (tagMetadataDesc) => {
+  "I fill the {string} metadata title with the tag name and description {string}",
+  async (metadataSection, tagMetadataDesc) => {
     const { tagName } = scope.variables;
     const processed = dataProcessor(tagMetadataDesc);
     scope.variables.tagMetadataDesc = processed;
 
     await scope.pages.tags.fillMetadataTitleAndDescription(
+      metadataSection,
       tagName,
       processed
     );

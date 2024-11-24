@@ -70,6 +70,10 @@
     "tuple7": {
       "name": "#image tag",
       "image": "Nissan-Skyline-GT-R-R32"
+    },
+    "tuple8": {
+      "name": "x tag with metadata",
+      "desc": "x tag with some metadata"
     }
   },
   "post_view": {}

@@ -61,8 +61,8 @@ Feature: Create tags
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
-    And I expand the metadata section
-    And I fill the metadata title with the tag name and description "<tagMetadataDesc>"
+    And I expand the "tag" metadata section
+    And I fill the "tag" metadata title with the tag name and description "<tagMetadataDesc>"
     When I click on save tag button
     Then I should see tag title
 
@@ -105,7 +105,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-internalName)} | {pseudo_aleatorio(tag-color)} |
       | {faker(internal_alphanumeric)}       | {faker(hex_color)}| 
 
- @run
  Scenario Outline: ET07 - Crear tag interno con imagen
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -121,3 +120,20 @@ Feature: Create tags
       | tagName                              | image                         |
       | {a_priori(tag-tuple7_name)}          | {a_priori(tag-tuple7_image)}  |
       | {pseudo_aleatorio(tag-internalName)} | {pseudo_aleatorio(tag-image)} |
+
+  Scenario Outline: ET08 - Crear un tag con card en X
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "X" metadata section
+    And I fill the "X" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see tag title
+
+    Examples:
+      | tagName                     | tagMetadataDesc             |
+      | {a_priori(tag-tuple8_name)} | {a_priori(tag-tuple8_desc)} |
+      | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
+      | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |      

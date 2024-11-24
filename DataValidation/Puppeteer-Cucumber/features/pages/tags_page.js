@@ -71,18 +71,53 @@ class TagsPageObject {
     return titleText === title;
   }
 
-  async expandMetadataSection() {
-    const selector = 'section > div:nth-child(1) > div.gh-expandable-header > button';
+  async expandMetadataSection(metadataSection) {
+    let metadataSectionSelectorIndex = 0;
+
+    switch (metadataSection) {
+      case 'tag':
+        metadataSectionSelectorIndex = 1;
+        break;
+      case 'X':
+        metadataSectionSelectorIndex = 2;
+        break;
+      case 'facebook':
+        metadataSectionSelectorIndex = 3;
+        break;
+      case 'code injection':
+        metadataSectionSelectorIndex = 4;
+        break;
+    };
+
+    const selector = 'section > div:nth-child(' + metadataSectionSelectorIndex + ') > div.gh-expandable-header > button';
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
     await new Promise((r) => setTimeout(r, 500));
   }
 
-  async fillMetadataTitleAndDescription(metadatdaTitle, metadataDescription) {
-    await this.page.waitForSelector('#meta-title');
-    await this.page.type('#meta-title', metadatdaTitle);
-    await this.page.waitForSelector('#meta-description');
-    await this.page.type('#meta-description', metadataDescription);
+  async fillMetadataTitleAndDescription(metadataSection, metadatdaTitle, metadataDescription) {
+    let titleSelector = '';
+    let descriptionSelector = '';
+
+    switch (metadataSection) {
+      case 'tag':
+        titleSelector = '#meta-title';
+        descriptionSelector = '#meta-description';
+        break;
+      case 'X':
+        titleSelector = '#twitter-title';
+        descriptionSelector = '#twitter-description';
+        break;
+      case 'facebook':
+        titleSelector = '#og-facebook';
+        descriptionSelector = '#og-facebook';
+        break;
+    };
+    
+    await this.page.waitForSelector(titleSelector);
+    await this.page.type(titleSelector, metadatdaTitle);
+    await this.page.waitForSelector(descriptionSelector);
+    await this.page.type(descriptionSelector, metadataDescription);
     await new Promise((r) => setTimeout(r, 500));
   }
 

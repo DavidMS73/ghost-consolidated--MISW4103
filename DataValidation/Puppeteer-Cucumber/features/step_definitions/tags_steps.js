@@ -24,11 +24,15 @@ Given("I expand the metadata section", async () => {
 });
 
 Given(
-  "I fill the metadata title with {string} and description {string}",
-  async (metadatdaTitle, metadataDescription) => {
+  "I fill the metadata title with the tag name and description {string}",
+  async (tagMetadataDesc) => {
+    const { tagName } = scope.variables;
+    const processed = dataProcessor(tagMetadataDesc);
+    scope.variables.tagMetadataDesc = processed;
+  
     await scope.pages.tags.fillMetadataTitleAndDescription(
-      metadatdaTitle,
-      metadataDescription
+      tagName,
+      processed
     );
   }
 );

@@ -39,7 +39,8 @@
   "member": {},
   "tag": {
     "tuple1": {
-      "name": "custom tag name 1"
+      "name": "custom tag name 1",
+      "desc": "custom tag description 1"
     }
   },
   "post_view": {}

@@ -54,14 +54,10 @@ const fakerData = (attribute) => {
   else if (attribute === "paragraph_10") return faker.lorem.paragraph(10);
   else if (attribute === "alphanumeric") return faker.string.alphanumeric(15);
   else if (attribute === "internal_alphanumeric") return "#" + faker.string.alphanumeric(15);
-  else if (attribute === "alphanumeric_100")
-    return faker.string.alphanumeric(100);
-  else if (attribute === "alphanumeric_150")
-    return faker.string.alphanumeric(150);
-  else if (attribute === "alphanumeric_255")
-    return faker.string.alphanumeric(255);
-  else if (attribute === "alphanumeric_256")
-    return faker.string.alphanumeric(256);
+  else if (attribute.includes("alphanumeric_")) {
+    const length = parseInt(attribute.split("_")[1]);
+    return faker.string.alphanumeric(length);
+  }
   else if (attribute === "url") return faker.internet.url();
   else if (attribute === "email") return faker.internet.email();
   else if (attribute === "username") return faker.internet.username();
@@ -74,6 +70,12 @@ const fakerData = (attribute) => {
     var tagName = faker.lorem.word();
     return `<${tagName}>${faker.lorem.sentence()}</${tagName}>`;
   }
+  else if (attribute === "words") return faker.lorem.words();
+  else if (attribute.includes("word_")) {
+    const length = parseInt(attribute.split("_")[1]);
+    return faker.lorem.words(length);
+  }
+  else if (attribute === "country") return faker.location.country();
 };
 
 const dataProcessor = (data) => {

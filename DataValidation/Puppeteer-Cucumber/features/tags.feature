@@ -1,22 +1,29 @@
 Feature: Create tags
   Create a new tag
 
-  Scenario: E009 - Crear un tag modificando su slug con caracteres especiales
+  @run
+  Scenario Outline: ET01 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "11"
     And I navigate to "tags" section
     And I click on new tag button
-    And I fill tag name with "test tag name"
+    And I fill tag name with "<tagName>"
     And I fill the slug with an emoji
     When I click on save tag button
     And I go to tags list
-    Then the tag "test tag name" should be in the list
-    And The tag "test tag name" has slug starting with "tag"
+    Then the tag should be in the list
+    And The tag has slug starting with "tag"
 
-  @run
-  Scenario Outline: ET02_1 - Crear un tag con nombre existente
+    Examples:
+      | tagName                     |
+      | {a_priori(tag-tuple1_name)} |
+      | {faker(alphanumeric)}       | 
+
+  Scenario Outline: ET02 - Crear un tag con nombre existente
     Given I navigate to "tags" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "21"
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
@@ -34,7 +41,7 @@ Feature: Create tags
       | {a_priori(tag-tuple1_name)} |
       | {faker(alphanumeric)}       | 
 
-  Scenario Outline: ET03_1 - Crear un tag con un nombre satisfactoriamente
+  Scenario Outline: ET03 - Crear un tag con un nombre satisfactoriamente
     Given I navigate to "tags" section
     And I login to the application if necessary
     And I create pseudo random data with seed "31"
@@ -49,7 +56,7 @@ Feature: Create tags
       | {a_priori(tag-tuple1_name)} |
       | {faker(alphanumeric)}       |    
 
-  Scenario Outline: ET04_1 - Crear un tag con metadata
+  Scenario Outline: ET04 - Crear un tag con metadata
     Given I navigate to "tags" section
     And I login to the application if necessary
     And I create pseudo random data with seed "41"

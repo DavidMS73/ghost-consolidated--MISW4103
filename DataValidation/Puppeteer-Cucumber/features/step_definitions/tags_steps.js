@@ -34,7 +34,7 @@ Given(
     const { tagName } = scope.variables;
     const processed = dataProcessor(tagMetadataDesc);
     scope.variables.tagMetadataDesc = processed;
-  
+
     await scope.pages.tags.fillMetadataTitleAndDescription(
       tagName,
       processed
@@ -66,14 +66,13 @@ Then("I should see tag title", async () => {
   console.assert(result, `The tag ${tagName} is not in the title`);
 });
 
-Then(
-  "The tag {string} has slug starting with {string}",
-  async function (tagName, tagSlug) {
-    await scope.pages.tags.validateTagSlug({
-      tagName,
-      tagSlug,
-    });
-  }
+Then("The tag has slug starting with {string}", async function (tagSlug) {
+  const { tagName } = scope.variables;
+  await scope.pages.tags.validateTagSlug({
+    tagName,
+    tagSlug,
+  });
+}
 );
 
 Then(

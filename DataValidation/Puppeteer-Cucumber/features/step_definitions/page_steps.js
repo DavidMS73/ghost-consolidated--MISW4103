@@ -61,6 +61,15 @@ Given('I fill excerpt with {string}', async function (excerpt) {
   await scope.pages.pages.fillExcerpt(processed);
 });
 
+Given('I copy page URL', async function () {
+  const url = await scope.pages.pages.getPageUrl();
+  scope.variables.url = url;
+});
+
+Given('I toggle show title and feature image', async function () {
+  await scope.pages.pages.toggleShowTitleAndFeatureImage();
+});
+
 // Then
 
 Then("I should see page title and content inside a modal", async () => {
@@ -112,7 +121,8 @@ Then("I validate title in page view", async function () {
   await scope.pages.pages.validatePageTitle(title);
 });
 
-Then("I validate content {string} in page view", async function (content) {
+Then("I validate content in page view", async function () {
+  const content = formatString(scope.variables.content);
   await scope.pages.pages.validatePageContent(content);
 });
 
@@ -138,4 +148,8 @@ Then('I click members only filter', async function () {
 
 Then('I click paid members only filter', async function () {
   await scope.pages.pages.clickPaidMembersOnlyFilter();
+});
+
+Then('I check page title is absent', async function () {
+  await scope.pages.pages.checkPageTitleIsAbsent();
 });

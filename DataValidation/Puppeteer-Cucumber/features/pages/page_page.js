@@ -1,4 +1,4 @@
-const { getText, waitUtil } = require("../utils/utils");
+const { getText, waitUtil, isElementVisible, getInputText } = require("../utils/utils");
 const assert = require("assert");
 const { BasePageObject } = require("./base_page");
 const scope = require('../support/scope');
@@ -150,6 +150,24 @@ class PagePageObject extends BasePageObject {
 
   async fillExcerpt(excerpt) {
     await this.typeValue('textarea[data-test-field="custom-excerpt"]', excerpt);
+  }
+
+  async getPageUrl() {
+    const selector = 'input[name="post-setting-slug"]';
+    await this.page.waitForSelector(selector);
+    return await getInputText(this.page, selector);
+  }
+
+  async toggleShowTitleAndFeatureImage() {
+    await this.clickElement('div[class="gh-toggle-featured"]');
+  }
+
+  async checkPageTitleIsAbsent() {
+    const isVisible = await isElementVisible(
+      this.page,
+      'h1[class^="gh-article-title"]'
+    );
+    assert(isVisible === false);
   }
 }
 

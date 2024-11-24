@@ -1,7 +1,6 @@
 Feature: Create tags
   Create a new tag
 
-  @run
   Scenario Outline: ET01 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -20,7 +19,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       | 
 
-  @run
   Scenario Outline: ET02 - Crear un tag con nombre existente
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -42,7 +40,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       | 
 
-  @run
   Scenario Outline: ET03 - Crear un tag con un nombre satisfactoriamente
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -58,7 +55,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       |    
 
-  @run
   Scenario Outline: ET04 - Crear un tag con metadata
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -76,7 +72,6 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
       | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |
 
-  @run
   Scenario Outline: ET05 - Crear un tag interno
     Given I navigate to "tags" section
     And I login to the application if necessary

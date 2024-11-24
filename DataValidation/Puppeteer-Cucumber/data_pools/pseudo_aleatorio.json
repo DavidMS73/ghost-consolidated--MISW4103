@@ -10,6 +10,8 @@
     "excerpt": ""
   },
   "member": {},
-  "tag": {},
+  "tag": {
+    "name": ""
+  },
   "post_view": {}
 }

@@ -37,6 +37,10 @@
     }
   },
   "member": {},
-  "tag": {},
+  "tag": {
+    "tuple1": {
+      "name": "custom tag name 1"
+    }
+  },
   "post_view": {}
 }

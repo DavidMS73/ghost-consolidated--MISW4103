@@ -29,15 +29,21 @@ Feature: Create tags
     Then I go to tags list
     And There are 2 or more tags with tag "test tag name" in the tag list
 
-  @rv-596
-  Scenario: E0011 - Crear un tag con un nombre satisfactoriamente
+  @run
+  Scenario Outline: ET03_1 - Crear un tag con un nombre satisfactoriamente
     Given I navigate to "tags" section
     And I login to the application if necessary
+    And I create pseudo random data with seed "10"
     And I navigate to "tags" section
     And I click on new tag button
-    And I fill tag name with "test tag name 2"
+    And I fill tag name with "<tagName>"
     When I click on save tag button
-    Then I should see tag title "test tag name 2"
+    Then I should see tag title
+
+    Examples:
+      | tagName                     |
+      | {a_priori(tag-tuple1_name)} |
+      | {faker(alphanumeric)}       |    
 
   @rv-596
   Scenario: E0012 - Crear un tag con un nombre satisfactorio y metadata

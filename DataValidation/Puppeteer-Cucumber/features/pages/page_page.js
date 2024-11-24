@@ -80,6 +80,13 @@ class PagePageObject extends BasePageObject {
     assert(text === title);
   }
 
+  async validateFirstPageIsFeatured() {
+    const selector =
+      'div[class^="posts-list"] > div:nth-child(1) > li > a:nth-child(1) > h3 > svg';
+    const isVisible = await isElementVisible(this.page, selector);
+    assert(isVisible);
+  }
+
   async clickGearButton() {
     await this.clickElement('button[title="Settings"]');
   }
@@ -168,6 +175,10 @@ class PagePageObject extends BasePageObject {
       'h1[class^="gh-article-title"]'
     );
     assert(isVisible === false);
+  }
+
+  async toggleFeaturePage() {
+    await this.clickElement('span[class="gh-toggle-featured"]');
   }
 }
 

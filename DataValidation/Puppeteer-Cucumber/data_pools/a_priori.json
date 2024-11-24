@@ -77,6 +77,49 @@
     }
   },
   "member": {},
-  "tag": {},
+  "tag": {
+    "tuple1": {
+      "name": "tag name 1",
+      "desc": "custom tag description 1"
+    },
+    "tuple2": {
+      "name": "new tag",
+      "desc": "some basic description"
+    },
+    "tuple3": {
+      "name": "another basic tag",
+      "desc": "long description of another basic tag name with some more details"
+    },
+    "tuple4": {
+      "name": "this is a new tag",
+      "desc": "lets include more details on this one"
+    },
+    "tuple5": {
+      "name": "#this is a new internal tag",
+      "desc": "lets include more details on this one"
+    },
+    "tuple6": {
+      "name": "#internal tag with color",
+      "color": "CCAAFF"
+    },
+    "tuple7": {
+      "name": "#image tag",
+      "image": "Nissan-Skyline-GT-R-R32"
+    },
+    "tuple8": {
+      "name": "x tag with metadata",
+      "desc": "x tag with some metadata"
+    },
+    "tuple9": {
+      "name": "facebook tag with metadata",
+      "desc": "facebook tag with some metadata"
+    }
+    ,
+    "tuple10": {
+      "name": "tag with code injection",
+      "header": "<h1>header</h1>",
+      "footer": "<h1>footer</h1>"
+    }
+  },
   "post_view": {}
 }

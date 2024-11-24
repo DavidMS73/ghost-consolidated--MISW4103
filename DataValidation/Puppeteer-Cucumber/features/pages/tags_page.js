@@ -18,6 +18,25 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async fillCodeInjection(header, footer) {
+    await this.page.waitForSelector('#tag-setting-codeinjection-head .CodeMirror');
+    await this.page.evaluate((headerContent) => {
+      const editor = document.querySelector('#tag-setting-codeinjection-head .CodeMirror').CodeMirror;
+      editor.setValue(headerContent);
+    }, header);
+
+    await this.page.waitForSelector('#tag-setting-codeinjection-foot .CodeMirror');
+    await this.page.evaluate((footContent) => {
+      const editor = document.querySelector('#tag-setting-codeinjection-foot .CodeMirror').CodeMirror;
+      editor.setValue(footContent);
+    }, footer);  }
+
+  async fillColor(color) {
+    await this.page.waitForSelector('input[data-test-input="accentColor"]');
+    await this.page.type('input[data-test-input="accentColor"]', color);
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async fillSlug(slug) {
     const selector = 'input[data-test-input="tag-slug"]';
     await this.page.waitForSelector(selector);
@@ -26,16 +45,37 @@ class TagsPageObject {
     await waitUtil(500);
   }
 
+  async uploadImage(route) {
+    // Espera a que el botón "Add feature image" esté disponible en la página
+    await this.page.waitForSelector(".x-file-input");
+
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(".x-file-input"),
+    ]);
+
+    await fileChooser.accept([route]);
+
+    // Espera para que la carga de la imagen se complete
+    await waitUtil(1000);
+  }
+
   async clickSaveTagButton() {
     await this.page.waitForSelector('button[data-test-button="save"]');
     await this.page.click('button[data-test-button="save"]');
     await new Promise((r) => setTimeout(r, 500));
   }
 
-  async goToTagsList() {
+  async goToTagsList(kind) {
     await this.page.waitForSelector('a[href="#/tags/"]');
     await this.page.click('a[href="#/tags/"]');
     await new Promise((r) => setTimeout(r, 500));
+
+    if (kind === 'internal') {
+      await this.page.waitForSelector('button[data-test-tags-nav="internal"]');
+      await this.page.click('button[data-test-tags-nav="internal"]');
+      await new Promise((r) => setTimeout(r, 500));
+    }
   }
 
   async checkTagInTitle(title) {
@@ -44,18 +84,53 @@ class TagsPageObject {
     return titleText === title;
   }
 
-  async expandMetadataSection() {
-    const selector = 'section > div:nth-child(1) > div.gh-expandable-header > button';
+  async expandMetadataSection(metadataSection) {
+    let metadataSectionSelectorIndex = 0;
+
+    switch (metadataSection) {
+      case 'tag':
+        metadataSectionSelectorIndex = 1;
+        break;
+      case 'X':
+        metadataSectionSelectorIndex = 2;
+        break;
+      case 'facebook':
+        metadataSectionSelectorIndex = 3;
+        break;
+      case 'code injection':
+        metadataSectionSelectorIndex = 4;
+        break;
+    };
+
+    const selector = 'section > div:nth-child(' + metadataSectionSelectorIndex + ') > div.gh-expandable-header > button';
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
     await new Promise((r) => setTimeout(r, 500));
   }
 
-  async fillMetadataTitleAndDescription(metadatdaTitle, metadataDescription) {
-    await this.page.waitForSelector('#meta-title');
-    await this.page.type('#meta-title', metadatdaTitle);
-    await this.page.waitForSelector('#meta-description');
-    await this.page.type('#meta-description', metadataDescription);
+  async fillMetadataTitleAndDescription(metadataSection, metadatdaTitle, metadataDescription) {
+    let titleSelector = '';
+    let descriptionSelector = '';
+
+    switch (metadataSection) {
+      case 'tag':
+        titleSelector = '#meta-title';
+        descriptionSelector = '#meta-description';
+        break;
+      case 'X':
+        titleSelector = '#twitter-title';
+        descriptionSelector = '#twitter-description';
+        break;
+      case 'facebook':
+        titleSelector = '#og-title';
+        descriptionSelector = '#og-description';
+        break;
+    };
+
+    await this.page.waitForSelector(titleSelector);
+    await this.page.type(titleSelector, metadatdaTitle);
+    await this.page.waitForSelector(descriptionSelector);
+    await this.page.type(descriptionSelector, metadataDescription);
     await new Promise((r) => setTimeout(r, 500));
   }
 
@@ -69,7 +144,7 @@ class TagsPageObject {
 
     return false;
   }
-  
+
   async validateTagSlug({
     tagName, tagSlug
   }) {

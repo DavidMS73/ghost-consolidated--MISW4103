@@ -51,7 +51,14 @@
       "featureImage": "disease-2"
     }
   ],
-  "page": [],
+  "page": [
+    {
+      "title": "Pseudo-random page",
+      "content": "Pseudo-random description",
+      "customUrl": "pseudo-random-page",
+      "excerpt": "Pseudo-random excerpt"
+    }
+  ],
   "member": [],
   "tag": []
 }

@@ -20,6 +20,7 @@ const TagsPageObject = require("../pages/tags_page");
 const MembersPageObject = require("../pages/members_page");
 const CommonPageObject = require("../pages/common_page");
 const PostsViewPageObject = require("../pages/posts_view_page");
+const EditUserPageObject = require("../pages/edit_user_page");
 const { default: axios } = require("axios");
 const properties = require("../../properties");
 
@@ -161,6 +162,7 @@ Before(async function ({ gherkinDocument }) {
     page: undefined,
     tag: undefined,
     member: undefined,
+    user: undefined,
   };
 
   await pseudoAleatorioLoadInfoFromMockaroo();
@@ -230,6 +232,7 @@ function createPageObjects(page) {
     members: new MembersPageObject(page),
     common: new CommonPageObject(page),
     postsView: new PostsViewPageObject(page),
+    editUser: new EditUserPageObject(page),
   };
 }
 
@@ -244,27 +247,13 @@ async function pseudoAleatorioLoadInfoFromMockaroo() {
     const pageMockaroo = await axios.get(
       "https://my.api.mockaroo.com/pages.json?key=e3fde9a0"
     );
-    console.log('Mockaroo Data:');
-    console.log(postMockaroo.data);
-    console.log(tagMockaroo.data);
-    console.log(pageMockaroo.data);
+    const userMockaroo = await axios.get("https://my.api.mockaroo.com/user.json?key=e3fde9a0");
+
     // Guardar los datos en scope.pseudoAleatorioDataPool
     scope.pseudoAleatorioDataPool.post = postMockaroo.data;
     scope.pseudoAleatorioDataPool.tag = postMockaroo.data;
     scope.pseudoAleatorioDataPool.page = pageMockaroo.data;
-    // Select a random position from pseudo aleatorio data pool
-    scope.actualPseudoAleatorioPosition.post = Math.floor(
-      Math.random() * scope.pseudoAleatorioDataPool.post.length
-    );
-    scope.actualPseudoAleatorioPosition.page = Math.floor(
-      Math.random() * scope.pseudoAleatorioDataPool.page.length
-    );
-    scope.actualPseudoAleatorioPosition.tag = Math.floor(
-      Math.random() * scope.pseudoAleatorioDataPool.tag.length
-    );
-    scope.actualPseudoAleatorioPosition.member = Math.floor(
-      Math.random() * scope.pseudoAleatorioDataPool.member.length
-    );
+    scope.pseudoAleatorioDataPool.user = userMockaroo.data;
   } else {
     const pathPseudoAleatorioDataPool = "./data_pools/pseudo_aleatorio.json";
     const data = await fs.readFileSync(pathPseudoAleatorioDataPool, "utf8");
@@ -278,4 +267,21 @@ async function pseudoAleatorioLoadInfoFromMockaroo() {
       throw error;
     }
   }
+
+  // Select a random position from pseudo aleatorio data pool
+  scope.actualPseudoAleatorioPosition.post = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.post.length
+  );
+  scope.actualPseudoAleatorioPosition.page = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.page.length
+  );
+  scope.actualPseudoAleatorioPosition.tag = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.tag.length
+  );
+  scope.actualPseudoAleatorioPosition.member = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.member.length
+  );
+  scope.actualPseudoAleatorioPosition.user = Math.floor(
+    Math.random() * scope.pseudoAleatorioDataPool.user.length
+  );
 }

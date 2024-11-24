@@ -135,5 +135,12 @@
     "realistic": {
       "name": "Featured Posts"
     }
+  },
+  "user": {
+    "normal": {
+      "fullName": "John Doe",
+      "email": "john.doe@email.com",
+      "slug": "john-doe"
+    }
   }
 }

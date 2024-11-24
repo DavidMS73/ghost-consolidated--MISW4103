@@ -45,12 +45,6 @@ Then(
   }
 );
 
-// TODO: Delete this if not used
-Then("current view should be the one created", async () => {
-  const { viewName } = scope.variables;
-  await scope.pages.postsView.assertCurrentView(viewName);
-});
-
 Then(
   "an error should appear indicating that the view name is required",
   async () => {

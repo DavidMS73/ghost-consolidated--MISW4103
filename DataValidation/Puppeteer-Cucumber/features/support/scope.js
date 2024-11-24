@@ -10,6 +10,7 @@ module.exports = {
     members: undefined,
     sidebar: undefined,
     common: undefined,
+    editUser: undefined,
   },
   aPrioriDataPool: {},
   pseudoAleatorioDataPool: {
@@ -17,12 +18,14 @@ module.exports = {
     page: [],
     tag: [],
     member: [],
+    user: [],
   },
   actualPseudoAleatorioPosition: {
     post: undefined,
     page: undefined,
     tag: undefined,
     member: undefined,
+    user: undefined,
   },
   variables: {},
 };

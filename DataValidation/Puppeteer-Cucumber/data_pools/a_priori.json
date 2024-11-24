@@ -62,6 +62,10 @@
     "tuple5": {
       "name": "#this is a new internal tag",
       "desc": "lets include more details on this one"
+    },
+    "tuple6": {
+      "name": "#internal tag with color",
+      "color": "CCAAFF"
     }
   },
   "post_view": {}

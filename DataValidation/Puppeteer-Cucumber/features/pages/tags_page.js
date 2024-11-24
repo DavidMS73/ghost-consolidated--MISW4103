@@ -18,6 +18,12 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async fillColor(color) {
+    await this.page.waitForSelector('input[data-test-input="accentColor"]');
+    await this.page.type('input[data-test-input="accentColor"]', color);
+    await new Promise((r) => setTimeout(r, 500));
+  } 
+
   async fillSlug(slug) {
     const selector = 'input[data-test-input="tag-slug"]';
     await this.page.waitForSelector(selector);

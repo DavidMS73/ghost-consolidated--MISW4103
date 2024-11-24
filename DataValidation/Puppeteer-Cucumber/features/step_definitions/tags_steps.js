@@ -15,6 +15,12 @@ Given("I fill tag name with {string}", async (tagName) => {
   await scope.pages.tags.fillName(processed);
 });
 
+Given("I fill the color input with {string}", async (color) => {
+  const processed = dataProcessor(color);
+  scope.variables.color = processed;
+  await scope.pages.tags.fillColor(processed);
+});
+
 Given("I fill tag name with the previous tag name", async () => {
   const { tagName } = scope.variables;
   await scope.pages.tags.fillName(tagName);

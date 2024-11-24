@@ -57,77 +57,92 @@
     {
       "name": "nulla facilisi",
       "internalName": "#nulla facilisi",
-      "desc": "xylophone playing through the amber waves"
+      "desc": "xylophone playing through the amber waves",
+      "color": "ff5733"
     },
     {
       "name": "integer nec odio praesent libero",
       "internalName": "#integer nec odio praesent libero",
-      "desc": "a walk in the park on a sunny day with birds singing"
+      "desc": "a walk in the park on a sunny day with birds singing",
+      "color": "33ff57"
     },
     {
       "name": "phasellus viverra nulla ut metus varius",
       "internalName": "#phasellus viverra nulla ut metus varius",
-      "desc": "the quick brown fox jumps over the lazy dog"
+      "desc": "the quick brown fox jumps over the lazy dog",
+      "color": "3357ff"
     },
     {
       "name": "ut varius tincidunt libero nam",
       "internalName": "#ut varius tincidunt libero nam",
-      "desc": "the serene landscape painting hung on the wall of the gallery"
+      "desc": "the serene landscape painting hung on the wall of the gallery",
+      "color": "ff33a5"
     },
     {
       "name": "proin quam",
       "internalName": "#proin quam",
-      "desc": "mystery novel with unexpected twists and turns"
+      "desc": "mystery novel with unexpected twists and turns",
+      "color": "a533ff"
     },
     {
       "name": "curabitur at lacus ac velit",
       "internalName": "#curabitur at lacus ac velit",
-      "desc": "the night sky filled with stars"
+      "desc": "the night sky filled with stars",
+      "color": "33ffa5"
     },
     {
       "name": "fusce nec tellus",
       "internalName": "#fusce nec tellus",
-      "desc": "delicious homemade chocolate chip cookies freshly baked"
+      "desc": "delicious homemade chocolate chip cookies freshly baked",
+      "color": "ffa533"
     },
     {
       "name": "sed cursus ante dapibus",
       "internalName": "#sed cursus ante dapibus",
-      "desc": "exploring the depths of the ocean on a sunny day"
+      "desc": "exploring the depths of the ocean on a sunny day",
+      "color": "a5ff33"
     },
     {
       "name": "pellentesque dapibus hendrerit",
       "internalName": "#pellentesque dapibus hendrerit",
-      "desc": "a long and winding road through the mountains"
+      "desc": "a long and winding road through the mountains",
+      "color": "33a5ff"
     },
     {
       "name": "morbi in dui",
       "internalName": "#morbi in dui",
-      "desc": "the bustling city streets at night with bright lights"
+      "desc": "the bustling city streets at night with bright lights",
+      "color": "ff5733"
     },
     {
       "name": "in hac habitasse",
       "internalName": "#in hac habitasse",
-      "desc": "the sound of rain tapping on the window during a storm"
+      "desc": "the sound of rain tapping on the window during a storm",
+      "color": "a533ff"
     },
     {
       "name": "etiam ultricies nisi vel augue",
       "internalName": "#etiam ultricies nisi vel augue",
-      "desc": "a cozy cabin in the snowy woods with a warm fireplace"
+      "desc": "a cozy cabin in the snowy woods with a warm fireplace",
+      "color": "33ffa5"
     },
     {
       "name": "aenean imperdiet",
       "internalName": "#aenean imperdiet",
-      "desc": "watching the sunset over the ocean from a beach"
+      "desc": "watching the sunset over the ocean from a beach",
+      "color": "ffa533"
     },
     {
       "name": "vestibulum ante ipsum primis",
       "internalName": "#vestibulum ante ipsum primis",
-      "desc": "the gentle sound of wind chimes in the breeze"
+      "desc": "the gentle sound of wind chimes in the breeze",
+      "color": "a5ff33"
     },
     {
       "name": "suscipit a feugiat",
       "internalName": "#suscipit a feugiat",
-      "desc": "a warm cup of coffee on a cold morning to start the day"
+      "desc": "a warm cup of coffee on a cold morning to start the day",
+      "color": "33a5ff"
     }
   ]
 }

@@ -60,8 +60,8 @@ const fakerData = (attribute) => {
   else if (attribute === "firstName") return faker.person.firstName();
   else if (attribute === "lastName") return faker.person.lastName();
   else if (attribute === "fullName") return faker.person.fullName();
-  else if (attribute === "special_characters")
-    return faker.string.fromCharacters('!"#$%&', 10);
+  else if (attribute === "special_characters") return faker.string.fromCharacters('!"#$%&', 10);
+  else if (attribute === "hex_color") return faker.color.rgb().replace("#", "");
 };
 
 const dataProcessor = (data) => {

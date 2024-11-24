@@ -1,44 +1,54 @@
 {
   "post": [
     {
-      "title": "Disp fx of lateral condyle of unsp femr, 7thH",
-      "description": "Displaced fracture of lateral condyle of unspecified femur, subsequent encounter for open fracture type I or II with delayed healing"
+      "title": "Corrosion of first degree of male genital region, init",
+      "description": "Corrosion of first degree of male genital region, initial encounter",
+      "featureImage": "disease-6"
     },
     {
-      "title": "Oth serum reaction due to admin blood/products, subs",
-      "description": "Other serum reaction due to administration of blood and blood products, subsequent encounter"
+      "title": "Adverse effect of oral contraceptives, initial encounter",
+      "description": "Adverse effect of oral contraceptives, initial encounter",
+      "featureImage": "disease-3"
     },
     {
-      "title": "Displ suprcndl fx w intrcndl extn low end l femr, 7thP",
-      "description": "Displaced supracondylar fracture with intracondylar extension of lower end of left femur, subsequent encounter for closed fracture with malunion"
+      "title": "Occup of 3-whl mv injured in nonclsn trnsp acc in traf, subs",
+      "description": "Unspecified occupant of three-wheeled motor vehicle injured in noncollision transport accident in traffic accident, subsequent encounter",
+      "featureImage": "disease-3"
     },
     {
-      "title": "Epidural hemorrhage w LOC of 1-5 hrs 59 min, init",
-      "description": "Epidural hemorrhage with loss of consciousness of 1 hour to 5 hours 59 minutes, initial encounter"
+      "title": "Disp fx of triquetrum bone, unspecified wrist, sequela",
+      "description": "Displaced fracture of triquetrum [cuneiform] bone, unspecified wrist, sequela",
+      "featureImage": "disease-5"
     },
     {
-      "title": "Insect bite (nonvenomous) of oral cavity, initial encounter",
-      "description": "Insect bite (nonvenomous) of oral cavity, initial encounter"
+      "title": "Disp fx of capitate bone, unsp wrist, init for clos fx",
+      "description": "Displaced fracture of capitate [os magnum] bone, unspecified wrist, initial encounter for closed fracture",
+      "featureImage": "disease-6"
     },
     {
-      "title": "Blister (nonthermal) of right shoulder, sequela",
-      "description": "Blister (nonthermal) of right shoulder, sequela"
+      "title": "Other fracture of third metacarpal bone, left hand, sequela",
+      "description": "Other fracture of third metacarpal bone, left hand, sequela",
+      "featureImage": "disease-3"
     },
     {
-      "title": "Idiopathic chronic gout, left ankle and foot",
-      "description": "Idiopathic chronic gout, left ankle and foot"
+      "title": "Other injury of pleura",
+      "description": "Other injury of pleura",
+      "featureImage": "disease-6"
     },
     {
-      "title": "Congenital malformation of orbit",
-      "description": "Congenital malformation of orbit"
+      "title": "Nondisplaced comminuted fracture of left patella",
+      "description": "Nondisplaced comminuted fracture of left patella",
+      "featureImage": "disease-4"
     },
     {
-      "title": "Chronic dacryocystitis of unspecified lacrimal passage",
-      "description": "Chronic dacryocystitis of unspecified lacrimal passage"
+      "title": "Adverse effect of caffeine",
+      "description": "Adverse effect of caffeine",
+      "featureImage": "disease-5"
     },
     {
-      "title": "Nondisp avuls fracture (chip fracture) of unsp talus, init",
-      "description": "Nondisplaced avulsion fracture (chip fracture) of unspecified talus, initial encounter for closed fracture"
+      "title": "Unsp inj flexor musc/fasc/tend r little finger at wrs/hnd lv",
+      "description": "Unspecified injury of flexor muscle, fascia and tendon of right little finger at wrist and hand level",
+      "featureImage": "disease-2"
     }
   ],
   "page": [],

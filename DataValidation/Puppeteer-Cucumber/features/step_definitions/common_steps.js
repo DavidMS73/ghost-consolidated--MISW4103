@@ -26,16 +26,26 @@ Then("I should see title inside a modal", async () => {
   await scope.pages.common.clickCloseNewPublishModal(title);
 });
 
+Then(
+  "I should see title \\(Untitled) and correct description inside a modal",
+  async () => {
+    const { postDescription } = scope.variables;
+    await scope.pages.common.checkNewPublishModal(
+      "(Untitled)",
+      postDescription
+    );
+    await scope.pages.common.clickCloseNewPublishModal();
+  }
+);
+
 Then("I should see title and content inside a modal", async () => {
   const { postTitle, postDescription } = scope.variables;
   await scope.pages.common.checkNewPublishModal(postTitle, postDescription);
   await scope.pages.common.clickCloseNewPublishModal();
 });
 
-Then(
-  "I should see title {string} and a image inside the modal",
-  async (title) => {
-    await scope.pages.common.checkNewPublishModal(title, null, true);
-    await scope.pages.common.clickCloseNewPublishModal();
-  }
-);
+Then("I should see title and a image inside a modal", async () => {
+  const { postTitle } = scope.variables;
+  await scope.pages.common.checkNewPublishModal(postTitle, null, true);
+  await scope.pages.common.clickCloseNewPublishModal();
+});

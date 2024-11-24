@@ -104,3 +104,20 @@ Feature: Create tags
       | {a_priori(tag-tuple6_name)}          | {a_priori(tag-tuple6_color)}  |
       | {pseudo_aleatorio(tag-internalName)} | {pseudo_aleatorio(tag-color)} |
       | {faker(internal_alphanumeric)}       | {faker(hex_color)}| 
+
+ @run
+ Scenario Outline: ET07 - Crear tag interno con imagen
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I upload a tag image "<image>"
+    When I click on save tag button
+    Then I go to "internal" tags list
+    And The tag has slug starting with "hash"
+
+    Examples:
+      | tagName                              | image                         |
+      | {a_priori(tag-tuple7_name)}          | {a_priori(tag-tuple7_image)}  |
+      | {pseudo_aleatorio(tag-internalName)} | {pseudo_aleatorio(tag-image)} |

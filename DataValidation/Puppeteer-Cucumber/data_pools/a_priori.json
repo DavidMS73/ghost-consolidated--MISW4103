@@ -66,6 +66,10 @@
     "tuple6": {
       "name": "#internal tag with color",
       "color": "CCAAFF"
+    },
+    "tuple7": {
+      "name": "#image tag",
+      "image": "Nissan-Skyline-GT-R-R32"
     }
   },
   "post_view": {}

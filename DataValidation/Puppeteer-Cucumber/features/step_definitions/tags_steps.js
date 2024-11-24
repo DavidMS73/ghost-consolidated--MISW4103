@@ -1,7 +1,7 @@
 const { Then, Given, When } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const properties = require("../../properties");
-const { dataProcessor, formatString } = require("../utils/utils");
+const { dataProcessor, waitUtil } = require("../utils/utils");
 
 // Given
 
@@ -28,6 +28,13 @@ Given("I fill tag name with the previous tag name", async () => {
 
 Given("I fill the slug with an emoji", async function () {
   await scope.pages.tags.fillSlug("😅");
+});
+
+Given("I upload a tag image {string}", async (image) => {
+  const processed = dataProcessor(image);
+  scope.variables.tagImage = true;
+  await scope.pages.tags.uploadImage("./assets/" + processed + ".jpg");
+  await waitUtil(500);
 });
 
 Given("I expand the metadata section", async () => {

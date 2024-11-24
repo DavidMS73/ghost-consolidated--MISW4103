@@ -22,7 +22,7 @@ class TagsPageObject {
     await this.page.waitForSelector('input[data-test-input="accentColor"]');
     await this.page.type('input[data-test-input="accentColor"]', color);
     await new Promise((r) => setTimeout(r, 500));
-  } 
+  }
 
   async fillSlug(slug) {
     const selector = 'input[data-test-input="tag-slug"]';
@@ -30,6 +30,21 @@ class TagsPageObject {
     await this.page.$eval(selector, el => el.value = '');
     await this.page.type(selector, slug);
     await waitUtil(500);
+  }
+
+  async uploadImage(route) {
+    // Espera a que el botón "Add feature image" esté disponible en la página
+    await this.page.waitForSelector(".x-file-input");
+
+    const [fileChooser] = await Promise.all([
+      this.page.waitForFileChooser(),
+      this.page.click(".x-file-input"),
+    ]);
+
+    await fileChooser.accept([route]);
+
+    // Espera para que la carga de la imagen se complete
+    await waitUtil(1000);
   }
 
   async clickSaveTagButton() {

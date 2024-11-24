@@ -58,91 +58,78 @@
       "name": "nulla facilisi",
       "internalName": "#nulla facilisi",
       "desc": "xylophone playing through the amber waves",
-      "color": "ff5733"
+      "color": "ff5733",
+      "image": "disease-1"
     },
     {
       "name": "integer nec odio praesent libero",
       "internalName": "#integer nec odio praesent libero",
       "desc": "a walk in the park on a sunny day with birds singing",
-      "color": "33ff57"
+      "color": "33ff57",
+      "image": "disease-2"
     },
     {
       "name": "phasellus viverra nulla ut metus varius",
       "internalName": "#phasellus viverra nulla ut metus varius",
       "desc": "the quick brown fox jumps over the lazy dog",
-      "color": "3357ff"
+      "color": "3357ff",
+      "image": "disease-3"
     },
     {
       "name": "ut varius tincidunt libero nam",
       "internalName": "#ut varius tincidunt libero nam",
       "desc": "the serene landscape painting hung on the wall of the gallery",
-      "color": "ff33a5"
+      "color": "ff33a5",
+      "image": "disease-4"
     },
     {
       "name": "proin quam",
       "internalName": "#proin quam",
       "desc": "mystery novel with unexpected twists and turns",
-      "color": "a533ff"
+      "color": "a533ff",
+      "image": "disease-5"
     },
     {
       "name": "curabitur at lacus ac velit",
       "internalName": "#curabitur at lacus ac velit",
       "desc": "the night sky filled with stars",
-      "color": "33ffa5"
+      "color": "33ffa5",
+      "image": "disease-6"
     },
     {
       "name": "fusce nec tellus",
       "internalName": "#fusce nec tellus",
       "desc": "delicious homemade chocolate chip cookies freshly baked",
-      "color": "ffa533"
+      "color": "ffa533",
+      "image": "disease-1"
     },
     {
       "name": "sed cursus ante dapibus",
       "internalName": "#sed cursus ante dapibus",
       "desc": "exploring the depths of the ocean on a sunny day",
-      "color": "a5ff33"
+      "color": "a5ff33",
+      "image": "disease-2"
     },
     {
       "name": "pellentesque dapibus hendrerit",
       "internalName": "#pellentesque dapibus hendrerit",
       "desc": "a long and winding road through the mountains",
-      "color": "33a5ff"
+      "color": "33a5ff",
+      "image": "disease-3"
     },
     {
       "name": "morbi in dui",
       "internalName": "#morbi in dui",
       "desc": "the bustling city streets at night with bright lights",
-      "color": "ff5733"
+      "color": "ff5733",
+      "image": "disease-4"
     },
     {
       "name": "in hac habitasse",
       "internalName": "#in hac habitasse",
       "desc": "the sound of rain tapping on the window during a storm",
-      "color": "a533ff"
-    },
-    {
-      "name": "etiam ultricies nisi vel augue",
-      "internalName": "#etiam ultricies nisi vel augue",
-      "desc": "a cozy cabin in the snowy woods with a warm fireplace",
-      "color": "33ffa5"
-    },
-    {
-      "name": "aenean imperdiet",
-      "internalName": "#aenean imperdiet",
-      "desc": "watching the sunset over the ocean from a beach",
-      "color": "ffa533"
-    },
-    {
-      "name": "vestibulum ante ipsum primis",
-      "internalName": "#vestibulum ante ipsum primis",
-      "desc": "the gentle sound of wind chimes in the breeze",
-      "color": "a5ff33"
-    },
-    {
-      "name": "suscipit a feugiat",
-      "internalName": "#suscipit a feugiat",
-      "desc": "a warm cup of coffee on a cold morning to start the day",
-      "color": "33a5ff"
+      "color": "a533ff",
+      "image": "disease-5"
     }
   ]
 }

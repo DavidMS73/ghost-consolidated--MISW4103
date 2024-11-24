@@ -5,7 +5,6 @@ Feature: Create tags
   Scenario Outline: ET01 - Crear un tag modificando su slug con caracteres especiales
     Given I navigate to "tags" section
     And I login to the application if necessary
-    And I create pseudo random data with seed "11"
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
@@ -24,7 +23,6 @@ Feature: Create tags
   Scenario Outline: ET02 - Crear un tag con nombre existente
     Given I navigate to "tags" section
     And I login to the application if necessary
-    And I create pseudo random data with seed "21"
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
@@ -46,7 +44,6 @@ Feature: Create tags
   Scenario Outline: ET03 - Crear un tag con un nombre satisfactoriamente
     Given I navigate to "tags" section
     And I login to the application if necessary
-    And I create pseudo random data with seed "31"
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
@@ -62,7 +59,6 @@ Feature: Create tags
   Scenario Outline: ET04 - Crear un tag con metadata
     Given I navigate to "tags" section
     And I login to the application if necessary
-    And I create pseudo random data with seed "41"
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"

@@ -91,6 +91,12 @@ Then("I should see tag title", async () => {
   console.assert(result, `The tag ${tagName} is not in the title`);
 });
 
+Then("I should see an error in the tag name field", async () => {
+  const { tagName } = scope.variables;
+  const result = await scope.pages.tags.checkErrorInTagNameIfEmpty(tagName);
+  console.assert(result, `The error label for an empty tag name is not shown`);
+});
+
 Then("The tag has slug starting with {string}", async function (tagSlug) {
   const { tagName } = scope.variables;
   await scope.pages.tags.validateTagSlug({

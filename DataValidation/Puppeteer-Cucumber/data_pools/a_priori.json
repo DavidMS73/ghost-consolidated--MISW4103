@@ -46,6 +46,18 @@
     "tuple1": {
       "name": "custom tag name 1",
       "desc": "custom tag description 1"
+    },
+    "tuple2": {
+      "name": "new tag",
+      "desc": "some basic description"
+    },
+    "tuple3": {
+      "name": "another basic tag",
+      "desc": "long description of another basic tag name with some more details"
+    },
+    "tuple4": {
+      "name": "this is a new tag",
+      "desc": "lets include more details on this one"
     }
   },
   "post_view": {}

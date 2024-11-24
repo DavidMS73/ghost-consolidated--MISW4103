@@ -37,7 +37,7 @@ Feature: Create tags
 
     Examples:
       | tagName                     |
-      | {a_priori(tag-tuple1_name)} |
+      | {a_priori(tag-tuple2_name)} |
       | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       | 
 
@@ -52,7 +52,7 @@ Feature: Create tags
 
     Examples:
       | tagName                     |
-      | {a_priori(tag-tuple1_name)} |
+      | {a_priori(tag-tuple3_name)} |
       | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       |    
 
@@ -69,6 +69,6 @@ Feature: Create tags
 
     Examples:
       | tagName                     | tagMetadataDesc             |
-      | {a_priori(tag-tuple1_name)} | {a_priori(tag-tuple1_desc)} |
+      | {a_priori(tag-tuple4_name)} | {a_priori(tag-tuple4_desc)} |
       | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
-      | {faker(alphanumeric)}       | {faker(alphanumeric_100)}       |
+      | {faker(alphanumeric)}       | {faker(alphanumeric_100)}   |

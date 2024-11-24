@@ -73,6 +73,40 @@ class CommonPageObject {
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
   }
+
+  async deleteAllInfo() {
+    const selector1 = 'a[href="#/settings/"]';
+    await this.page.waitForSelector(selector1);
+    await this.page.click(selector1);
+
+    const selector2 = "button > span";
+    await this.page.waitForSelector(selector2);
+    const elements2 = await this.page.$$(selector2);
+    for (const element of elements2) {
+      const deleteInfo = await this.page.evaluate(
+        (button) => button.innerText,
+        element
+      );
+      if (deleteInfo === "Delete all content") {
+        element.click();
+      }
+    }
+
+    await waitUtil(500);
+
+    const selector3 = "button > span";
+    await this.page.waitForSelector(selector3);
+    const elements3 = await this.page.$$(selector3);
+    for (const element of elements3) {
+      const deleteInfo = await this.page.evaluate(
+        (button) => button.innerText,
+        element
+      );
+      if (deleteInfo === "Delete") {
+        element.click();
+      }
+    }
+  }
 }
 
 module.exports = CommonPageObject;

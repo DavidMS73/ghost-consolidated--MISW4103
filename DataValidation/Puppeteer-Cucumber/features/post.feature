@@ -16,6 +16,7 @@ Feature: Create post
     Then I should see title and content inside a modal
     And I go to scheduled posts
     And the post created should be in the list
+    And I delete all the info
 
     Examples:
       | title                          | description                          |
@@ -41,6 +42,7 @@ Feature: Create post
     Then I should see title and content inside a modal
     And I go to published posts
     And the post created should be in the list
+    And I delete all the info
 
     Examples:
       | title                          | description                          |
@@ -64,6 +66,7 @@ Feature: Create post
     Then I should see title and a image inside a modal
     And I go to published posts
     And the post created should be in the list
+    And I delete all the info
 
     Examples:
       | title                          | image                                 |
@@ -72,7 +75,6 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
 
-  @run
   Scenario Outline: E004 - Create a post without title and with description
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -85,6 +87,7 @@ Feature: Create post
     Then I should see title (Untitled) and correct description inside a modal
     And I go to published posts
     And the post (Untitled) should be in the list
+    And I delete all the info
 
     Examples:
       | description                          |

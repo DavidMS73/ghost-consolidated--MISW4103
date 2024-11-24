@@ -49,3 +49,7 @@ Then("I should see title and a image inside a modal", async () => {
   await scope.pages.common.checkNewPublishModal(postTitle, null, true);
   await scope.pages.common.clickCloseNewPublishModal();
 });
+
+Then("I delete all the info", async () => {
+  await scope.pages.common.deleteAllInfo();
+});

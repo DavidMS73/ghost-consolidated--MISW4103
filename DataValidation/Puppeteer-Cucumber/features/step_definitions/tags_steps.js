@@ -15,6 +15,11 @@ Given("I fill tag name with {string}", async (tagName) => {
   await scope.pages.tags.fillName(processed);
 });
 
+Given("I fill tag name with the previous tag name", async () => {
+  const { tagName } = scope.variables;
+  await scope.pages.tags.fillName(tagName);
+});
+
 Given("I fill the slug with an emoji", async function () {
   await scope.pages.tags.fillSlug("😅");
 });
@@ -49,9 +54,10 @@ Then("I go to tags list", async () => {
   await scope.pages.tags.goToTagsList();
 });
 
-Then("the tag {string} should be in the list", async (title) => {
-  const result = await scope.pages.tags.checkTagInList(title);
-  console.assert(result, `The tag ${title} is not in the list`);
+Then("the tag should be in the list", async () => {
+  const { tagName } = scope.variables;
+  const result = await scope.pages.tags.checkTagInList(tagName);
+  console.assert(result, `The tag ${tagName} is not in the list`);
 });
 
 Then("I should see tag title", async () => {
@@ -71,8 +77,9 @@ Then(
 );
 
 Then(
-  "There are {int} or more tags with tag {string} in the tag list",
-  async function (num, tagName) {
+  "There are {int} or more tags with the previous tag name in the tag list",
+  async function (num) {
+    const { tagName } = scope.variables;
     await scope.pages.tags.validateTagNameIsInTagListNTimes(tagName, num);
   }
 );

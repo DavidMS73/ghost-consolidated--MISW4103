@@ -1,6 +1,5 @@
 Feature: Create page
 
-  @run
   Scenario Outline: EPA01 - Crear una página básica, darle al botón de preview y luego al botón de publicar
     Given I navigate to "home" section
     And I login to the application if necessary

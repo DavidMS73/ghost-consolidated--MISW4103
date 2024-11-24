@@ -57,6 +57,8 @@ const fakerData = (attribute) => {
     return faker.string.alphanumeric(100);
   else if (attribute === "alphanumeric_150")
     return faker.string.alphanumeric(150);
+  else if (attribute === "alphanumeric_255")
+    return faker.string.alphanumeric(255);
   else if (attribute === "alphanumeric_256")
     return faker.string.alphanumeric(256);
   else if (attribute === "url") return faker.internet.url();

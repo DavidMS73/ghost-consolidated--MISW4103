@@ -27,7 +27,7 @@ Feature: Create post
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
-  Scenario Outline: E002 - Create a post with title and description to be published right now (check default option)
+  Scenario Outline: EPO02 - Create a post with title and description to be published right now
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
@@ -53,7 +53,7 @@ Feature: Create post
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
-  Scenario Outline: E003 - Create a post with title and a feature image
+  Scenario Outline: EPO03 - Create a post with title and a feature image
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
@@ -75,7 +75,7 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
 
-  Scenario Outline: E004 - Create a post without title and with description
+  Scenario Outline: EPO04 - Create a post without title and with description
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
@@ -97,3 +97,38 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
+
+  Scenario Outline: EPO05 - Create a post with 255 chars in title (max frontier)
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I click on editor page
+    And I click publish button
+    And I click continue final review button
+    When I click confirm publish button
+    Then I should see title inside a modal
+    And I go to published posts
+    And the post created should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                     |
+      | {faker(alphanumeric_255)} |
+    # El primer example ejecuta la función de faker (datos completamente aleatorios)
+
+  @run
+  Scenario Outline: EPO06 - Create a post with 256 chars in title (max frontier + 1)
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    When I click on editor page
+    Then I should not see the publish button
+
+    Examples:
+      | title                     |
+      | {faker(alphanumeric_256)} |
+    # El primer example ejecuta la función de faker (datos completamente aleatorios)

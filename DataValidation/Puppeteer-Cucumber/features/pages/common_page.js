@@ -22,11 +22,29 @@ class CommonPageObject {
     await this.page.click(selector);
   }
 
+  async checkPublishButtonNotVisible() {
+    const selector = 'button[data-test-button="publish-flow"]';
+    // Espera a que el botón "Publish" esté disponible en la página
+    const element = await this.page.$(selector);
+
+    assert(
+      element === null,
+      `The publish button is in the screen and should not be there`
+    );
+  }
+
   async clickContinueFinalReviewButton() {
     const selector = 'button[data-test-button="continue"]';
     // Espera a que el botón "Publish" esté disponible en la página
     await this.page.waitForSelector(selector);
     // Navega a la página de programación de publicación de una page dando clic en el botón "Publish"
+    await this.page.click(selector);
+    await waitUtil(500);
+  }
+
+  async clickEditorPage() {
+    const selector = "div.koenig-react-editor";
+    await this.page.waitForSelector(selector);
     await this.page.click(selector);
     await waitUtil(500);
   }

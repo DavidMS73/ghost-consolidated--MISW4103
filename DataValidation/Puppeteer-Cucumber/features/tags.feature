@@ -18,6 +18,7 @@ Feature: Create tags
     Examples:
       | tagName                     |
       | {a_priori(tag-tuple1_name)} |
+      | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       | 
 
   Scenario Outline: ET02 - Crear un tag con nombre existente
@@ -39,6 +40,7 @@ Feature: Create tags
     Examples:
       | tagName                     |
       | {a_priori(tag-tuple1_name)} |
+      | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       | 
 
   Scenario Outline: ET03 - Crear un tag con un nombre satisfactoriamente
@@ -54,6 +56,7 @@ Feature: Create tags
     Examples:
       | tagName                     |
       | {a_priori(tag-tuple1_name)} |
+      | {pseudo_aleatorio(tag-name)}|
       | {faker(alphanumeric)}       |    
 
   Scenario Outline: ET04 - Crear un tag con metadata
@@ -70,5 +73,6 @@ Feature: Create tags
 
     Examples:
       | tagName                     | tagMetadataDesc             |
-      | {a_priori(tag-tuple1_name)} | {a_priori(tag-tuple1_desc)} | 
+      | {a_priori(tag-tuple1_name)} | {a_priori(tag-tuple1_desc)} |
+      | {pseudo_aleatorio(tag-name)}| {pseudo_aleatorio(tag-desc)}|
       | {faker(alphanumeric)}       | {faker(alphanumeric_100)}       |

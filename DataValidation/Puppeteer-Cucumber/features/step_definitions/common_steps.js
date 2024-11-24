@@ -13,6 +13,10 @@ Given("I click continue final review button", async () => {
   await scope.pages.common.clickContinueFinalReviewButton();
 });
 
+Given("I click on editor page", async () => {
+  await scope.pages.common.clickEditorPage();
+});
+
 // When
 When("I click confirm publish button", async () => {
   await scope.pages.common.clickConfirmPublishButton();
@@ -52,4 +56,8 @@ Then("I should see title and a image inside a modal", async () => {
 
 Then("I delete all the info", async () => {
   await scope.pages.common.deleteAllInfo();
+});
+
+Given("I should not see the publish button", async () => {
+  await scope.pages.common.checkPublishButtonNotVisible();
 });

@@ -32,6 +32,8 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 > Mockaroo presenta un límite de 200 llamados a la API en su forma gratuita, al dejarlo en el Before por los 120 escenarios se estaría llamando 480 veces Mockaroo generando que no se obtenga la información y por lo tanto, evitando que se pueda probar todos los tests satisfactoriamente. Para esto, habilitamos 2 opciones en el `properties.js`. La primera de ellas es `USE_API`, ponerla en `false` indicaría que no se llame Mockaroo sino que se cargue la información de un archivo llamado `pseudo_aleatorio.json` que tiene información descargada de una de las peticiones a Mockaroo (es muy claro en el equipo que tomarlo de este archivo sería a-priori sin embargo intentamos brindar el mayor número de herramientas posibles para que todos los escenarios se ejecuten). La segunda es `LOAD_PSEUDO_RANDOM_BEFORE_ALL`, el cual ponerla en `true` ejecuta la carga de datos desde Mockaroo una única vez al inicio de la ejecución de los test (`BeforeAll`), y no en el `Before` (antes de cada test), esto para que únicamente se hagan 4 llamados a la API cada vez que se corran todos los tests.
 
 ## Ejecución
+Para entender el funcionamiento remitirse a [wiki - aclaración del funcionamiento](https://github.com/DavidMS73/ghost-consolidated-MISW4103/wiki/Descripci%C3%B3n-estrategias-Semana-7#aclaraci%C3%B3n-del-funcionamiento)
+
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):
 ```bash
 npx cucumber-js

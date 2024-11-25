@@ -12,7 +12,7 @@ Feature: Create tags
     And I go to "public" tags list
     Then the tag should be in the list
     And The tag has slug starting with "tag"
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     |
@@ -34,7 +34,7 @@ Feature: Create tags
     When I click on save tag button
     Then I go to "public" tags list
     And There are 2 or more tags with the previous tag name in the tag list
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     |
@@ -50,7 +50,7 @@ Feature: Create tags
     And I fill tag name with "<tagName>"
     When I click on save tag button
     Then I should see tag title
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     |
@@ -68,7 +68,7 @@ Feature: Create tags
     And I fill the "tag" metadata title with the tag name and description "<tagMetadataDesc>"
     When I click on save tag button
     Then I should see tag title
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     | tagMetadataDesc             |
@@ -85,7 +85,7 @@ Feature: Create tags
     When I click on save tag button
     Then I go to "internal" tags list
     And The tag has slug starting with "hash"
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                              |
@@ -103,7 +103,7 @@ Feature: Create tags
     When I click on save tag button
     Then I go to "internal" tags list
     And The tag has slug starting with "hash"
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                              | color                         |
@@ -121,7 +121,7 @@ Feature: Create tags
     When I click on save tag button
     Then I go to "internal" tags list
     And The tag has slug starting with "hash"
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                              | image                         |
@@ -138,7 +138,7 @@ Feature: Create tags
     And I fill the "X" metadata title with the tag name and description "<tagMetadataDesc>"
     When I click on save tag button
     Then I should see tag title
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     | tagMetadataDesc             |
@@ -156,7 +156,7 @@ Feature: Create tags
     And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
     When I click on save tag button
     Then I should see tag title
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     | tagMetadataDesc             |
@@ -174,7 +174,7 @@ Feature: Create tags
     And I fill the tag header with "<tagCodeInjectionHeader>" and footer with "<tagCodeInjectionFooter>"
     When I click on save tag button
     Then I should see tag title
-    And I delete all the info
+    And I delete all the info
 
     Examples:
       | tagName                     | tagCodeInjectionHeader                      | tagCodeInjectionFooter                      |

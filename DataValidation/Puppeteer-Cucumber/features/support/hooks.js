@@ -160,16 +160,16 @@ Before(async function ({ gherkinDocument }) {
   // Clear variables
   scope.variables = {};
 
-  // Clear pseudo aleatorio position to select another
-  scope.actualPseudoAleatorioPosition = {
-    post: undefined,
-    page: undefined,
-    tag: undefined,
-    member: undefined,
-    user: undefined,
-  };
-
   if (!properties.LOAD_PSEUDO_RANDOM_BEFORE_ALL) {
+    // Clear pseudo aleatorio position to select another
+    scope.actualPseudoAleatorioPosition = {
+      post: undefined,
+      page: undefined,
+      tag: undefined,
+      member: undefined,
+      user: undefined,
+    };
+
     await pseudoAleatorioLoadInfoFromMockaroo();
   }
 });
@@ -253,7 +253,9 @@ async function pseudoAleatorioLoadInfoFromMockaroo() {
     const pageMockaroo = await axios.get(
       "https://my.api.mockaroo.com/pages.json?key=e3fde9a0"
     );
-    const userMockaroo = await axios.get("https://my.api.mockaroo.com/user.json?key=e3fde9a0");
+    const userMockaroo = await axios.get(
+      "https://my.api.mockaroo.com/user.json?key=e3fde9a0"
+    );
 
     // Guardar los datos en scope.pseudoAleatorioDataPool
     scope.pseudoAleatorioDataPool.post = postMockaroo.data;

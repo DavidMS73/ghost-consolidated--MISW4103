@@ -31,7 +31,6 @@ Given("I fill the tag header with {string} and footer with {string}", async (cod
   const codeInjectionFooterParsed = dataProcessor(codeInjectionFooter);
   scope.variables.tagCodeInjectionHeader = codeInjectionHeaderParsed;
   scope.variables.tagCodeInjectionFooter = codeInjectionFooterParsed;
-  console.log("Header: ", codeInjectionHeaderParsed);
   
   await scope.pages.tags.fillCodeInjection(codeInjectionHeaderParsed, codeInjectionFooterParsed);
 });

@@ -119,7 +119,6 @@ BeforeAll(async () => {
 
   // Data pool
   const pathAPrioriDataPool = "./data_pools/a_priori.json";
-
   fs.readFile(pathAPrioriDataPool, "utf8", (err, data) => {
     try {
       // Parsear el JSON
@@ -131,6 +130,11 @@ BeforeAll(async () => {
       throw error;
     }
   });
+
+  // Pseudo-random data pool
+  if (properties.LOAD_PSEUDO_RANDOM_BEFORE_ALL) {
+    await pseudoAleatorioLoadInfoFromMockaroo();
+  }
 });
 
 Before(async function ({ gherkinDocument }) {
@@ -163,7 +167,9 @@ Before(async function ({ gherkinDocument }) {
     member: undefined,
   };
 
-  await pseudoAleatorioLoadInfoFromMockaroo();
+  if (!properties.LOAD_PSEUDO_RANDOM_BEFORE_ALL) {
+    await pseudoAleatorioLoadInfoFromMockaroo();
+  }
 });
 
 AfterStep(async function ({ pickle, gherkinDocument }) {

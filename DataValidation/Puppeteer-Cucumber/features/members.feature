@@ -11,6 +11,7 @@ Feature: Create members
     When I click on save member button
     Then I go to members list
     And the member "test123@domain.com" should be in the list
+    And I delete all the info
 
   Scenario: E0014 - Crear miembro sin correo muestra un mensaje de error
     Given I navigate to "members" section

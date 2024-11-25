@@ -151,7 +151,7 @@ Before(async function ({ gherkinDocument }) {
   // create new page between scenarios
   scope.page = await scope.browser.newPage();
   createPageObjects(scope.page);
-  await scope.page.setViewport({ width: 1280, height: 720 });
+  await scope.page.setViewport({ width: 1400, height: 1080 });
   // add in accept language header - this is required when running in headless mode
   await scope.page.setExtraHTTPHeaders({
     "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.6",

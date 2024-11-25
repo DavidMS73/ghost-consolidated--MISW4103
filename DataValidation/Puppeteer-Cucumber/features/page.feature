@@ -231,6 +231,7 @@ Feature: Create page
     And I navigate to created page site
     And I check page title is absent
     And I validate content in page view
+    And I navigate to "home" section
     And I delete all the info
 
     Examples:

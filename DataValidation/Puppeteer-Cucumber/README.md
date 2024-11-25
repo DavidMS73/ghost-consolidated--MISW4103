@@ -39,5 +39,22 @@ Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [Da
 npx cucumber-js
 ```
 
+Tenemos diferentes features creadas, las cuales corresponden a:
+
+1. posts 
+2. pages 
+3. edit-users 
+4. posts-views 
+5. tags 
+6. members
+
+Cada una de estas features es posible correrlas de forma independiente con los siguientes comandos:
+1. posts -> `npx cucumber-js --tags=@posts`
+2. pages -> `npx cucumber-js --tags=@pages`
+3. edit-users -> `npx cucumber-js --tags=@edit-users`
+4. posts-views -> `npx cucumber-js  --tags=@posts-views`
+5. tags -> `npx cucumber-js --tags=@tags`
+6. members-> `npx cucumber-js --tags=@members`
+
 ## Resultados
 Al finalizar las pruebas, los resultados se guardarán en la carpeta `output`. Aquí podrá ver las capturas hechas durante las pruebas

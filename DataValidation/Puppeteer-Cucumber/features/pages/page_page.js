@@ -1,14 +1,18 @@
-const { getText, waitUtil, isElementVisible, getInputText } = require("../utils/utils");
+const {
+  getText,
+  waitUtil,
+  isElementVisible,
+  getInputText,
+} = require("../utils/utils");
 const assert = require("assert");
 const { BasePageObject } = require("./base_page");
-const scope = require('../support/scope');
+const scope = require("../support/scope");
 
 class PagePageObject extends BasePageObject {
   pageBodySelector =
     'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
 
-  pageVisibilitySelector =
-    'select[data-test-select="post-visibility"]';
+  pageVisibilitySelector = 'select[data-test-select="post-visibility"]';
 
   async clickNewPageButton() {
     const selector = 'a[href="#/editor/page/"]';
@@ -64,6 +68,7 @@ class PagePageObject extends BasePageObject {
       'div[class~="view-actions-bottom-row"] > div[class~="gh-contentfilter-type"]';
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
+    await waitUtil(500);
   }
 
   async clickPublishedPagesFilter() {
@@ -97,9 +102,7 @@ class PagePageObject extends BasePageObject {
     });
   }
 
-  async navToPageSite({
-    pageUrl, baseUrl
-  }) {
+  async navToPageSite({ pageUrl, baseUrl }) {
     await scope.page.goto(`${baseUrl}/${pageUrl}`);
   }
 
@@ -136,11 +139,11 @@ class PagePageObject extends BasePageObject {
   }
 
   async clickMembersOnlyButton() {
-    await this.page.select(this.pageVisibilitySelector, 'members');
+    await this.page.select(this.pageVisibilitySelector, "members");
   }
 
   async clickPaidMembersOnlyButton() {
-    await this.page.select(this.pageVisibilitySelector, 'paid');
+    await this.page.select(this.pageVisibilitySelector, "paid");
   }
 
   async clickAccessFilter() {
@@ -148,11 +151,15 @@ class PagePageObject extends BasePageObject {
   }
 
   async clickMembersOnlyFilter() {
-    await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(3)');
+    await this.clickElement(
+      'ul[class="ember-power-select-options"] > li:nth-child(3)'
+    );
   }
 
   async clickPaidMembersOnlyFilter() {
-    await this.clickElement('ul[class="ember-power-select-options"] > li:nth-child(4)')
+    await this.clickElement(
+      'ul[class="ember-power-select-options"] > li:nth-child(4)'
+    );
   }
 
   async fillExcerpt(excerpt) {

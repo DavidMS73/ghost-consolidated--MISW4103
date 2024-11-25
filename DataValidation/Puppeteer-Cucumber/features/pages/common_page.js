@@ -101,6 +101,7 @@ class CommonPageObject {
     const selector = 'button[data-test-button="close-publish-flow"]';
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
+    await waitUtil(500);
   }
 
   async deleteAllInfo() {

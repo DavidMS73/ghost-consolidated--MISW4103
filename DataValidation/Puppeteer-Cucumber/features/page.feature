@@ -1,6 +1,7 @@
 @pages
 Feature: Create page
 
+  @run
   Scenario Outline: EPA01 - Crear una página básica, darle al botón de preview y luego al botón de publicar
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -209,7 +210,7 @@ Feature: Create page
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} | {pseudo_aleatorio(page-excerpt)} |
       | {faker(alphanumeric)}          | {faker(paragraph)}               | faker(paragraph)                 |
 
-  Scenario: EPA09 - Crear una página con título y texto en el cuerpo escondiendo el título y la imagen desctacada
+  Scenario: EPA09 - Crear una página con título y texto en el cuerpo escondiendo el título y la imagen destacada
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "pages" section

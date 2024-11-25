@@ -1,6 +1,6 @@
 const { When, Then, Given } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
-const { dataProcessor } = require("../utils/utils");
+const { dataProcessor, waitUtil } = require("../utils/utils");
 
 Given("I click preview button", async () => {
   await scope.pages.common.clickPreviewButton();

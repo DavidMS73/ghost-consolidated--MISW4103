@@ -177,9 +177,9 @@ Feature: Create post
     And I delete all the info
 
     Examples:
-      | title                         | video                         |
-      | {a_priori(post-tuple7_title)} | {a_priori(post-tuple7_video)} |
-      | {a_priori(post-tuple8_title)} | {a_priori(post-tuple8_video)} |
+      | title                          | video                         |
+      | {a_priori(post-tuple9_title)}  | {a_priori(post-tuple9_video)} |
+      | {a_priori(post-tuple10_title)} | {a_priori(post-tuple10_video)} |
     # El primer example ejecuta la función de pool de datos a-priori con MP4
     # El segundo example ejecuta la función de pool de datos a-priori con WEBM
 

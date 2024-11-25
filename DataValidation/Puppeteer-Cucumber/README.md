@@ -34,7 +34,7 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 ## Ejecución
 Para entender el funcionamiento remitirse a [wiki - aclaración del funcionamiento](https://github.com/DavidMS73/ghost-consolidated-MISW4103/wiki/Descripci%C3%B3n-estrategias-Semana-7#aclaraci%C3%B3n-del-funcionamiento)
 
-Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):
+Para ejecutar *todas* las pruebas ejecute el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):
 ```bash
 npx cucumber-js
 ```

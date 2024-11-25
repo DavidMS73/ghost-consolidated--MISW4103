@@ -1,3 +1,4 @@
+@pages
 Feature: Create page
 
   Scenario Outline: EPA01 - Crear una página básica, darle al botón de preview y luego al botón de publicar
@@ -23,7 +24,6 @@ Feature: Create page
       | {pseudo_aleatorio(page-title)} |
       | {faker(alphanumeric)}          |
 
-  @rv-596
   Scenario: EPA02 - Crear una página con sólo título y texto en el cuerpo satisfactoriamente y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -94,7 +94,6 @@ Feature: Create page
       | {pseudo_aleatorio(page-title)} |
       | {faker(alphanumeric)}          |
 
-  @rv-596
   Scenario: EPA05 - Crear una página con título, texto en el cuerpo y una URL customizada y publicarla
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -208,7 +207,7 @@ Feature: Create page
       | title                          | content                          | excerpt                          |
       | {a_priori(page-tuple1_title)}  | {a_priori(page-tuple1_content)}  | {a_priori(page-tuple1_excerpt)}  |
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} | {pseudo_aleatorio(page-excerpt)} |
-      | {faker(alphanumeric)}           | {faker(paragraph)}                | faker(paragraph)                  |
+      | {faker(alphanumeric)}          | {faker(paragraph)}               | faker(paragraph)                 |
 
   Scenario: EPA09 - Crear una página con título y texto en el cuerpo escondiendo el título y la imagen desctacada
     Given I navigate to "home" section
@@ -234,10 +233,10 @@ Feature: Create page
     And I delete all the info
 
     Examples:
-      | title                           | content                           |
-      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | title                          | content                          |
+      | {a_priori(page-tuple1_title)}  | {a_priori(page-tuple1_content)}  |
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
-      | {faker(alphanumeric)}           | {faker(paragraph)}                |
+      | {faker(alphanumeric)}          | {faker(paragraph)}               |
 
   Scenario: EPA10 - Crear una página destacada
     Given I navigate to "home" section
@@ -260,7 +259,7 @@ Feature: Create page
     And I delete all the info
 
     Examples:
-      | title                           | content                           |
-      | {a_priori(page-tuple1_title)}   | {a_priori(page-tuple1_content)}   |
+      | title                          | content                          |
+      | {a_priori(page-tuple1_title)}  | {a_priori(page-tuple1_content)}  |
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
-      | {faker(alphanumeric)}           | {faker(paragraph)}                |
+      | {faker(alphanumeric)}          | {faker(paragraph)}               |

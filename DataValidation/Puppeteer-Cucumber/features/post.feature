@@ -1,7 +1,7 @@
+@posts
 Feature: Create post
   Create a new blog post, whether it is an article, guide, review, story, tip, recipe, etc., and can use a variety of elements, such as images, videos, links, and other media to keep readers interested.
 
-  @post
   Scenario Outline: EPO01 - Create a post with title and description to be published later
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -28,7 +28,6 @@ Feature: Create post
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @post
   Scenario Outline: EPO02 - Create a post with title and description to be published right now
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -55,7 +54,6 @@ Feature: Create post
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @post
   Scenario Outline: EPO03 - Create a post with title and a feature image
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -78,7 +76,6 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
 
-  @post
   Scenario Outline: EPO04 - Create a post without title and with description
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -102,7 +99,6 @@ Feature: Create post
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @post
   Scenario Outline: EPO05 - Create a post with 255 chars in title (max frontier)
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -123,7 +119,6 @@ Feature: Create post
       | {faker(alphanumeric_255)} |
     # El primer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @post
   Scenario Outline: EPO06 - Create a post with 256 chars in title (max frontier + 1)
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -138,7 +133,6 @@ Feature: Create post
       | {faker(alphanumeric_256)} |
     # El primer example ejecuta la función de faker (datos completamente aleatorios)
 
-  @post
   Scenario Outline: EPO07 - Create a post with title and an audio file
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -166,7 +160,6 @@ Feature: Create post
     # El tercer example ejecuta la función de pool de datos a-priori con M4A
     # El cuarto example ejecuta la función de pool de datos a-priori con WAV
 
-  @post
   Scenario Outline: EPO08 - Create a post with title and a video file
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -190,7 +183,6 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori con MP4
     # El segundo example ejecuta la función de pool de datos a-priori con WEBM
 
-  @post
   Scenario Outline: EPO09 - Create a post with title and an using video option but loading an image file
     Given I navigate to "home" section
     And I login to the application if necessary

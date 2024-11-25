@@ -1,3 +1,4 @@
+@edit-users
 Feature: Edit users view
   Edits the information of the current user.
 

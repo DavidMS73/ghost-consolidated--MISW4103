@@ -1,3 +1,4 @@
+@posts-views
 Feature: Create posts view
   Creates a new view for the posts, which saves the current selected filters.
 
@@ -13,10 +14,10 @@ Feature: Create posts view
     Then view should appear in sidebar under posts section
 
     Examples:
-      | viewName                                |
-      | {a_priori(postView-oneCharacter_name)}  |
-      | {a_priori(postView-realistic_name)}     |
-      | {faker(alphanumeric)}                   |
+      | viewName                               |
+      | {a_priori(postView-oneCharacter_name)} |
+      | {a_priori(postView-realistic_name)}    |
+      | {faker(alphanumeric)}                  |
       # El primer example ejecuta la función de pool de datos a-priori
       # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 

@@ -1,3 +1,4 @@
+@members
 Feature: Create members
   Create a new member
 

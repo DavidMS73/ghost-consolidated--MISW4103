@@ -21,10 +21,10 @@ Feature: Edit users view
     Then the name of the user should be updated
 
     Examples:
-      | fullName                            |
-      | {a_priori(user-normal_fullName)}    |
-      | {faker(fullName)}                   |
-      | {faker(alphanumeric_191)}           |
+      | fullName                         |
+      | {a_priori(user-normal_fullName)} |
+      | {faker(fullName)}                |
+      | {faker(alphanumeric_191)}        |
 
   Scenario Outline: EU03 - Cambiar el nombre del usuario por una cadena de 192 caracteres no es permitido
     Given I navigate to "home" section
@@ -36,8 +36,8 @@ Feature: Edit users view
     Then the name of the user should be trimmed and updated
 
     Examples:
-      | fullName                            |
-      | {faker(alphanumeric_192)}           |
+      | fullName                  |
+      | {faker(alphanumeric_192)} |
 
   Scenario: EU04 - Cambiar el correo del usuario por uno vacío genera un error
     Given I navigate to "home" section
@@ -76,9 +76,9 @@ Feature: Edit users view
     And (post) returned to original email
 
     Examples:
-      | email              |
-      | correo@prueba.com  |
-      | {faker(email)}     |
+      | email             |
+      | correo@prueba.com |
+      | {faker(email)}    |
 
   Scenario Outline: EU07 - Al cambiar el correo y el nombre del usuario ambos campos se actualizan exitosamente
     Given I navigate to "home" section
@@ -92,10 +92,10 @@ Feature: Edit users view
     And (post) returned to original email
 
     Examples:
-      | fullName                          | email                           |
-      | {a_priori(user-normal_fullName)}  | {a_priori(user-normal_email)}   |
-      | {pseudo_aleatorio(user-fullName)} | {pseudo_aleatorio(user-email)}  |
-      | {faker(fullName)}                 | {faker(email)}                  |
+      | fullName                          | email                          |
+      | {a_priori(user-normal_fullName)}  | {a_priori(user-normal_email)}  |
+      | {pseudo_aleatorio(user-fullName)} | {pseudo_aleatorio(user-email)} |
+      | {faker(fullName)}                 | {faker(email)}                 |
 
   Scenario Outline: EU08 - Al cambiar el slug de un usuario por uno vacío debe poner el primer nombre del usuario
     Given I navigate to "home" section
@@ -108,8 +108,8 @@ Feature: Edit users view
     Then the slug of the user should be updated with the name
 
     Examples:
-      | firstName           |
-      | {faker(firstName)}  |
+      | firstName          |
+      | {faker(firstName)} |
 
   Scenario Outline: EU09 - Al cambiar el slug de un usuario por una cadena de caracteres debe actualizarlo exitosamente
     Given I navigate to "home" section
@@ -121,9 +121,9 @@ Feature: Edit users view
     Then the slug of the user should be updated
 
     Examples:
-      | slug                |
-      | andres              |
-      | {faker(firstName)}  |
+      | slug               |
+      | andres             |
+      | {faker(firstName)} |
 
   Scenario Outline: EU10 - Al cambiar el slug de un usuario por una cadena de 191 caracteres debe actualizarlo exitosamente
     Given I navigate to "home" section
@@ -161,9 +161,9 @@ Feature: Edit users view
     Then the slug of the user should be separated by dashes
 
     Examples:
-      | slug              |
-      | My personal slug  |
-      | {faker(words)}    |
+      | slug             |
+      | My personal slug |
+      | {faker(words)}   |
 
   Scenario Outline: EU13 - Al editar el slug y el nombre del usuario estos se deben actualizar exitosamente
     Given I navigate to "home" section
@@ -234,9 +234,9 @@ Feature: Edit users view
     Then the location of the user should be updated
 
     Examples:
-      | location          |
-      | Colombia          |
-      | {faker(country)}  |
+      | location         |
+      | Colombia         |
+      | {faker(country)} |
 
   Scenario: EU18 - Al ingresar caracteres especiales debería aparecer un error
     Given I navigate to "home" section

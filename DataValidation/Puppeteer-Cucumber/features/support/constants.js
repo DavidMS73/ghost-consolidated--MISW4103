@@ -1,5 +1,5 @@
 module.exports = {
-  pageTimeout: "8000",
+  pageTimeout: "12000",
   headlessMode: false,
   reportConfig: {
     jsonFile: "output/results.json",

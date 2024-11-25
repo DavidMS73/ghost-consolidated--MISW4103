@@ -1,4 +1,11 @@
 # E2E Puppeteer - Cucumber
+## Disclaimer
+Dado que encontramos algunos casos donde el resultado esperado no concordaba con el actual, estas pruebas deberían fallar. En la siguiente lista se mencionan estos escenarios con la justificación de porqué fallaron:
+
+**Escenarios Fallidos:**
+- **EU10 y EU11:** El máximo del campo de slug es 191 caracteres, sin embargo, al guardar los cambios sólo se guardan 185. Este valor debería ser 191 ya que para el campo de nombre no sucede esto.
+- **EU18:** Se espera que en este campo se ponga algo similar a una ciudad o país, por lo que los caracteres especiales no deberían aparecer. Adicionalmente, debería sólo permitir lugares que existen.
+
 ## Prerequisitos
 - Tener Node instalado
 

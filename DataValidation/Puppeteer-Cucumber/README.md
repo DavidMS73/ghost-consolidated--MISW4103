@@ -1,6 +1,6 @@
 # E2E Puppeteer - Cucumber
 ## ‼️Disclaimer‼️
-Dado que encontramos algunos casos donde el resultado esperado no concordaba con el actual, **estas pruebas deberían fallar**. En la siguiente lista se mencionan estos escenarios con la justificación de porqué fallaron:
+Dado que encontramos algunos casos donde el resultado esperado no concordaba con el actual, **estas pruebas deberían fallar**. En la siguiente lista se mencionan estos escenarios con la justificación de por qué fallaron:
 
 **Escenarios Fallidos:**
 - **EU10 y EU11:** El máximo del campo de slug es 191 caracteres, sin embargo, al guardar los cambios sólo se guardan 185. Este valor debería ser 191 ya que para el campo de nombre no sucede esto.
@@ -24,6 +24,12 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 3. En el archivo [properties.js](./properties.js) cambiar los valores de `EMAIL` y `PASSWORD` por los de tu usuario.
 4. Borra todo el contenido previo entrando a Ajustes > Danger Zone > Delete All Content
 5. Borra todos los usuarios que tengas creados para evitar problemas en ejecución entrando a Members > seleccionar el miembro > dar en la rueda de configuración al lado del botón Save > Delete member.
+
+>‼️Disclaimer 2‼️
+>
+> Para mayor información remitirse a [wiki - Caso pseudo-aleatorio dinámico](https://github.com/DavidMS73/ghost-consolidated-MISW4103/wiki/Descripci%C3%B3n-estrategias-Semana-7#caso-pseudo-aleatorio-din%C3%A1mico)
+>
+> Mockaroo presenta un límite de 200 llamados a la API en su forma gratuita, al dejarlo en el Before por los 120 escenarios se estaría llamando 480 veces Mockaroo generando que no se obtenga la información y por lo tanto, evitando que se pueda probar todos los tests satisfactoriamente. Para esto, habilitamos 2 opciones en el `properties.js`. La primera de ellas es `USE_API`, ponerla en `false` indicaría que no se llame Mockaroo sino que se cargue la información de un archivo llamado `pseudo_aleatorio.json` que tiene información descargada de una de las peticiones a Mockaroo (es muy claro en el equipo que tomarlo de este archivo sería a-priori sin embargo intentamos brindar el mayor número de herramientas posibles para que todos los escenarios se ejecuten). La segunda es `LOAD_PSEUDO_RANDOM_BEFORE_ALL`, el cual ponerla en `true` ejecuta la carga de datos desde Mockaroo una única vez al inicio de la ejecución de los test (`BeforeAll`), y no en el `Before` (antes de cada test), esto para que únicamente se hagan 4 llamados a la API cada vez que se corran todos los tests.
 
 ## Ejecución
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):

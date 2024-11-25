@@ -257,7 +257,7 @@ async function pseudoAleatorioLoadInfoFromMockaroo() {
 
     // Guardar los datos en scope.pseudoAleatorioDataPool
     scope.pseudoAleatorioDataPool.post = postMockaroo.data;
-    scope.pseudoAleatorioDataPool.tag = postMockaroo.data;
+    scope.pseudoAleatorioDataPool.tag = tagMockaroo.data;
     scope.pseudoAleatorioDataPool.page = pageMockaroo.data;
     scope.pseudoAleatorioDataPool.user = userMockaroo.data;
   } else {

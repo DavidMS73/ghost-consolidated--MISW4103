@@ -1,0 +1,146 @@
+{
+  "post": {
+    "tuple1": {
+      "title": "Post published later",
+      "description": "Post to be published later",
+      "featureImage": "forest.jpg"
+    },
+    "tuple2": {
+      "title": "Post published right now",
+      "description": "Post to be published right now",
+      "featureImage": "Nissan-Skyline-GT-R-R32.jpg"
+    },
+    "tuple3": {
+      "title": "Post with feature image",
+      "description": "Post with a feature image to be published",
+      "featureImage": "forest.jpg"
+    },
+    "tuple4": {
+      "title": "Post without title",
+      "description": "Description of post without title",
+      "featureImage": "forest.jpg"
+    },
+    "tuple5": {
+      "title": "Post with MP3 audio",
+      "description": "Post with a MP3 audio to be published",
+      "audio": "Panama.mp3"
+    },
+    "tuple6": {
+      "title": "Post with OGG audio",
+      "description": "Post with an OGG audio to be published",
+      "audio": "AudioOGG.ogg"
+    },
+    "tuple7": {
+      "title": "Post with M4A audio",
+      "description": "Post with a M4A audio to be published",
+      "audio": "AudioSanteMA.m4a"
+    },
+    "tuple8": {
+      "title": "Post with WAV audio",
+      "description": "Post with a WAV audio to be published",
+      "audio": "AudioSambaB.wav"
+    },
+    "tuple9": {
+      "title": "Post with video in MP4",
+      "description": "Post with a video in mp4 to be published",
+      "video": "videoGhostM.mp4"
+    },
+    "tuple10": {
+      "title": "Post with video in WEBM",
+      "description": "Post with a video in webm to be published",
+      "video": "videoGhostW.webm"
+    },
+    "tuple11": {
+      "title": "Post with video option using an image",
+      "description": "Post using video option but loading an image",
+      "video": "forest.jpg"
+    }
+  },
+  "page": {
+    "tuple1": {
+      "title": "My awesome page",
+      "content": "My page nice description",
+      "customUrl": "awesome-page",
+      "excerpt": "My awesome excerpt"
+    },
+    "tuple2": {
+      "title": "My beautiful page",
+      "content": "My page cool description",
+      "customUrl": "beautiful-page",
+      "excerpt": "My beautiful excerpt"
+    },
+    "tuple3": {
+      "title": "My great page",
+      "content": "My page awesome description",
+      "customUrl": "great-page",
+      "excerpt": "My great excerpt"
+    }
+  },
+  "member": {
+    "firstNameOnly": {
+      "firstName": "John",
+      "lastName": ""
+    }
+  },
+  "tag": {
+    "tuple1": {
+      "name": "tag name 1",
+      "desc": "custom tag description 1"
+    },
+    "tuple2": {
+      "name": "new tag",
+      "desc": "some basic description"
+    },
+    "tuple3": {
+      "name": "another basic tag",
+      "desc": "long description of another basic tag name with some more details"
+    },
+    "tuple4": {
+      "name": "this is a new tag",
+      "desc": "lets include more details on this one"
+    },
+    "tuple5": {
+      "name": "#this is a new internal tag",
+      "desc": "lets include more details on this one"
+    },
+    "tuple6": {
+      "name": "#internal tag with color",
+      "color": "CCAAFF"
+    },
+    "tuple7": {
+      "name": "#image tag",
+      "image": "Nissan-Skyline-GT-R-R32"
+    },
+    "tuple8": {
+      "name": "x tag with metadata",
+      "desc": "x tag with some metadata"
+    },
+    "tuple9": {
+      "name": "facebook tag with metadata",
+      "desc": "facebook tag with some metadata"
+    },
+    "tuple10": {
+      "name": "tag with code injection",
+      "header": "<h1>header</h1>",
+      "footer": "<h1>footer</h1>"
+    },
+    "tuple11": {
+      "name": ""
+    }
+  },
+  "postView": {
+    "oneCharacter": {
+      "name": "A"
+    },
+    "realistic": {
+      "name": "Featured Posts"
+    }
+  },
+  "user": {
+    "normal": {
+      "fullName": "John Doe",
+      "email": "john.doe@email.com",
+      "slug": "john-doe"
+    }
+  }
+}

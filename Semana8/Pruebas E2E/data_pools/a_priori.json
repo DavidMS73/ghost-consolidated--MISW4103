@@ -64,6 +64,11 @@
       "description": "Post without a feature image to be published",
       "featureImage": "forest.jpg",
       "newTitle": "Edited post with feature image"
+    },
+    "tuple13": {
+      "title": "Post that did not have title",
+      "description": "Description of post without title",
+      "featureImage": "forest.jpg"
     }
   },
   "page": {

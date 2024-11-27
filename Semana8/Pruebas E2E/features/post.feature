@@ -298,3 +298,31 @@ Feature: Create post
       | title                          | image                                 | new_title                         |
       | {a_priori(post-tuple12_title)} | {a_priori(post-tuple12_featureImage)} | {a_priori(post-tuple12_newTitle)} |
     # El primer example ejecuta la función de pool de datos a-priori
+
+  @sem-8
+  Scenario Outline: EPO13 - Edit a post that was created without title, it was set Untitled and change it
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post description with "<description>"
+    And I click publish button
+    And I click continue final review button
+    And I click confirm publish button
+    And I should see title (Untitled) and correct description inside a modal
+    And I go to published posts
+    And I click on the post created to edit
+    And I change post title with "<newTitle>"
+    When I click update button
+    Then I should see a small modal with title "Post updated"
+    And I navigate to "posts" section
+    And I go to published posts
+    And the post updated should be in the list
+    And I delete all the info
+
+    Examples:
+      | description                          | newTitle                       |
+      | {a_priori(post-tuple13_description)} | {a_priori(post-tuple13_title)} |
+      | {pseudo_aleatorio(post-description)} | {pseudo_aleatorio(post-title)} |
+      | {faker(paragraph)}                   | {faker(alphanumeric)}          |
+    # El primer example ejecuta la función de pool de datos a-priori

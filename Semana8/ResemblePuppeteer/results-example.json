@@ -1,0 +1,54 @@
+{
+  "totalComparisons": 130,
+  "averageDifference": 16.43,
+  "executionTime": 12344422,
+  "differences": {
+    "10": 2,
+    "30": 10,
+    "50": 5,
+    "70": 3,
+    "90": 1,
+    "100": 1
+  },
+  "vrtType": "version",
+  "originalTitle": "Version 4.5",
+  "newTitle": "Version 5.96",
+  "report": [
+    {
+      "scenarioId": "E006",
+      "title": "create-view",
+      "steps": [
+        {
+          "id": 1,
+          "sameDimensions": true,
+          "difference": 0.35,
+          "originalImage": "../../../PruebasRV/Puppeteer-Cucumber/output/screenshots/v4.5/create-page/E006/step_1.png",
+          "newImage": "../../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots/v5.96/create-page/E006/step_1.png",
+          "diffImage": "../results_full_flow/create-page-E006-step_1.png"
+        }
+      ]
+    },
+    {
+      "scenarioId": "E007",
+      "title": "create-post",
+      "steps": [
+        {
+          "id": 1,
+          "sameDimensions": true,
+          "difference": 0.4,
+          "originalImage": "../../../PruebasRV/Puppeteer-Cucumber/output/screenshots/v4.5/create-page/E006/step_1.png",
+          "newImage": "../../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots/v5.96/create-page/E006/step_1.png",
+          "diffImage": "../results_full_flow/create-page-E006-step_1.png"
+        },
+        {
+          "id": 2,
+          "sameDimensions": true,
+          "difference": 0.3,
+          "originalImage": "../../../PruebasRV/Puppeteer-Cucumber/output/screenshots/v4.5/create-page/E006/step_1.png",
+          "newImage": "../../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots/v5.96/create-page/E006/step_1.png",
+          "diffImage": "../results_full_flow/create-page-E006-step_1.png"
+        }
+      ]
+    }
+  ]
+}

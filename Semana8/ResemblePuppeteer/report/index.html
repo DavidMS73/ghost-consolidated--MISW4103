@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Reporte de comparación de imágenes</title>
+    <style>
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="./index.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/914a0c3a63.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <h1>Reporte de comparación de imágenes</h1>
+      <h2>Resumen</h2>
+
+      <div class="card shadow w-50 m-auto">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <div class="mb-4">
+                <!-- Total Comparisons -->
+                <strong>
+                  <p
+                    class="metric"
+                    id="total-comparisons"
+                  >{total-comparisons}</p>
+                </strong>
+                <span style="color: olivedrab;"><i class="fa-solid fa-images"></i></span> <strong
+                  style="color: olivedrab;"
+                >Comparaciones</strong>
+              </div>
+
+              <!-- Average difference -->
+              <div class="mb-4">
+                <strong>
+                  <p
+                    class="metric"
+                    id="average-difference"
+                  >{average-difference}</p>
+                </strong>
+                <span style="color: olivedrab;"><i class="fa-solid fa-percent"></i></span> <strong
+                  style="color: olivedrab"
+                >Promedio de diferencia
+                  entre versiones</strong>
+              </div>
+
+              <!-- Execution time -->
+              <div class="mb-4">
+                <strong>
+                  <p
+                    class="metric"
+                    id="execution-time"
+                  >{execution-time}</p>
+                </strong>
+                <span style="color: olivedrab;"><i class="fa-solid fa-hourglass-half"></i></span> <strong
+                  style="color: olivedrab"
+                >Tiempo de ejecución</strong>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                id="chartContainer"
+                style="height: 370px; width: 100%;"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2
+        class="mt-4"
+        id="report-title"
+      >Reporte - {original-title} <i
+          class="fa-solid fa-arrow-right-arrow-left fa-2xs"
+          style="color: olivedrab;"
+        ></i> {new-title}</h2>
+      <div
+        class="accordion"
+        id="accordionExample"
+      >
+        <div
+          class="accordion-item"
+          id="accordion-section"
+        >
+          <h3 class="accordion-header sticky-top">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="false"
+              aria-controls="collapseOne"
+              id="section-title"
+            >
+              E006 - create-page
+            </button>
+          </h3>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div
+              class="accordion-body"
+              id="accordion-body"
+            >
+              <div
+                id="step"
+                class="mx-2 mb-4"
+              >
+                <h4 id="step-title">Step 1</h4>
+                <p id="step-same-dimensions"><strong>Same dimensions: </strong>{same-dimensions}</p>
+                <p id="step-mismatch"><strong>Mismatch percentage: </strong>{mismatch}</p>
+                <div style="display: flex;justify-content: space-between;">
+                  <div style="flex: 1;text-align: center;">
+                    <h5 id="step-original-title">Version 4.5</h5>
+                    <img
+                      id="original-image"
+                      src="../../../PruebasRV/Puppeteer-Cucumber/output/screenshots/v4.5/create-page/E006/step_1.png"
+                      alt="Imagen versión 4.5"
+                    >
+                    </div>
+                    <div style="flex: 1;text-align: center;">
+                    <h5 id="step-new-title">Version 5.96</h5>
+                    <img
+                      id="new-image"
+                      src="../../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots/v5.96/create-page/E006/step_1.png"
+                      alt="Imagen versión 5.96"
+                    >
+                    </div>
+                    <div style="flex: 1;text-align: center;">
+                    <h5>Diferencia</h5>
+                    <img
+                      id="diff-image"
+                      src="../results_full_flow/create-page-E006-step_1.png"
+                      alt="Diferencia"
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

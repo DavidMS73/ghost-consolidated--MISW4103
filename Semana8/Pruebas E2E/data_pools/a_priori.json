@@ -69,6 +69,11 @@
       "title": "Post that did not have title",
       "description": "Description of post without title",
       "featureImage": "forest.jpg"
+    },
+    "tuple14": {
+      "title": "Post draft",
+      "description": "Description of post drfat",
+      "featureImage": "forest.jpg"
     }
   },
   "page": {

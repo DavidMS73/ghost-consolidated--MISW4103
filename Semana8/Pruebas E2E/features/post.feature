@@ -328,3 +328,25 @@ Feature: Create post
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
+
+  @sem-8
+  Scenario Outline: EPO13 - Creaet a post with title and description, not publish and it should be in drafts
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I fill post description with "<description>"
+    When I return to posts section
+    Then I go to drafts posts
+    And the post created should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                          | description                          |
+      | {a_priori(post-tuple14_title)} | {a_priori(post-tuple14_description)} |
+      | {pseudo_aleatorio(post-title)} | {pseudo_aleatorio(post-description)} |
+      | {faker(alphanumeric)}          | {faker(paragraph)}                   |
+    # El primer example ejecuta la función de pool de datos a-priori
+    # El segundo example ejecuta la función pool de datos pseudo-aleatorio
+    # El tercer example ejecuta la función de faker (datos completamente aleatorios)

@@ -1,4 +1,4 @@
-const { Given, Then } = require("@cucumber/cucumber");
+const { Given, Then, When } = require("@cucumber/cucumber");
 const scope = require("../support/scope");
 const assert = require("assert");
 const { dataProcessor, formatString, waitUtil } = require("../utils/utils");
@@ -53,6 +53,11 @@ Given("I complement post description with {string}", async (description) => {
   await scope.pages.posts.fillPostDescription(processed);
 });
 
+// When
+When("I return to posts section", async () => {
+  await scope.pages.posts.returnToPostsSection();
+});
+
 // Then
 
 Then("I deploy the collapse menu of posts", async () => {
@@ -62,6 +67,16 @@ Then("I deploy the collapse menu of posts", async () => {
 Then("I go to scheduled posts", async () => {
   // Write code here that turns the phrase above into concrete actions
   await scope.pages.posts.goToScheduledPosts();
+});
+
+Then("I go to published posts", async () => {
+  // Write code here that turns the phrase above into concrete actions
+  await scope.pages.posts.goToPublishedPosts();
+});
+
+Then("I go to drafts posts", async () => {
+  // Write code here that turns the phrase above into concrete actions
+  await scope.pages.posts.goToDraftsPosts();
 });
 
 Then("the post created should be in the list", async () => {
@@ -75,11 +90,6 @@ Then("the post \\(Untitled) should be in the list", async () => {
   // Write code here that turns the phrase above into concrete actions
   const result = await scope.pages.posts.checkPostInList("(Untitled)");
   assert(result, `The post (Untitled) is not in the list`);
-});
-
-Then("I go to published posts", async () => {
-  // Write code here that turns the phrase above into concrete actions
-  await scope.pages.posts.goToPublishedPosts();
 });
 
 Then("the post updated should be in the list", async () => {

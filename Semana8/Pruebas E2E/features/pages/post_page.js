@@ -105,6 +105,22 @@ class PostPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async goToDraftsPosts() {
+    const selector = 'a[href="#/posts/?type=draft"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    // Espera para que la navegación se complete
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async returnToPostsSection() {
+    const selector = 'a[href="#/posts/"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    // Espera para que la navegación se complete
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async clickPostCreated() {
     const selector = "li.gh-posts-list-item > a:nth-child(1)";
     await this.page.waitForSelector(selector);

@@ -326,3 +326,5 @@ Feature: Create post
       | {pseudo_aleatorio(post-description)} | {pseudo_aleatorio(post-title)} |
       | {faker(paragraph)}                   | {faker(alphanumeric)}          |
     # El primer example ejecuta la función de pool de datos a-priori
+    # El segundo example ejecuta la función pool de datos pseudo-aleatorio
+    # El tercer example ejecuta la función de faker (datos completamente aleatorios)

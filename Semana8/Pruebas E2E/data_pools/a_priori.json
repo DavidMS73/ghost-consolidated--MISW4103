@@ -3,12 +3,16 @@
     "tuple1": {
       "title": "Post published later",
       "description": "Post to be published later",
-      "featureImage": "forest.jpg"
+      "featureImage": "forest.jpg",
+      "newTitle": "Edited post title to be published later",
+      "newDescription": "Edited post description to be published later"
     },
     "tuple2": {
       "title": "Post published right now",
       "description": "Post to be published right now",
-      "featureImage": "Nissan-Skyline-GT-R-R32.jpg"
+      "featureImage": "Nissan-Skyline-GT-R-R32.jpg",
+      "newTitle": "Edited post title already published",
+      "newDescription": "Edited post description already published"
     },
     "tuple3": {
       "title": "Post with feature image",
@@ -54,6 +58,12 @@
       "title": "Post with video option using an image",
       "description": "Post using video option but loading an image",
       "video": "forest.jpg"
+    },
+    "tuple12": {
+      "title": "Post without feature image",
+      "description": "Post without a feature image to be published",
+      "featureImage": "forest.jpg",
+      "newTitle": "Edited post with feature image"
     }
   },
   "page": {

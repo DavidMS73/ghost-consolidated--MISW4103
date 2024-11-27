@@ -56,6 +56,13 @@ class CommonPageObject {
     await waitUtil(500);
   }
 
+  async clickUpdateButton() {
+    const selector = 'button[data-test-button="publish-save"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await waitUtil(500);
+  }
+
   async checkNewPublishModal(title, content, image, partialContent) {
     if (title) {
       const titleSelector = 'div[class="modal-body"] > h2';
@@ -95,6 +102,13 @@ class CommonPageObject {
         `Error partial content does not includes the info, the obtained is -> ${contentElementText} and the saved is ${partialContent}`
       );
     }
+  }
+
+  async checkSmallModalEdited(title) {
+    const selector = "span.gh-notification-title";
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await waitUtil(500);
   }
 
   async clickCloseNewPublishModal() {
@@ -203,6 +217,38 @@ class CommonPageObject {
       ),
       `Error not shown when it should tell the video files allowed`
     );
+  }
+
+  async clickModalButtonViewOnSite() {
+    const selector3 = "a";
+    await this.page.waitForSelector(selector3);
+    const elements3 = await this.page.$$(selector3);
+    for (const element of elements3) {
+      const link = await this.page.evaluate((link) => link.innerText, element);
+      if (link === "View on site") {
+        element.click();
+      }
+    }
+    await waitUtil(800);
+  }
+
+  async checkDetailInfo(image, partialContent) {
+    if (image) {
+      const imageSelector = "div.gh-editor-feature-image > img";
+      await this.page.waitForSelector(imageSelector);
+      const imageElementText = await getImageExists(this.page, imageSelector);
+      assert(imageElementText, `Error image does not exists`);
+    }
+
+    if (partialContent) {
+      const contentSelector = "span[[data-lexical-text]";
+      await this.page.waitForSelector(contentSelector);
+      const contentElementText = await getText(this.page, contentSelector);
+      assert(
+        contentElementText.includes(partialContent),
+        `Error partial content does not includes the info, the obtained is -> ${contentElementText} and the saved is ${partialContent}`
+      );
+    }
   }
 }
 

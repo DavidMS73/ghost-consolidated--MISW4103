@@ -42,6 +42,10 @@ When("I click confirm publish button", async () => {
   await scope.pages.common.clickConfirmPublishButton();
 });
 
+When("I click update button", async () => {
+  await scope.pages.common.clickUpdateButton();
+});
+
 // Then
 
 Then("I should see title inside a modal", async () => {
@@ -83,6 +87,14 @@ Then("I should see title and a image inside a modal", async () => {
   const { postTitle } = scope.variables;
   await scope.pages.common.checkNewPublishModal(postTitle, null, true);
   await scope.pages.common.clickCloseNewPublishModal();
+});
+
+Then("I should see a small modal with title {string}", async (title) => {
+  await scope.pages.common.checkSmallModalEdited(title);
+});
+
+Then("I should see the feature image in the post editor", async () => {
+  await scope.pages.common.checkDetailInfo(true, null);
 });
 
 Then("I delete all the info", async () => {

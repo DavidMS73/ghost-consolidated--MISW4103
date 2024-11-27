@@ -177,8 +177,8 @@ Feature: Create post
     And I delete all the info
 
     Examples:
-      | title                          | video                         |
-      | {a_priori(post-tuple9_title)}  | {a_priori(post-tuple9_video)} |
+      | title                          | video                          |
+      | {a_priori(post-tuple9_title)}  | {a_priori(post-tuple9_video)}  |
       | {a_priori(post-tuple10_title)} | {a_priori(post-tuple10_video)} |
     # El primer example ejecuta la función de pool de datos a-priori con MP4
     # El segundo example ejecuta la función de pool de datos a-priori con WEBM
@@ -196,3 +196,105 @@ Feature: Create post
     Examples:
       | title                          | video                          |
       | {a_priori(post-tuple11_title)} | {a_priori(post-tuple11_video)} |
+
+  @sem-8
+  Scenario Outline: EPO10 - Edit title and description of a post that will be published later
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I fill post description with "<description>"
+    And I click publish button
+    And I click on post time options
+    And I click on schedule for later post option
+    And I click continue final review button
+    And I click confirm publish button
+    And I should see title and content inside a modal
+    And I go to scheduled posts
+    And I click on the post created to edit
+    And I delete post existing title
+    And I change post title with "<new_title>"
+    And I complement post description with "<new_description>"
+    When I click update button
+    Then I should see a small modal with title "Post updated"
+    And I navigate to "posts" section
+    And I go to scheduled posts
+    And the post updated should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                          | description                          | new_title                         | new_description                         |
+      | {a_priori(post-tuple1_title)}  | {a_priori(post-tuple1_description)}  | {a_priori(post-tuple1_newTitle)}  | {a_priori(post-tuple1_newDescription)}  |
+      | {pseudo_aleatorio(post-title)} | {pseudo_aleatorio(post-description)} | {pseudo_aleatorio(post-newTitle)} | {pseudo_aleatorio(post-newDescription)} |
+      | {faker(alphanumeric)}          | {faker(paragraph)}                   | {faker(alphanumeric)}             | {faker(paragraph)}                      |
+    # El primer example ejecuta la función de pool de datos a-priori
+    # El segundo example ejecuta la función pool de datos pseudo-aleatorio
+    # El tercer example ejecuta la función de faker (datos completamente aleatorios)
+
+  @sem-8
+  Scenario Outline: EPO11 - Edit title and description of a post that already was published
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I fill post description with "<description>"
+    And I click publish button
+    And I click on post time options
+    And I click on set it live now option
+    And I click continue final review button
+    And I click confirm publish button
+    And I should see title and content inside a modal
+    And I go to published posts
+    And I click on the post created to edit
+    And I delete post existing title
+    And I change post title with "<new_title>"
+    And I complement post description with "<new_description>"
+    When I click update button
+    Then I should see a small modal with title "Post updated"
+    And I navigate to "posts" section
+    And I go to published posts
+    And the post updated should be in the list
+    And I delete all the info
+
+    Examples:
+      | title                          | description                          | new_title                         | new_description                         |
+      | {a_priori(post-tuple2_title)}  | {a_priori(post-tuple2_description)}  | {a_priori(post-tuple2_newTitle)}  | {a_priori(post-tuple2_newDescription)}  |
+      | {pseudo_aleatorio(post-title)} | {pseudo_aleatorio(post-description)} | {pseudo_aleatorio(post-newTitle)} | {pseudo_aleatorio(post-newDescription)} |
+      | {faker(alphanumeric)}          | {faker(paragraph)}                   | {faker(alphanumeric)}             | {faker(paragraph)}                      |
+    # El primer example ejecuta la función de pool de datos a-priori
+    # El segundo example ejecuta la función pool de datos pseudo-aleatorio
+    # El tercer example ejecuta la función de faker (datos completamente aleatorios)
+
+  @sem-8
+  Scenario Outline: EPO12 - Add a feature image of a post with title that already was published
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "posts" section
+    And I click on new post button
+    And I fill post title with "<title>"
+    And I click on editor page
+    And I click publish button
+    And I click continue final review button
+    And I click confirm publish button
+    And I should see title inside a modal
+    And I go to published posts
+    And I click on the post created to edit
+    And I delete post existing title
+    And I change post title with "<new_title>"
+    And I upload a feature image "<image>"
+    When I click update button
+    Then I should see a small modal with title "Post updated"
+    And I navigate to "posts" section
+    And I go to published posts
+    And the post updated should be in the list
+    And I click on the post created to edit
+    And I should see the feature image in the post editor
+    And I navigate to "posts" section
+    And I delete all the info
+
+    Examples:
+      | title                          | image                                 | new_title                         |
+      | {a_priori(post-tuple12_title)} | {a_priori(post-tuple12_featureImage)} | {a_priori(post-tuple12_newTitle)} |
+    # El primer example ejecuta la función de pool de datos a-priori

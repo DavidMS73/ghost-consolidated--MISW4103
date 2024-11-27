@@ -104,6 +104,22 @@ class PostPageObject {
     // Espera para que la navegación se complete
     await new Promise((r) => setTimeout(r, 500));
   }
+
+  async clickPostCreated() {
+    const selector = "li.gh-posts-list-item > a:nth-child(1)";
+    await this.page.waitForSelector(selector);
+    // Navega a la página de posts programados dando clic en el botón "Scheduled"
+    await this.page.click(selector);
+    // Espera para que la navegación se complete
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async deletePostExistingTitle() {
+    const selector = 'textarea[placeholder="Post title"]';
+    await this.page.waitForSelector(selector);
+    await this.page.$eval(selector, (title) => (title.value = ""));
+    await waitUtil(500);
+  }
 }
 
 module.exports = PostPageObject;

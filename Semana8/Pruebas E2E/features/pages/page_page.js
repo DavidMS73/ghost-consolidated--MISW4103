@@ -33,7 +33,11 @@ class PagePageObject extends BasePageObject {
   async deleteContent() {
     await this.page.waitForSelector(this.pageBodySelector);
     await this.page.click(this.pageBodySelector);
-    await this.page.$eval(this.pageBodySelector, el => el.value = '');
+    let text = await getText(this.page, this.pageBodySelector);
+    while (text !== '') {
+      await this.page.keyboard.press('Backspace');
+      text = await getText(this.page, this.pageBodySelector);
+    }
   }
 
   async clickPageBody() {
@@ -200,6 +204,7 @@ class PagePageObject extends BasePageObject {
   }
 
   async clickUpdateButton() {
+    await waitUtil(800);
     await this.clickElement(
       'header[class^="gh-editor-header"] > section[class="gh-editor-publish-buttons"] > button[class~="gh-editor-save-trigger"]'
     );

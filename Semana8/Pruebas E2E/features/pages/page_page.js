@@ -56,7 +56,7 @@ class PagePageObject extends BasePageObject {
     const element = await this.page.$(imageBtnSelector);
     const filePath = "./assets/Nissan-Skyline-GT-R-R32.jpg";
     await element.uploadFile(filePath);
-    await waitUtil(500);
+    await waitUtil(700);
   }
 
   async clickAddButton() {

@@ -264,3 +264,29 @@ Feature: Create page
       | {a_priori(page-tuple1_title)}  | {a_priori(page-tuple1_content)}  |
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
       | {faker(alphanumeric)}          | {faker(paragraph)}               |
+
+  @sem-8 @run
+  Scenario: EPA11 - Editar título y descripción de página publicada
+    Given I navigate to "home" section
+    And I login to the application if necessary
+    And I navigate to "pages" section
+    And I click on new page button
+    And I fill the page title with text "<title>"
+    And I fill the page content with text "<content>"
+    And I click publish button
+    And I click continue final review button
+    And I click confirm publish button
+    And I should see title and content inside a modal
+    And I click the pages type filter
+    And I click the published pages filter
+    And I should see the first page with title
+    And I click first page
+    And I delete page title
+    And I fill the page title with text "<new_title>"
+    And I fill the page content with text "<new_content>"
+    And I click update page button
+    And I click edit page back
+    And I click the pages type filter
+    When I click the published pages filter
+    Then I should see the first page with title
+    And I delete all the info

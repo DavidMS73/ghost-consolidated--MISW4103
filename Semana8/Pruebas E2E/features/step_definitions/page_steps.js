@@ -74,6 +74,22 @@ Given('I toggle feature page', async function () {
   await scope.pages.pages.toggleFeaturePage();
 });
 
+Given('I delete page title', async function () {
+  await scope.pages.pages.deleteTitle();
+});
+
+Given('I delete page content', async function () {
+  await scope.pages.pages.deleteContent();
+});
+
+Given('I click update page button', async function () {
+  await scope.pages.pages.clickUpdateButton();
+});
+
+Given('I click edit page back', async function () {
+  await scope.pages.pages.clickEditPageBack();
+});
+
 // Then
 
 Then("I should see page title and content inside a modal", async () => {

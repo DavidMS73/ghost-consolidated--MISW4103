@@ -11,8 +11,8 @@ const scope = require("../support/scope");
 class PagePageObject extends BasePageObject {
   pageBodySelector =
     'div[class^="koenig-react-editor"] > div:nth-child(1) > div:nth-child(1) > div[data-kg="editor"]';
-
   pageVisibilitySelector = 'select[data-test-select="post-visibility"]';
+  pageTitleSelector = 'textarea[placeholder="Page title"]';
 
   async clickNewPageButton() {
     const selector = 'a[href="#/editor/page/"]';
@@ -21,9 +21,19 @@ class PagePageObject extends BasePageObject {
   }
 
   async fillPageTitle(title) {
-    const selector = 'textarea[placeholder="Page title"]';
-    await this.page.waitForSelector(selector);
-    await this.page.type(selector, title);
+    await this.page.waitForSelector(this.pageTitleSelector);
+    await this.page.type(this.pageTitleSelector, title);
+  }
+
+  async deleteTitle() {
+    await this.page.waitForSelector(this.pageTitleSelector);
+    await this.page.$eval(this.pageTitleSelector, el => el.value = '');
+  }
+
+  async deleteContent() {
+    await this.page.waitForSelector(this.pageBodySelector);
+    await this.page.click(this.pageBodySelector);
+    await this.page.$eval(this.pageBodySelector, el => el.value = '');
   }
 
   async clickPageBody() {
@@ -37,6 +47,7 @@ class PagePageObject extends BasePageObject {
     await this.page.waitForSelector(selector);
     await this.page.click(selector);
     await this.page.type(selector, text);
+    await waitUtil(700);
   }
 
   async fillImageWithAsset() {
@@ -186,6 +197,16 @@ class PagePageObject extends BasePageObject {
 
   async toggleFeaturePage() {
     await this.clickElement('span[class="gh-toggle-featured"]');
+  }
+
+  async clickUpdateButton() {
+    await this.clickElement(
+      'header[class^="gh-editor-header"] > section[class="gh-editor-publish-buttons"] > button[class~="gh-editor-save-trigger"]'
+    );
+  }
+
+  async clickEditPageBack() {
+    await this.clickElement('a[data-test-link="pages"]');
   }
 }
 

@@ -265,7 +265,7 @@ Feature: Create page
       | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} |
       | {faker(alphanumeric)}          | {faker(paragraph)}               |
 
-  @sem-8 @run
+  @sem-8
   Scenario: EPA11 - Editar título y descripción de página publicada
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -290,3 +290,9 @@ Feature: Create page
     When I click the published pages filter
     Then I should see the first page with title
     And I delete all the info
+
+  Examples:
+    | title                          | content                          | new_title | new_content |
+    | {a_priori(page-tuple1_title)}  | {a_priori(page-tuple1_content)}  | {a_priori(page-tuple2_title)} | {a_priori(page-tuple2_content)} |
+    | {pseudo_aleatorio(page-title)} | {pseudo_aleatorio(page-content)} | {pseudo_aleatorio(page-title_random)} | {pseudo_aleatorio(page-content_random)} |
+    | {faker(alphanumeric)}          | {faker(paragraph)}               | {faker(alphanumeric)} | {faker(paragraph)} |

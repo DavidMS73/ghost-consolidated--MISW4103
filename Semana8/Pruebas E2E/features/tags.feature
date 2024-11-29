@@ -211,7 +211,6 @@ Feature: Create tags
       | {a_priori(tag-tuple12_name)} | {a_priori(tag-tuple12_desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric_501)}    |
 
-  @run
   Scenario Outline: ET13 - Crear un tag cuya metadata en facebook supere los 65 caracteres genera error
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -226,4 +225,22 @@ Feature: Create tags
     Examples:
       | tagName                      | tagMetadataDesc              |
       | {a_priori(tag-tuple9_name)}  | {a_priori(tag-tuple12_desc)}  |
+
+  @run
+  Scenario Outline: ET14 - Al asociar data en facebook para un tag, el preview del search engine muestra informacion correcta
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I fill tag description with "<tagMetadataDesc>"
+    And I expand the "facebook" metadata section
+    And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see the search engine preview with the right data
+    And I delete all the info
+
+    Examples:
+      | tagName                       | tagMetadataDesc               |
+      | {a_priori(tag-tuple14_name)}  | {a_priori(tag-tuple14_desc)}  |
       

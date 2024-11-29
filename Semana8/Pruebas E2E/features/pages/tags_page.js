@@ -170,6 +170,14 @@ class TagsPageObject {
     return parseInt(wordCount) > lengthToCheck;
   }
 
+  async checkFacebookPreviewWidget(title, desc) {
+    await this.page.waitForSelector("div.gh-social-og-preview-title");
+    await this.page.waitForSelector("div.gh-social-og-preview-desc");
+    const titleText = await this.page.$eval("div.gh-social-og-preview-title", e => e.innerText);
+    const descText = await this.page.$eval("div.gh-social-og-preview-desc", e => e.innerText);
+    return titleText === title && descText === desc;
+  }
+
   async validateTagSlug({
     tagName, tagSlug
   }) {

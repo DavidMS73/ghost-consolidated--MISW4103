@@ -114,6 +114,12 @@ Then("I should see an increased word counter under the facebook description fiel
   console.assert(result, `There is no error in the tag description field`);
 });
 
+Then("I should see the search engine preview with the right data", async () => {
+  const { tagName, tagMetadataDesc } = scope.variables;
+  const result = await scope.pages.tags.checkFacebookPreviewWidget(tagName, tagMetadataDesc);
+  console.assert(result, `The search engine preview for facebook is not showing the right data`);
+});
+
 Then("The tag has slug starting with {string}", async function (tagSlug) {
   const { tagName } = scope.variables;
   await scope.pages.tags.validateTagSlug({

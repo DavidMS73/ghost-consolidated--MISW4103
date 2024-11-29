@@ -170,6 +170,19 @@ class TagsPageObject {
     return parseInt(wordCount) > lengthToCheck;
   }
 
+  async validateRelatedPosts(tagName, numberOfRelatedPosts) {
+    const selector = 'ol.tags-list > li.gh-tags-list-item > a.gh-tag-list-posts-count > span';
+    await this.page.waitForSelector(selector);
+    const spanCounts = await this.page.$$(selector);
+
+    for (const spanCount of spanCounts) {
+      const numberOfPosts = await this.page.evaluate(h3 => h3.innerText, spanCount);
+      console.log(`title: [${numberOfPosts}]`);
+      assert(numberOfPosts == numberOfRelatedPosts + ' posts');
+      break;
+    }
+  }
+
   async checkFacebookPreviewWidget(title, desc, socialNetwork) {
 
     let titleSelector = '';

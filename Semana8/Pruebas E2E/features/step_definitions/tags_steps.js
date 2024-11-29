@@ -142,8 +142,12 @@ Then("The tag has slug starting with {string}", async function (tagSlug) {
     tagName,
     tagSlug,
   });
-}
-);
+});
+
+Then("the tag has zero related posts", async function () {
+  const { tagName } = scope.variables;
+  await scope.pages.tags.validateRelatedPosts(tagName, 0);
+});
 
 Then(
   "There are {int} or more tags with the previous tag name in the tag list",

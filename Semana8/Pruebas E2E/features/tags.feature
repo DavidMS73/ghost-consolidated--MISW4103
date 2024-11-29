@@ -279,3 +279,20 @@ Feature: Create tags
       | {a_priori(tag-tuple14_name)} | {a_priori(tag-tuple14_desc)} | 
       | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
+
+  Scenario Outline: ET17 - Crear un tag nuevo muestra cero posts asociados
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    When I click on save tag button
+    Then I go to "public" tags list
+    And the tag has zero related posts
+    And I delete all the info
+
+    Examples:
+      | tagName                       |
+      | {a_priori(tag-tuple4_name)}   |
+      | {pseudo_aleatorio(tag-name)}  |
+      | {faker(alphanumeric)}         |

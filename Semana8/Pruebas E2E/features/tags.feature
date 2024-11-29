@@ -195,3 +195,19 @@ Feature: Create tags
     Examples:
       | tagName                      |
       | {a_priori(tag-tuple11_name)} |
+
+  @run
+  Scenario Outline: ET12 - Crear un tag con una descripcion mayor a 500 caracteres genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I fill tag description with "<tagDescription>"
+    When I click on save tag button
+    Then I should see an error in the tag description field
+
+    Examples:
+      | tagName                      | tagDescription               |
+      | {a_priori(tag-tuple12_name)} | {a_priori(tag-tuple12_desc)} | 
+      | {faker(alphanumeric)}        | {faker(alphanumeric_501)}    |

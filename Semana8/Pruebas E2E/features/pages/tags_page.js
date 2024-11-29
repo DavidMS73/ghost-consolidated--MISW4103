@@ -18,6 +18,12 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async fillDescription(desc) {
+    await this.page.waitForSelector('#tag-description');
+    await this.page.type('#tag-description', desc);
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async fillCodeInjection(header, footer) {
     await this.page.waitForSelector('#tag-setting-codeinjection-head .CodeMirror');
     await this.page.evaluate((headerContent) => {
@@ -148,9 +154,14 @@ class TagsPageObject {
 
   async checkErrorInTagNameIfEmpty(name) {
     await this.page.waitForSelector("span.error p.response");
-    // verificar si el texto del selector anterior es igual a XXX
     const errorText = await this.page.$eval("span.error p.response", e => e.innerText);
     return name === '' && errorText === "You must specify a name for the tag.";
+  }
+
+  async checkErrorInTagDescriptionIfEmpty(desc) {
+    await this.page.waitForSelector("div.form-group.error p.response");
+    const errorText = await this.page.$eval("div.form-group.error p.response", e => e.innerText);
+    return errorText === "Description cannot be longer than 500 characters.";
   }
 
   async validateTagSlug({

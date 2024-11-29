@@ -15,6 +15,12 @@ Given("I fill tag name with {string}", async (tagName) => {
   await scope.pages.tags.fillName(processed);
 });
 
+Given("I fill tag description with {string}", async (tagDescription) => {
+  const processed = dataProcessor(tagDescription);
+  scope.variables.tagDescription = processed;
+  await scope.pages.tags.fillDescription(processed);
+});
+
 Given("I fill the color input with {string}", async (color) => {
   const processed = dataProcessor(color);
   scope.variables.color = processed;
@@ -94,6 +100,12 @@ Then("I should see an error in the tag name field", async () => {
   const { tagName } = scope.variables;
   const result = await scope.pages.tags.checkErrorInTagNameIfEmpty(tagName);
   console.assert(result, `The error label for an empty tag name is not shown`);
+});
+
+Then("I should see an error in the tag description field", async () => {
+  const { tagDescription } = scope.variables;
+  const result = await scope.pages.tags.checkErrorInTagDescriptionIfEmpty(tagDescription);
+  console.assert(result, `There is no error in the tag description field`);
 });
 
 Then("The tag has slug starting with {string}", async function (tagSlug) {

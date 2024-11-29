@@ -296,3 +296,22 @@ Feature: Create tags
       | {a_priori(tag-tuple4_name)}   |
       | {pseudo_aleatorio(tag-name)}  |
       | {faker(alphanumeric)}         |
+
+  Scenario Outline: ET18 - Al eliminar un tag y dar click en el boton borrar de la ventana modal, eliminar el tag
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I click on save tag button
+    And I go to "public" tags list
+    And I click on the recently created tag
+    When I click on delete tag button
+    And I click on the delete tag button in the confirmation modal
+    Then I go to "public" tags list
+    And the tag should not be in the list
+    And I delete all the info
+
+    Examples:
+      | tagName                      |
+      | {a_priori(tag-tuple2_name)}  |

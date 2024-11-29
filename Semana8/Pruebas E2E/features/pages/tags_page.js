@@ -73,6 +73,18 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async clickDeleteTagButton() {
+    await this.page.waitForSelector('button[data-test-button="delete-tag"]');
+    await this.page.click('button[data-test-button="delete-tag"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async clickDeleteTagButtonInConfirmationModal() {
+    await this.page.waitForSelector('button[data-test-button="confirm"]');
+    await this.page.click('button[data-test-button="confirm"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async goToTagsList(kind) {
     await this.page.waitForSelector('a[href="#/tags/"]');
     await this.page.click('a[href="#/tags/"]');
@@ -141,6 +153,19 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async clickTagNameInList(tagName) {
+    await this.page.waitForSelector("h3.gh-tag-list-name");
+    const h3Titles = await this.page.$$("h3.gh-tag-list-name");
+    for (const h3Title of h3Titles) {
+      const title = await this.page.evaluate((h3) => h3.innerText, h3Title);
+      if (title === tagName){
+        await h3Title.click();
+        await new Promise((r) => setTimeout(r, 500));
+        break;
+      }
+    }
+  }
+
   async checkTagInList(titleParam) {
     await this.page.waitForSelector("h3.gh-tag-list-name");
     const h3Titles = await this.page.$$("h3.gh-tag-list-name");
@@ -150,6 +175,12 @@ class TagsPageObject {
     }
 
     return false;
+  }
+
+  async checkTagListIsEmpty() {
+    await this.page.waitForSelector(".no-posts-box");
+    const h3Titles = await this.page.$$(".no-posts-box");
+    return h3Titles.length === 1;
   }
 
   async checkErrorInTagNameIfEmpty(name) {

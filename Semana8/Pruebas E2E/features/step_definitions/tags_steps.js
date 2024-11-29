@@ -75,10 +75,23 @@ Given("I fill the {string} metadata title with the tag name", async (metadataSec
   await scope.pages.tags.fillMetadataTitleAndDescription(metadataSection, tagName, "");
 });
 
+Given("I click on the recently created tag", async () => {
+  const { tagName } = scope.variables;
+  await scope.pages.tags.clickTagNameInList(tagName);
+});
+
 // When
 
 When("I click on save tag button", async () => {
   await scope.pages.tags.clickSaveTagButton();
+});
+
+When("I click on delete tag button", async () => {
+  await scope.pages.tags.clickDeleteTagButton();
+});
+
+When("I click on the delete tag button in the confirmation modal", async () => {
+  await scope.pages.tags.clickDeleteTagButtonInConfirmationModal();
 });
 
 // Then
@@ -92,6 +105,12 @@ Then("the tag should be in the list", async () => {
   const { tagName } = scope.variables;
   const result = await scope.pages.tags.checkTagInList(tagName);
   console.assert(result, `The tag ${tagName} is not in the list`);
+});
+
+Then("the tag should not be in the list", async () => {
+  const { tagName } = scope.variables;
+  const result = await scope.pages.tags.checkTagListIsEmpty(tagName);
+  console.assert(result, `The tag ${tagName} is in the list`);
 });
 
 Then("I should see tag title", async () => {

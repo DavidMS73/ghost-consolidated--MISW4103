@@ -94,6 +94,10 @@ When("I click on the delete tag button in the confirmation modal", async () => {
   await scope.pages.tags.clickDeleteTagButtonInConfirmationModal();
 });
 
+When("I click on the cancel delete tag button in the confirmation modal", async () => {
+  await scope.pages.tags.clickCancelDeleteTagButtonInConfirmationModal();
+});
+
 // Then
 
 Then("I go to {string} tags list", async (kind) => {

@@ -85,6 +85,12 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async clickCancelDeleteTagButtonInConfirmationModal() {
+    await this.page.waitForSelector('button[data-test-button="cancel"]');
+    await this.page.click('button[data-test-button="cancel"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async goToTagsList(kind) {
     await this.page.waitForSelector('a[href="#/tags/"]');
     await this.page.click('a[href="#/tags/"]');

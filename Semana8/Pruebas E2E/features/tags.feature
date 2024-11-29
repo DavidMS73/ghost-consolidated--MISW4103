@@ -315,3 +315,22 @@ Feature: Create tags
     Examples:
       | tagName                      |
       | {a_priori(tag-tuple2_name)}  |
+
+  Scenario Outline: ET19 - Al dar click en el boton de la ventana modal de cancelar el borrado de tag, cancela la operacion
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I click on save tag button
+    And I go to "public" tags list
+    And I click on the recently created tag
+    When I click on delete tag button
+    And I click on the cancel delete tag button in the confirmation modal
+    Then I go to "public" tags list
+    And the tag should be in the list
+    And I delete all the info
+
+    Examples:
+      | tagName                      |
+      | {a_priori(tag-tuple2_name)}  |

@@ -214,7 +214,6 @@ class TagsPageObject {
 
     for (const spanCount of spanCounts) {
       const numberOfPosts = await this.page.evaluate(h3 => h3.innerText, spanCount);
-      console.log(`title: [${numberOfPosts}]`);
       assert(numberOfPosts == numberOfRelatedPosts + ' posts');
       break;
     }

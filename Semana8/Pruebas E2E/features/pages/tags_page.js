@@ -170,12 +170,27 @@ class TagsPageObject {
     return parseInt(wordCount) > lengthToCheck;
   }
 
-  async checkFacebookPreviewWidget(title, desc) {
+  async checkFacebookPreviewWidget(title, desc, socialNetwork) {
+
+    let titleSelector = '';
+    let descSelector = '';
+
+    switch (socialNetwork) {
+      case 'facebook':
+        titleSelector = 'div.gh-social-og-preview-title';
+        descSelector = 'div.gh-social-og-preview-desc';
+        break;
+      case 'X':
+        titleSelector = 'div.gh-social-twitter-preview-title';
+        descSelector = 'div.gh-social-twitter-preview-desc';
+        break;
+    };
+
     await new Promise((r) => setTimeout(r, 500));
-    await this.page.waitForSelector("div.gh-social-og-preview-title");
-    await this.page.waitForSelector("div.gh-social-og-preview-desc");
-    const titleText = await this.page.$eval("div.gh-social-og-preview-title", e => e.innerText);
-    const descText = await this.page.$eval("div.gh-social-og-preview-desc", e => e.innerText);
+    await this.page.waitForSelector(titleSelector);
+    await this.page.waitForSelector(descSelector);
+    const titleText = await this.page.$eval(titleSelector, e => e.innerText);
+    const descText = await this.page.$eval(descSelector, e => e.innerText);
     return titleText === title && descText === desc;
   }
 

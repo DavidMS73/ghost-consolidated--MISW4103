@@ -130,9 +130,9 @@ Then("I should see an increased word counter under the {string} description fiel
   console.assert(result, `There is no error in the tag description field`);
 });
 
-Then("I should see the search engine preview with the right data", async () => {
+Then("I should see the search engine preview with the right data for {string}", async (socialNetwork) => {
   const { tagName, tagDescription } = scope.variables;
-  const result = await scope.pages.tags.checkFacebookPreviewWidget(tagName, tagDescription);
+  const result = await scope.pages.tags.checkFacebookPreviewWidget(tagName, tagDescription, socialNetwork);
   console.assert(result, `The search engine preview for facebook is not showing the right data`);
 });
 

@@ -164,6 +164,12 @@ class TagsPageObject {
     return errorText === "Description cannot be longer than 500 characters.";
   }
 
+  async checkCharCounterInDescriptionField(lengthToCheck) {
+    await this.page.waitForSelector("div.form-group.success span.word-count");
+    const wordCount = await this.page.$eval("div.form-group.success span.word-count", e => e.innerText);
+    return parseInt(wordCount) > lengthToCheck;
+  }
+
   async validateTagSlug({
     tagName, tagSlug
   }) {

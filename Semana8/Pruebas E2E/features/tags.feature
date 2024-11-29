@@ -196,7 +196,6 @@ Feature: Create tags
       | tagName                      |
       | {a_priori(tag-tuple11_name)} |
 
-  @run
   Scenario Outline: ET12 - Crear un tag con una descripcion mayor a 500 caracteres genera error
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -211,3 +210,20 @@ Feature: Create tags
       | tagName                      | tagDescription               |
       | {a_priori(tag-tuple12_name)} | {a_priori(tag-tuple12_desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric_501)}    |
+
+  @run
+  Scenario Outline: ET13 - Crear un tag cuya metadata en facebook supere los 65 caracteres genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "facebook" metadata section
+    And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see an increased word counter under the facebook description field
+
+    Examples:
+      | tagName                      | tagMetadataDesc              |
+      | {a_priori(tag-tuple9_name)}  | {a_priori(tag-tuple12_desc)}  |
+      

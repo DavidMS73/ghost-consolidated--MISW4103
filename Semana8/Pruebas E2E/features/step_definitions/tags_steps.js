@@ -108,6 +108,12 @@ Then("I should see an error in the tag description field", async () => {
   console.assert(result, `There is no error in the tag description field`);
 });
 
+Then("I should see an increased word counter under the facebook description field", async () => {
+  const { tagDescription } = scope.variables;
+  const result = await scope.pages.tags.checkCharCounterInDescriptionField(65);
+  console.assert(result, `There is no error in the tag description field`);
+});
+
 Then("The tag has slug starting with {string}", async function (tagSlug) {
   const { tagName } = scope.variables;
   await scope.pages.tags.validateTagSlug({

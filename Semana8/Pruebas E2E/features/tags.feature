@@ -220,13 +220,12 @@ Feature: Create tags
     And I expand the "facebook" metadata section
     And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
     When I click on save tag button
-    Then I should see an increased word counter under the facebook description field
+    Then I should see an increased word counter under the "facebook" description field
 
     Examples:
       | tagName                      | tagMetadataDesc              |
       | {a_priori(tag-tuple9_name)}  | {a_priori(tag-tuple12_desc)}  |
 
-  @run
   Scenario Outline: ET14 - Al asociar data en facebook para un tag, el preview del search engine muestra informacion correcta
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -245,3 +244,19 @@ Feature: Create tags
       | {a_priori(tag-tuple14_name)} | {a_priori(tag-tuple14_desc)} | 
       | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
+
+  Scenario Outline: ET15 - Al asociar data en X para un tag, si se incluyen mas de 70 caracteres en el titulo genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "X" metadata section
+    And I fill the "X" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see an increased word counter under the "X" description field
+
+    Examples:
+      | tagName                      | tagMetadataDesc              |
+      | {a_priori(tag-tuple15_name)} | {a_priori(tag-tuple15_desc)} |
+      | {faker(alphanumeric_80)}     | {faker(alphanumeric_100)}    |

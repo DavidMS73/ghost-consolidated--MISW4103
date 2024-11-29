@@ -154,6 +154,10 @@
     "tuple14": {
       "name": "short tag name",
       "desc": "Bacon ipsum dolor"
+    },
+    "tuple15": {
+      "name": "Bacon ipsum dolor amet leberkas pork chop brisket meatloaf ground round chop",
+      "desc": "Bacon ipsum dolor"
     }
   },
   "postView": {

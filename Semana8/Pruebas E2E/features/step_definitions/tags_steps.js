@@ -112,9 +112,21 @@ Then("I should see an error in the tag description field", async () => {
   console.assert(result, `There is no error in the tag description field`);
 });
 
-Then("I should see an increased word counter under the facebook description field", async () => {
+Then("I should see an increased word counter under the {string} description field", async (socialNetwork) => {
   const { tagDescription } = scope.variables;
-  const result = await scope.pages.tags.checkCharCounterInDescriptionField(65);
+
+  var wordLimit = 0;
+
+  switch (socialNetwork) {
+    case "facebook":
+      wordLimit = 65;
+      break;
+    case "X":
+      wordLimit = 70;
+      break;
+  }
+
+  const result = await scope.pages.tags.checkCharCounterInDescriptionField(wordLimit);
   console.assert(result, `There is no error in the tag description field`);
 });
 

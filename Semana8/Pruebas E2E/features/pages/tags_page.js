@@ -18,6 +18,12 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async fillDescription(desc) {
+    await this.page.waitForSelector('#tag-description');
+    await this.page.type('#tag-description', desc);
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
   async fillCodeInjection(header, footer) {
     await this.page.waitForSelector('#tag-setting-codeinjection-head .CodeMirror');
     await this.page.evaluate((headerContent) => {
@@ -64,6 +70,24 @@ class TagsPageObject {
   async clickSaveTagButton() {
     await this.page.waitForSelector('button[data-test-button="save"]');
     await this.page.click('button[data-test-button="save"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async clickDeleteTagButton() {
+    await this.page.waitForSelector('button[data-test-button="delete-tag"]');
+    await this.page.click('button[data-test-button="delete-tag"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async clickDeleteTagButtonInConfirmationModal() {
+    await this.page.waitForSelector('button[data-test-button="confirm"]');
+    await this.page.click('button[data-test-button="confirm"]');
+    await new Promise((r) => setTimeout(r, 500));
+  }
+
+  async clickCancelDeleteTagButtonInConfirmationModal() {
+    await this.page.waitForSelector('button[data-test-button="cancel"]');
+    await this.page.click('button[data-test-button="cancel"]');
     await new Promise((r) => setTimeout(r, 500));
   }
 
@@ -135,6 +159,19 @@ class TagsPageObject {
     await new Promise((r) => setTimeout(r, 500));
   }
 
+  async clickTagNameInList(tagName) {
+    await this.page.waitForSelector("h3.gh-tag-list-name");
+    const h3Titles = await this.page.$$("h3.gh-tag-list-name");
+    for (const h3Title of h3Titles) {
+      const title = await this.page.evaluate((h3) => h3.innerText, h3Title);
+      if (title === tagName){
+        await h3Title.click();
+        await new Promise((r) => setTimeout(r, 500));
+        break;
+      }
+    }
+  }
+
   async checkTagInList(titleParam) {
     await this.page.waitForSelector("h3.gh-tag-list-name");
     const h3Titles = await this.page.$$("h3.gh-tag-list-name");
@@ -146,11 +183,64 @@ class TagsPageObject {
     return false;
   }
 
+  async checkTagListIsEmpty() {
+    await this.page.waitForSelector(".no-posts-box");
+    const h3Titles = await this.page.$$(".no-posts-box");
+    return h3Titles.length === 1;
+  }
+
   async checkErrorInTagNameIfEmpty(name) {
     await this.page.waitForSelector("span.error p.response");
-    // verificar si el texto del selector anterior es igual a XXX
     const errorText = await this.page.$eval("span.error p.response", e => e.innerText);
     return name === '' && errorText === "You must specify a name for the tag.";
+  }
+
+  async checkErrorInTagDescriptionIfEmpty(desc) {
+    await this.page.waitForSelector("div.form-group.error p.response");
+    const errorText = await this.page.$eval("div.form-group.error p.response", e => e.innerText);
+    return errorText === "Description cannot be longer than 500 characters.";
+  }
+
+  async checkCharCounterInDescriptionField(lengthToCheck) {
+    await this.page.waitForSelector("div.form-group.success span.word-count");
+    const wordCount = await this.page.$eval("div.form-group.success span.word-count", e => e.innerText);
+    return parseInt(wordCount) > lengthToCheck;
+  }
+
+  async validateRelatedPosts(tagName, numberOfRelatedPosts) {
+    const selector = 'ol.tags-list > li.gh-tags-list-item > a.gh-tag-list-posts-count > span';
+    await this.page.waitForSelector(selector);
+    const spanCounts = await this.page.$$(selector);
+
+    for (const spanCount of spanCounts) {
+      const numberOfPosts = await this.page.evaluate(h3 => h3.innerText, spanCount);
+      assert(numberOfPosts == numberOfRelatedPosts + ' posts');
+      break;
+    }
+  }
+
+  async checkFacebookPreviewWidget(title, desc, socialNetwork) {
+
+    let titleSelector = '';
+    let descSelector = '';
+
+    switch (socialNetwork) {
+      case 'facebook':
+        titleSelector = 'div.gh-social-og-preview-title';
+        descSelector = 'div.gh-social-og-preview-desc';
+        break;
+      case 'X':
+        titleSelector = 'div.gh-social-twitter-preview-title';
+        descSelector = 'div.gh-social-twitter-preview-desc';
+        break;
+    };
+
+    await new Promise((r) => setTimeout(r, 500));
+    await this.page.waitForSelector(titleSelector);
+    await this.page.waitForSelector(descSelector);
+    const titleText = await this.page.$eval(titleSelector, e => e.innerText);
+    const descText = await this.page.$eval(descSelector, e => e.innerText);
+    return titleText === title && descText === desc;
   }
 
   async validateTagSlug({

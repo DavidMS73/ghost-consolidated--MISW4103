@@ -195,3 +195,142 @@ Feature: Create tags
     Examples:
       | tagName                      |
       | {a_priori(tag-tuple11_name)} |
+
+  Scenario Outline: ET12 - Crear un tag con una descripcion mayor a 500 caracteres genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I fill tag description with "<tagDescription>"
+    When I click on save tag button
+    Then I should see an error in the tag description field
+
+    Examples:
+      | tagName                      | tagDescription               |
+      | {a_priori(tag-tuple12_name)} | {a_priori(tag-tuple12_desc)} | 
+      | {faker(alphanumeric)}        | {faker(alphanumeric_501)}    |
+
+  Scenario Outline: ET13 - Crear un tag cuya metadata en facebook supere los 65 caracteres genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "facebook" metadata section
+    And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see an increased word counter under the "facebook" description field
+
+    Examples:
+      | tagName                      | tagMetadataDesc              |
+      | {a_priori(tag-tuple9_name)}  | {a_priori(tag-tuple12_desc)}  |
+
+  Scenario Outline: ET14 - Al asociar data en facebook para un tag, el preview del search engine muestra informacion correcta
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I fill tag description with "<tagDescription>"
+    And I expand the "facebook" metadata section
+    And I fill the "facebook" metadata title with the tag name
+    When I click on save tag button
+    Then I should see the search engine preview with the right data for "facebook"
+    And I delete all the info
+
+    Examples:
+      | tagName                      | tagDescription              | 
+      | {a_priori(tag-tuple14_name)} | {a_priori(tag-tuple14_desc)} | 
+      | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
+      | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
+
+  Scenario Outline: ET15 - Al asociar data en X para un tag, si se incluyen mas de 70 caracteres en el titulo genera error
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I expand the "X" metadata section
+    And I fill the "X" metadata title with the tag name and description "<tagMetadataDesc>"
+    When I click on save tag button
+    Then I should see an increased word counter under the "X" description field
+
+    Examples:
+      | tagName                      | tagMetadataDesc              |
+      | {a_priori(tag-tuple15_name)} | {a_priori(tag-tuple15_desc)} |
+      | {faker(alphanumeric_80)}     | {faker(alphanumeric_100)}    |
+
+  Scenario Outline: ET16 - Al asociar data del tag en X el preview muestra datos correctos
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I fill tag description with "<tagDescription>"
+    And I expand the "X" metadata section
+    And I fill the "X" metadata title with the tag name
+    When I click on save tag button
+    Then I should see the search engine preview with the right data for "X"
+    And I delete all the info
+
+    Examples:
+      | tagName                      | tagDescription              | 
+      | {a_priori(tag-tuple14_name)} | {a_priori(tag-tuple14_desc)} | 
+      | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
+      | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
+
+  Scenario Outline: ET17 - Crear un tag nuevo muestra cero posts asociados
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    When I click on save tag button
+    Then I go to "public" tags list
+    And the tag has zero related posts
+    And I delete all the info
+
+    Examples:
+      | tagName                       |
+      | {a_priori(tag-tuple4_name)}   |
+      | {pseudo_aleatorio(tag-name)}  |
+      | {faker(alphanumeric)}         |
+
+  Scenario Outline: ET18 - Al eliminar un tag y dar click en el boton borrar de la ventana modal, eliminar el tag
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I click on save tag button
+    And I go to "public" tags list
+    And I click on the recently created tag
+    When I click on delete tag button
+    And I click on the delete tag button in the confirmation modal
+    Then I go to "public" tags list
+    And the tag should not be in the list
+    And I delete all the info
+
+    Examples:
+      | tagName                      |
+      | {a_priori(tag-tuple2_name)}  |
+
+  Scenario Outline: ET19 - Al dar click en el boton de la ventana modal de cancelar el borrado de tag, cancela la operacion
+    Given I navigate to "tags" section
+    And I login to the application if necessary
+    And I navigate to "tags" section
+    And I click on new tag button
+    And I fill tag name with "<tagName>"
+    And I click on save tag button
+    And I go to "public" tags list
+    And I click on the recently created tag
+    When I click on delete tag button
+    And I click on the cancel delete tag button in the confirmation modal
+    Then I go to "public" tags list
+    And the tag should be in the list
+    And I delete all the info
+
+    Examples:
+      | tagName                      |
+      | {a_priori(tag-tuple2_name)}  |

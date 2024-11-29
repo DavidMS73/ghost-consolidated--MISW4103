@@ -233,14 +233,15 @@ Feature: Create tags
     And I navigate to "tags" section
     And I click on new tag button
     And I fill tag name with "<tagName>"
-    And I fill tag description with "<tagMetadataDesc>"
+    And I fill tag description with "<tagDescription>"
     And I expand the "facebook" metadata section
-    And I fill the "facebook" metadata title with the tag name and description "<tagMetadataDesc>"
+    And I fill the "facebook" metadata title with the tag name
     When I click on save tag button
     Then I should see the search engine preview with the right data
     And I delete all the info
 
     Examples:
-      | tagName                       | tagMetadataDesc               |
-      | {a_priori(tag-tuple14_name)}  | {a_priori(tag-tuple14_desc)}  |
-      
+      | tagName                      | tagDescription              | 
+      | {a_priori(tag-tuple14_name)} | {a_priori(tag-tuple14_desc)} | 
+      | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
+      | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 

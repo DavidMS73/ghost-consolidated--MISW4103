@@ -171,6 +171,7 @@ class TagsPageObject {
   }
 
   async checkFacebookPreviewWidget(title, desc) {
+    await new Promise((r) => setTimeout(r, 500));
     await this.page.waitForSelector("div.gh-social-og-preview-title");
     await this.page.waitForSelector("div.gh-social-og-preview-desc");
     const titleText = await this.page.$eval("div.gh-social-og-preview-title", e => e.innerText);

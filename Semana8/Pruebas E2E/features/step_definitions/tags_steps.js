@@ -37,7 +37,7 @@ Given("I fill the tag header with {string} and footer with {string}", async (cod
   const codeInjectionFooterParsed = dataProcessor(codeInjectionFooter);
   scope.variables.tagCodeInjectionHeader = codeInjectionHeaderParsed;
   scope.variables.tagCodeInjectionFooter = codeInjectionFooterParsed;
-  
+
   await scope.pages.tags.fillCodeInjection(codeInjectionHeaderParsed, codeInjectionFooterParsed);
 });
 
@@ -56,20 +56,24 @@ Given("I expand the {string} metadata section", async (metadataSection) => {
   await scope.pages.tags.expandMetadataSection(metadataSection);
 });
 
-Given(
-  "I fill the {string} metadata title with the tag name and description {string}",
+Given("I fill the {string} metadata title with the tag name and description {string}",
   async (metadataSection, tagMetadataDesc) => {
     const { tagName } = scope.variables;
     const processed = dataProcessor(tagMetadataDesc);
-    scope.variables.tagMetadataDesc = processed;
+    scope.variables.tagDescription = processed;
 
     await scope.pages.tags.fillMetadataTitleAndDescription(
       metadataSection,
       tagName,
       processed
     );
-  }
-);
+  });
+
+Given("I fill the {string} metadata title with the tag name", async (metadataSection) => {
+  const { tagName } = scope.variables;
+
+  await scope.pages.tags.fillMetadataTitleAndDescription(metadataSection, tagName, "");
+});
 
 // When
 
@@ -115,8 +119,8 @@ Then("I should see an increased word counter under the facebook description fiel
 });
 
 Then("I should see the search engine preview with the right data", async () => {
-  const { tagName, tagMetadataDesc } = scope.variables;
-  const result = await scope.pages.tags.checkFacebookPreviewWidget(tagName, tagMetadataDesc);
+  const { tagName, tagDescription } = scope.variables;
+  const result = await scope.pages.tags.checkFacebookPreviewWidget(tagName, tagDescription);
   console.assert(result, `The search engine preview for facebook is not showing the right data`);
 });
 

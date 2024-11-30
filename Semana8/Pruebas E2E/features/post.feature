@@ -330,7 +330,7 @@ Feature: Create post
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)
 
   @sem-8
-  Scenario Outline: EPO14- Create a post with title and description, not publish and it should be in drafts
+  Scenario Outline: EPO14 - Create a post with title and description, not publish and it should be in drafts
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section

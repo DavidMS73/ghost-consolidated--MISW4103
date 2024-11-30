@@ -44,6 +44,7 @@ BeforeAll(async () => {
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
+      "--window-size=1600,1000",
       // debug logging
       // '--enable-logging', '--v=1'
     ],
@@ -52,15 +53,10 @@ BeforeAll(async () => {
     //  you want to stop at
     devtools: false,
     setDefaultTimeout: constants.pageTimeout,
+    // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
   };
 
-  scope.browser = await puppeteer.launch({
-    headless: false,
-    args: [
-      '--window-size=1600,1000'
-    ],
-    // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
-  });
+  scope.browser = await puppeteer.launch(launchProperties);
 
   // *************************************** \\
   // clear output folders

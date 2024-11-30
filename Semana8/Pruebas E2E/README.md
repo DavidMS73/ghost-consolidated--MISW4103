@@ -12,7 +12,7 @@ Dado que encontramos algunos casos donde el resultado esperado no concordaba con
 **Para las pruebas se recomienda usar Node v22.11.0 dado que esta versión fue la utilizada en el desarrollo.**
 
 ## Instalar Dependencias
-Antes de correr las pruebas, se deben instalar las dependencias. Para esto, utilizar el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):
+Antes de correr las pruebas, se deben instalar las dependencias. Para esto, utilizar el siguiente comando (debe estar dentro de [Semana8/Pruebas E2E](https://github.com/DavidMS73/ghost-consolidated-MISW4103/edit/main/Semana8/Pruebas%20E2E):
 ```bash
 npm install
 ```
@@ -34,7 +34,7 @@ Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecu
 ## Ejecución
 Para entender el funcionamiento remitirse a [wiki - aclaración del funcionamiento](https://github.com/DavidMS73/ghost-consolidated-MISW4103/wiki/Descripci%C3%B3n-estrategias-Semana-7#aclaraci%C3%B3n-del-funcionamiento)
 
-Para ejecutar *todas* las pruebas ejecute el siguiente comando (debe estar dentro de [DataValidation/Puppeteer-Cucumber](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber)):
+Para ejecutar *todas* las pruebas ejecute el siguiente comando (debe estar dentro de [Semana8/Pruebas E2E](https://github.com/DavidMS73/ghost-consolidated-MISW4103/edit/main/Semana8/Pruebas%20E2E)):
 ```bash
 npx cucumber-js
 ```
@@ -56,5 +56,9 @@ Cada una de estas features es posible correrlas de forma independiente con los s
 5. tags -> `npx cucumber-js --tags=@tags`
 6. members-> `npx cucumber-js --tags=@members`
 
+### Semana 8
+Para ejecutar únicamente los escenarios desarrollados en la Semana 8, se debe correr el proyecto de la siguiente forma:
+`npx cucumber-js --tags=@sem-8`
+
 ## Resultados
-Al finalizar las pruebas, los resultados se guardarán en la carpeta `output`. Aquí podrá ver las capturas hechas durante las pruebas
+Al finalizar las pruebas, los resultados se guardarán en la carpeta `output`. Aquí podrá ver las capturas hechas durante las pruebas.

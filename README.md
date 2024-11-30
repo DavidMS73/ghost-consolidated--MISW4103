@@ -32,3 +32,6 @@ Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main
 ## Semana 7
 ### Validación de datos Puppeteer-Cucumber
 Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/DataValidation/Puppeteer-Cucumber#readme)
+
+## Semana 8 - final
+Leer [README](https://github.com/DavidMS73/ghost-consolidated-MISW4103/tree/main/Semana8#readme)

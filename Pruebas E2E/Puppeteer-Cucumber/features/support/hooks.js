@@ -151,7 +151,7 @@ AfterStep(async function ({
   //Paths
   const version = constants.reportConfig.metadata["Version"];
   const scenarioName = pickle.name.split(" - ")[0];
-  const screenshotPath = `./output/screenshots/${version}/${featureName}/${scenarioName}/`;
+  const screenshotPath = `./output/screenshots/${version}/${featureName}/${scenarioName}/OUTLINE_1/`;
   const screenshotName = `step_${stepNumber}.png`;
   const fullPath = `${screenshotPath}${screenshotName}`;
 

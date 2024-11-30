@@ -53,6 +53,7 @@ BeforeAll(async () => {
     //  you want to stop at
     devtools: false,
     setDefaultTimeout: constants.pageTimeout,
+    browser: process.env.NODE_ENV || "chrome",
     // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
   };
 
@@ -187,9 +188,9 @@ AfterStep(async function ({ pickle, gherkinDocument }) {
 
   const stepNumber = stepCounter++;
   //Paths
-  const version = constants.reportConfig.metadata["Version"];
+  const mainDirectoryName = (process.env.NODE_ENV || "chrome") === "chrome" ? "Chrome" : "Firefox";
   const scenarioName = pickle.name.split(" - ")[0];
-  const screenshotPath = `./output/screenshots/${version}/${featureName}/${scenarioName}/OUTLINE_${scenarioCounter}/`;
+  const screenshotPath = `./output/screenshots/${mainDirectoryName}/${featureName}/${scenarioName}/OUTLINE_${scenarioCounter}/`;
   const screenshotName = `step_${stepNumber}.png`;
   const fullPath = `${screenshotPath}${screenshotName}`;
 

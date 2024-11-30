@@ -58,7 +58,8 @@ BeforeAll(async () => {
     headless: false,
     args: [
       '--window-size=1600,1000'
-    ]
+    ],
+    // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
   });
 
   // *************************************** \\

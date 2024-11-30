@@ -72,8 +72,23 @@
     },
     "tuple14": {
       "title": "Post draft",
-      "description": "Description of post drfat",
+      "description": "Description of post draft",
       "featureImage": "forest.jpg"
+    },
+    "tuple15": {
+      "title": "Post to edit loading WAV audio",
+      "description": "Description of post to load WAV audio",
+      "audio": "AudioSambaB.wav"
+    },
+    "tuple16": {
+      "title": "Post to edit loading a feature image",
+      "description": "Description of post to load feature image",
+      "featureImage": "forest.jpg"
+    },
+    "tuple17": {
+      "title": "Post to edit with video in MP4",
+      "description": "Post  to edit with a video in mp4",
+      "video": "videoGhostM.mp4"
     }
   },
   "page": {

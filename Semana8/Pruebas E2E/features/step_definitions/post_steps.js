@@ -100,3 +100,10 @@ Then("the post updated should be in the list", async () => {
   assert(result1, `The post ${newPostTitle} is not in the list`);
   assert(!result2, `The post ${postTitle} should not be in the list`);
 });
+
+Then("the post with original title should be in the list", async () => {
+  const { postTitle } = scope.variables;
+  // Write code here that turns the phrase above into concrete actions
+  const result1 = await scope.pages.posts.checkPostInList(postTitle);
+  assert(result1, `The post ${postTitle} should be in the list`);
+});

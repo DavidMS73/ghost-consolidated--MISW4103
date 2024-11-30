@@ -411,7 +411,7 @@ Feature: Create post
       | {a_priori(post-tuple17_title)} | {a_priori(post-tuple17_video)} |
     # El primer example ejecuta la función de pool de datos a-priori
 
-  @sem-8 @run
+  @sem-8
   Scenario Outline: EPO24 - Edit a post that was created with title and unpublish it
     Given I navigate to "home" section
     And I login to the application if necessary

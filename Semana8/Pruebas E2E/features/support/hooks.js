@@ -54,7 +54,12 @@ BeforeAll(async () => {
     setDefaultTimeout: constants.pageTimeout,
   };
 
-  scope.browser = await scope.driver.launch(launchProperties);
+  scope.browser = await puppeteer.launch({
+    headless: false,
+    args: [
+      '--window-size=1600,1000'
+    ]
+  });
 
   // *************************************** \\
   // clear output folders

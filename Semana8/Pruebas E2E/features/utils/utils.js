@@ -98,9 +98,17 @@ const dataProcessor = (data) => {
     } else if (origin === "pseudo_aleatorio") {
       const groupInfo = subgroup(attribute);
       const group = groupInfo[0];
-      const attributeInfo = groupInfo[1];
-      const position = scope.actualPseudoAleatorioPosition[group];
-
+      const attributeInfo = groupInfo[1].split('_')[0];
+      let position = scope.actualPseudoAleatorioPosition[group];
+      if (attribute.endsWith('_random')) {
+        let newPosition = position;
+        while (newPosition === position) {
+          newPosition = Math.floor(
+            Math.random() * (scope.pseudoAleatorioDataPool[group].length - 1)
+          );
+        }
+        position = newPosition;
+      }
       content = scope.pseudoAleatorioDataPool[group][position][attributeInfo];
     } else if (origin === "faker") {
       content = fakerData(attribute);

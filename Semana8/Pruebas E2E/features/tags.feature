@@ -196,6 +196,7 @@ Feature: Create tags
       | tagName                      |
       | {a_priori(tag-tuple11_name)} |
 
+  @sem-8
   Scenario Outline: ET12 - Crear un tag con una descripcion mayor a 500 caracteres genera error
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -211,6 +212,7 @@ Feature: Create tags
       | {a_priori(tag-tuple12_name)} | {a_priori(tag-tuple12_desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric_501)}    |
 
+  @sem-8
   Scenario Outline: ET13 - Crear un tag cuya metadata en facebook supere los 65 caracteres genera error
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -226,6 +228,7 @@ Feature: Create tags
       | tagName                      | tagMetadataDesc              |
       | {a_priori(tag-tuple9_name)}  | {a_priori(tag-tuple12_desc)}  |
 
+  @sem-8
   Scenario Outline: ET14 - Al asociar data en facebook para un tag, el preview del search engine muestra informacion correcta
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -245,6 +248,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
 
+  @sem-8
   Scenario Outline: ET15 - Al asociar data en X para un tag, si se incluyen mas de 70 caracteres en el titulo genera error
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -261,6 +265,7 @@ Feature: Create tags
       | {a_priori(tag-tuple15_name)} | {a_priori(tag-tuple15_desc)} |
       | {faker(alphanumeric_80)}     | {faker(alphanumeric_100)}    |
 
+  @sem-8
   Scenario Outline: ET16 - Al asociar data del tag en X el preview muestra datos correctos
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -280,6 +285,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)} | {pseudo_aleatorio(tag-desc)} | 
       | {faker(alphanumeric)}        | {faker(alphanumeric)}         | 
 
+  @sem-8
   Scenario Outline: ET17 - Crear un tag nuevo muestra cero posts asociados
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -297,6 +303,7 @@ Feature: Create tags
       | {pseudo_aleatorio(tag-name)}  |
       | {faker(alphanumeric)}         |
 
+  @sem-8
   Scenario Outline: ET18 - Al eliminar un tag y dar click en el boton borrar de la ventana modal, eliminar el tag
     Given I navigate to "tags" section
     And I login to the application if necessary
@@ -316,6 +323,7 @@ Feature: Create tags
       | tagName                      |
       | {a_priori(tag-tuple2_name)}  |
 
+  @sem-8
   Scenario Outline: ET19 - Al dar click en el boton de la ventana modal de cancelar el borrado de tag, cancela la operacion
     Given I navigate to "tags" section
     And I login to the application if necessary

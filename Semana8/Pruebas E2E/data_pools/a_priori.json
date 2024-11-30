@@ -87,8 +87,12 @@
     },
     "tuple17": {
       "title": "Post to edit with video in MP4",
-      "description": "Post  to edit with a video in mp4",
+      "description": "Post to edit with a video in mp4",
       "video": "videoGhostM.mp4"
+    },
+    "tuple18": {
+      "title": "Post to be unpublished",
+      "description": "Post to be unpublished"
     }
   },
   "page": {

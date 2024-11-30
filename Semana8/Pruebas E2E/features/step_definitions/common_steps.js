@@ -37,6 +37,10 @@ Given("I upload a video {string}", async function (video) {
   await scope.pages.common.uploadVideo("./assets/" + processed);
 });
 
+Given("I click unpublish button", async () => {
+  await scope.pages.common.clickUnpublishButton();
+});
+
 // When
 When("I click confirm publish button", async () => {
   await scope.pages.common.clickConfirmPublishButton();
@@ -44,6 +48,10 @@ When("I click confirm publish button", async () => {
 
 When("I click update button", async () => {
   await scope.pages.common.clickUpdateButton();
+});
+
+When("I click unpublish and revert to private draft", async () => {
+  await scope.pages.common.clickConfirmUnpublishButton();
 });
 
 // Then

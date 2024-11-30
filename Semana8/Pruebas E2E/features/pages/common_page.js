@@ -63,6 +63,20 @@ class CommonPageObject {
     await waitUtil(500);
   }
 
+  async clickUnpublishButton() {
+    const selector = 'button[data-test-button="update-flow"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await waitUtil(500);
+  }
+
+  async clickConfirmUnpublishButton() {
+    const selector = 'button[data-test-button="revert-to-draft"]';
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+    await waitUtil(500);
+  }
+
   async checkNewPublishModal(title, content, image, partialContent) {
     if (title) {
       const titleSelector = 'div[class="modal-body"] > h2';

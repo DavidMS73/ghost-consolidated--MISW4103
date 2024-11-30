@@ -381,7 +381,7 @@ Feature: Create post
       | {a_priori(post-tuple15_title)} | {a_priori(post-tuple15_audio)} |
     # El primer example ejecuta la función de pool de datos a-priori
 
-  @sem-8 @run
+  @sem-8
   Scenario Outline: EPO23 - Edit a post with title that will be published later and add a MP4 video
     Given I navigate to "home" section
     And I login to the application if necessary
@@ -411,32 +411,33 @@ Feature: Create post
       | {a_priori(post-tuple17_title)} | {a_priori(post-tuple17_video)} |
     # El primer example ejecuta la función de pool de datos a-priori
 
-  @sem-8
+  @sem-8 @run
   Scenario Outline: EPO24 - Edit a post that was created with title and unpublish it
     Given I navigate to "home" section
     And I login to the application if necessary
     And I navigate to "posts" section
     And I click on new post button
-    And I fill post description with "<description>"
+    And I fill post title with "<title>"
+    And I click on editor page
     And I click publish button
     And I click continue final review button
     And I click confirm publish button
-    And I should see title (Untitled) and correct description inside a modal
+    And I should see title inside a modal
     And I go to published posts
     And I click on the post created to edit
-    And I change post title with "<newTitle>"
-    When I click update button
-    Then I should see a small modal with title "Post updated"
+    And I click unpublish button
+    When I click unpublish and revert to private draft
+    Then I should see a small modal with title "Post reverted to a draft."
     And I navigate to "posts" section
-    And I go to published posts
-    And the post updated should be in the list
+    And I go to drafts posts
+    And the post with original title should be in the list
     And I delete all the info
 
     Examples:
-      | description                          | newTitle                       |
-      | {a_priori(post-tuple13_description)} | {a_priori(post-tuple13_title)} |
-      | {pseudo_aleatorio(post-description)} | {pseudo_aleatorio(post-title)} |
-      | {faker(paragraph)}                   | {faker(alphanumeric)}          |
+      | title                          |
+      | {a_priori(post-tuple18_title)} |
+      | {pseudo_aleatorio(post-title)} |
+      | {faker(alphanumeric)}          |
     # El primer example ejecuta la función de pool de datos a-priori
     # El segundo example ejecuta la función pool de datos pseudo-aleatorio
     # El tercer example ejecuta la función de faker (datos completamente aleatorios)

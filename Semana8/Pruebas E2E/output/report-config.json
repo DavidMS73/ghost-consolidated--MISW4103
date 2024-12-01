@@ -1,1 +1,1 @@
-{"output":"output/report/cucumber-report.html","screenshotsDirectory":"output/screenshots/","reportSuiteAsScenarios":false,"launchReport":false,"storeScreenshots":true,"metadata":{"Test Environment":"chrome","Browser":"Chrome/131.0.6778.85","Version":"v5.96"}}
+{"output":"output/report/cucumber-report.html","screenshotsDirectory":"output/screenshots/","reportSuiteAsScenarios":false,"launchReport":false,"storeScreenshots":true,"metadata":{"Test Environment":"Test Environment","Browser":"firefox/132.0.1","Version":"v5.96"}}

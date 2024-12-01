@@ -225,8 +225,8 @@ async function processSteps(
       id: step + 1,
       sameDimensions: data.isSameDimensions,
       difference: data.misMatchPercentage,
-      originalImage: "../" + stepPathv1,
-      newImage: "../" + stepPathv2,
+      originalImage: "../" + stepPathv1.substring(2),
+      newImage: "../" + stepPathv2.substring(2),
       diffImage:
         "../results_full_flow/" +
         `${feature}-${scenario}-${outline}-${compareResultImg}.png`,

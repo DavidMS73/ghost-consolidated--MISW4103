@@ -62,3 +62,5 @@ Para ejecutar únicamente los escenarios desarrollados en la Semana 8, se debe c
 
 ## Resultados
 Al finalizar las pruebas, los resultados se guardarán en la carpeta `output`. Aquí podrá ver las capturas hechas durante las pruebas.
+
+> Por defecto hemos incluído ya screenshots para la semana 8 en la carpeta output/screenshots/Chrome, por lo que es posible consultarlas sin tener que ejecutar todas las pruebas.

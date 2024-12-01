@@ -113,6 +113,7 @@ async function runBrowsersScript(log) {
   const script1 = await runScript(browserSourceDir[0], browserCommands[0]);
   console.log("Finished browser Chrome");
   log.push(script1);
+  await copyScreenshots("../Pruebas E2E/output/screenshots");
 
   console.log("Starting browser Firefox");
   log.push("Firefox");
@@ -299,7 +300,6 @@ async function executeTest() {
     fs.mkdirSync(`./results_full_flow`, { recursive: true });
   }
 
-  // const sourceDirsOutput = versionSourceDirs.map((dir) => dir + "output/screenshots/");
   const sourceDirOutput = "./screenshots/";
   const vrtType = process.env.VRT_TYPE;
   const collection = vrtType === "versions" ? versions : browsers;

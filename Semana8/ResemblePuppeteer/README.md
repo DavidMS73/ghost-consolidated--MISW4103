@@ -10,39 +10,58 @@ Antes de correr las pruebas, se deben instalar las dependencias. Para esto, util
 npm install
 ```
 
+Instalar Firefox para puppeteer en [Pruebas E2E](../Pruebas%20E2E/):
+```bash
+npx puppeteer browsers install firefox
+```
+
+
 ## Preparación del Ambiente
 Sigue estas instrucciones antes de correr las pruebas para asegurar que se ejecuten de la manera correcta.
 1. Crear un usuario admin en Ghost
-2. En los archivos [properties.js en /Pruebas E2E](../Pruebas%20E2E/Puppeteer-Cucumber/properties.js) y [properties.js en /PruebasRV](../PruebasRV/Puppeteer-Cucumber/properties.js) cambiar los valores de `EMAIL` y `PASSWORD` por los de tu usuario.
-3. Configurar `BASE_URL` para apuntar a la versión de Ghost esperada.
-   1. [properties.js en /Pruebas E2E](../Pruebas%20E2E/Puppeteer-Cucumber/properties.js) debe apuntar a Ghost v5.96
-   2. [properties.js en /PruebasRV](../PruebasRV/Puppeteer-Cucumber/properties.js) debe apuntar a Ghost v4.5
-4. Correr ambas versiones de Ghost
+2. En los archivos [properties.js en /Pruebas E2E](../Pruebas%20E2E/Puppeteer-Cucumber/properties.js) cambiar los valores de `EMAIL` y `PASSWORD` por los de tu usuario.
+3. Configurar `BASE_URL` para apuntar a Ghost.
+4. Correr Ghost
 5. Borra todo el contenido previo entrando a Ajustes > Danger Zone > Delete All Content
 
 ## Ejecución
 Para ejecutar las pruebas ejecute el siguiente comando (debe estar dentro de [ResemblePuppeteer](../ResemblePuppeteer)):
 
 **Mac:**
+
+Ejecutar Resemble con diferentes versiones
 ```bash
-node ./fullFlow.js
+npm run vrt:versions
 ```
-**Windows:**
+Ejecutar Resemble con diferentes browsers
 ```bash
-node .\fullFlow.js
+npm run vrt:browsers
+```
+
+**Windows:**
+
+Ejecutar Resemble con diferentes versiones
+```bash
+npm run vrt:versions:win
+```
+Ejecutar Resemble con diferentes browsers
+```bash
+npm run vrt:browsers:win
 ```
 
 ## Resultados
-Al finalizar las pruebas, se genará una carpeta `results`. En esta carpeta encontrará las imágenes de todas las comparaciones y un html en el que podrá ver un reporte de los resultados.
+Al finalizar las pruebas, se genará una carpeta `results_full_flow`. En esta carpeta encontrará las imágenes de todas las comparaciones y un json en el que podrá ver los resultados de esas comparaciones.
 
-### Forma de ejecución back-up
-Una vez corridas las pruebas en nuestro ambiente local, procedimos a mover los archivos de las screenshots a la carpeta de ResemblePuppeteer/screenshots del repositorio, de esta forma ya tenemos todas las screenshots cargadas, restaría la comparación para lo cual se ejecutaría el comando
+Para poder ver el reporte visual siga los siguientes pasos:
+1. Abrir una consola en [ResemblePuppeteer](./)
+2. Instalar `http-server`
+```bash
+npm install http-server -g
+```
+3. Ejecutar `http-server`
+```bash
+http-server
+```
+4. Abrir navegador e ir a la ruta [http://127.0.0.1:8080/report](http://127.0.0.1:8080/report)
 
-**Mac:**
-```bash
-node ./index.js
-```
-**Windows:**
-```bash
-node .\index.js
-```
+En este reporte podrá ver un resumen de la ejecución y el detalle de las diferencias encontradas entre las distintas versiones.

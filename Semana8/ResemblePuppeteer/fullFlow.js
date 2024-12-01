@@ -6,20 +6,27 @@ const compareImages = require("resemblejs/compareImages");
 // ProgressBar
 const drawProgressBar = (progress) => {
   const barWidth = 30;
-  const filledWidth = Math.floor(progress / 100 * barWidth);
+  const filledWidth = Math.floor((progress / 100) * barWidth);
   const emptyWidth = barWidth - filledWidth;
-  const progressBar = '█'.repeat(filledWidth) + '▒'.repeat(emptyWidth);
+  const progressBar = "█".repeat(filledWidth) + "▒".repeat(emptyWidth);
   return `${progressBar} ${progress}%`;
-}
+};
 
 // Lista de directorios base
 const versionSourceDirs = [
   "../../PruebasRV/Puppeteer-Cucumber/",
   "../../Pruebas E2E/Puppeteer-Cucumber/",
 ];
-const browserSourceDir = ["../Pruebas E2E/"]
+const browserSourceDir = ["../Pruebas E2E/"];
 const versionCommands = ["npm run tests:rv:45", "npm run tests:rv:596"];
-const browserCommands = ["npm run puppeteer:chrome", "npm run puppeteer:firefox"];
+const browserCommands = [
+  "npm run puppeteer:chrome",
+  "npm run puppeteer:firefox",
+];
+const browserCommandsWin = [
+  "npm run puppeteer:chrome:win",
+  "npm run puppeteer:firefox:win",
+];
 const versions = ["v4.5", "v5.96"];
 const browsers = ["Chrome", "Firefox"];
 const logFilePath = path.join(__dirname, "execution_log.txt");
@@ -97,27 +104,37 @@ async function runVersionsScript(log) {
   const script1 = await runScript(versionSourceDirs[0], versionCommands[0]);
   console.log("Finished version 4.5");
   log.push(script1);
-  await copyScreenshots("../../PruebasRV/Puppeteer-Cucumber/output/screenshots");
+  await copyScreenshots(
+    "../../PruebasRV/Puppeteer-Cucumber/output/screenshots"
+  );
 
   console.log("Starting version 5.96");
   log.push("Version 5.96");
   const script2 = await runScript(versionSourceDirs[1], versionCommands[1]);
   console.log("Finished version 5.96");
   log.push(script2);
-  await copyScreenshots("../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots");
+  await copyScreenshots(
+    "../../Pruebas E2E/Puppeteer-Cucumber/output/screenshots"
+  );
 }
 
-async function runBrowsersScript(log) {
+async function runBrowsersScript(log, isWindows) {
   console.log("Starting browser Chrome");
   log.push("Chrome");
-  const script1 = await runScript(browserSourceDir[0], browserCommands[0]);
+  const script1 = await runScript(
+    browserSourceDir[0],
+    isWindows ? browserCommandsWin[0] : browserCommands[0]
+  );
   console.log("Finished browser Chrome");
   log.push(script1);
   await copyScreenshots("../Pruebas E2E/output/screenshots");
 
   console.log("Starting browser Firefox");
   log.push("Firefox");
-  const script2 = await runScript(browserSourceDir[0], browserCommands[1]);
+  const script2 = await runScript(
+    browserSourceDir[0],
+    isWindows ? browserCommandsWin[1] : browserCommands[1]
+  );
   console.log("Finished browser Firefox");
   log.push(script2);
 
@@ -131,8 +148,10 @@ async function main() {
     await fs.remove("./results_full_flow");
     if (process.env.VRT_TYPE === "versions") {
       await runVersionsScript(log);
+    } else if (process.env.VRT_TYPE === "versions") {
+      await runBrowsersScript(log, false);
     } else {
-      await runBrowsersScript(log);
+      await runBrowsersScript(log, true);
     }
 
     console.log("Starting comparison");
@@ -149,8 +168,10 @@ async function main() {
 // Compare Images
 // ===========================
 
-async function processSteps({ feature, scenario, outlinePathv1, outlinePathv2, outline
-}, state) {
+async function processSteps(
+  { feature, scenario, outlinePathv1, outlinePathv2, outline },
+  state
+) {
   const stepsv1 = fs.readdirSync(outlinePathv1);
   const stepsv2 = fs.readdirSync(outlinePathv2);
 
@@ -170,7 +191,7 @@ async function processSteps({ feature, scenario, outlinePathv1, outlinePathv2, o
     if (stepsv1[step] === undefined || stepsv2[step] === undefined) {
       continue;
     }
-  //Comparar imagenes
+    //Comparar imagenes
     const stepPathv1 = `${outlinePathv1}/${stepsv1[step]}`;
     const stepPathv2 = `${outlinePathv2}/${stepsv2[step]}`;
     const data = await compareImages(
@@ -178,10 +199,7 @@ async function processSteps({ feature, scenario, outlinePathv1, outlinePathv2, o
       fs.readFileSync(stepPathv2)
     );
     //Guardar imagen
-    const compareResultImg = stepsv1[step]
-      .split(".")
-      .slice(0, -1)
-      .join(".");
+    const compareResultImg = stepsv1[step].split(".").slice(0, -1).join(".");
     const reportImgPath = `./results_full_flow/${feature}-${scenario}-${outline}-${compareResultImg}.png`;
     fs.writeFileSync(reportImgPath, data.getBuffer());
 
@@ -209,39 +227,59 @@ async function processSteps({ feature, scenario, outlinePathv1, outlinePathv2, o
       difference: data.misMatchPercentage,
       originalImage: "../" + stepPathv1,
       newImage: "../" + stepPathv2,
-      diffImage: "../results_full_flow/" + `${feature}-${scenario}-${outline}-${compareResultImg}.png`,
+      diffImage:
+        "../results_full_flow/" +
+        `${feature}-${scenario}-${outline}-${compareResultImg}.png`,
     });
   }
 
   return steps;
 }
 
-async function processOutline({ feature, scenario, escenarioPathv1, escenarioPathv2 }, state) {
+async function processOutline(
+  { feature, scenario, escenarioPathv1, escenarioPathv2 },
+  state
+) {
   const outlinesv1 = fs.readdirSync(escenarioPathv1);
   const outlinesv2 = fs.readdirSync(escenarioPathv2);
   const outlinesLength = Math.max(outlinesv1.length, outlinesv2.length);
   const outlines = [];
 
   for (let outline = 0; outline < outlinesLength; outline++) {
-    if (outlinesv1[outline] === undefined || outlinesv2[outline] === undefined) {
+    if (
+      outlinesv1[outline] === undefined ||
+      outlinesv2[outline] === undefined
+    ) {
       continue;
     }
 
     const outlinePathv1 = `${escenarioPathv1}/${outlinesv1[outline]}`;
     const outlinePathv2 = `${escenarioPathv2}/${outlinesv2[outline]}`;
 
-    const steps = await processSteps({ feature, scenario, outlinePathv1, outlinePathv2, outline: outlinesv1[outline] }, state);
+    const steps = await processSteps(
+      {
+        feature,
+        scenario,
+        outlinePathv1,
+        outlinePathv2,
+        outline: outlinesv1[outline],
+      },
+      state
+    );
 
     outlines.push({
       id: outline + 1,
-      steps
+      steps,
     });
   }
 
   return outlines;
 }
 
-async function processScenarios({ feature, results, totalComparisons, featurePathv1, featurePathv2 }, state) {
+async function processScenarios(
+  { feature, results, totalComparisons, featurePathv1, featurePathv2 },
+  state
+) {
   //Revisar que existan escenarios
   const scenarios = fs.readdirSync(featurePathv1);
 
@@ -250,50 +288,71 @@ async function processScenarios({ feature, results, totalComparisons, featurePat
     const escenarioPathv2 = `${featurePathv2}/${scenarios[scenario]}`;
     if (!fs.existsSync(escenarioPathv1) || !fs.existsSync(escenarioPathv2)) {
       console.log(
-        " Directory not found " +
-        feature +
-        " in " +
-        scenarios[scenario]
+        " Directory not found " + feature + " in " + scenarios[scenario]
       );
       continue;
     }
 
-    const outlines = await processOutline({ feature, scenario: scenarios[scenario], escenarioPathv1, escenarioPathv2 }, state);
+    const outlines = await processOutline(
+      {
+        feature,
+        scenario: scenarios[scenario],
+        escenarioPathv1,
+        escenarioPathv2,
+      },
+      state
+    );
 
     results["report"].push({
       scenarioId: scenarios[scenario],
       title: feature,
-      outlines
+      outlines,
     });
 
     state.comparisonsMade++;
-    const progressPercentage = Math.floor((state.comparisonsMade) / totalComparisons * 100);
+    const progressPercentage = Math.floor(
+      (state.comparisonsMade / totalComparisons) * 100
+    );
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     process.stdout.write(`Progress: ${drawProgressBar(progressPercentage)}`);
   }
 }
 
-async function processFeatures({ features, sourceDirOutput, results, totalComparisons, collection }, state) {
+async function processFeatures(
+  { features, sourceDirOutput, results, totalComparisons, collection },
+  state
+) {
   for (let feat = 0; feat < features.length; feat++) {
-    const featurePathv1 = `${sourceDirOutput + collection[0]}/${features[feat]
-      }`;
-    const featurePathv2 = `${sourceDirOutput + collection[1]}/${features[feat]
-      }`;
+    const featurePathv1 = `${sourceDirOutput + collection[0]}/${
+      features[feat]
+    }`;
+    const featurePathv2 = `${sourceDirOutput + collection[1]}/${
+      features[feat]
+    }`;
     //Revisar que existan las carpetas
     if (!fs.existsSync(featurePathv1) || !fs.existsSync(featurePathv2)) {
       console.log("Directory not found " + features[feat]);
       continue;
     }
 
-    await processScenarios({ feature: features[feat], results, totalComparisons, featurePathv1, featurePathv2 }, state);
+    await processScenarios(
+      {
+        feature: features[feat],
+        results,
+        totalComparisons,
+        featurePathv1,
+        featurePathv2,
+      },
+      state
+    );
   }
 }
 
 async function executeTest() {
   //Reporte
   let results = {
-    report: []
+    report: [],
   };
 
   if (!fs.existsSync(`./results_full_flow`)) {
@@ -308,16 +367,16 @@ async function executeTest() {
   const features = fs.readdirSync(sourceDirOutput + `${collection[0]}`);
 
   // Count total comparisons to show progress bar (Right now is number of scenarios)
-  const totalComparisons = features.map((feat) => {
-    const featurePathv1 = `${sourceDirOutput + collection[0]}/${feat
-      }`;
-    const featurePathv2 = `${sourceDirOutput + collection[1]}/${feat
-      }`;
-    //Revisar que existan las carpetas
-    if (fs.existsSync(featurePathv1) && fs.existsSync(featurePathv2)) {
-      return fs.readdirSync(featurePathv1);
-    }
-  }).reduce((prevValue, currentValue) => prevValue + currentValue.length, 0);
+  const totalComparisons = features
+    .map((feat) => {
+      const featurePathv1 = `${sourceDirOutput + collection[0]}/${feat}`;
+      const featurePathv2 = `${sourceDirOutput + collection[1]}/${feat}`;
+      //Revisar que existan las carpetas
+      if (fs.existsSync(featurePathv1) && fs.existsSync(featurePathv2)) {
+        return fs.readdirSync(featurePathv1);
+      }
+    })
+    .reduce((prevValue, currentValue) => prevValue + currentValue.length, 0);
 
   let state = {
     comparisonsMade: 0,
@@ -330,9 +389,12 @@ async function executeTest() {
     lessThan70: 0,
     lessThan90: 0,
     highThan90: 0,
-  }
+  };
 
-  await processFeatures({ features, sourceDirOutput, results, totalComparisons, collection }, state);
+  await processFeatures(
+    { features, sourceDirOutput, results, totalComparisons, collection },
+    state
+  );
 
   process.stdout.write("\n");
   const totalAvgDiff = state.averageDiff / state.contador;
@@ -353,8 +415,11 @@ async function executeTest() {
     vrtType,
     originalTitle: collection[0],
     newTitle: collection[1],
-  }
-  fs.writeFileSync("./results_full_flow/results.json", JSON.stringify(results, null, 2));
+  };
+  fs.writeFileSync(
+    "./results_full_flow/results.json",
+    JSON.stringify(results, null, 2)
+  );
   console.log("HTML report generated sucessfully");
 }
 

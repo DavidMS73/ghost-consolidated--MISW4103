@@ -53,8 +53,7 @@ BeforeAll(async () => {
     //  you want to stop at
     devtools: false,
     setDefaultTimeout: constants.pageTimeout,
-    browser: process.env.BROWSER || "chrome",
-    // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
+    browser: process.env.NODE_BROWSER_GHOST || "chrome",
   };
 
   scope.browser = await puppeteer.launch(launchProperties);
@@ -89,10 +88,9 @@ BeforeAll(async () => {
     fse.ensureDirSync("output/screenshots");
   }
 
-  const selectedBrowser = process.env.BROWSER;
+  const selectedBrowser = process.env.NODE_BROWSER_GHOST;
   const version = constants.reportConfig.metadata["Version"];
 
-  fse.writeFileSync("temp.txt", selectedBrowser);
   if (selectedBrowser === "chrome" || selectedBrowser === "firefox") {
     const directoryName = selectedBrowser === "chrome" ? "Chrome" : "Firefox";
     fse.ensureDirSync(`output/screenshots/${directoryName}`);
@@ -104,7 +102,6 @@ BeforeAll(async () => {
   // collect information about the run
   //  and to write details to json file
   // *************************************** \\
-  const env = process.env.NODE_ENV;
   const browserVersion = await scope.browser.version();
 
   // look for arg that specifies output file location - starts with 'json:'
@@ -121,7 +118,6 @@ BeforeAll(async () => {
   let reportConfig = constants.reportConfig;
   // append to reportConfig run specific parameters
   reportConfig.jsonFile = outputPath;
-  reportConfig.metadata["Test Environment"] = env;
   reportConfig.metadata["Browser"] = browserVersion;
   reportConfig.metadata["Version"] = version;
 
@@ -196,8 +192,10 @@ AfterStep(async function ({ pickle, gherkinDocument }) {
 
   const stepNumber = stepCounter++;
   //Paths
-  console.log(process.env.BROWSER);
-  const mainDirectoryName = (process.env.BROWSER || "chrome") === "chrome" ? "Chrome" : "Firefox";
+  const mainDirectoryName =
+    (process.env.NODE_BROWSER_GHOST || "chrome") === "chrome"
+      ? "Chrome"
+      : "Firefox";
   const scenarioName = pickle.name.split(" - ")[0];
   const screenshotPath = `./output/screenshots/${mainDirectoryName}/${featureName}/${scenarioName}/OUTLINE_${scenarioCounter}/`;
   const screenshotName = `step_${stepNumber}.png`;

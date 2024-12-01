@@ -1,0 +1,19 @@
+{
+  "name": "resemblepuppeteer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vrt:versions": "VRT_TYPE=versions node fullFlow.js",
+    "vrt:browsers": "VRT_TYPE=browsers node fullFlow.js",
+    "vrt:versions:win": "SET VRT_TYPE=versions& node fullFlow.js",
+    "vrt:browsers:win": "SET VRT_TYPE=browsers-win& node fullFlow.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "resemblejs": "^5.0.0"
+  }
+}

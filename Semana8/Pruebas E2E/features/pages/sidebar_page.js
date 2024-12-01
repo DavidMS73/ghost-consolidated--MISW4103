@@ -23,6 +23,8 @@ class SidebarPageObject {
       waitUntil: "networkidle0",
       timeout: 20000,
     });
+
+    await waitUtil(500);
   }
 
   async clickProfilePicture() {

@@ -148,7 +148,7 @@ async function main() {
     await fs.remove("./results_full_flow");
     if (process.env.VRT_TYPE === "versions") {
       await runVersionsScript(log);
-    } else if (process.env.VRT_TYPE === "versions") {
+    } else if (process.env.VRT_TYPE === "browsers") {
       await runBrowsersScript(log, false);
     } else {
       await runBrowsersScript(log, true);

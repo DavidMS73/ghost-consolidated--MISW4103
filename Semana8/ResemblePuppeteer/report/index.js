@@ -43,10 +43,16 @@ function toTitleCase(str) {
  */
 
 /**
+ * @typedef {Object} Outline
+ * @property {number} id
+ * @property {Step[]} steps
+ */
+
+/**
  * @typedef {Object} Scenario
  * @property {string} scenarioId
  * @property {string} title
- * @property {Step[]} steps
+ * @property {Outline[]} outlines
  */
 
 /**
@@ -89,34 +95,36 @@ function renderSummary(data) {
 /**
  * @param {string} originalTitle The title of the original version/browser
  * @param {string} newTitle The title of the new version/browser
- * @param {Step[]} steps The scenario's steps
+ * @param {Outline[]} outlines The scenario's outlines
  * @param {HTMLElement} node The node to append the steps
  */
-function renderSteps(originalTitle, newTitle, steps, node) {
+function renderSteps(originalTitle, newTitle, outlines, node) {
   const stepBody = node.querySelector("#step");
 
-  for (const step of steps) {
-    const clone = stepBody.cloneNode(true);
-    clone.querySelector("#step-title").innerHTML = `Paso ${step.id}`;
+  for (const outline of outlines) {
+    for (const step of outline.steps) {
+      const clone = stepBody.cloneNode(true);
+      clone.querySelector("#step-title").innerHTML = `Outline ${outline.id} - Paso ${step.id}`;
 
-    let element = clone.querySelector("#step-same-dimensions");
-    element.innerHTML = element.innerHTML.replace("{same-dimensions}", step.sameDimensions ? "Sí" : "No");
+      let element = clone.querySelector("#step-same-dimensions");
+      element.innerHTML = element.innerHTML.replace("{same-dimensions}", step.sameDimensions ? "Sí" : "No");
 
-    element = clone.querySelector("#step-mismatch");
-    element.innerHTML = element.innerHTML.replace("{mismatch}", `${step.difference}%`);
+      element = clone.querySelector("#step-mismatch");
+      element.innerHTML = element.innerHTML.replace("{mismatch}", `${step.difference}%`);
 
-    // Original image
-    clone.querySelector("#step-original-title").innerHTML = originalTitle;
-    clone.querySelector("#original-image").src = step.originalImage;
+      // Original image
+      clone.querySelector("#step-original-title").innerHTML = originalTitle;
+      clone.querySelector("#original-image").src = step.originalImage;
 
-    // New image
-    clone.querySelector("#step-new-title").innerHTML = newTitle;
-    clone.querySelector("#new-image").src = step.newImage;
+      // New image
+      clone.querySelector("#step-new-title").innerHTML = newTitle;
+      clone.querySelector("#new-image").src = step.newImage;
 
-    // Diff image
-    clone.querySelector("#diff-image").src = step.diffImage;
+      // Diff image
+      clone.querySelector("#diff-image").src = step.diffImage;
 
-    node.appendChild(clone);
+      node.appendChild(clone);
+    }
   }
 
   stepBody.remove();
@@ -147,7 +155,7 @@ function renderReport(originalTitle, newTitle, scenarios) {
     const collapsible = node.querySelector("#collapseOne");
     collapsible.id = `${scenario.scenarioId}`;
 
-    renderSteps(originalTitle, newTitle, scenario.steps, collapsible);
+    renderSteps(originalTitle, newTitle, scenario.outlines, collapsible);
 
     container.appendChild(node);
   }

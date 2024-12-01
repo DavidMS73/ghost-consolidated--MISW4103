@@ -10,7 +10,7 @@
     "puppeteer:summary": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json -f rerun:@rerun.txt",
     "puppeteer:rerun": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js @rerun.txt -r step_definitions -f json:output/results.json",
     "puppeteer:headless": "NODE_ENV=headless ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json",
-    "puppeteer:chrome": "NODE_ENV=local BROWSER=chrome npx cucumber-js --tags=@run",
+    "puppeteer:chrome": "NODE_ENV=local NODE_BROWSER_GHOST=chrome npx cucumber-js --tags=@run",
     "puppeteer:chrome:win": "SET NODE_BROWSER_GHOST=chrome& npx cucumber-js --tags=@run",
     "puppeteer:firefox": "NODE_BROWSER_GHOST=firefox npx cucumber-js --tags=@run",
     "puppeteer:firefox:win": "SET NODE_BROWSER_GHOST=firefox& npx cucumber-js --tags=@run",

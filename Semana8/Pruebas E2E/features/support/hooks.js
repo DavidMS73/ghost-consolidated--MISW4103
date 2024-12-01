@@ -53,7 +53,7 @@ BeforeAll(async () => {
     //  you want to stop at
     devtools: false,
     setDefaultTimeout: constants.pageTimeout,
-    browser: process.env.NODE_ENV || "chrome",
+    browser: process.env.BROWSER || "chrome",
     // executablePath: properties.PUPPETEER_EXECUTABLE_PATH,
   };
 
@@ -89,8 +89,16 @@ BeforeAll(async () => {
     fse.ensureDirSync("output/screenshots");
   }
 
+  const selectedBrowser = process.env.BROWSER;
   const version = constants.reportConfig.metadata["Version"];
-  fse.ensureDirSync(`output/screenshots/${version}`);
+
+  fse.writeFileSync("temp.txt", selectedBrowser);
+  if (selectedBrowser === "chrome" || selectedBrowser === "firefox") {
+    const directoryName = selectedBrowser === "chrome" ? "Chrome" : "Firefox";
+    fse.ensureDirSync(`output/screenshots/${directoryName}`);
+  } else {
+    fse.ensureDirSync(`output/screenshots/${version}`);
+  }
 
   // *************************************** \\
   // collect information about the run
@@ -188,7 +196,8 @@ AfterStep(async function ({ pickle, gherkinDocument }) {
 
   const stepNumber = stepCounter++;
   //Paths
-  const mainDirectoryName = (process.env.NODE_ENV || "chrome") === "chrome" ? "Chrome" : "Firefox";
+  console.log(process.env.BROWSER);
+  const mainDirectoryName = (process.env.BROWSER || "chrome") === "chrome" ? "Chrome" : "Firefox";
   const scenarioName = pickle.name.split(" - ")[0];
   const screenshotPath = `./output/screenshots/${mainDirectoryName}/${featureName}/${scenarioName}/OUTLINE_${scenarioCounter}/`;
   const screenshotName = `step_${stepNumber}.png`;

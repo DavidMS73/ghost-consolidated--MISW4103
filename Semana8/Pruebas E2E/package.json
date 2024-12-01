@@ -10,8 +10,8 @@
     "puppeteer:summary": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json -f rerun:@rerun.txt",
     "puppeteer:rerun": "NODE_ENV=local ./node_modules/cucumber/bin/cucumber-js @rerun.txt -r step_definitions -f json:output/results.json",
     "puppeteer:headless": "NODE_ENV=headless ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json",
-    "puppeteer:chrome": "NODE_ENV=chrome npx cucumber-js --tags=@sem-8",
-    "puppeteer:firefox": "NODE_ENV=firefox npx cucumber-js --tags=@sem-8",
+    "puppeteer:chrome": "NODE_ENV=local BROWSER=chrome npx cucumber-js --tags=@run",
+    "puppeteer:firefox": "NODE_ENV=local BROWSER=firefox npx cucumber-js --tags=@run",
     "puppeteer:parallel": "NODE_ENV=headless ./node_modules/cucumber/bin/cucumber-js --tags=@run -r step_definitions -f json:output/results.json --parallel 2",
     "report:html": "./node_modules/.bin/custom-cucumber-report-generator -f output/results.json -i output/report-config.json",
     "report:junit": "cat output/results.json | ./node_modules/.bin/cucumber-junit > output/report/results.xml"

@@ -65,3 +65,5 @@ http-server
 4. Abrir navegador e ir a la ruta [http://127.0.0.1:8080/report](http://127.0.0.1:8080/report)
 
 En este reporte podrá ver un resumen de la ejecución y el detalle de las diferencias encontradas entre las distintas versiones.
+
+> Por defecto hemos incluído ya el reporte generado para la semana 8 en la carpeta report, por lo que es posible consultarlo sin tener que ejecutar todas las pruebas. Tenga en cuenta que debe ejecutar http-server para verlo correctamente

@@ -145,12 +145,14 @@ async function runBrowsersScript(log, isWindows) {
 async function main() {
   const log = [];
   try {
-    await fs.remove("./results_full_flow");
     if (process.env.VRT_TYPE === "versions") {
+      await fs.remove("./results_full_flow");
       await runVersionsScript(log);
     } else if (process.env.VRT_TYPE === "browsers") {
+      await fs.remove("./results_full_flow");
       await runBrowsersScript(log, false);
-    } else {
+    } else if (process.env.VRT_TYPE === "browsers-win") {
+      await fs.remove("./results_full_flow");
       await runBrowsersScript(log, true);
     }
 
